@@ -31,7 +31,7 @@ namespace QLNS_SGU.Presenter
     }
     public class TabPageBaoHiemXaHoiPresenter : ITabPageBaoHiemXaHoiPresenter
     {
-        private string maVienChuc = string.Empty;
+        public static string maVienChuc = string.Empty;
         private bool soSoChanged = false;
         private bool ngayThamGiaChanged = false;
         private bool ngayCapSoChanged = false;

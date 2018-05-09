@@ -573,6 +573,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1084, 461);
+            this.ControlBox = false;
             this.Controls.Add(this.layoutControl2);
             this.Controls.Add(this.txtMaVienChuc);
             this.Controls.Add(this.btnExportExcel);
@@ -586,7 +587,11 @@
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "TabPageDanhGiaVienChuc";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.Text = "TabPageDanhGiaVienChuc";
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMaVienChuc.Properties)).EndInit();

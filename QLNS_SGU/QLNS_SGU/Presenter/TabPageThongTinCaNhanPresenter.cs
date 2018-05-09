@@ -181,7 +181,10 @@ namespace QLNS_SGU.Presenter
                 TabPageQuaTrinhCongTacPresenter.maVienChucFromTabPageThongTinCaNhan = _view.TXTMaVienChuc.Text;
                 TabPageQuaTrinhLuongPresenter.maVienChucFromTabPageThongTinCaNhan = _view.TXTMaVienChuc.Text;
                 TabPageChuyenMonPresenter.maVienChucFromTabPageThongTinCaNhan = _view.TXTMaVienChuc.Text;
-                TabPageTrangThaiPresenter.maVienChucFromTabPageThongTinCaNhan = _view.TXTMaVienChuc.Text;       
+                TabPageTrangThaiPresenter.maVienChucFromTabPageThongTinCaNhan = _view.TXTMaVienChuc.Text;
+                TabPageBaoHiemXaHoiPresenter.maVienChuc = _view.TXTMaVienChuc.Text;
+                TabPagePhuCapThamNienNhaGiaoPresenter.maVienChucFromTabPageThongTinCaNhan = _view.TXTMaVienChuc.Text;
+                TabPageDanhGiaVienChucPresenter.maVienChucFromTabPageThongTinCaNhan = _view.TXTMaVienChuc.Text;
                 _view.TXTMaVienChuc.Enabled = false;                
             }
             else

@@ -33,8 +33,8 @@ namespace QLNS_SGU.Presenter
         }
         public void LoadForm()
         {
-            Stopwatch stopwatch = new Stopwatch();
-            stopwatch.Start();
+            //Stopwatch stopwatch = new Stopwatch();
+            //stopwatch.Start();
             SplashScreenManager.ShowForm(_view, typeof(WaitForm1), true, true, false, 0);
             var tabPageThongTinCaNhanPresenter = new TabPageThongTinCaNhanPresenter(new TabPageThongTinCaNhan());
             tabPageThongTinCaNhanPresenter.Initialize(_maVienChucInMainForm);
@@ -69,7 +69,10 @@ namespace QLNS_SGU.Presenter
             tabPhuCapThamNienNhaGiaoPresenter.Initialize(_maVienChucInMainForm);
             Form frmPhuCapThamNienNhaGiao = (Form)tabPhuCapThamNienNhaGiaoPresenter.UI;
             InitForm(frmPhuCapThamNienNhaGiao);
-            frmThongTinCaNhan.Activate();
+            var tabDanhGiaVienChucPresenter = new TabPageDanhGiaVienChucPresenter(new TabPageDanhGiaVienChuc());
+            tabDanhGiaVienChucPresenter.Initialize(_maVienChucInMainForm);
+            Form frmDanhGiaVienChuc = (Form)tabDanhGiaVienChucPresenter.UI;
+            InitForm(frmDanhGiaVienChuc);
             switch (_tabOrderInRightViewMainForm)
             {
                 case 0:
@@ -93,11 +96,11 @@ namespace QLNS_SGU.Presenter
                     break;
             }
             SplashScreenManager.CloseForm(false);
-            stopwatch.Stop();
-            TimeSpan ts = stopwatch.Elapsed;
-            string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
-            ts.Hours, ts.Minutes, ts.Seconds,
-            ts.Milliseconds / 10);
+            //stopwatch.Stop();
+            //TimeSpan ts = stopwatch.Elapsed;
+            //string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
+            //ts.Hours, ts.Minutes, ts.Seconds,
+            //ts.Milliseconds / 10);
         }
         private void InitForm(Form f)
         {
