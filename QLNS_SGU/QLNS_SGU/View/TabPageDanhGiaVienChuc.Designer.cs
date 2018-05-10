@@ -592,7 +592,7 @@
             this.Name = "TabPageDanhGiaVienChuc";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.Text = "TabPageDanhGiaVienChuc";
+            this.Text = "Đánh giá viên chức";
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMaVienChuc.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl2)).EndInit();
