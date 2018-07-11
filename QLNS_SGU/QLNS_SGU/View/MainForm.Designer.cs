@@ -91,6 +91,8 @@
             this.gridColumn22 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn23 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn24 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn17 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn18 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn25 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemMemoEdit15 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             this.gcQuaTrinhCongTac = new DevExpress.XtraGrid.GridControl();
@@ -228,8 +230,6 @@
             this.popupMenuGVHocHamHocVi = new DevExpress.XtraBars.PopupMenu(this.components);
             this.popupMenuGVChungChi = new DevExpress.XtraBars.PopupMenu(this.components);
             this.popupMenuGVTrangThai = new DevExpress.XtraBars.PopupMenu(this.components);
-            this.gridColumn17 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn18 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -908,6 +908,22 @@
             this.gridColumn24.Visible = true;
             this.gridColumn24.VisibleIndex = 6;
             this.gridColumn24.Width = 110;
+            // 
+            // gridColumn17
+            // 
+            this.gridColumn17.Caption = "Trước hạn";
+            this.gridColumn17.FieldName = "TruocHan";
+            this.gridColumn17.Name = "gridColumn17";
+            this.gridColumn17.Visible = true;
+            this.gridColumn17.VisibleIndex = 7;
+            // 
+            // gridColumn18
+            // 
+            this.gridColumn18.Caption = "Hệ số vượt khung";
+            this.gridColumn18.FieldName = "HeSoVuotKhung";
+            this.gridColumn18.Name = "gridColumn18";
+            this.gridColumn18.Visible = true;
+            this.gridColumn18.VisibleIndex = 8;
             // 
             // gridColumn25
             // 
@@ -2259,7 +2275,7 @@
             this.gridColumn9.Name = "gridColumn9";
             this.gridColumn9.Visible = true;
             this.gridColumn9.VisibleIndex = 7;
-            this.gridColumn9.Width = 200;
+            this.gridColumn9.Width = 300;
             // 
             // repositoryItemMemoEdit1
             // 
@@ -2325,22 +2341,6 @@
             this.popupMenuGVTrangThai.Manager = this.barManager1;
             this.popupMenuGVTrangThai.Name = "popupMenuGVTrangThai";
             // 
-            // gridColumn17
-            // 
-            this.gridColumn17.Caption = "Trước hạn";
-            this.gridColumn17.FieldName = "TruocHan";
-            this.gridColumn17.Name = "gridColumn17";
-            this.gridColumn17.Visible = true;
-            this.gridColumn17.VisibleIndex = 7;
-            // 
-            // gridColumn18
-            // 
-            this.gridColumn18.Caption = "Hệ số vượt khung";
-            this.gridColumn18.FieldName = "HeSoVuotKhung";
-            this.gridColumn18.Name = "gridColumn18";
-            this.gridColumn18.Visible = true;
-            this.gridColumn18.VisibleIndex = 8;
-            // 
             // MainForm
             // 
             this.Appearance.Options.UseTextOptions = true;
@@ -2363,8 +2363,6 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "MainForm";
-            this.ShowIcon = false;
-            this.ShowInTaskbar = false;
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);

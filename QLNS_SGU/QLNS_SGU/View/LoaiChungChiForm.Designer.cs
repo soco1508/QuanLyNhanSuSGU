@@ -143,9 +143,13 @@
             // 
             // gridColumn1
             // 
-            this.gridColumn1.Caption = "Id";
+            this.gridColumn1.Caption = "Mã chứng chỉ";
             this.gridColumn1.FieldName = "idLoaiChungChi";
             this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.OptionsColumn.AllowEdit = false;
+            this.gridColumn1.Visible = true;
+            this.gridColumn1.VisibleIndex = 0;
+            this.gridColumn1.Width = 200;
             // 
             // gridColumn2
             // 
@@ -154,7 +158,8 @@
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.OptionsColumn.AllowEdit = false;
             this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 0;
+            this.gridColumn2.VisibleIndex = 1;
+            this.gridColumn2.Width = 758;
             // 
             // layoutControlGroup1
             // 

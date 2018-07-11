@@ -69,5 +69,10 @@ namespace Model.Repository
         {
             return _db.Ngaches.Where(x => x.tenNgach == tenngach).ToList();
         }
+
+        public List<string> GetListMaNgach()
+        {
+            return _db.Ngaches.Select(x => x.maNgach).ToList();
+        }
     }
 }

@@ -79,11 +79,11 @@ namespace QLNS_SGU.Presenter
                 int row_handle = _view.GVLoaiChungChi.FocusedRowHandle;
                 if(row_handle >= 0)
                 {
-                    int id = Convert.ToInt32(_view.GVLoaiChungChi.GetFocusedRowCellDisplayText("idLoaiChungChi"));
+                    string idchungchi = _view.GVLoaiChungChi.GetFocusedRowCellDisplayText("idLoaiChungChi");
                     DialogResult dialogResult = XtraMessageBox.Show("Bạn có chắc chắn muốn xóa?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                     if (dialogResult == DialogResult.Yes)
                     {
-                        unitOfWorks.LoaiChungChiRepository.DeleteById(id);
+                        unitOfWorks.LoaiChungChiRepository.DeleteById(idchungchi);
                         unitOfWorks.Save();
                         _view.GVLoaiChungChi.DeleteRow(row_handle);
                     }
@@ -107,18 +107,29 @@ namespace QLNS_SGU.Presenter
 
         public void HiddenEditor(object sender, EventArgs e)
         {
+            _view.GVLoaiChungChi.Columns[0].OptionsColumn.AllowEdit = false;
             _view.GVLoaiChungChi.Columns[1].OptionsColumn.AllowEdit = false;
         }
 
         public void InitNewRow(object sender, InitNewRowEventArgs e)
         {
             GridView gridView = sender as GridView;
+            gridView.SetRowCellValue(e.RowHandle, gridView.Columns[0], string.Empty);
             gridView.SetRowCellValue(e.RowHandle, gridView.Columns[1], string.Empty);
         }
 
         public void MouseDoubleClick(object sender, MouseEventArgs e)
         {
             GridHitInfo hinfo = _view.GVLoaiChungChi.CalcHitInfo(e.Location);
+            if (hinfo.Column == _view.GVLoaiChungChi.Columns[0])
+            {
+                int row_handle = _view.GVLoaiChungChi.FocusedRowHandle;
+                if(row_handle < 0)
+                {
+                    _view.GVLoaiChungChi.Columns[0].OptionsColumn.AllowEdit = true;
+                    _view.GVLoaiChungChi.ShowEditor();
+                }
+            }
             if (hinfo.Column == _view.GVLoaiChungChi.Columns[1])
             {
                 _view.GVLoaiChungChi.Columns[1].OptionsColumn.AllowEdit = true;
@@ -133,13 +144,15 @@ namespace QLNS_SGU.Presenter
             CloseEditor();
             UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             int row_handle = _view.GVLoaiChungChi.FocusedRowHandle;
-            int idRowFocused = Convert.ToInt32(_view.GVLoaiChungChi.GetFocusedRowCellDisplayText("idLoaiChungChi"));
-            if (idRowFocused == 0)
-            {
-                string loaichungchi = _view.GVLoaiChungChi.GetFocusedRowCellDisplayText("tenLoaiChungChi").ToString();
-                if (loaichungchi != string.Empty)
+            List<string> listIdLoaiChungChi = unitOfWorks.LoaiChungChiRepository.GetListIdLoaiChungChi();
+            string idloaichungchi = _view.GVLoaiChungChi.GetFocusedRowCellDisplayText("idLoaiChungChi");
+            string tenloaichungchi = _view.GVLoaiChungChi.GetFocusedRowCellDisplayText("tenLoaiChungChi").ToString();
+            if (!listIdLoaiChungChi.Any(x => x == idloaichungchi))
+            {               
+                if (tenloaichungchi != string.Empty)
                 {
-                    unitOfWorks.LoaiChungChiRepository.Create(loaichungchi);
+                    unitOfWorks.LoaiChungChiRepository.Create(idloaichungchi, tenloaichungchi);
+                    unitOfWorks.Save();
                     LoadDataToGrid();
                     XtraMessageBox.Show("Lưu dữ liệu thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     _view.GVLoaiChungChi.MoveLast();
@@ -152,11 +165,10 @@ namespace QLNS_SGU.Presenter
             }
             else
             {
-                int id = Convert.ToInt32(_view.GVLoaiChungChi.GetRowCellValue(row_handle, "idLoaiChungChi"));
-                string loaichungchi = _view.GVLoaiChungChi.GetFocusedRowCellDisplayText("tenLoaiChungChi").ToString();
-                if (loaichungchi != string.Empty)
+                if (tenloaichungchi != string.Empty)
                 {
-                    unitOfWorks.LoaiChungChiRepository.Update(id, loaichungchi);
+                    unitOfWorks.LoaiChungChiRepository.Update(idloaichungchi, tenloaichungchi);
+                    unitOfWorks.Save();
                     XtraMessageBox.Show("Lưu dữ liệu thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else

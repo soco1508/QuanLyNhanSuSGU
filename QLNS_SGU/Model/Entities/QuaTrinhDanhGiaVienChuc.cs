@@ -20,6 +20,8 @@ namespace Model.Entities
         public int idMucDoDanhGia { get; set; }
         public Nullable<System.DateTime> ngayBatDau { get; set; }
         public Nullable<System.DateTime> ngayKetThuc { get; set; }
+        public string linkVanBanDinhKem { get; set; }
+        public string nhanXet { get; set; }
     
         public virtual DanhMucThoiGian DanhMucThoiGian { get; set; }
         public virtual MucDoDanhGia MucDoDanhGia { get; set; }

@@ -124,12 +124,11 @@
             [default: true]
         </member>
         <member name="P:Google.Apis.Drive.v3.DriveBaseServiceRequest`1.QuotaUser">
-            <summary>Available to use for quota purposes for server-side applications. Can be any arbitrary string
-            assigned to a user, but should not exceed 40 characters. Overrides userIp if both are provided.</summary>
+            <summary>An opaque string that represents a user for quota purposes. Must not exceed 40
+            characters.</summary>
         </member>
         <member name="P:Google.Apis.Drive.v3.DriveBaseServiceRequest`1.UserIp">
-            <summary>IP address of the site where the request originates. Use this if you want to enforce per-user
-            limits.</summary>
+            <summary>Deprecated. Please use quotaUser instead.</summary>
         </member>
         <member name="M:Google.Apis.Drive.v3.DriveBaseServiceRequest`1.InitParameters">
             <summary>Initializes Drive parameter list.</summary>
@@ -710,13 +709,11 @@
             [default: true]
         </member>
         <member name="P:Google.Apis.Drive.v3.FilesResource.CreateMediaUpload.QuotaUser">
-            <summary>Available to use for quota purposes for server-side applications. Can be any arbitrary string
-            assigned to a user, but should not exceed 40 characters. Overrides userIp if both are
-            provided.</summary>
+            <summary>An opaque string that represents a user for quota purposes. Must not exceed 40
+            characters.</summary>
         </member>
         <member name="P:Google.Apis.Drive.v3.FilesResource.CreateMediaUpload.UserIp">
-            <summary>IP address of the site where the request originates. Use this if you want to enforce per-user
-            limits.</summary>
+            <summary>Deprecated. Please use quotaUser instead.</summary>
         </member>
         <member name="P:Google.Apis.Drive.v3.FilesResource.CreateMediaUpload.IgnoreDefaultVisibility">
             <summary>Whether to ignore the domain's default visibility settings for the created file. Domain
@@ -1112,13 +1109,11 @@
             [default: true]
         </member>
         <member name="P:Google.Apis.Drive.v3.FilesResource.UpdateMediaUpload.QuotaUser">
-            <summary>Available to use for quota purposes for server-side applications. Can be any arbitrary string
-            assigned to a user, but should not exceed 40 characters. Overrides userIp if both are
-            provided.</summary>
+            <summary>An opaque string that represents a user for quota purposes. Must not exceed 40
+            characters.</summary>
         </member>
         <member name="P:Google.Apis.Drive.v3.FilesResource.UpdateMediaUpload.UserIp">
-            <summary>IP address of the site where the request originates. Use this if you want to enforce per-user
-            limits.</summary>
+            <summary>Deprecated. Please use quotaUser instead.</summary>
         </member>
         <member name="P:Google.Apis.Drive.v3.FilesResource.UpdateMediaUpload.FileId">
             <summary>The ID of the file.</summary>
@@ -1238,7 +1233,7 @@
             <summary>The ID of the file or Team Drive.</summary>
         </member>
         <member name="P:Google.Apis.Drive.v3.PermissionsResource.CreateRequest.EmailMessage">
-            <summary>A custom message to include in the notification email.</summary>
+            <summary>A plain text custom message to include in the notification email.</summary>
         </member>
         <member name="P:Google.Apis.Drive.v3.PermissionsResource.CreateRequest.SendNotificationEmail">
             <summary>Whether to send a notification email when sharing to users or groups. This defaults to true for
@@ -1252,6 +1247,12 @@
         <member name="P:Google.Apis.Drive.v3.PermissionsResource.CreateRequest.TransferOwnership">
             <summary>Whether to transfer ownership to the specified user and downgrade the current owner to a
             writer. This parameter is required as an acknowledgement of the side effect.</summary>
+            [default: false]
+        </member>
+        <member name="P:Google.Apis.Drive.v3.PermissionsResource.CreateRequest.UseDomainAdminAccess">
+            <summary>Whether the request should be treated as if it was issued by a domain administrator; if set to
+            true, then the requester will be granted access if they are an administrator of the domain to which the
+            item belongs.</summary>
             [default: false]
         </member>
         <member name="P:Google.Apis.Drive.v3.PermissionsResource.CreateRequest.Body">
@@ -1294,6 +1295,12 @@
             <summary>Whether the requesting application supports Team Drives.</summary>
             [default: false]
         </member>
+        <member name="P:Google.Apis.Drive.v3.PermissionsResource.DeleteRequest.UseDomainAdminAccess">
+            <summary>Whether the request should be treated as if it was issued by a domain administrator; if set to
+            true, then the requester will be granted access if they are an administrator of the domain to which the
+            item belongs.</summary>
+            [default: false]
+        </member>
         <member name="P:Google.Apis.Drive.v3.PermissionsResource.DeleteRequest.MethodName">
             <summary>Gets the method name.</summary>
         </member>
@@ -1326,6 +1333,12 @@
         </member>
         <member name="P:Google.Apis.Drive.v3.PermissionsResource.GetRequest.SupportsTeamDrives">
             <summary>Whether the requesting application supports Team Drives.</summary>
+            [default: false]
+        </member>
+        <member name="P:Google.Apis.Drive.v3.PermissionsResource.GetRequest.UseDomainAdminAccess">
+            <summary>Whether the request should be treated as if it was issued by a domain administrator; if set to
+            true, then the requester will be granted access if they are an administrator of the domain to which the
+            item belongs.</summary>
             [default: false]
         </member>
         <member name="P:Google.Apis.Drive.v3.PermissionsResource.GetRequest.MethodName">
@@ -1366,6 +1379,12 @@
         </member>
         <member name="P:Google.Apis.Drive.v3.PermissionsResource.ListRequest.SupportsTeamDrives">
             <summary>Whether the requesting application supports Team Drives.</summary>
+            [default: false]
+        </member>
+        <member name="P:Google.Apis.Drive.v3.PermissionsResource.ListRequest.UseDomainAdminAccess">
+            <summary>Whether the request should be treated as if it was issued by a domain administrator; if set to
+            true, then the requester will be granted access if they are an administrator of the domain to which the
+            item belongs.</summary>
             [default: false]
         </member>
         <member name="P:Google.Apis.Drive.v3.PermissionsResource.ListRequest.MethodName">
@@ -1410,6 +1429,12 @@
         <member name="P:Google.Apis.Drive.v3.PermissionsResource.UpdateRequest.TransferOwnership">
             <summary>Whether to transfer ownership to the specified user and downgrade the current owner to a
             writer. This parameter is required as an acknowledgement of the side effect.</summary>
+            [default: false]
+        </member>
+        <member name="P:Google.Apis.Drive.v3.PermissionsResource.UpdateRequest.UseDomainAdminAccess">
+            <summary>Whether the request should be treated as if it was issued by a domain administrator; if set to
+            true, then the requester will be granted access if they are an administrator of the domain to which the
+            item belongs.</summary>
             [default: false]
         </member>
         <member name="P:Google.Apis.Drive.v3.PermissionsResource.UpdateRequest.Body">
@@ -1893,6 +1918,12 @@
         <member name="P:Google.Apis.Drive.v3.TeamdrivesResource.GetRequest.TeamDriveId">
             <summary>The ID of the Team Drive</summary>
         </member>
+        <member name="P:Google.Apis.Drive.v3.TeamdrivesResource.GetRequest.UseDomainAdminAccess">
+            <summary>Whether the request should be treated as if it was issued by a domain administrator; if set to
+            true, then the requester will be granted access if they are an administrator of the domain to which the
+            Team Drive belongs.</summary>
+            [default: false]
+        </member>
         <member name="P:Google.Apis.Drive.v3.TeamdrivesResource.GetRequest.MethodName">
             <summary>Gets the method name.</summary>
         </member>
@@ -1922,6 +1953,15 @@
         </member>
         <member name="P:Google.Apis.Drive.v3.TeamdrivesResource.ListRequest.PageToken">
             <summary>Page token for Team Drives.</summary>
+        </member>
+        <member name="P:Google.Apis.Drive.v3.TeamdrivesResource.ListRequest.Q">
+            <summary>Query string for searching Team Drives.</summary>
+        </member>
+        <member name="P:Google.Apis.Drive.v3.TeamdrivesResource.ListRequest.UseDomainAdminAccess">
+            <summary>Whether the request should be treated as if it was issued by a domain administrator; if set to
+            true, then all Team Drives of the domain in which the requester is an administrator are
+            returned.</summary>
+            [default: false]
         </member>
         <member name="P:Google.Apis.Drive.v3.TeamdrivesResource.ListRequest.MethodName">
             <summary>Gets the method name.</summary>
@@ -1972,6 +2012,9 @@
         </member>
         <member name="P:Google.Apis.Drive.v3.Data.About.AppInstalled">
             <summary>Whether the user has installed the requesting app.</summary>
+        </member>
+        <member name="P:Google.Apis.Drive.v3.Data.About.CanCreateTeamDrives">
+            <summary>Whether the user can create Team Drives.</summary>
         </member>
         <member name="P:Google.Apis.Drive.v3.Data.About.ExportFormats">
             <summary>A map of source MIME type to possible targets for all supported exports.</summary>
@@ -2322,8 +2365,9 @@
         </member>
         <member name="P:Google.Apis.Drive.v3.Data.File.Parents">
             <summary>The IDs of the parent folders which contain the file. If not specified as part of a create request,
-            the file will be placed directly in the My Drive folder. Update requests must use the addParents and
-            removeParents parameters to modify the values.</summary>
+            the file will be placed directly in the user's My Drive folder. If not specified as part of a copy request,
+            the file will inherit any discoverable parents of the source file. Update requests must use the addParents
+            and removeParents parameters to modify the parents list.</summary>
         </member>
         <member name="P:Google.Apis.Drive.v3.Data.File.PermissionIds">
             <summary>List of permission IDs for users with access to this file.</summary>
@@ -2882,6 +2926,12 @@
         <member name="P:Google.Apis.Drive.v3.Data.TeamDrive.ColorRgb">
             <summary>The color of this Team Drive as an RGB hex string. It can only be set on a drive.teamdrives.update
             request that does not set themeId.</summary>
+        </member>
+        <member name="P:Google.Apis.Drive.v3.Data.TeamDrive.CreatedTimeRaw">
+            <summary>The time at which the Team Drive was created (RFC 3339 date-time).</summary>
+        </member>
+        <member name="P:Google.Apis.Drive.v3.Data.TeamDrive.CreatedTime">
+            <summary><seealso cref="T:System.DateTime"/> representation of <see cref="P:Google.Apis.Drive.v3.Data.TeamDrive.CreatedTimeRaw"/>.</summary>
         </member>
         <member name="P:Google.Apis.Drive.v3.Data.TeamDrive.Id">
             <summary>The ID of this Team Drive which is also the ID of the top level folder for this Team

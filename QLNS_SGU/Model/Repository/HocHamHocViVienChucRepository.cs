@@ -56,6 +56,8 @@ namespace Model.Repository
         {
             switch (trinhdo)
             {
+                case "Khác":
+                    return 0;
                 case "Phổ thông":
                     return 1;
                 case "Trung cấp":
@@ -71,9 +73,7 @@ namespace Model.Repository
                 case "Phó giáo sư":
                     return 7;
                 case "Giáo sư":
-                    return 8;
-                case "Khác":
-                    return 0;
+                    return 8;                
                 default:
                     return 0;
             }
@@ -170,14 +170,24 @@ namespace Model.Repository
             return _db.HocHamHocViVienChucs.Where(x => x.VienChuc.maVienChuc == maVienChucForGetListLinkVanBanDinhKemHHHV).Select(y => y.linkVanBanDinhKem).ToList();
         }
 
-        public int GetNewestIdHocHamHocViVienChuc()
+        public int GetIdHocHamHocViVienChucByFiveArguments(int idvienchuc, int idloaihochamhocvi, int idloainganh, int idnganhdaotao, int idchuyennganh)
         {
-            return _db.HocHamHocViVienChucs.Max(m => m.idHocHamHocViVienChuc);
+            return _db.HocHamHocViVienChucs.Where(x => x.idVienChuc == idvienchuc && x.idLoaiHocHamHocVi == idloaihochamhocvi && x.idLoaiNganh == idloainganh && x.idNganhDaoTao == idnganhdaotao && x.idChuyenNganh == idchuyennganh).Select(y => y.idHocHamHocViVienChuc).FirstOrDefault();
         }
 
         public int GetIdHocHamHocViVienChucEmpty()
         {
             return _db.HocHamHocViVienChucs.Where(x => x.tenHocHamHocVi == string.Empty).Select(y => y.idHocHamHocViVienChuc).FirstOrDefault();
+        }
+
+        public DateTime? ParseDatetimeMatchDatetimeDatabase(string date)
+        {
+            if(date != string.Empty)
+            {
+                string temp = "01/01/" + date;
+                return Convert.ToDateTime(temp);
+            }
+            return null;
         }
     }
 }

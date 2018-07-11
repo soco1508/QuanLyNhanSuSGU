@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using QLNS_SGU.View;
 using Model;
 using Model.Entities;
@@ -36,7 +34,6 @@ namespace QLNS_SGU.Presenter
         void PhanLoaiChanged(object sender, EventArgs e);
         void KiemNhiemChanged(object sender, EventArgs e);
         void LinkVanBanDinhKemQuaTrinhCongTacChanged(object sender, EventArgs e);
-        void NhanXetChanged(object sender, EventArgs e);
         void RowIndicatorQTCT(object sender, RowIndicatorCustomDrawEventArgs e);
         void ShowTrangThaiHienTai();
 
@@ -171,7 +168,7 @@ namespace QLNS_SGU.Presenter
         private bool phanLoaiChanged = false;
         private bool kiemNhiemChanged = false;
         private bool linkVanBanDinhKemQuaTrinhCongTacChanged = false;
-        private bool nhanXetChanged = false;
+        
         private void LoadGridTabPageQuaTrinhCongTac(string mavienchuc)
         {
             UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
@@ -247,7 +244,7 @@ namespace QLNS_SGU.Presenter
             _view.DTNgayBatDau.Text = string.Empty;
             _view.DTNgayKetThuc.Text = string.Empty;
             _view.TXTLinkVanBanDinhKem.Text = string.Empty;
-            _view.TXTNhanXet.Text = string.Empty;
+            
         }
         private void InsertDataQTCT()
         {
@@ -268,8 +265,7 @@ namespace QLNS_SGU.Presenter
                 linkVanBanDinhKem = _view.TXTLinkVanBanDinhKem.Text,
                 ngayBatDau = unitOfWorks.HopDongVienChucRepository.ReturnDateTimeToDatabase(_view.DTNgayBatDau.Text),
                 ngayKetThuc = unitOfWorks.HopDongVienChucRepository.ReturnDateTimeToDatabase(_view.DTNgayKetThuc.Text),
-                phanLoaiCongTac = _view.TXTPhanLoaiCongTac.Text,
-                nhanXet = _view.TXTNhanXet.Text
+                phanLoaiCongTac = _view.TXTPhanLoaiCongTac.Text                
             });
             unitOfWorks.Save();
             LoadGridTabPageQuaTrinhCongTac(_view.TXTMaVienChuc.Text);
@@ -334,11 +330,6 @@ namespace QLNS_SGU.Presenter
             {
                 chucVuDonViVienChuc.linkVanBanDinhKem = _view.TXTLinkVanBanDinhKem.Text;
                 linkVanBanDinhKemQuaTrinhCongTacChanged = false;
-            }
-            if (nhanXetChanged)
-            {
-                chucVuDonViVienChuc.nhanXet = _view.TXTNhanXet.Text;
-                nhanXetChanged = false;
             }
             unitOfWorks.Save();
             LoadGridTabPageQuaTrinhCongTac(_view.TXTMaVienChuc.Text);
@@ -430,7 +421,7 @@ namespace QLNS_SGU.Presenter
                 string phanloaicongtac = _view.GVTabPageQuaTrinhCongTac.GetFocusedRowCellDisplayText("PhanLoaiCongTac").ToString();
                 string loaithaydoi = _view.GVTabPageQuaTrinhCongTac.GetFocusedRowCellDisplayText("LoaiThayDoi").ToString();
                 string linkvanbandinhkem = _view.GVTabPageQuaTrinhCongTac.GetFocusedRowCellDisplayText("LinkVanBanDinhKem").ToString();
-                string nhanxet = _view.GVTabPageQuaTrinhCongTac.GetFocusedRowCellDisplayText("NhanXet").ToString();
+                
                 _view.CBXChucVu.EditValue = unitOfWorks.ChucVuRepository.GetIdChucVuByTenChucVu(chucvu);
                 _view.CBXDonVi.EditValue = unitOfWorks.DonViRepository.GetIdDonVi(donvi);
                 _view.CBXToChuyenMon.EditValue = unitOfWorks.ToChuyenMonRepository.GetIdToChuyenMon(donvi, tochuyenmon);
@@ -441,8 +432,7 @@ namespace QLNS_SGU.Presenter
                 _view.TXTPhanLoaiCongTac.Text = phanloaicongtac;
                 _view.DTNgayBatDau.EditValue = unitOfWorks.HopDongVienChucRepository.ReturnNullIfDateTimeNullToView(_view.GVTabPageQuaTrinhCongTac.GetFocusedRowCellDisplayText("NgayBatDau"));
                 _view.DTNgayKetThuc.EditValue = unitOfWorks.HopDongVienChucRepository.ReturnNullIfDateTimeNullToView(_view.GVTabPageQuaTrinhCongTac.GetFocusedRowCellDisplayText("NgayKetThuc"));
-                _view.TXTLinkVanBanDinhKem.Text = linkvanbandinhkem;
-                _view.TXTNhanXet.Text = nhanxet;
+                _view.TXTLinkVanBanDinhKem.Text = linkvanbandinhkem;                
             }
         }
 
@@ -597,11 +587,6 @@ namespace QLNS_SGU.Presenter
         public void LinkVanBanDinhKemQuaTrinhCongTacChanged(object sender, EventArgs e)
         {
             linkVanBanDinhKemQuaTrinhCongTacChanged = true;
-        }
-
-        public void NhanXetChanged(object sender, EventArgs e)
-        {
-            nhanXetChanged = true;
         }
 
         public void RowIndicatorQTCT(object sender, RowIndicatorCustomDrawEventArgs e)

@@ -32,8 +32,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ImportDataForm));
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar2 = new DevExpress.XtraBars.Bar();
+            this.chkLog = new DevExpress.XtraBars.BarCheckItem();
             this.btnChooseFile = new DevExpress.XtraBars.BarButtonItem();
-            this.txtPathFile = new DevExpress.XtraBars.BarStaticItem();
             this.cbxContainListSheets = new DevExpress.XtraBars.BarEditItem();
             this.repositoryItemComboBox2 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.barStaticItem1 = new DevExpress.XtraBars.BarStaticItem();
@@ -44,6 +44,7 @@
             this.dockManager1 = new DevExpress.XtraBars.Docking.DockManager(this.components);
             this.dockPanel3 = new DevExpress.XtraBars.Docking.DockPanel();
             this.dockPanel3_Container = new DevExpress.XtraBars.Docking.ControlContainer();
+            this.txtPathFile = new DevExpress.XtraBars.BarStaticItem();
             this.repositoryItemComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
@@ -314,9 +315,10 @@
             this.btnChooseFile,
             this.txtPathFile,
             this.cbxContainListSheets,
-            this.barStaticItem1});
+            this.barStaticItem1,
+            this.chkLog});
             this.barManager1.MainMenu = this.bar2;
-            this.barManager1.MaxItemId = 14;
+            this.barManager1.MaxItemId = 15;
             this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemComboBox1,
             this.repositoryItemComboBox2});
@@ -328,38 +330,32 @@
             this.bar2.DockRow = 0;
             this.bar2.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
             this.bar2.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.chkLog),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnChooseFile),
-            new DevExpress.XtraBars.LinkPersistInfo(this.txtPathFile),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.cbxContainListSheets, "", false, true, true, 153),
             new DevExpress.XtraBars.LinkPersistInfo(this.barStaticItem1)});
             this.bar2.OptionsBar.MultiLine = true;
             this.bar2.OptionsBar.UseWholeRow = true;
             this.bar2.Text = "Main menu";
             // 
+            // chkLog
+            // 
+            this.chkLog.Caption = " Ghi log";
+            this.chkLog.CheckBoxVisibility = DevExpress.XtraBars.CheckBoxVisibility.BeforeText;
+            this.chkLog.Id = 14;
+            this.chkLog.Name = "chkLog";
+            // 
             // btnChooseFile
             // 
-            this.btnChooseFile.Caption = "Chọn tệp";
+            this.btnChooseFile.Caption = "Chọn tập tin excel";
             this.btnChooseFile.Id = 0;
             this.btnChooseFile.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnChooseFile.ImageOptions.Image")));
             this.btnChooseFile.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnChooseFile.ImageOptions.LargeImage")));
             this.btnChooseFile.Name = "btnChooseFile";
             this.btnChooseFile.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
-            // txtPathFile
-            // 
-            this.txtPathFile.AutoSize = DevExpress.XtraBars.BarStaticItemSize.None;
-            this.txtPathFile.Border = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
-            this.txtPathFile.Id = 6;
-            this.txtPathFile.ItemAppearance.Normal.ForeColor = System.Drawing.Color.DimGray;
-            this.txtPathFile.ItemAppearance.Normal.Options.UseForeColor = true;
-            this.txtPathFile.Name = "txtPathFile";
-            this.txtPathFile.Size = new System.Drawing.Size(200, 0);
-            this.txtPathFile.TextAlignment = System.Drawing.StringAlignment.Far;
-            this.txtPathFile.Width = 200;
-            // 
             // cbxContainListSheets
             // 
-            this.cbxContainListSheets.Caption = "barEditItem1";
             this.cbxContainListSheets.Edit = this.repositoryItemComboBox2;
             this.cbxContainListSheets.Id = 11;
             this.cbxContainListSheets.Name = "cbxContainListSheets";
@@ -385,7 +381,7 @@
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.barManager1;
-            this.barDockControlTop.Size = new System.Drawing.Size(591, 28);
+            this.barDockControlTop.Size = new System.Drawing.Size(591, 24);
             // 
             // barDockControlBottom
             // 
@@ -399,17 +395,17 @@
             // 
             this.barDockControlLeft.CausesValidation = false;
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 28);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 24);
             this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 374);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 378);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(591, 28);
+            this.barDockControlRight.Location = new System.Drawing.Point(591, 24);
             this.barDockControlRight.Manager = this.barManager1;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 374);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 378);
             // 
             // dockManager1
             // 
@@ -449,6 +445,18 @@
             this.dockPanel3_Container.Size = new System.Drawing.Size(192, 170);
             this.dockPanel3_Container.TabIndex = 0;
             // 
+            // txtPathFile
+            // 
+            this.txtPathFile.AutoSize = DevExpress.XtraBars.BarStaticItemSize.None;
+            this.txtPathFile.Border = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
+            this.txtPathFile.Id = 6;
+            this.txtPathFile.ItemAppearance.Normal.ForeColor = System.Drawing.Color.DimGray;
+            this.txtPathFile.ItemAppearance.Normal.Options.UseForeColor = true;
+            this.txtPathFile.Name = "txtPathFile";
+            this.txtPathFile.Size = new System.Drawing.Size(200, 0);
+            this.txtPathFile.TextAlignment = System.Drawing.StringAlignment.Far;
+            this.txtPathFile.Width = 200;
+            // 
             // repositoryItemComboBox1
             // 
             this.repositoryItemComboBox1.AutoHeight = false;
@@ -480,11 +488,11 @@
             this.navBarTrangThai,
             this.navBarChungChi,
             this.navBarHopDong});
-            this.navBarControl1.Location = new System.Drawing.Point(0, 28);
+            this.navBarControl1.Location = new System.Drawing.Point(0, 24);
             this.navBarControl1.Name = "navBarControl1";
             this.navBarControl1.OptionsNavPane.ExpandedWidth = 206;
             this.navBarControl1.PaintStyleKind = DevExpress.XtraNavBar.NavBarViewKind.NavigationPane;
-            this.navBarControl1.Size = new System.Drawing.Size(206, 374);
+            this.navBarControl1.Size = new System.Drawing.Size(206, 378);
             this.navBarControl1.TabIndex = 6;
             this.navBarControl1.Text = "navBarControl1";
             // 
@@ -570,9 +578,9 @@
             // 
             // splitterControl1
             // 
-            this.splitterControl1.Location = new System.Drawing.Point(206, 28);
+            this.splitterControl1.Location = new System.Drawing.Point(206, 24);
             this.splitterControl1.Name = "splitterControl1";
-            this.splitterControl1.Size = new System.Drawing.Size(4, 374);
+            this.splitterControl1.Size = new System.Drawing.Size(5, 378);
             this.splitterControl1.TabIndex = 7;
             this.splitterControl1.TabStop = false;
             // 
@@ -580,11 +588,11 @@
             // 
             this.xtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.xtraTabControl1.HeaderOrientation = DevExpress.XtraTab.TabOrientation.Horizontal;
-            this.xtraTabControl1.Location = new System.Drawing.Point(210, 28);
+            this.xtraTabControl1.Location = new System.Drawing.Point(211, 24);
             this.xtraTabControl1.Name = "xtraTabControl1";
             this.xtraTabControl1.SelectedTabPage = this.tabDangHocNangCao;
             this.xtraTabControl1.ShowTabHeader = DevExpress.Utils.DefaultBoolean.True;
-            this.xtraTabControl1.Size = new System.Drawing.Size(381, 374);
+            this.xtraTabControl1.Size = new System.Drawing.Size(380, 378);
             this.xtraTabControl1.TabIndex = 8;
             this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.tabThongTinCaNhan,
@@ -601,7 +609,7 @@
             // 
             this.tabDangHocNangCao.Controls.Add(this.layoutControl7);
             this.tabDangHocNangCao.Name = "tabDangHocNangCao";
-            this.tabDangHocNangCao.Size = new System.Drawing.Size(376, 349);
+            this.tabDangHocNangCao.Size = new System.Drawing.Size(374, 350);
             this.tabDangHocNangCao.Text = "Đang học nâng cao";
             // 
             // layoutControl7
@@ -611,7 +619,7 @@
             this.layoutControl7.Location = new System.Drawing.Point(0, 0);
             this.layoutControl7.Name = "layoutControl7";
             this.layoutControl7.Root = this.layoutControlGroup7;
-            this.layoutControl7.Size = new System.Drawing.Size(376, 349);
+            this.layoutControl7.Size = new System.Drawing.Size(374, 350);
             this.layoutControl7.TabIndex = 0;
             this.layoutControl7.Text = "layoutControl7";
             // 
@@ -638,7 +646,7 @@
             this.layoutControlItem19});
             this.layoutControlGroup7.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup7.Name = "layoutControlGroup7";
-            this.layoutControlGroup7.Size = new System.Drawing.Size(376, 349);
+            this.layoutControlGroup7.Size = new System.Drawing.Size(376, 333);
             this.layoutControlGroup7.TextVisible = false;
             // 
             // simpleLabelItem19
@@ -663,7 +671,7 @@
             this.emptySpaceItem20.Location = new System.Drawing.Point(0, 28);
             this.emptySpaceItem20.MinSize = new System.Drawing.Size(104, 24);
             this.emptySpaceItem20.Name = "emptySpaceItem20";
-            this.emptySpaceItem20.Size = new System.Drawing.Size(356, 301);
+            this.emptySpaceItem20.Size = new System.Drawing.Size(356, 285);
             this.emptySpaceItem20.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.emptySpaceItem20.TextSize = new System.Drawing.Size(0, 0);
             // 
@@ -683,7 +691,7 @@
             // 
             this.tabThongTinCaNhan.Controls.Add(this.layoutControl1);
             this.tabThongTinCaNhan.Name = "tabThongTinCaNhan";
-            this.tabThongTinCaNhan.Size = new System.Drawing.Size(376, 349);
+            this.tabThongTinCaNhan.Size = new System.Drawing.Size(374, 350);
             this.tabThongTinCaNhan.Text = "Thông tin viên chức";
             // 
             // layoutControl1
@@ -694,7 +702,7 @@
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(641, 149, 450, 400);
             this.layoutControl1.Root = this.layoutControlGroup1;
-            this.layoutControl1.Size = new System.Drawing.Size(376, 349);
+            this.layoutControl1.Size = new System.Drawing.Size(374, 350);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -722,7 +730,7 @@
             this.layoutControlItem1});
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "Root";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(376, 349);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(376, 350);
             this.layoutControlGroup1.TextVisible = false;
             // 
             // simpleLabelItem1
@@ -748,13 +756,13 @@
             this.emptySpaceItem1.AllowHotTrack = false;
             this.emptySpaceItem1.Location = new System.Drawing.Point(0, 28);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(356, 299);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(356, 300);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // simpleSeparator1
             // 
             this.simpleSeparator1.AllowHotTrack = false;
-            this.simpleSeparator1.Location = new System.Drawing.Point(0, 327);
+            this.simpleSeparator1.Location = new System.Drawing.Point(0, 328);
             this.simpleSeparator1.Name = "simpleSeparator1";
             this.simpleSeparator1.Size = new System.Drawing.Size(356, 2);
             // 
@@ -774,7 +782,7 @@
             // 
             this.tabTrangThai.Controls.Add(this.layoutControl2);
             this.tabTrangThai.Name = "tabTrangThai";
-            this.tabTrangThai.Size = new System.Drawing.Size(376, 349);
+            this.tabTrangThai.Size = new System.Drawing.Size(374, 350);
             this.tabTrangThai.Text = "Trạng thái";
             // 
             // layoutControl2
@@ -785,7 +793,7 @@
             this.layoutControl2.Location = new System.Drawing.Point(0, 0);
             this.layoutControl2.Name = "layoutControl2";
             this.layoutControl2.Root = this.layoutControlGroup2;
-            this.layoutControl2.Size = new System.Drawing.Size(376, 349);
+            this.layoutControl2.Size = new System.Drawing.Size(374, 350);
             this.layoutControl2.TabIndex = 0;
             this.layoutControl2.Text = "layoutControl2";
             // 
@@ -829,7 +837,7 @@
             this.emptySpaceItem11});
             this.layoutControlGroup2.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup2.Name = "layoutControlGroup2";
-            this.layoutControlGroup2.Size = new System.Drawing.Size(376, 349);
+            this.layoutControlGroup2.Size = new System.Drawing.Size(376, 333);
             this.layoutControlGroup2.TextVisible = false;
             // 
             // simpleLabelItem2
@@ -854,7 +862,7 @@
             this.emptySpaceItem2.Location = new System.Drawing.Point(0, 78);
             this.emptySpaceItem2.MinSize = new System.Drawing.Size(104, 24);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(356, 249);
+            this.emptySpaceItem2.Size = new System.Drawing.Size(356, 233);
             this.emptySpaceItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
@@ -879,7 +887,7 @@
             // simpleSeparator6
             // 
             this.simpleSeparator6.AllowHotTrack = false;
-            this.simpleSeparator6.Location = new System.Drawing.Point(0, 327);
+            this.simpleSeparator6.Location = new System.Drawing.Point(0, 311);
             this.simpleSeparator6.Name = "simpleSeparator6";
             this.simpleSeparator6.Size = new System.Drawing.Size(356, 2);
             // 
@@ -922,7 +930,7 @@
             // 
             this.tabChucVuDonVi.Controls.Add(this.layoutControl3);
             this.tabChucVuDonVi.Name = "tabChucVuDonVi";
-            this.tabChucVuDonVi.Size = new System.Drawing.Size(376, 349);
+            this.tabChucVuDonVi.Size = new System.Drawing.Size(374, 350);
             this.tabChucVuDonVi.Text = "Chức vụ - Đơn vị";
             // 
             // layoutControl3
@@ -937,7 +945,7 @@
             this.layoutControl3.Location = new System.Drawing.Point(0, 0);
             this.layoutControl3.Name = "layoutControl3";
             this.layoutControl3.Root = this.layoutControlGroup3;
-            this.layoutControl3.Size = new System.Drawing.Size(376, 349);
+            this.layoutControl3.Size = new System.Drawing.Size(374, 350);
             this.layoutControl3.TabIndex = 0;
             this.layoutControl3.Text = "layoutControl3";
             // 
@@ -1044,7 +1052,7 @@
             this.layoutControlItem4});
             this.layoutControlGroup3.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup3.Name = "layoutControlGroup3";
-            this.layoutControlGroup3.Size = new System.Drawing.Size(376, 349);
+            this.layoutControlGroup3.Size = new System.Drawing.Size(376, 333);
             this.layoutControlGroup3.TextVisible = false;
             // 
             // simpleLabelItem4
@@ -1169,7 +1177,7 @@
             this.emptySpaceItem5.Location = new System.Drawing.Point(0, 267);
             this.emptySpaceItem5.MinSize = new System.Drawing.Size(104, 24);
             this.emptySpaceItem5.Name = "emptySpaceItem5";
-            this.emptySpaceItem5.Size = new System.Drawing.Size(356, 62);
+            this.emptySpaceItem5.Size = new System.Drawing.Size(356, 46);
             this.emptySpaceItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.emptySpaceItem5.TextSize = new System.Drawing.Size(0, 0);
             // 
@@ -1284,7 +1292,7 @@
             // 
             this.tabNgachBacLuong.Controls.Add(this.layoutControl4);
             this.tabNgachBacLuong.Name = "tabNgachBacLuong";
-            this.tabNgachBacLuong.Size = new System.Drawing.Size(376, 349);
+            this.tabNgachBacLuong.Size = new System.Drawing.Size(374, 350);
             this.tabNgachBacLuong.Text = "Ngạch - Bậc - Lương";
             // 
             // layoutControl4
@@ -1296,7 +1304,7 @@
             this.layoutControl4.Location = new System.Drawing.Point(0, 0);
             this.layoutControl4.Name = "layoutControl4";
             this.layoutControl4.Root = this.layoutControlGroup4;
-            this.layoutControl4.Size = new System.Drawing.Size(376, 349);
+            this.layoutControl4.Size = new System.Drawing.Size(374, 350);
             this.layoutControl4.TabIndex = 0;
             this.layoutControl4.Text = "layoutControl4";
             // 
@@ -1355,7 +1363,7 @@
             this.emptySpaceItem14});
             this.layoutControlGroup4.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup4.Name = "layoutControlGroup4";
-            this.layoutControlGroup4.Size = new System.Drawing.Size(376, 349);
+            this.layoutControlGroup4.Size = new System.Drawing.Size(376, 333);
             this.layoutControlGroup4.TextVisible = false;
             // 
             // simpleLabelItem10
@@ -1436,7 +1444,7 @@
             this.emptySpaceItem12.Location = new System.Drawing.Point(0, 124);
             this.emptySpaceItem12.MinSize = new System.Drawing.Size(104, 24);
             this.emptySpaceItem12.Name = "emptySpaceItem12";
-            this.emptySpaceItem12.Size = new System.Drawing.Size(356, 205);
+            this.emptySpaceItem12.Size = new System.Drawing.Size(356, 189);
             this.emptySpaceItem12.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.emptySpaceItem12.TextSize = new System.Drawing.Size(0, 0);
             // 
@@ -1478,7 +1486,7 @@
             // 
             this.tabNganh.Controls.Add(this.layoutControl5);
             this.tabNganh.Name = "tabNganh";
-            this.tabNganh.Size = new System.Drawing.Size(376, 349);
+            this.tabNganh.Size = new System.Drawing.Size(374, 350);
             this.tabNganh.Text = "Ngành";
             // 
             // layoutControl5
@@ -1491,7 +1499,7 @@
             this.layoutControl5.Location = new System.Drawing.Point(0, 0);
             this.layoutControl5.Name = "layoutControl5";
             this.layoutControl5.Root = this.layoutControlGroup5;
-            this.layoutControl5.Size = new System.Drawing.Size(376, 349);
+            this.layoutControl5.Size = new System.Drawing.Size(374, 350);
             this.layoutControl5.TabIndex = 0;
             this.layoutControl5.Text = "layoutControl5";
             // 
@@ -1566,7 +1574,7 @@
             this.emptySpaceItem18});
             this.layoutControlGroup5.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup5.Name = "layoutControlGroup5";
-            this.layoutControlGroup5.Size = new System.Drawing.Size(376, 349);
+            this.layoutControlGroup5.Size = new System.Drawing.Size(376, 333);
             this.layoutControlGroup5.TextVisible = false;
             // 
             // simpleLabelItem13
@@ -1583,7 +1591,7 @@
             this.simpleLabelItem13.Size = new System.Drawing.Size(210, 28);
             this.simpleLabelItem13.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.simpleLabelItem13.Text = "Loại ngành";
-            this.simpleLabelItem13.TextSize = new System.Drawing.Size(104, 19);
+            this.simpleLabelItem13.TextSize = new System.Drawing.Size(107, 19);
             // 
             // simpleLabelItem14
             // 
@@ -1599,7 +1607,7 @@
             this.simpleLabelItem14.Size = new System.Drawing.Size(210, 28);
             this.simpleLabelItem14.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.simpleLabelItem14.Text = "Ngành đào tạo";
-            this.simpleLabelItem14.TextSize = new System.Drawing.Size(104, 19);
+            this.simpleLabelItem14.TextSize = new System.Drawing.Size(107, 19);
             // 
             // simpleLabelItem15
             // 
@@ -1615,7 +1623,7 @@
             this.simpleLabelItem15.Size = new System.Drawing.Size(210, 28);
             this.simpleLabelItem15.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.simpleLabelItem15.Text = "Chuyên ngành";
-            this.simpleLabelItem15.TextSize = new System.Drawing.Size(104, 19);
+            this.simpleLabelItem15.TextSize = new System.Drawing.Size(107, 19);
             // 
             // simpleLabelItem16
             // 
@@ -1630,8 +1638,8 @@
             this.simpleLabelItem16.Name = "simpleLabelItem16";
             this.simpleLabelItem16.Size = new System.Drawing.Size(210, 28);
             this.simpleLabelItem16.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.simpleLabelItem16.Text = "Chuyên môn";
-            this.simpleLabelItem16.TextSize = new System.Drawing.Size(104, 19);
+            this.simpleLabelItem16.Text = "Ngành học/dạy";
+            this.simpleLabelItem16.TextSize = new System.Drawing.Size(107, 19);
             // 
             // emptySpaceItem15
             // 
@@ -1639,7 +1647,7 @@
             this.emptySpaceItem15.Location = new System.Drawing.Point(0, 171);
             this.emptySpaceItem15.MinSize = new System.Drawing.Size(104, 24);
             this.emptySpaceItem15.Name = "emptySpaceItem15";
-            this.emptySpaceItem15.Size = new System.Drawing.Size(356, 158);
+            this.emptySpaceItem15.Size = new System.Drawing.Size(356, 142);
             this.emptySpaceItem15.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.emptySpaceItem15.TextSize = new System.Drawing.Size(0, 0);
             // 
@@ -1728,7 +1736,7 @@
             // 
             this.tabHocHamHocVi.Controls.Add(this.layoutControl6);
             this.tabHocHamHocVi.Name = "tabHocHamHocVi";
-            this.tabHocHamHocVi.Size = new System.Drawing.Size(376, 349);
+            this.tabHocHamHocVi.Size = new System.Drawing.Size(374, 350);
             this.tabHocHamHocVi.Text = "Học hàm - Học vị";
             // 
             // layoutControl6
@@ -1739,7 +1747,7 @@
             this.layoutControl6.Location = new System.Drawing.Point(0, 0);
             this.layoutControl6.Name = "layoutControl6";
             this.layoutControl6.Root = this.layoutControlGroup6;
-            this.layoutControl6.Size = new System.Drawing.Size(376, 349);
+            this.layoutControl6.Size = new System.Drawing.Size(374, 350);
             this.layoutControl6.TabIndex = 0;
             this.layoutControl6.Text = "layoutControl6";
             // 
@@ -1782,7 +1790,7 @@
             this.emptySpaceItem23});
             this.layoutControlGroup6.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup6.Name = "layoutControlGroup6";
-            this.layoutControlGroup6.Size = new System.Drawing.Size(376, 349);
+            this.layoutControlGroup6.Size = new System.Drawing.Size(376, 333);
             this.layoutControlGroup6.TextVisible = false;
             // 
             // simpleLabelItem17
@@ -1835,7 +1843,7 @@
             this.emptySpaceItem19.Location = new System.Drawing.Point(0, 76);
             this.emptySpaceItem19.MinSize = new System.Drawing.Size(104, 24);
             this.emptySpaceItem19.Name = "emptySpaceItem19";
-            this.emptySpaceItem19.Size = new System.Drawing.Size(356, 253);
+            this.emptySpaceItem19.Size = new System.Drawing.Size(356, 237);
             this.emptySpaceItem19.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.emptySpaceItem19.TextSize = new System.Drawing.Size(0, 0);
             // 
@@ -1866,7 +1874,7 @@
             // 
             this.tabChungChi.Controls.Add(this.layoutControl8);
             this.tabChungChi.Name = "tabChungChi";
-            this.tabChungChi.Size = new System.Drawing.Size(376, 349);
+            this.tabChungChi.Size = new System.Drawing.Size(374, 350);
             this.tabChungChi.Text = "Chứng chỉ";
             // 
             // layoutControl8
@@ -1877,7 +1885,7 @@
             this.layoutControl8.Location = new System.Drawing.Point(0, 0);
             this.layoutControl8.Name = "layoutControl8";
             this.layoutControl8.Root = this.layoutControlGroup8;
-            this.layoutControl8.Size = new System.Drawing.Size(376, 349);
+            this.layoutControl8.Size = new System.Drawing.Size(374, 350);
             this.layoutControl8.TabIndex = 0;
             this.layoutControl8.Text = "layoutControl8";
             // 
@@ -1920,7 +1928,7 @@
             this.emptySpaceItem22});
             this.layoutControlGroup8.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup8.Name = "layoutControlGroup8";
-            this.layoutControlGroup8.Size = new System.Drawing.Size(376, 349);
+            this.layoutControlGroup8.Size = new System.Drawing.Size(376, 333);
             this.layoutControlGroup8.TextVisible = false;
             // 
             // simpleLabelItem20
@@ -1973,7 +1981,7 @@
             this.emptySpaceItem21.Location = new System.Drawing.Point(0, 75);
             this.emptySpaceItem21.MinSize = new System.Drawing.Size(104, 24);
             this.emptySpaceItem21.Name = "emptySpaceItem21";
-            this.emptySpaceItem21.Size = new System.Drawing.Size(356, 254);
+            this.emptySpaceItem21.Size = new System.Drawing.Size(356, 238);
             this.emptySpaceItem21.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.emptySpaceItem21.TextSize = new System.Drawing.Size(0, 0);
             // 
@@ -2004,7 +2012,7 @@
             // 
             this.tabHopDong.Controls.Add(this.layoutControl9);
             this.tabHopDong.Name = "tabHopDong";
-            this.tabHopDong.Size = new System.Drawing.Size(376, 349);
+            this.tabHopDong.Size = new System.Drawing.Size(374, 350);
             this.tabHopDong.Text = "Hợp đồng";
             // 
             // layoutControl9
@@ -2015,7 +2023,7 @@
             this.layoutControl9.Location = new System.Drawing.Point(0, 0);
             this.layoutControl9.Name = "layoutControl9";
             this.layoutControl9.Root = this.layoutControlGroup9;
-            this.layoutControl9.Size = new System.Drawing.Size(376, 349);
+            this.layoutControl9.Size = new System.Drawing.Size(374, 350);
             this.layoutControl9.TabIndex = 0;
             this.layoutControl9.Text = "layoutControl9";
             // 
@@ -2058,7 +2066,7 @@
             this.emptySpaceItem3});
             this.layoutControlGroup9.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup9.Name = "layoutControlGroup9";
-            this.layoutControlGroup9.Size = new System.Drawing.Size(376, 349);
+            this.layoutControlGroup9.Size = new System.Drawing.Size(376, 350);
             this.layoutControlGroup9.TextVisible = false;
             // 
             // simpleLabelItem22
@@ -2123,7 +2131,7 @@
             this.emptySpaceItem4.Location = new System.Drawing.Point(0, 76);
             this.emptySpaceItem4.MinSize = new System.Drawing.Size(104, 24);
             this.emptySpaceItem4.Name = "emptySpaceItem4";
-            this.emptySpaceItem4.Size = new System.Drawing.Size(356, 253);
+            this.emptySpaceItem4.Size = new System.Drawing.Size(356, 254);
             this.emptySpaceItem4.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
             // 
@@ -2143,6 +2151,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(591, 402);
+            this.ControlBox = false;
             this.Controls.Add(this.xtraTabControl1);
             this.Controls.Add(this.splitterControl1);
             this.Controls.Add(this.navBarControl1);
@@ -2150,10 +2159,14 @@
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "ImportDataForm";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Nhập dữ liệu";
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).EndInit();
@@ -2429,5 +2442,6 @@
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem22;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem23;
         private DevExpress.XtraBars.BarStaticItem barStaticItem1;
+        private DevExpress.XtraBars.BarCheckItem chkLog;
     }
 }

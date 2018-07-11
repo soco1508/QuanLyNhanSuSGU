@@ -31,7 +31,7 @@ namespace Model.Repository
             {
                 listQuaTrinhCongTac.Add(new QuaTrinhCongTacForView
                 {
-                    Id = listChucVuDonViVienChuc[i].idViTriDonViVienChuc,
+                    Id = listChucVuDonViVienChuc[i].idChucVuDonViVienChuc,
                     ChucVu = listChucVuDonViVienChuc[i].ChucVu.tenChucVu,
                     DonVi = listChucVuDonViVienChuc[i].DonVi.tenDonVi,
                     ToChuyenMon = listChucVuDonViVienChuc[i].ToChuyenMon.tenToChuyenMon,
@@ -58,7 +58,7 @@ namespace Model.Repository
             {
                 listQuaTrinhCongTac.Add(new QuaTrinhCongTacForView
                 {
-                    Id = listChucVuDonViVienChuc[i].idViTriDonViVienChuc,
+                    Id = listChucVuDonViVienChuc[i].idChucVuDonViVienChuc,
                     ChucVu = listChucVuDonViVienChuc[i].ChucVu.tenChucVu,
                     DonVi = listChucVuDonViVienChuc[i].DonVi.tenDonVi,
                     ToChuyenMon = listChucVuDonViVienChuc[i].ToChuyenMon.tenToChuyenMon,
@@ -70,8 +70,7 @@ namespace Model.Repository
                     CheckPhanLoaiCongTac = HardCheckPhanLoaiCongTacToGrid(listChucVuDonViVienChuc[i].checkPhanLoaiCongTac),
                     LoaiThayDoi = HardLoaiThayDoiToGrid(listChucVuDonViVienChuc[i].loaiThayDoi),
                     KiemNhiem = HardKiemNhiemToGrid(listChucVuDonViVienChuc[i].kiemNhiem),
-                    LinkVanBanDinhKem = listChucVuDonViVienChuc[i].linkVanBanDinhKem,
-                    NhanXet = listChucVuDonViVienChuc[i].nhanXet
+                    LinkVanBanDinhKem = listChucVuDonViVienChuc[i].linkVanBanDinhKem                    
                 });
             }
             return listQuaTrinhCongTac;
@@ -90,7 +89,7 @@ namespace Model.Repository
 
         public void Update(int id, string linkfiledinhkem)
         {
-            ChucVuDonViVienChuc chucVuDonViVienChuc = _db.ChucVuDonViVienChucs.Where(x => x.idViTriDonViVienChuc == id).FirstOrDefault();
+            ChucVuDonViVienChuc chucVuDonViVienChuc = _db.ChucVuDonViVienChucs.Where(x => x.idChucVuDonViVienChuc == id).FirstOrDefault();
             chucVuDonViVienChuc.linkVanBanDinhKem = linkfiledinhkem;
         }
 
@@ -148,7 +147,7 @@ namespace Model.Repository
 
         public List<ChucVuDonViVienChuc> GetListCongTacByIdVienChucAndTimeline(int idVienChuc, DateTime dtTimeline)
         {
-            var rows = _db.ChucVuDonViVienChucs.Where(x => x.idVienChuc == idVienChuc);
+            List<ChucVuDonViVienChuc> rows = _db.ChucVuDonViVienChucs.Where(x => x.idVienChuc == idVienChuc).ToList();
             List<ChucVuDonViVienChuc> listChucVuDonViVienChuc = new List<ChucVuDonViVienChuc>();
             foreach (var row in rows)
             {
@@ -167,12 +166,14 @@ namespace Model.Repository
                     }
                 }
             }
-            return listChucVuDonViVienChuc;
+            if(listChucVuDonViVienChuc.Count > 0)
+                return listChucVuDonViVienChuc;
+            return rows;
         }
 
         public List<ChucVuDonViVienChuc> GetListCongTacByIdVienChucAndDuration(int idVienChuc, DateTime dtFromDuration, DateTime dtToDuration)
         {
-            var rows = _db.ChucVuDonViVienChucs.Where(x => x.idVienChuc == idVienChuc);
+            List<ChucVuDonViVienChuc> rows = _db.ChucVuDonViVienChucs.Where(x => x.idVienChuc == idVienChuc).ToList();
             List<ChucVuDonViVienChuc> listChucVuDonViVienChuc = new List<ChucVuDonViVienChuc>();
             foreach (var row in rows)
             {
@@ -191,7 +192,14 @@ namespace Model.Repository
                     }
                 }
             }
-            return listChucVuDonViVienChuc;
+            if (listChucVuDonViVienChuc.Count > 0)
+                return listChucVuDonViVienChuc;
+            return rows;
+        }
+
+        public List<ChucVuDonViVienChuc> GetListCongTacByIdVienChuc(int idVienChuc)
+        {
+            return _db.ChucVuDonViVienChucs.Where(x => x.idVienChuc == idVienChuc).ToList();
         }
 
         public double? GetHeSoChucVu(string hesochucvu)
@@ -311,12 +319,12 @@ namespace Model.Repository
 
         public ChucVuDonViVienChuc GetObjectById(int idchucvudonvivienchuc)
         {
-            return _db.ChucVuDonViVienChucs.Where(x => x.idViTriDonViVienChuc == idchucvudonvivienchuc).FirstOrDefault();
+            return _db.ChucVuDonViVienChucs.Where(x => x.idChucVuDonViVienChuc == idchucvudonvivienchuc).FirstOrDefault();
         }
 
         public void DeleteById(int id)
         {
-            ChucVuDonViVienChuc chucVuDonViVienChuc = _db.ChucVuDonViVienChucs.Where(x => x.idViTriDonViVienChuc == id).FirstOrDefault();
+            ChucVuDonViVienChuc chucVuDonViVienChuc = _db.ChucVuDonViVienChucs.Where(x => x.idChucVuDonViVienChuc == id).FirstOrDefault();
             _db.ChucVuDonViVienChucs.Remove(chucVuDonViVienChuc);
         }
 
@@ -325,8 +333,8 @@ namespace Model.Repository
             List<ChucVuDonViVienChuc> list = _db.ChucVuDonViVienChucs.ToList();
             for (int i = 0; i < list.Count; i++)
             {
-                int id = list[i].idViTriDonViVienChuc; // phải gán biến trước nếu ko sẽ bị lỗi recognize linq khi gán trực tiếp
-                ChucVuDonViVienChuc cv = _db.ChucVuDonViVienChucs.Where(x => x.idViTriDonViVienChuc == id).FirstOrDefault();
+                int id = list[i].idChucVuDonViVienChuc; // phải gán biến trước nếu ko sẽ bị lỗi recognize linq khi gán trực tiếp
+                ChucVuDonViVienChuc cv = _db.ChucVuDonViVienChucs.Where(x => x.idChucVuDonViVienChuc == id).FirstOrDefault();
                 cv.ngayKetThuc = Convert.ToDateTime("01/01/2020");
             }
         }

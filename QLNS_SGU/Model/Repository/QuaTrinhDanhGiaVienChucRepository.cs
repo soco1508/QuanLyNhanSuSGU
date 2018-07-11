@@ -26,7 +26,7 @@ namespace Model.Repository
                 listQuaTrinh.Add(new QuaTrinhDanhGiaVienChucForView
                 {
                     Id = anonymList[i].idQuaTrinhDanhGiaVienChuc,
-                    KhoangThoiGian = anonymList[i].tenMucDoDanhGia,
+                    KhoangThoiGian = anonymList[i].tenDanhMucThoiGian,
                     NgayBatDau = anonymList[i].ngayBatDau,
                     NgayKetThuc = anonymList[i].ngayKetThuc,
                     MucDoDanhGia = anonymList[i].tenMucDoDanhGia

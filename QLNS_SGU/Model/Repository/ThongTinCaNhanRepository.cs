@@ -35,7 +35,6 @@ namespace Model.Repository
             thongTinCaNhan.ngayVeTruong = vienChuc.ngayVeTruong;
             thongTinCaNhan.noiOHienNay = vienChuc.noiOHienNay;
             thongTinCaNhan.noiSinh = vienChuc.noiSinh;
-            thongTinCaNhan.quanLyNhaNuoc = vienChuc.QuanLyNhaNuoc.tenQuanLyNhaNuoc;
             thongTinCaNhan.queQuan = vienChuc.queQuan;
             thongTinCaNhan.tonGiao = vienChuc.TonGiao.tenTonGiao;
             thongTinCaNhan.vanHoa = vienChuc.vanHoa;

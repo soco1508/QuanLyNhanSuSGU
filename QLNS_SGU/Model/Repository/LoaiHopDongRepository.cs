@@ -97,7 +97,7 @@ namespace Model.Repository
                 case "Hợp đồng 68":
                     return "HĐ68";
                 default:
-                    return "";
+                    return string.Empty;
             }
         }
     }

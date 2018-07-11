@@ -39,7 +39,6 @@ namespace QLNS_SGU.View
         LookUpEdit CBXLoaiThayDoi { get; set; }
         DateEdit DTNgayBatDau { get; set; }
         DateEdit DTNgayKetThuc { get; set; }
-        MemoEdit TXTNhanXet { get; set; }
         HyperlinkLabelControl LinkLBTrangThaiHienTai { get; set; }
         //HD
         SimpleButton BTNExportExcelHD { get; set; }
@@ -76,8 +75,7 @@ namespace QLNS_SGU.View
         public LookUpEdit CBXKiemNhiem { get => cbxKiemNhiem; set => cbxKiemNhiem = value; }
         public LookUpEdit CBXLoaiThayDoi { get => cbxLoaiThayDoi; set => cbxLoaiThayDoi = value; }
         public DateEdit DTNgayBatDau { get => dtNgayBatDau; set => dtNgayBatDau = value; }
-        public DateEdit DTNgayKetThuc { get => dtNgayKetThuc; set => dtNgayKetThuc = value; }
-        public MemoEdit TXTNhanXet { get => txtNhanXet; set => txtNhanXet = value; }
+        public DateEdit DTNgayKetThuc { get => dtNgayKetThuc; set => dtNgayKetThuc = value; }        
         public HyperlinkLabelControl LinkLBTrangThaiHienTai { get => linklbTrangThaiHienTai; set => linklbTrangThaiHienTai = value; }
         //HD
         public SimpleButton BTNExportExcelHD { get => btnExportExcelHD; set => btnExportExcelHD = value; }
@@ -110,8 +108,7 @@ namespace QLNS_SGU.View
             cbxLoaiThayDoi.EditValueChanged += new EventHandler(presenter.LoaiThayDoiChanged);
             cbxCheckPhanLoaiCongTac.EditValueChanged += new EventHandler(presenter.PhanLoaiChanged);
             cbxKiemNhiem.EditValueChanged += new EventHandler(presenter.KiemNhiemChanged);
-            txtLinkVanBanDinhKem.TextChanged += new EventHandler(presenter.LinkVanBanDinhKemQuaTrinhCongTacChanged);
-            txtNhanXet.TextChanged += new EventHandler(presenter.NhanXetChanged);
+            txtLinkVanBanDinhKem.TextChanged += new EventHandler(presenter.LinkVanBanDinhKemQuaTrinhCongTacChanged);           
             gvTabPageQuaTrinhCongTac.CustomDrawRowIndicator += new RowIndicatorCustomDrawEventHandler(presenter.RowIndicatorQTCT);
             linklbTrangThaiHienTai.Click += (s, e) => presenter.ShowTrangThaiHienTai();
             //HD

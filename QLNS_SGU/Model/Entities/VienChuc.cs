@@ -35,9 +35,10 @@ namespace Model.Entities
         public string maVienChuc { get; set; }
         public string ho { get; set; }
         public string ten { get; set; }
-        public string sDT { get; set; }
         public Nullable<bool> gioiTinh { get; set; }
         public Nullable<System.DateTime> ngaySinh { get; set; }
+        public string sDT { get; set; }
+        public string soChungMinhNhanDan { get; set; }
         public string noiSinh { get; set; }
         public string queQuan { get; set; }
         public int idDanToc { get; set; }
@@ -50,10 +51,8 @@ namespace Model.Entities
         public Nullable<System.DateTime> ngayVaoNganh { get; set; }
         public Nullable<System.DateTime> ngayVeTruong { get; set; }
         public string vanHoa { get; set; }
-        public int idQuanLyNhaNuoc { get; set; }
         public string ghiChu { get; set; }
         public byte[] anh { get; set; }
-        public string soChungMinhNhanDan { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BaoHiemXaHoi> BaoHiemXaHois { get; set; }
@@ -70,7 +69,6 @@ namespace Model.Entities
         public virtual ICollection<HopDongVienChuc> HopDongVienChucs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<NganhVienChuc> NganhVienChucs { get; set; }
-        public virtual QuanLyNhaNuoc QuanLyNhaNuoc { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<QuaTrinhDanhGiaVienChuc> QuaTrinhDanhGiaVienChucs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

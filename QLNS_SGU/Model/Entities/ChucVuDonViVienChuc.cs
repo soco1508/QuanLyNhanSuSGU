@@ -14,19 +14,19 @@ namespace Model.Entities
     
     public partial class ChucVuDonViVienChuc
     {
-        public int idViTriDonViVienChuc { get; set; }
+        public int idChucVuDonViVienChuc { get; set; }
         public int idVienChuc { get; set; }
-        public int idChucVu { get; set; }
-        public int idDonVi { get; set; }
-        public int idToChuyenMon { get; set; }
+        public Nullable<int> idChucVu { get; set; }
+        public Nullable<int> idDonVi { get; set; }
+        public Nullable<int> idToChuyenMon { get; set; }
         public string phanLoaiCongTac { get; set; }
         public Nullable<int> checkPhanLoaiCongTac { get; set; }
         public Nullable<System.DateTime> ngayBatDau { get; set; }
         public Nullable<System.DateTime> ngayKetThuc { get; set; }
-        public string linkVanBanDinhKem { get; set; }
         public Nullable<int> loaiThayDoi { get; set; }
         public Nullable<int> kiemNhiem { get; set; }
-        public string nhanXet { get; set; }
+        public string linkVanBanDinhKem { get; set; }
+        public string ghiChu { get; set; }
     
         public virtual ChucVu ChucVu { get; set; }
         public virtual DonVi DonVi { get; set; }
@@ -35,7 +35,7 @@ namespace Model.Entities
 
         public ChucVuDonViVienChuc(ChucVuDonViVienChuc chucVuDonViVienChuc)
         {
-            idViTriDonViVienChuc = chucVuDonViVienChuc.idViTriDonViVienChuc;
+            idChucVuDonViVienChuc = chucVuDonViVienChuc.idChucVuDonViVienChuc;
             idVienChuc = chucVuDonViVienChuc.idVienChuc;
             idChucVu = chucVuDonViVienChuc.idDonVi;
             idToChuyenMon = chucVuDonViVienChuc.idToChuyenMon;

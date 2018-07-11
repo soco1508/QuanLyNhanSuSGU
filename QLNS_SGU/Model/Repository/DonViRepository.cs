@@ -47,7 +47,10 @@ namespace Model.Repository
 
         public int GetIdDonVi(string donvi)
         {
-            return _db.DonVis.Where(x => x.tenDonVi == donvi).Select(y => y.idDonVi).First();
+            int iddonvi = _db.DonVis.Where(x => x.tenDonVi == donvi).Select(y => y.idDonVi).FirstOrDefault();
+            if (iddonvi > 0)
+                return iddonvi;
+            return 1;
         }
 
         public IList<DonVi> GetListDonVi()

@@ -121,7 +121,7 @@ namespace Model.Repository
 
         public List<QuaTrinhLuong> GetListQuaTrinhLuongByIdVienChucAndDurationForExportFull(int idVienChuc, DateTime dtFromDuration, DateTime dtToDuration)
         {
-            var rows = _db.QuaTrinhLuongs.Where(x => x.idVienChuc == idVienChuc);
+            List<QuaTrinhLuong> rows = _db.QuaTrinhLuongs.Where(x => x.idVienChuc == idVienChuc).ToList();
             List<QuaTrinhLuong> listQuaTrinhLuong = new List<QuaTrinhLuong>();
             foreach (var row in rows)
             {
@@ -140,12 +140,14 @@ namespace Model.Repository
                     }
                 }
             }
-            return listQuaTrinhLuong;
+            if (listQuaTrinhLuong.Count > 0)
+                return listQuaTrinhLuong;
+            return rows;
         }
 
         public List<QuaTrinhLuong> GetListQuaTrinhLuongByIdVienChucAndTimelineForExportFull(int idVienChuc, DateTime dtTimeline)
         {
-            var rows = _db.QuaTrinhLuongs.Where(x => x.idVienChuc == idVienChuc);
+            List<QuaTrinhLuong> rows = _db.QuaTrinhLuongs.Where(x => x.idVienChuc == idVienChuc).ToList();
             List<QuaTrinhLuong> listQuaTrinhLuong = new List<QuaTrinhLuong>();
             foreach (var row in rows)
             {
@@ -164,7 +166,9 @@ namespace Model.Repository
                     }
                 }
             }
-            return listQuaTrinhLuong;
+            if(listQuaTrinhLuong.Count > 0)
+                return listQuaTrinhLuong;
+            return rows;
         }
     }
 }

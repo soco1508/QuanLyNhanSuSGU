@@ -182,7 +182,15 @@ namespace QLNS_SGU.Presenter
         {
             UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             unitOfWorks.TrangThaiVienChucRepository.InsertFirstRowDefault(mavienchuc);
-            unitOfWorks.Save();
+            try
+            {
+                unitOfWorks.Save();
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show("Vui lòng nhập dữ liệu trạng thái.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
 
         public void Add() => SetDefaultValueControl();
@@ -352,9 +360,7 @@ namespace QLNS_SGU.Presenter
                 if(_view.GVTabPageTrangThai.RowCount == 0)
                 {
                     if (TabPageQuaTrinhCongTacPresenter.checkEmptyRowQTCTGrid)
-                    {
                         InsertFirstRowDefault(mavienchuc);
-                    }
                 }
                 if(rowFocusFromCreateAndEditPersonalInfoForm >= 0)
                 {

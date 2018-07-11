@@ -397,21 +397,23 @@ namespace QLNS_SGU.Presenter
         }
         private void InsertDataHHHV()
         {
+            UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             string mavienchuc = _view.TXTMaVienChuc.Text;
+            int idvienchuc = unitOfWorks.VienChucRepository.GetIdVienChuc(mavienchuc);
             int idloaihochamhocvi = Convert.ToInt32(_view.CBXLoaiHocHamHocViHHHV.EditValue);
             int idloainganh = Convert.ToInt32(_view.CBXLoaiNganhHHHV.EditValue);
             int idnganhdaotao = Convert.ToInt32(_view.CBXNganhDaoTaoHHHV.EditValue);
             int idchuyennganh = Convert.ToInt32(_view.CBXChuyenNganhHHHV.EditValue);
-            UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
+            string tenhochamhocvi = _view.TXTTenHocHamHocViHHHV.Text;
             unitOfWorks.HocHamHocViVienChucRepository.Insert(new HocHamHocViVienChuc
             {
-                idVienChuc = unitOfWorks.VienChucRepository.GetIdVienChuc(mavienchuc),
+                idVienChuc = idvienchuc,
                 idLoaiHocHamHocVi = idloaihochamhocvi,
                 idLoaiNganh = idloainganh,                
                 idNganhDaoTao = idnganhdaotao,
                 idChuyenNganh = idchuyennganh,
                 bacHocHamHocVi = unitOfWorks.HocHamHocViVienChucRepository.HardCodeBacToDatabase(_view.CBXLoaiHocHamHocViHHHV.Text),
-                tenHocHamHocVi = _view.TXTTenHocHamHocViHHHV.Text,
+                tenHocHamHocVi = tenhochamhocvi,
                 coSoDaoTao = _view.TXTCoSoDaoTaoHHHV.Text,
                 ngonNguDaoTao = _view.TXTNgonNguDaoTaoHHHV.Text,
                 hinhThucDaoTao = _view.TXTHinhThucDaoTaoHHHV.Text,
@@ -422,8 +424,8 @@ namespace QLNS_SGU.Presenter
             unitOfWorks.Save();
             unitOfWorks.NganhVienChucRepository.Insert(new NganhVienChuc
             {
-                idVienChuc = unitOfWorks.VienChucRepository.GetIdVienChuc(mavienchuc),
-                idHocHamHocViVienChuc = unitOfWorks.HocHamHocViVienChucRepository.GetNewestIdHocHamHocViVienChuc(),
+                idVienChuc = idvienchuc,
+                idHocHamHocViVienChuc = unitOfWorks.HocHamHocViVienChucRepository.GetIdHocHamHocViVienChucByFiveArguments(idvienchuc, idloaihochamhocvi, idloainganh, idnganhdaotao, idchuyennganh),
                 idLoaiNganh = idloainganh,
                 idNganhDaoTao = idnganhdaotao,
                 idChuyenNganh = idchuyennganh,
@@ -1631,8 +1633,8 @@ namespace QLNS_SGU.Presenter
             string mavienchuc = _view.TXTMaVienChuc.Text;
             string loaichungchi = _view.CBXLoaiChungChi.Text;
             string capdo = _view.TXTCapDoChungChi.Text.Trim();
-            int idloaichungchi = unitOfWorks.LoaiChungChiRepository.GetIdLoaiChungChi(loaichungchi);
-            if (idloaichungchi > 0)
+            string idloaichungchi = unitOfWorks.LoaiChungChiRepository.GetIdLoaiChungChi(loaichungchi);
+            if (idloaichungchi != null)
             {
                 unitOfWorks.ChungChiVienChucRepository.Insert(new ChungChiVienChuc
                 {

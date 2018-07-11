@@ -172,8 +172,8 @@ namespace QLNS_SGU.Presenter
                 string mucdodanhgia = _view.GVDanhGiaVienChuc.GetFocusedRowCellDisplayText("MucDoDanhGia").ToString();
                 _view.CBXKhoangThoiGian.EditValue = unitOfWorks.DanhMucThoiGianRepository.GetIdByName(khoangthoigian);
                 _view.CBXMucDoDanhGia.EditValue = unitOfWorks.MucDoDanhGiaRepository.GetIdByName(mucdodanhgia);
-                _view.DTNgayBatDau.EditValue = unitOfWorks.HopDongVienChucRepository.ReturnNullIfDateTimeNullToView(_view.GVDanhGiaVienChuc.GetFocusedRowCellDisplayText("ngayBatDau"));
-                _view.DTNgayKetThuc.EditValue = unitOfWorks.HopDongVienChucRepository.ReturnNullIfDateTimeNullToView(_view.GVDanhGiaVienChuc.GetFocusedRowCellDisplayText("ngayKetThuc"));
+                _view.DTNgayBatDau.EditValue = unitOfWorks.HopDongVienChucRepository.ReturnNullIfDateTimeNullToView(_view.GVDanhGiaVienChuc.GetFocusedRowCellDisplayText("NgayBatDau"));
+                _view.DTNgayKetThuc.EditValue = unitOfWorks.HopDongVienChucRepository.ReturnNullIfDateTimeNullToView(_view.GVDanhGiaVienChuc.GetFocusedRowCellDisplayText("NgayKetThuc"));
             }
         }
 

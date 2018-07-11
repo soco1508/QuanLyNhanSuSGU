@@ -37,7 +37,6 @@ namespace QLNS_SGU.Presenter
         void NoiOHienNay(object sender, EventArgs e);
         void NgayVaoDangChanged(object sender, EventArgs e);
         void VanHoaChanged(object sender, EventArgs e);
-        void QuanLyNhaNuocChanged(object sender, EventArgs e);
         void SoCMNDChanged(object sender, EventArgs e);
         void GhiChuChanged(object sender, EventArgs e);
         void PicChanged(object sender, EventArgs e);
@@ -63,7 +62,6 @@ namespace QLNS_SGU.Presenter
         private bool laDangVienChanged = false;
         private bool ngayVaoDangChanged = false;
         private bool vanHoaChanged = false;
-        private bool quanLyNhaNuocChanged = false;
         private bool soCMNDChanged = false;
         private bool ghiChuChanged = false;
         private bool picChanged = false;
@@ -102,21 +100,12 @@ namespace QLNS_SGU.Presenter
             _view.CBXTonGiao.Properties.Columns.Add(new DevExpress.XtraEditors.Controls.LookUpColumnInfo("idTonGiao", string.Empty));
             _view.CBXTonGiao.Properties.Columns.Add(new DevExpress.XtraEditors.Controls.LookUpColumnInfo("tenTonGiao", string.Empty));
             _view.CBXTonGiao.Properties.Columns[0].Visible = false;
-            List<QuanLyNhaNuoc> listQuanLyNhaNuoc = unitOfWorks.QuanLyNhaNuocRepository.GetListQuanLyNhaNuoc();
-            _view.CBXQuanLyNhaNuoc.Properties.DataSource = listQuanLyNhaNuoc;
-            _view.CBXQuanLyNhaNuoc.Properties.DisplayMember = "tenQuanLyNhaNuoc";
-            _view.CBXQuanLyNhaNuoc.Properties.ValueMember = "idQuanLyNhaNuoc";
-            _view.CBXQuanLyNhaNuoc.Properties.DropDownRows = listQuanLyNhaNuoc.Count;
-            _view.CBXQuanLyNhaNuoc.Properties.Columns.Add(new DevExpress.XtraEditors.Controls.LookUpColumnInfo("idQuanLyNhaNuoc", string.Empty));
-            _view.CBXQuanLyNhaNuoc.Properties.Columns.Add(new DevExpress.XtraEditors.Controls.LookUpColumnInfo("tenQuanLyNhaNuoc", string.Empty));
-            _view.CBXQuanLyNhaNuoc.Properties.Columns[0].Visible = false;
         }
         private void SelectEmptyValueCbx()
         {            
             UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             _view.CBXDanToc.EditValue = unitOfWorks.DanTocRepository.SelectIdEmptyValue();
             _view.CBXTonGiao.EditValue = unitOfWorks.TonGiaoRepository.SelectIdEmptyValue(x => x.tenTonGiao == string.Empty);
-            _view.CBXQuanLyNhaNuoc.EditValue = unitOfWorks.QuanLyNhaNuocRepository.SelectIdEmptyValue();
         }
         private byte[] ConvertImageToBinary(string filename)
         {
@@ -167,7 +156,6 @@ namespace QLNS_SGU.Presenter
                     idDanToc = Convert.ToInt32(_view.CBXDanToc.EditValue),
                     idTonGiao = Convert.ToInt32(_view.CBXTonGiao.EditValue),
                     vanHoa = _view.TXTVanHoa.Text,
-                    idQuanLyNhaNuoc = Convert.ToInt32(_view.CBXQuanLyNhaNuoc.EditValue),
                     hoKhauThuongTru = _view.TXTHoKhauThuongTru.Text,
                     noiOHienNay = _view.TXTNoiOHienNay.Text,
                     soChungMinhNhanDan = _view.TXTSoCMND.Text,
@@ -272,11 +260,6 @@ namespace QLNS_SGU.Presenter
                 vienChuc.vanHoa = _view.TXTVanHoa.Text;
                 vanHoaChanged = false;
             }
-            if(quanLyNhaNuocChanged)
-            {
-                vienChuc.idQuanLyNhaNuoc = Convert.ToInt32(_view.CBXQuanLyNhaNuoc.EditValue);
-                quanLyNhaNuocChanged = false;
-            }
             if(hoKhauThuongTruChanged)
             {
                 vienChuc.hoKhauThuongTru = _view.TXTHoKhauThuongTru.Text;
@@ -334,7 +317,6 @@ namespace QLNS_SGU.Presenter
                 _view.TXTVanHoa.Text = vienChuc.vanHoa;
                 _view.CBXDanToc.EditValue = vienChuc.idDanToc;
                 _view.CBXTonGiao.EditValue = vienChuc.idTonGiao;
-                _view.CBXQuanLyNhaNuoc.EditValue = vienChuc.idQuanLyNhaNuoc;
                 _view.TXTSoCMND.Text = vienChuc.soChungMinhNhanDan;
                 _view.TXTGhiChu.Text = vienChuc.ghiChu;
             }
@@ -535,11 +517,6 @@ namespace QLNS_SGU.Presenter
         public void VanHoaChanged(object sender, EventArgs e)
         {
             vanHoaChanged = true;
-        }
-
-        public void QuanLyNhaNuocChanged(object sender, EventArgs e)
-        {
-            quanLyNhaNuocChanged = true;
         }
 
         public void SoCMNDChanged(object sender, EventArgs e)

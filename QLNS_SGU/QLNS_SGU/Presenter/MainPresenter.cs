@@ -393,7 +393,7 @@ namespace QLNS_SGU.Presenter
                     ShowThongTinCaNhan(rowFocus);
                     SplashScreenManager.CloseForm();
                 }
-                else XtraMessageBox.Show("Vui lòng chọn dòng khác. Dòng này không có dữ liệu.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                //else XtraMessageBox.Show("Vui lòng chọn dòng khác. Dòng này không có dữ liệu.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }         
         }
 
@@ -523,7 +523,7 @@ namespace QLNS_SGU.Presenter
             Form f = (Form)createAndEditPersonInfoPresenter.UI;
             f.Height = Screen.PrimaryScreen.WorkingArea.Height;
             f.StartPosition = FormStartPosition.CenterScreen;
-            f.ShowDialog();
+            f.Show();
         }
 
         public void OpenEditFormHasId()
@@ -604,7 +604,7 @@ namespace QLNS_SGU.Presenter
             Form f = (Form)createAndEditPersonInfoPresenter.UI;
             f.Height = Screen.PrimaryScreen.WorkingArea.Height;
             f.StartPosition = FormStartPosition.CenterScreen;
-            f.ShowDialog();           
+            f.Show();    
         }
 
         public void RightClickQuaTrinhCongTacGrid(object sender, MouseEventArgs e)

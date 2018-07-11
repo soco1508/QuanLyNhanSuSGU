@@ -143,7 +143,6 @@ namespace QLNS_SGU.Presenter
                         exportObjects.NgayVaoNganh = vienChuc.ngayVaoNganh;
                         exportObjects.NgayVeTruong = vienChuc.ngayVeTruong;
                         exportObjects.VanHoa = vienChuc.vanHoa;
-                        exportObjects.QuanLyNhaNuoc = vienChuc.QuanLyNhaNuoc.tenQuanLyNhaNuoc;
                         exportObjects.GhiChu = vienChuc.ghiChu;
                     }
                 }
@@ -213,7 +212,7 @@ namespace QLNS_SGU.Presenter
                             exportObjects.ChucVu = listCongTac[0].ChucVu.tenChucVu;
                             exportObjects.HeSoChucVu = listCongTac[0].ChucVu.heSoChucVu;
                             exportObjects.LoaiDonVi = listCongTac[0].DonVi.LoaiDonVi.tenLoaiDonVi;
-                            //exportObjects.DonVi = listCongTac[0].DonVi.tenDonVi;
+                            exportObjects.DonVi = listCongTac[0].DonVi.tenDonVi;
                             exportObjects.DiaDiemCT = listCongTac[0].DonVi.diaDiem;
                             exportObjects.DiaChi = listCongTac[0].DonVi.diaChi;
                             exportObjects.SoDienThoaiDonVi = listCongTac[0].DonVi.sDT;
@@ -225,6 +224,7 @@ namespace QLNS_SGU.Presenter
                             exportObjects.LoaiThayDoi = unitOfWorks.ChucVuDonViVienChucRepository.HardLoaiThayDoiToGrid(listCongTac[0].loaiThayDoi);
                             exportObjects.KiemNhiem = unitOfWorks.ChucVuDonViVienChucRepository.HardKiemNhiemToGrid(listCongTac[0].kiemNhiem);
                             exportObjects.LinkVanBanDinhKemCT = listCongTac[0].linkVanBanDinhKem;
+                            exportObjects.GhiChuCT = listCongTac[0].ghiChu;
 
                             IncreaseIndex(listFieldsDefault, row.Index, listCongTac.Count - 1);
                             for (int i = 1; i < listCongTac.Count; i++)
@@ -253,7 +253,8 @@ namespace QLNS_SGU.Presenter
                                     NgayKetThucCT = listCongTac[i].ngayKetThuc,
                                     LoaiThayDoi = unitOfWorks.ChucVuDonViVienChucRepository.HardLoaiThayDoiToGrid(listCongTac[i].loaiThayDoi),
                                     KiemNhiem = unitOfWorks.ChucVuDonViVienChucRepository.HardKiemNhiemToGrid(listCongTac[i].kiemNhiem),
-                                    LinkVanBanDinhKemCT = listCongTac[i].linkVanBanDinhKem
+                                    LinkVanBanDinhKemCT = listCongTac[i].linkVanBanDinhKem,
+                                    GhiChuCT = listCongTac[i].ghiChu
                                 });
                             }
                         }
@@ -275,6 +276,7 @@ namespace QLNS_SGU.Presenter
                             exportObjects.LoaiThayDoi = unitOfWorks.ChucVuDonViVienChucRepository.HardLoaiThayDoiToGrid(listCongTac[0].loaiThayDoi);
                             exportObjects.KiemNhiem = unitOfWorks.ChucVuDonViVienChucRepository.HardKiemNhiemToGrid(listCongTac[0].kiemNhiem);
                             exportObjects.LinkVanBanDinhKemCT = listCongTac[0].linkVanBanDinhKem;
+                            exportObjects.GhiChuCT = listCongTac[0].ghiChu;
                         }
                     }
                 }
@@ -563,11 +565,10 @@ namespace QLNS_SGU.Presenter
                         tempIdVienChuc = row.IdVienChuc;
                         if (listChungChi.Count > 1)
                         {
-                            exportObjects.ChungChi = listChungChi[0].LoaiChungChi.tenLoaiChungChi;
-                            if (listChungChi[0].capDoChungChi != null)
-                            {
-                                exportObjects.ChungChi += ", " + listChungChi[0].capDoChungChi;
-                            }
+                            exportObjects.LoaiChungChi = listChungChi[0].LoaiChungChi.tenLoaiChungChi;
+                            exportObjects.ChungChi = listChungChi[0].capDoChungChi;
+                            exportObjects.NgayCapChungChi = listChungChi[0].ngayCapChungChi;
+                            exportObjects.CoSoDaoTaoCC = listChungChi[0].coSoDaoTao;
 
                             IncreaseIndex(listFieldsDefault, row.Index, listChungChi.Count - 1);
                             for (int i = 1; i < listChungChi.Count; i++)
@@ -584,7 +585,10 @@ namespace QLNS_SGU.Presenter
                                         GioiTinh = row.GioiTinh,
                                         DonVi = row.DonVi,
                                         TrangThai = row.TrangThai,
-                                        ChungChi = listChungChi[i].LoaiChungChi.tenLoaiChungChi + ", " + listChungChi[i].capDoChungChi
+                                        LoaiChungChi = listChungChi[i].LoaiChungChi.tenLoaiChungChi,
+                                        ChungChi = listChungChi[i].capDoChungChi,
+                                        NgayCapChungChi = listChungChi[i].ngayCapChungChi,
+                                        CoSoDaoTaoCC = listChungChi[i].coSoDaoTao
                                     });
                                 }
                                 else
@@ -599,18 +603,20 @@ namespace QLNS_SGU.Presenter
                                         GioiTinh = row.GioiTinh,
                                         DonVi = row.DonVi,
                                         TrangThai = row.TrangThai,
-                                        ChungChi = listChungChi[i].LoaiChungChi.tenLoaiChungChi
+                                        LoaiChungChi = listChungChi[i].LoaiChungChi.tenLoaiChungChi,
+                                        ChungChi = listChungChi[i].capDoChungChi,
+                                        NgayCapChungChi = listChungChi[i].ngayCapChungChi,
+                                        CoSoDaoTaoCC = listChungChi[i].coSoDaoTao
                                     });
                                 }
                             }
                         }
                         if (listChungChi.Count == 1)
                         {
-                            exportObjects.ChungChi = listChungChi[0].LoaiChungChi.tenLoaiChungChi;
-                            if (listChungChi[0].capDoChungChi != null)
-                            {
-                                exportObjects.ChungChi += ", " + listChungChi[0].capDoChungChi;
-                            }
+                            exportObjects.LoaiChungChi = listChungChi[0].LoaiChungChi.tenLoaiChungChi;
+                            exportObjects.ChungChi = listChungChi[0].capDoChungChi;
+                            exportObjects.NgayCapChungChi = listChungChi[0].ngayCapChungChi;
+                            exportObjects.CoSoDaoTaoCC = listChungChi[0].coSoDaoTao;
                         }
                     }
                 }
@@ -710,11 +716,11 @@ namespace QLNS_SGU.Presenter
             SplashScreenManager.ShowForm(_view, typeof(WaitForm1), true, true, false, 0);
             UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             DateTime dtTimeline = _view.DTTimeline.DateTime;
-            List<ExportObjects> listFieldsDefault = unitOfWorks.VienChucRepository.GetListFieldsDefaultByTimeline(dtTimeline).ToList();
+            List<ExportObjects> listFieldsDefault = unitOfWorks.VienChucRepository.GetListFieldsDefaultByTimeline(dtTimeline);
             int tempIdVienChuc = -1;
             if (selectedDomain == 0) // thong tin ca nhan
             {
-                foreach (var row in listFieldsDefault)
+                foreach (var row in listFieldsDefault.ToList())
                 {
                     VienChuc vienChuc = unitOfWorks.VienChucRepository.GetVienChucByIdVienChuc(row.IdVienChuc);
                     if (vienChuc != null)
@@ -734,14 +740,13 @@ namespace QLNS_SGU.Presenter
                         exportObjects.NgayVaoNganh = vienChuc.ngayVaoNganh;
                         exportObjects.NgayVeTruong = vienChuc.ngayVeTruong;
                         exportObjects.VanHoa = vienChuc.vanHoa;
-                        exportObjects.QuanLyNhaNuoc = vienChuc.QuanLyNhaNuoc.tenQuanLyNhaNuoc;
                         exportObjects.GhiChu = vienChuc.ghiChu;
                     }
                 }
             }
             if (selectedDomain == 1) // trang thai
             {
-                foreach (var row in listFieldsDefault)
+                foreach (var row in listFieldsDefault.ToList())
                 {
                     ExportObjects exportObjects = listFieldsDefault.Where(x => x.IdVienChuc == row.IdVienChuc && x.Index == row.Index).FirstOrDefault();
                     List<TrangThaiVienChuc> listTrangThai = unitOfWorks.TrangThaiVienChucRepository.GetListTrangThaiByIdVienChucAndTimeline(row.IdVienChuc, dtTimeline);
@@ -791,7 +796,7 @@ namespace QLNS_SGU.Presenter
             }
             if (selectedDomain == 2) // cong tac
             {
-                foreach (var row in listFieldsDefault)
+                foreach (var row in listFieldsDefault.ToList())
                 {
                     ExportObjects exportObjects = listFieldsDefault.Where(x => x.IdVienChuc == row.IdVienChuc && x.Index == row.Index).FirstOrDefault();
                     List<ChucVuDonViVienChuc> listCongTac = unitOfWorks.ChucVuDonViVienChucRepository.GetListCongTacByIdVienChucAndTimeline(row.IdVienChuc, dtTimeline);
@@ -804,7 +809,7 @@ namespace QLNS_SGU.Presenter
                             exportObjects.ChucVu = listCongTac[0].ChucVu.tenChucVu;
                             exportObjects.HeSoChucVu = listCongTac[0].ChucVu.heSoChucVu;
                             exportObjects.LoaiDonVi = listCongTac[0].DonVi.LoaiDonVi.tenLoaiDonVi;
-                            //exportObjects.DonVi = listCongTac[0].DonVi.tenDonVi;
+                            exportObjects.DonVi = listCongTac[0].DonVi.tenDonVi;
                             exportObjects.DiaDiemCT = listCongTac[0].DonVi.diaDiem;
                             exportObjects.DiaChi = listCongTac[0].DonVi.diaChi;
                             exportObjects.SoDienThoaiDonVi = listCongTac[0].DonVi.sDT;
@@ -816,6 +821,7 @@ namespace QLNS_SGU.Presenter
                             exportObjects.LoaiThayDoi = unitOfWorks.ChucVuDonViVienChucRepository.HardLoaiThayDoiToGrid(listCongTac[0].loaiThayDoi);
                             exportObjects.KiemNhiem = unitOfWorks.ChucVuDonViVienChucRepository.HardKiemNhiemToGrid(listCongTac[0].kiemNhiem);
                             exportObjects.LinkVanBanDinhKemCT = listCongTac[0].linkVanBanDinhKem;
+                            exportObjects.GhiChuCT = listCongTac[0].ghiChu;
 
                             IncreaseIndex(listFieldsDefault, row.Index, listCongTac.Count - 1);
                             for (int i = 1; i < listCongTac.Count; i++)
@@ -844,7 +850,8 @@ namespace QLNS_SGU.Presenter
                                     NgayKetThucCT = listCongTac[i].ngayKetThuc,
                                     LoaiThayDoi = unitOfWorks.ChucVuDonViVienChucRepository.HardLoaiThayDoiToGrid(listCongTac[i].loaiThayDoi),
                                     KiemNhiem = unitOfWorks.ChucVuDonViVienChucRepository.HardKiemNhiemToGrid(listCongTac[i].kiemNhiem),
-                                    LinkVanBanDinhKemCT = listCongTac[i].linkVanBanDinhKem
+                                    LinkVanBanDinhKemCT = listCongTac[i].linkVanBanDinhKem,
+                                    GhiChuCT = listCongTac[i].ghiChu
                                 });
                             }
                         }
@@ -866,6 +873,7 @@ namespace QLNS_SGU.Presenter
                             exportObjects.LoaiThayDoi = unitOfWorks.ChucVuDonViVienChucRepository.HardLoaiThayDoiToGrid(listCongTac[0].loaiThayDoi);
                             exportObjects.KiemNhiem = unitOfWorks.ChucVuDonViVienChucRepository.HardKiemNhiemToGrid(listCongTac[0].kiemNhiem);
                             exportObjects.LinkVanBanDinhKemCT = listCongTac[0].linkVanBanDinhKem;
+                            exportObjects.GhiChuCT = listCongTac[0].ghiChu;
                         }
                     }
                 }
@@ -873,7 +881,7 @@ namespace QLNS_SGU.Presenter
             }
             if (selectedDomain == 3) // nganh hoc
             {
-                foreach (var row in listFieldsDefault)
+                foreach (var row in listFieldsDefault.ToList())
                 {
                     ExportObjects exportObjects = listFieldsDefault.Where(x => x.IdVienChuc == row.IdVienChuc && x.Index == row.Index).FirstOrDefault();
                     List<NganhVienChuc> listNganhHoc = unitOfWorks.NganhVienChucRepository.GetListNganhHocByIdVienChucAndTimelineForExportFull(row.IdVienChuc, dtTimeline);
@@ -947,7 +955,7 @@ namespace QLNS_SGU.Presenter
             }
             if (selectedDomain == 4) // qua trinh luong
             {
-                foreach(var row in listFieldsDefault)
+                foreach(var row in listFieldsDefault.ToList())
                 {
                     ExportObjects exportObjects = listFieldsDefault.Where(x => x.IdVienChuc == row.IdVienChuc && x.Index == row.Index).FirstOrDefault();
                     List<QuaTrinhLuong> listQuaTrinhLuong = unitOfWorks.QuaTrinhLuongRepository.GetListQuaTrinhLuongByIdVienChucAndTimelineForExportFull(row.IdVienChuc, dtTimeline);
@@ -1010,89 +1018,89 @@ namespace QLNS_SGU.Presenter
                 }
                 tempIdVienChuc = -1;
             }
-            if (selectedDomain == 5) // nganh day
-            {
-                foreach(var row in listFieldsDefault)
-                {
-                    ExportObjects exportObjects = listFieldsDefault.Where(x => x.IdVienChuc == row.IdVienChuc && x.Index == row.Index).FirstOrDefault();
-                    List<NganhVienChuc> listNganhDay = unitOfWorks.NganhVienChucRepository.GetListNganhDayByIdVienChucAndTimelineForExportFull(row.IdVienChuc, dtTimeline);
-                    if(row.IdVienChuc != tempIdVienChuc)
-                    {
-                        tempIdVienChuc = row.IdVienChuc;
-                        if(listNganhDay.Count > 1)
-                        {
-                            exportObjects.LoaiNganhND = listNganhDay[0].LoaiNganh.tenLoaiNganh;
-                            exportObjects.NganhDaoTaoND = listNganhDay[0].NganhDaoTao.tenNganhDaoTao;
-                            exportObjects.ChuyenNganhND = listNganhDay[0].ChuyenNganh.tenChuyenNganh;
-                            exportObjects.LoaiHocHamHocViND = listNganhDay[0].HocHamHocViVienChuc.LoaiHocHamHocVi.tenLoaiHocHamHocVi;
-                            exportObjects.TenHocHamHocViND = listNganhDay[0].HocHamHocViVienChuc.tenHocHamHocVi;
-                            exportObjects.CoSoDaoTaoND = listNganhDay[0].HocHamHocViVienChuc.coSoDaoTao;
-                            exportObjects.NgonNguDaoTaoND = listNganhDay[0].HocHamHocViVienChuc.ngonNguDaoTao;
-                            exportObjects.HinhThucDaoTaoND = listNganhDay[0].HocHamHocViVienChuc.hinhThucDaoTao;
-                            exportObjects.NuocCapBangND = listNganhDay[0].HocHamHocViVienChuc.nuocCapBang;
-                            exportObjects.NgayCapBangND = listNganhDay[0].HocHamHocViVienChuc.ngayCapBang;
-                            exportObjects.LinkVanBanDinhKemHHHV_ND = listNganhDay[0].HocHamHocViVienChuc.linkVanBanDinhKem;
-                            exportObjects.PhanLoaiND = unitOfWorks.NganhVienChucRepository.HardCodePhanLoaiToGrid(listNganhDay[0].phanLoai);
-                            exportObjects.NgayBatDauND = listNganhDay[0].ngayBatDau;
-                            exportObjects.NgayKetThucND = listNganhDay[0].ngayKetThuc;
-                            exportObjects.LinkVanBanDinhKemND = listNganhDay[0].linkVanBanDinhKem;
+            //if (selectedDomain == 5) // nganh day
+            //{
+            //    foreach(var row in listFieldsDefault)
+            //    {
+            //        ExportObjects exportObjects = listFieldsDefault.Where(x => x.IdVienChuc == row.IdVienChuc && x.Index == row.Index).FirstOrDefault();
+            //        List<NganhVienChuc> listNganhDay = unitOfWorks.NganhVienChucRepository.GetListNganhDayByIdVienChucAndTimelineForExportFull(row.IdVienChuc, dtTimeline);
+            //        if(row.IdVienChuc != tempIdVienChuc)
+            //        {
+            //            tempIdVienChuc = row.IdVienChuc;
+            //            if(listNganhDay.Count > 1)
+            //            {
+            //                exportObjects.LoaiNganhND = listNganhDay[0].LoaiNganh.tenLoaiNganh;
+            //                exportObjects.NganhDaoTaoND = listNganhDay[0].NganhDaoTao.tenNganhDaoTao;
+            //                exportObjects.ChuyenNganhND = listNganhDay[0].ChuyenNganh.tenChuyenNganh;
+            //                exportObjects.LoaiHocHamHocViND = listNganhDay[0].HocHamHocViVienChuc.LoaiHocHamHocVi.tenLoaiHocHamHocVi;
+            //                exportObjects.TenHocHamHocViND = listNganhDay[0].HocHamHocViVienChuc.tenHocHamHocVi;
+            //                exportObjects.CoSoDaoTaoND = listNganhDay[0].HocHamHocViVienChuc.coSoDaoTao;
+            //                exportObjects.NgonNguDaoTaoND = listNganhDay[0].HocHamHocViVienChuc.ngonNguDaoTao;
+            //                exportObjects.HinhThucDaoTaoND = listNganhDay[0].HocHamHocViVienChuc.hinhThucDaoTao;
+            //                exportObjects.NuocCapBangND = listNganhDay[0].HocHamHocViVienChuc.nuocCapBang;
+            //                exportObjects.NgayCapBangND = listNganhDay[0].HocHamHocViVienChuc.ngayCapBang;
+            //                exportObjects.LinkVanBanDinhKemHHHV_ND = listNganhDay[0].HocHamHocViVienChuc.linkVanBanDinhKem;
+            //                exportObjects.PhanLoaiND = unitOfWorks.NganhVienChucRepository.HardCodePhanLoaiToGrid(listNganhDay[0].phanLoai);
+            //                exportObjects.NgayBatDauND = listNganhDay[0].ngayBatDau;
+            //                exportObjects.NgayKetThucND = listNganhDay[0].ngayKetThuc;
+            //                exportObjects.LinkVanBanDinhKemND = listNganhDay[0].linkVanBanDinhKem;
 
-                            IncreaseIndex(listFieldsDefault, row.Index, listNganhDay.Count - 1);
-                            for (int i = 1; i < listNganhDay.Count; i++)
-                            {
-                                listFieldsDefault.Insert(row.Index + 1, new ExportObjects
-                                {
-                                    Index = row.Index + 1,
-                                    IdVienChuc = row.IdVienChuc,
-                                    MaVienChuc = row.MaVienChuc,
-                                    Ho = row.Ho,
-                                    Ten = row.Ten,
-                                    GioiTinh = row.GioiTinh,
-                                    DonVi = row.DonVi,
-                                    TrangThai = row.TrangThai,
-                                    LoaiNganhND = listNganhDay[i].LoaiNganh.tenLoaiNganh,
-                                    NganhDaoTaoND = listNganhDay[i].NganhDaoTao.tenNganhDaoTao,
-                                    ChuyenNganhND = listNganhDay[i].ChuyenNganh.tenChuyenNganh,
-                                    LoaiHocHamHocViND = listNganhDay[i].HocHamHocViVienChuc.LoaiHocHamHocVi.tenLoaiHocHamHocVi,
-                                    TenHocHamHocViND = listNganhDay[i].HocHamHocViVienChuc.tenHocHamHocVi,
-                                    CoSoDaoTaoND = listNganhDay[i].HocHamHocViVienChuc.coSoDaoTao,
-                                    NgonNguDaoTaoND = listNganhDay[i].HocHamHocViVienChuc.ngonNguDaoTao,
-                                    HinhThucDaoTaoND = listNganhDay[i].HocHamHocViVienChuc.hinhThucDaoTao,
-                                    NuocCapBangND = listNganhDay[i].HocHamHocViVienChuc.nuocCapBang,
-                                    NgayCapBangND = listNganhDay[i].HocHamHocViVienChuc.ngayCapBang,
-                                    LinkVanBanDinhKemHHHV_ND = listNganhDay[i].HocHamHocViVienChuc.linkVanBanDinhKem,
-                                    PhanLoaiND = unitOfWorks.NganhVienChucRepository.HardCodePhanLoaiToGrid(listNganhDay[i].phanLoai),
-                                    NgayBatDauND = listNganhDay[i].ngayBatDau,
-                                    NgayKetThucND = listNganhDay[i].ngayKetThuc,
-                                    LinkVanBanDinhKemND = listNganhDay[i].linkVanBanDinhKem
-                                });
-                            }
-                        }
-                        if (listNganhDay.Count == 1)
-                        {
-                            exportObjects.LoaiNganhND = listNganhDay[0].LoaiNganh.tenLoaiNganh;
-                            exportObjects.NganhDaoTaoND = listNganhDay[0].NganhDaoTao.tenNganhDaoTao;
-                            exportObjects.ChuyenNganhND = listNganhDay[0].ChuyenNganh.tenChuyenNganh;
-                            exportObjects.LoaiHocHamHocViND = listNganhDay[0].HocHamHocViVienChuc.LoaiHocHamHocVi.tenLoaiHocHamHocVi;
-                            exportObjects.TenHocHamHocViND = listNganhDay[0].HocHamHocViVienChuc.tenHocHamHocVi;
-                            exportObjects.CoSoDaoTaoND = listNganhDay[0].HocHamHocViVienChuc.coSoDaoTao;
-                            exportObjects.NgonNguDaoTaoND = listNganhDay[0].HocHamHocViVienChuc.ngonNguDaoTao;
-                            exportObjects.HinhThucDaoTaoND = listNganhDay[0].HocHamHocViVienChuc.hinhThucDaoTao;
-                            exportObjects.NuocCapBangND = listNganhDay[0].HocHamHocViVienChuc.nuocCapBang;
-                            exportObjects.NgayCapBangND = listNganhDay[0].HocHamHocViVienChuc.ngayCapBang;
-                            exportObjects.LinkVanBanDinhKemHHHV_ND = listNganhDay[0].HocHamHocViVienChuc.linkVanBanDinhKem;
-                            exportObjects.PhanLoaiND = unitOfWorks.NganhVienChucRepository.HardCodePhanLoaiToGrid(listNganhDay[0].phanLoai);
-                            exportObjects.NgayBatDauND = listNganhDay[0].ngayBatDau;
-                            exportObjects.NgayKetThucND = listNganhDay[0].ngayKetThuc;
-                            exportObjects.LinkVanBanDinhKemND = listNganhDay[0].linkVanBanDinhKem;
-                        }
-                    }
-                }
-                tempIdVienChuc = -1;
-            }
-            if (selectedDomain == 6) //hop dong
+            //                IncreaseIndex(listFieldsDefault, row.Index, listNganhDay.Count - 1);
+            //                for (int i = 1; i < listNganhDay.Count; i++)
+            //                {
+            //                    listFieldsDefault.Insert(row.Index + 1, new ExportObjects
+            //                    {
+            //                        Index = row.Index + 1,
+            //                        IdVienChuc = row.IdVienChuc,
+            //                        MaVienChuc = row.MaVienChuc,
+            //                        Ho = row.Ho,
+            //                        Ten = row.Ten,
+            //                        GioiTinh = row.GioiTinh,
+            //                        DonVi = row.DonVi,
+            //                        TrangThai = row.TrangThai,
+            //                        LoaiNganhND = listNganhDay[i].LoaiNganh.tenLoaiNganh,
+            //                        NganhDaoTaoND = listNganhDay[i].NganhDaoTao.tenNganhDaoTao,
+            //                        ChuyenNganhND = listNganhDay[i].ChuyenNganh.tenChuyenNganh,
+            //                        LoaiHocHamHocViND = listNganhDay[i].HocHamHocViVienChuc.LoaiHocHamHocVi.tenLoaiHocHamHocVi,
+            //                        TenHocHamHocViND = listNganhDay[i].HocHamHocViVienChuc.tenHocHamHocVi,
+            //                        CoSoDaoTaoND = listNganhDay[i].HocHamHocViVienChuc.coSoDaoTao,
+            //                        NgonNguDaoTaoND = listNganhDay[i].HocHamHocViVienChuc.ngonNguDaoTao,
+            //                        HinhThucDaoTaoND = listNganhDay[i].HocHamHocViVienChuc.hinhThucDaoTao,
+            //                        NuocCapBangND = listNganhDay[i].HocHamHocViVienChuc.nuocCapBang,
+            //                        NgayCapBangND = listNganhDay[i].HocHamHocViVienChuc.ngayCapBang,
+            //                        LinkVanBanDinhKemHHHV_ND = listNganhDay[i].HocHamHocViVienChuc.linkVanBanDinhKem,
+            //                        PhanLoaiND = unitOfWorks.NganhVienChucRepository.HardCodePhanLoaiToGrid(listNganhDay[i].phanLoai),
+            //                        NgayBatDauND = listNganhDay[i].ngayBatDau,
+            //                        NgayKetThucND = listNganhDay[i].ngayKetThuc,
+            //                        LinkVanBanDinhKemND = listNganhDay[i].linkVanBanDinhKem
+            //                    });
+            //                }
+            //            }
+            //            if (listNganhDay.Count == 1)
+            //            {
+            //                exportObjects.LoaiNganhND = listNganhDay[0].LoaiNganh.tenLoaiNganh;
+            //                exportObjects.NganhDaoTaoND = listNganhDay[0].NganhDaoTao.tenNganhDaoTao;
+            //                exportObjects.ChuyenNganhND = listNganhDay[0].ChuyenNganh.tenChuyenNganh;
+            //                exportObjects.LoaiHocHamHocViND = listNganhDay[0].HocHamHocViVienChuc.LoaiHocHamHocVi.tenLoaiHocHamHocVi;
+            //                exportObjects.TenHocHamHocViND = listNganhDay[0].HocHamHocViVienChuc.tenHocHamHocVi;
+            //                exportObjects.CoSoDaoTaoND = listNganhDay[0].HocHamHocViVienChuc.coSoDaoTao;
+            //                exportObjects.NgonNguDaoTaoND = listNganhDay[0].HocHamHocViVienChuc.ngonNguDaoTao;
+            //                exportObjects.HinhThucDaoTaoND = listNganhDay[0].HocHamHocViVienChuc.hinhThucDaoTao;
+            //                exportObjects.NuocCapBangND = listNganhDay[0].HocHamHocViVienChuc.nuocCapBang;
+            //                exportObjects.NgayCapBangND = listNganhDay[0].HocHamHocViVienChuc.ngayCapBang;
+            //                exportObjects.LinkVanBanDinhKemHHHV_ND = listNganhDay[0].HocHamHocViVienChuc.linkVanBanDinhKem;
+            //                exportObjects.PhanLoaiND = unitOfWorks.NganhVienChucRepository.HardCodePhanLoaiToGrid(listNganhDay[0].phanLoai);
+            //                exportObjects.NgayBatDauND = listNganhDay[0].ngayBatDau;
+            //                exportObjects.NgayKetThucND = listNganhDay[0].ngayKetThuc;
+            //                exportObjects.LinkVanBanDinhKemND = listNganhDay[0].linkVanBanDinhKem;
+            //            }
+            //        }
+            //    }
+            //    tempIdVienChuc = -1;
+            //}
+            if (selectedDomain == 5) //hop dong
             {
-                foreach (var row in listFieldsDefault)
+                foreach (var row in listFieldsDefault.ToList())
                 {
                     ExportObjects exportObjects = listFieldsDefault.Where(x => x.IdVienChuc == row.IdVienChuc && x.Index == row.Index).FirstOrDefault();
                     List<HopDongVienChuc> listHopDongVienChuc = unitOfWorks.HopDongVienChucRepository.GetListHopDongByIdVienChucAndTimelineForExportFull(row.IdVienChuc, dtTimeline);
@@ -1143,27 +1151,26 @@ namespace QLNS_SGU.Presenter
                 }
                 tempIdVienChuc = -1;
             }
-            if (selectedDomain == 7) //chung chi
+            if (selectedDomain == 6) //chung chi
             {
-                foreach(var row in listFieldsDefault)
+                foreach (var row in listFieldsDefault.ToList())
                 {
                     ExportObjects exportObjects = listFieldsDefault.Where(x => x.IdVienChuc == row.IdVienChuc && x.Index == row.Index).FirstOrDefault();
                     List<ChungChiVienChuc> listChungChi = unitOfWorks.ChungChiVienChucRepository.GetListChungChiByIdVienChucAndTimelineForExportFull(row.IdVienChuc, dtTimeline);
-                    if(row.IdVienChuc != tempIdVienChuc)
+                    if (row.IdVienChuc != tempIdVienChuc)
                     {
                         tempIdVienChuc = row.IdVienChuc;
                         if (listChungChi.Count > 1)
                         {
-                            exportObjects.ChungChi = listChungChi[0].LoaiChungChi.tenLoaiChungChi;
-                            if (listChungChi[0].capDoChungChi != null)
-                            {
-                                exportObjects.ChungChi += ", " + listChungChi[0].capDoChungChi;
-                            }
+                            exportObjects.LoaiChungChi = listChungChi[0].LoaiChungChi.tenLoaiChungChi;
+                            exportObjects.ChungChi = listChungChi[0].capDoChungChi;
+                            exportObjects.NgayCapChungChi = listChungChi[0].ngayCapChungChi;
+                            exportObjects.CoSoDaoTaoCC = listChungChi[0].coSoDaoTao;
 
                             IncreaseIndex(listFieldsDefault, row.Index, listChungChi.Count - 1);
                             for (int i = 1; i < listChungChi.Count; i++)
                             {
-                                if(listChungChi[i].capDoChungChi != null)
+                                if (listChungChi[i].capDoChungChi != null)
                                 {
                                     listFieldsDefault.Insert(row.Index + 1, new ExportObjects
                                     {
@@ -1175,7 +1182,10 @@ namespace QLNS_SGU.Presenter
                                         GioiTinh = row.GioiTinh,
                                         DonVi = row.DonVi,
                                         TrangThai = row.TrangThai,
-                                        ChungChi = listChungChi[i].LoaiChungChi.tenLoaiChungChi + ", " + listChungChi[i].capDoChungChi
+                                        LoaiChungChi = listChungChi[i].LoaiChungChi.tenLoaiChungChi,
+                                        ChungChi = listChungChi[i].capDoChungChi,
+                                        NgayCapChungChi = listChungChi[i].ngayCapChungChi,
+                                        CoSoDaoTaoCC = listChungChi[i].coSoDaoTao
                                     });
                                 }
                                 else
@@ -1190,26 +1200,28 @@ namespace QLNS_SGU.Presenter
                                         GioiTinh = row.GioiTinh,
                                         DonVi = row.DonVi,
                                         TrangThai = row.TrangThai,
-                                        ChungChi = listChungChi[i].LoaiChungChi.tenLoaiChungChi
+                                        LoaiChungChi = listChungChi[i].LoaiChungChi.tenLoaiChungChi,
+                                        ChungChi = listChungChi[i].capDoChungChi,
+                                        NgayCapChungChi = listChungChi[i].ngayCapChungChi,
+                                        CoSoDaoTaoCC = listChungChi[i].coSoDaoTao
                                     });
                                 }
                             }
                         }
                         if (listChungChi.Count == 1)
                         {
-                            exportObjects.ChungChi = listChungChi[0].LoaiChungChi.tenLoaiChungChi;
-                            if (listChungChi[0].capDoChungChi != null)
-                            {
-                                exportObjects.ChungChi += ", " + listChungChi[0].capDoChungChi;
-                            }
+                            exportObjects.LoaiChungChi = listChungChi[0].LoaiChungChi.tenLoaiChungChi;
+                            exportObjects.ChungChi = listChungChi[0].capDoChungChi;
+                            exportObjects.NgayCapChungChi = listChungChi[0].ngayCapChungChi;
+                            exportObjects.CoSoDaoTaoCC = listChungChi[0].coSoDaoTao;
                         }
                     }
                 }
                 tempIdVienChuc = -1;
             }
-            if (selectedDomain == 8) // dang hoc nang cao
+            if (selectedDomain == 7) // dang hoc nang cao
             {
-                foreach(var row in listFieldsDefault)
+                foreach(var row in listFieldsDefault.ToList())
                 {
                     ExportObjects exportObjects = listFieldsDefault.Where(x => x.IdVienChuc == row.IdVienChuc && x.Index == row.Index).FirstOrDefault();
                     List<DangHocNangCao> listDangHocNangCao = unitOfWorks.DangHocNangCaoRepository.GetListDangHocNangCaoByIdVienChucAndTimelineForExportFull(row.IdVienChuc, dtTimeline);
@@ -1344,7 +1356,6 @@ namespace QLNS_SGU.Presenter
             _view.GVCustom.Columns["NgayVeTruong"].Caption = "Ngày về trường";
             FormatDate("NgayVeTruong");
             _view.GVCustom.Columns["VanHoa"].Caption = "Văn hóa";
-            _view.GVCustom.Columns["QuanLyNhaNuoc"].Caption = "Quản lý nhà nước";
             //Cong tac
             _view.GVCustom.Columns["LoaiChucVu"].Caption = "Loại chức vụ";
             _view.GVCustom.Columns["ChucVu"].Caption = "Chức vụ";
@@ -1363,6 +1374,7 @@ namespace QLNS_SGU.Presenter
             _view.GVCustom.Columns["LoaiThayDoi"].Caption = "Loại thay đổi";
             _view.GVCustom.Columns["KiemNhiem"].Caption = "Kiêm nhiệm";
             _view.GVCustom.Columns["LinkVanBanDinhKemCT"].Caption = "Link văn bản đính kèm (Công tác)";
+            _view.GVCustom.Columns["GhiChuCT"].Caption = "Ghi chú (Công tác)";
             //Qua trinh luong
             _view.GVCustom.Columns["MaNgach"].Caption = "Mã ngạch";
             _view.GVCustom.Columns["TenNgach"].Caption = "Tên ngạch";
@@ -1426,11 +1438,15 @@ namespace QLNS_SGU.Presenter
             FormatDate("NgayKetThucND");
             _view.GVCustom.Columns["LinkVanBanDinhKemND"].Caption = "Link văn bản đính kèm (Ngành dạy)";
             //Chung chi
-            _view.GVCustom.Columns["NgoaiNgu"].Caption = "Ngoại ngữ";
-            _view.GVCustom.Columns["TinHoc"].Caption = "Tin học";
-            _view.GVCustom.Columns["LiLuanChinhTri"].Caption = "Lí luận chính trị";
-            _view.GVCustom.Columns["ChungChiChuyenMon"].Caption = "Chứng chỉ chuyên môn";
+            _view.GVCustom.Columns["LoaiChungChi"].Caption = "Loại chứng chỉ";
             _view.GVCustom.Columns["ChungChi"].Caption = "Chứng chỉ";
+            _view.GVCustom.Columns["NgayCapChungChi"].Caption = "Ngày cấp chứng chỉ";
+            _view.GVCustom.Columns["CoSoDaoTaoCC"].Caption = "Cơ sở đào tạo";
+            _view.GVCustom.Columns["NgoaiNgu"].Caption = "Ngoại ngữ";
+            _view.GVCustom.Columns["TinHoc"].Caption = "Tin học";           
+            _view.GVCustom.Columns["ChungChiChuyenMon"].Caption = "Chứng chỉ chuyên môn";
+            _view.GVCustom.Columns["ChinhTri"].Caption = "Chính trị";
+            _view.GVCustom.Columns["QuanLyNhaNuoc"].Caption = "Quản lý nhà nước";            
             //Dang hoc nang cao
             _view.GVCustom.Columns["SoQuyetDinh"].Caption = "Số quyết định";
             _view.GVCustom.Columns["LinkAnhQuyetDinh"].Caption = "Link ảnh quyết định";

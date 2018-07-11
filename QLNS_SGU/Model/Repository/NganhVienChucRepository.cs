@@ -41,10 +41,13 @@ namespace Model.Repository
 
         public List<NganhVienChuc> GetListNganhHocByIdVienChucAndDurationForExportFull(int idVienChuc, DateTime dtFromDuration, DateTime dtToDuration)
         {
-            List<NganhVienChuc> listNganhVienChucByIdVienChucAndTimeline = _db.NganhVienChucs
+            List<NganhVienChuc> listNganhVienChucByIdVienChucAndDuration = _db.NganhVienChucs
                                 .Where(x => x.idVienChuc == idVienChuc && x.phanLoai == true && x.HocHamHocViVienChuc.ngayCapBang <= dtToDuration && x.HocHamHocViVienChuc.ngayCapBang >= dtFromDuration)
                                 .ToList();
-            return listNganhVienChucByIdVienChucAndTimeline;
+            if (listNganhVienChucByIdVienChucAndDuration.Count > 0)
+                return listNganhVienChucByIdVienChucAndDuration;
+            else
+                return _db.NganhVienChucs.Where(x => x.idVienChuc == idVienChuc && x.phanLoai == true).ToList();
         }
 
         public List<NganhVienChuc> GetListNganhHocByIdVienChucAndTimelineForExportFull(int idVienChuc, DateTime dtTimeline)
@@ -52,7 +55,10 @@ namespace Model.Repository
             List<NganhVienChuc> listNganhVienChucByIdVienChucAndTimeline = _db.NganhVienChucs
                                 .Where(x => x.idVienChuc == idVienChuc && x.phanLoai == true && x.HocHamHocViVienChuc.ngayCapBang <= dtTimeline)
                                 .ToList();
-            return listNganhVienChucByIdVienChucAndTimeline;
+            if (listNganhVienChucByIdVienChucAndTimeline.Count > 0)
+                return listNganhVienChucByIdVienChucAndTimeline;
+            else
+                return _db.NganhVienChucs.Where(x => x.idVienChuc == idVienChuc && x.phanLoai == true).ToList();
         }
 
         public List<NganhVienChuc> GetListNganhDayByIdVienChucAndDurationForExportFull(int idVienChuc, DateTime dtFromDuration, DateTime dtToDuration)

@@ -47,13 +47,11 @@ namespace Model.Entities
         public virtual DbSet<Ngach> Ngaches { get; set; }
         public virtual DbSet<NganhDaoTao> NganhDaoTaos { get; set; }
         public virtual DbSet<NganhVienChuc> NganhVienChucs { get; set; }
-        public virtual DbSet<QuanLyNhaNuoc> QuanLyNhaNuocs { get; set; }
         public virtual DbSet<QuanTriVien> QuanTriViens { get; set; }
         public virtual DbSet<QuaTrinhDanhGiaVienChuc> QuaTrinhDanhGiaVienChucs { get; set; }
         public virtual DbSet<QuaTrinhGianDoanBaoHiemXaHoi> QuaTrinhGianDoanBaoHiemXaHois { get; set; }
         public virtual DbSet<QuaTrinhLuong> QuaTrinhLuongs { get; set; }
         public virtual DbSet<QuaTrinhPhuCapThamNienNhaGiao> QuaTrinhPhuCapThamNienNhaGiaos { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<ThamSo> ThamSoes { get; set; }
         public virtual DbSet<ToChuyenMon> ToChuyenMons { get; set; }
         public virtual DbSet<TonGiao> TonGiaos { get; set; }

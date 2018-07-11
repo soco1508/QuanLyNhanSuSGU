@@ -31,8 +31,6 @@ namespace Model.ObjectModels
         public DateTime? NgayVaoNganh { get; set; }
         public DateTime? NgayVeTruong { get; set; }
         public string VanHoa { get; set; }
-        public string QuanLyNhaNuoc { get; set; }
-        //public string ChinhTri { get; set; }
         public string GhiChu { get; set; }
         //Cong tac
         public string LoaiChucVu { get; set; }
@@ -50,6 +48,7 @@ namespace Model.ObjectModels
         public string LoaiThayDoi { get; set; }
         public string KiemNhiem { get; set; }
         public string LinkVanBanDinhKemCT { get; set; }
+        public string GhiChuCT { get; set; }
         //Qua trinh luong
         public string MaNgach { get; set; }
         public string TenNgach { get; set; }
@@ -106,10 +105,14 @@ namespace Model.ObjectModels
         public string LinkVanBanDinhKemND { get; set; }
         //Chung chi
         public string NgoaiNgu { get; set; }
-        public string TinHoc { get; set; }
-        public string LiLuanChinhTri { get; set; }
+        public string TinHoc { get; set; }       
         public string ChungChiChuyenMon { get; set; }
+        public string QuanLyNhaNuoc { get; set; }
+        public string ChinhTri { get; set; }
+        public string LoaiChungChi { get; set; }
         public string ChungChi { get; set; }
+        public DateTime? NgayCapChungChi { get; set; }
+        public string CoSoDaoTaoCC { get; set; }
         //Dang hoc nang cao
         public string SoQuyetDinh { get; set; }
         public string LinkAnhQuyetDinh { get; set; }
@@ -127,49 +130,50 @@ namespace Model.ObjectModels
         public ExportObjects()
         {
             //Default
-            MaVienChuc = "";
-            Ho = "";
-            Ten = "";            
-            GioiTinh = "";
-            DonVi = "";
-            TrangThai = "";
+            MaVienChuc = string.Empty;
+            Ho = string.Empty;
+            Ten = string.Empty;            
+            GioiTinh = string.Empty;
+            DonVi = string.Empty;
+            TrangThai = string.Empty;
             //Thong tin ca nhan
-            SoDienThoai = "";
+            SoDienThoai = string.Empty;
             NgaySinh = null;
-            NoiSinh = "";
-            QueQuan = "";
-            DanToc = "";
-            TonGiao = "";
-            HoKhauThuongTru = "";
-            NoiOHienNay = "";
-            LaDangVien = "";
+            NoiSinh = string.Empty;
+            QueQuan = string.Empty;
+            DanToc = string.Empty;
+            TonGiao = string.Empty;
+            HoKhauThuongTru = string.Empty;
+            NoiOHienNay = string.Empty;
+            LaDangVien = string.Empty;
             NgayVaoDang = null;
             NgayThamGiaCongTac = null;
             NgayVaoNganh = null;
             NgayVeTruong = null;
-            VanHoa = "";
-            QuanLyNhaNuoc = "";
-            //ChinhTri = "";
-            GhiChu = "";
+            VanHoa = string.Empty;
+            QuanLyNhaNuoc = string.Empty;
+            //ChinhTri = string.Empty;
+            GhiChu = string.Empty;
             //Cong tac
-            LoaiChucVu = "";
-            ChucVu = "";
+            LoaiChucVu = string.Empty;
+            ChucVu = string.Empty;
             HeSoChucVu = null;
-            LoaiDonVi = "";            
-            DiaDiemCT = "";
-            DiaChi = "";
-            SoDienThoaiDonVi = "";
-            ToChuyenMon = "";
-            PhanLoaiCongTac = "";
-            CheckPhanLoaiCongTac = "";
+            LoaiDonVi = string.Empty;            
+            DiaDiemCT = string.Empty;
+            DiaChi = string.Empty;
+            SoDienThoaiDonVi = string.Empty;
+            ToChuyenMon = string.Empty;
+            PhanLoaiCongTac = string.Empty;
+            CheckPhanLoaiCongTac = string.Empty;
             NgayBatDauCT = null;
             NgayKetThucCT = null;
-            LoaiThayDoi = "";
-            KiemNhiem = "";
-            LinkVanBanDinhKemCT = "";
+            LoaiThayDoi = string.Empty;
+            KiemNhiem = string.Empty;
+            LinkVanBanDinhKemCT = string.Empty;
+            GhiChuCT = string.Empty;
             //Qua trinh luong
-            MaNgach = "";
-            TenNgach = "";
+            MaNgach = string.Empty;
+            TenNgach = string.Empty;
             HeSoVuotKhungBaNamDau = null;
             HeSoVuotKhungTrenBaNam = null;
             ThoiHanNangBac = null;
@@ -177,67 +181,72 @@ namespace Model.ObjectModels
             HeSoBac = null;
             NgayBatDauQTL = null;
             NgayLenLuong = null;
-            LinkVanBanDinhKemQTL = "";
+            LinkVanBanDinhKemQTL = string.Empty;
             //Hop dong
-            MaHopDong = "";
-            TenHopDong = "";
+            MaHopDong = string.Empty;
+            TenHopDong = string.Empty;
             NgayBatDauHD = null;
             NgayKetThucHD = null;
-            MoTaHD = "";
-            LinkVanBanDinhKemHD = "";            
+            MoTaHD = string.Empty;
+            LinkVanBanDinhKemHD = string.Empty;            
             //Trang thai            
-            MoTaTT = "";
-            DiaDiemTT = "";
+            MoTaTT = string.Empty;
+            DiaDiemTT = string.Empty;
             NgayBatDauTT = null;
             NgayKetThucTT = null;
-            LinkVanBanDinhKemTT = "";
+            LinkVanBanDinhKemTT = string.Empty;
             //Nganh hoc
-            LoaiNganhNH = "";
-            NganhDaoTaoNH = "";
-            ChuyenNganhNH = "";
-            LoaiHocHamHocViNH = "";
-            TenHocHamHocViNH = "";
-            CoSoDaoTaoNH = "";
-            NgonNguDaoTaoNH = "";
-            HinhThucDaoTaoNH = "";
-            NuocCapBangNH = "";
+            LoaiNganhNH = string.Empty;
+            NganhDaoTaoNH = string.Empty;
+            ChuyenNganhNH = string.Empty;
+            LoaiHocHamHocViNH = string.Empty;
+            TenHocHamHocViNH = string.Empty;
+            CoSoDaoTaoNH = string.Empty;
+            NgonNguDaoTaoNH = string.Empty;
+            HinhThucDaoTaoNH = string.Empty;
+            NuocCapBangNH = string.Empty;
             NgayCapBangNH = null;
-            LinkVanBanDinhKemHHHV_NH = "";
-            PhanLoaiNH = "";
-            LinkVanBanDinhKemNH = "";
+            LinkVanBanDinhKemHHHV_NH = string.Empty;
+            PhanLoaiNH = string.Empty;
+            LinkVanBanDinhKemNH = string.Empty;
             //Nganh day
-            LoaiNganhND = "";
-            NganhDaoTaoND = "";
-            ChuyenNganhND = "";
-            LoaiHocHamHocViND = "";
-            TenHocHamHocViND = "";
-            CoSoDaoTaoND = "";
-            NgonNguDaoTaoND = "";
-            HinhThucDaoTaoND = "";
-            NuocCapBangND = "";
+            LoaiNganhND = string.Empty;
+            NganhDaoTaoND = string.Empty;
+            ChuyenNganhND = string.Empty;
+            LoaiHocHamHocViND = string.Empty;
+            TenHocHamHocViND = string.Empty;
+            CoSoDaoTaoND = string.Empty;
+            NgonNguDaoTaoND = string.Empty;
+            HinhThucDaoTaoND = string.Empty;
+            NuocCapBangND = string.Empty;
             NgayCapBangND = null;
-            LinkVanBanDinhKemHHHV_ND = "";
-            PhanLoaiND = "";
+            LinkVanBanDinhKemHHHV_ND = string.Empty;
+            PhanLoaiND = string.Empty;
             NgayBatDauND = null;
             NgayKetThucND = null;
-            LinkVanBanDinhKemND = "";
+            LinkVanBanDinhKemND = string.Empty;
             //Chung chi
-            NgoaiNgu = "";
-            TinHoc = "";
-            LiLuanChinhTri = "";
-            ChungChiChuyenMon = "";
+            NgoaiNgu = string.Empty;
+            TinHoc = string.Empty;
+            ChinhTri = string.Empty;
+            ChungChiChuyenMon = string.Empty;
+            QuanLyNhaNuoc = string.Empty;
+            LoaiChungChi = string.Empty;
+            ChungChi = string.Empty;
+            NgayCapChungChi = null;
+            CoSoDaoTaoCC = string.Empty;
             //Dang hoc nang cao
-            LoaiHocHamHocViDHNC = "";
-            SoQuyetDinh = "";
-            LinkAnhQuyetDinh = "";
-            TenHocHamHocViDHNC = "";
-            CoSoDaoTaoDHNC = "";
-            NgonNguDaoTaoDHNC = "";
-            HinhThucDaoTaoDHNC = "";
-            NuocCapBangDHNC = "";
+            LoaiHocHamHocViDHNC = string.Empty;
+            SoQuyetDinh = string.Empty;
+            LinkAnhQuyetDinh = string.Empty;
+            TenHocHamHocViDHNC = string.Empty;
+            CoSoDaoTaoDHNC = string.Empty;
+            NgonNguDaoTaoDHNC = string.Empty;
+            HinhThucDaoTaoDHNC = string.Empty;
+            NuocCapBangDHNC = string.Empty;
             NgayBatDauDHNC = null;
             NgayKetThucDHNC = null;
-            Loai = "";
+            Loai = string.Empty;
             //index to add row for export one domain
             Index = -1;
         }

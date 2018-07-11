@@ -97,29 +97,35 @@ namespace Model.Repository
             return _db.VienChucs.ToList();
         }
 
-        public DateTime? ParseDatetimeMatchDatetimeDatabase(string s)
+        public DateTime? ParseDatetimeMatchDatetimeDatabase(string date)
         {
-            if(s != string.Empty)
+            if(date != string.Empty)
             {
-                if (s.Contains(","))
+                if (date.Contains("."))
                 {
-                    string[] words = s.Split(',');
-                    string temp = "01/01/" + words[0];
-                    return Convert.ToDateTime(temp);
+                    string[] arrDate = date.Split('.');
+                    if(arrDate.Length == 3)
+                    {
+                        if (arrDate[0].Length == 1)
+                            arrDate[0] = "0" + arrDate[0];
+                        if (arrDate[1].Length == 1)
+                            arrDate[1] = "0" + arrDate[1];
+                        return DateTime.ParseExact(arrDate[0] + "/" + arrDate[1] + "/" + arrDate[2], "dd/MM/yyyy", null);
+                    }
+                    if (arrDate.Length == 2)
+                    {
+                        if (arrDate[0].Length == 1)
+                            arrDate[0] = "0" + arrDate[0];
+                        return Convert.ToDateTime("01/" + arrDate[0] + "/" + arrDate[1]);
+                    }                        
                 }
-                else if (s.Contains(".") == true && s.Contains("x") == false && s.Contains(",") == false)
+                else
                 {
-                    string temp = SplitString(s);
-                    return Convert.ToDateTime(temp);
-                }
-                else if (s.Contains(".") == false && s.Contains("x") == false && s.Contains(",") == false)
-                {
-                    string temp = "01/01/" + s;
-                    return Convert.ToDateTime(temp);
-                }
-                else if (s.Contains("x") && s.Contains(",") == false)
-                {
-                    return null;
+                    bool isNumeric = int.TryParse(date, out int n);
+                    if (isNumeric && n > 1900 && n < 3000)
+                        return Convert.ToDateTime("01/01/" + n);
+                    else
+                        return null;
                 }
             }            
             return null;
@@ -182,33 +188,45 @@ namespace Model.Repository
             var listVienChuc = from v in _db.VienChucs
                                select new { v.idVienChuc, v.maVienChuc, v.ho, v.ten, v.gioiTinh };
             int count = 0;
+
             foreach (var item in listVienChuc.ToList())
             {
-                listExportObjects.Add(new ExportObjects
+                List<ChucVuDonViVienChuc> listChucVuDonViVienChuc = chucVuDonViVienChucRepository.GetListCongTacByIdVienChuc(item.idVienChuc);
+                if(listChucVuDonViVienChuc.Count > 0)
                 {
-                    IdVienChuc = item.idVienChuc,
-                    MaVienChuc = item.maVienChuc,
-                    Ho = item.ho,
-                    Ten = item.ten,
-                    GioiTinh = ReturnGenderToGrid(item.gioiTinh),
-                    Index = count
-                });
-                count++;
+                    ChucVuDonViVienChuc chucVuDonViVienChuc = chucVuDonViVienChucRepository.GetCongTacByIdVienChucAndDuration(item.idVienChuc, dtFromDuration, dtToDuration);
+                    TrangThaiVienChuc trangThaiVienChuc = trangThaiVienChucRepository.GetTrangThaiByIdVienChucAndDuration(item.idVienChuc, dtFromDuration, dtToDuration);
+                    string trangthai = string.Empty;
+                    if (trangThaiVienChuc != null)
+                        trangthai = trangThaiVienChuc.TrangThai.tenTrangThai;
+                    listExportObjects.Add(new ExportObjects
+                    {
+                        IdVienChuc = item.idVienChuc,
+                        MaVienChuc = item.maVienChuc,
+                        Ho = item.ho,
+                        Ten = item.ten,
+                        GioiTinh = ReturnGenderToGrid(item.gioiTinh),
+                        Index = count,
+                        DonVi = chucVuDonViVienChuc.DonVi.tenDonVi,
+                        TrangThai = trangthai
+                    });
+                    count++;
+                }
             }
-            foreach (var item in listExportObjects)
-            {
-                ChucVuDonViVienChuc chucVuDonViVienChuc = chucVuDonViVienChucRepository.GetCongTacByIdVienChucAndDuration(item.IdVienChuc, dtFromDuration, dtToDuration);
-                string donvi = string.Empty;
-                if (chucVuDonViVienChuc != null)
-                    donvi = chucVuDonViVienChuc.DonVi.tenDonVi;
-                TrangThaiVienChuc trangThaiVienChuc = trangThaiVienChucRepository.GetTrangThaiByIdVienChucAndDuration(item.IdVienChuc, dtFromDuration, dtToDuration);
-                string trangthai = string.Empty;
-                if (trangThaiVienChuc != null)
-                    trangthai = trangThaiVienChuc.TrangThai.tenTrangThai;
-                var exportObjects = listExportObjects.Where(x => x.IdVienChuc == item.IdVienChuc).FirstOrDefault();
-                exportObjects.DonVi = donvi;
-                exportObjects.TrangThai = trangthai;
-            }
+            //foreach (var item in listExportObjects)
+            //{
+            //    ChucVuDonViVienChuc chucVuDonViVienChuc = chucVuDonViVienChucRepository.GetCongTacByIdVienChucAndDuration(item.IdVienChuc, dtFromDuration, dtToDuration);
+            //    string donvi = string.Empty;
+            //    if (chucVuDonViVienChuc != null)
+            //        donvi = chucVuDonViVienChuc.DonVi.tenDonVi;
+            //    TrangThaiVienChuc trangThaiVienChuc = trangThaiVienChucRepository.GetTrangThaiByIdVienChucAndDuration(item.IdVienChuc, dtFromDuration, dtToDuration);
+            //    string trangthai = string.Empty;
+            //    if (trangThaiVienChuc != null)
+            //        trangthai = trangThaiVienChuc.TrangThai.tenTrangThai;
+            //    var exportObjects = listExportObjects.Where(x => x.IdVienChuc == item.IdVienChuc).FirstOrDefault();
+            //    exportObjects.DonVi = donvi;
+            //    exportObjects.TrangThai = trangthai;
+            //}
             return listExportObjects;
         }
 
@@ -222,33 +240,52 @@ namespace Model.Repository
             int count = 0;
             foreach (var item in listVienChuc.ToList())
             {
-                listExportObjects.Add(new ExportObjects
+                List<ChucVuDonViVienChuc> listChucVuDonViVienChuc = chucVuDonViVienChucRepository.GetListCongTacByIdVienChuc(item.idVienChuc);
+                if(listChucVuDonViVienChuc.Count > 0)
                 {
-                    IdVienChuc = item.idVienChuc,
-                    MaVienChuc = item.maVienChuc,
-                    Ho = item.ho,
-                    Ten = item.ten,
-                    GioiTinh = ReturnGenderToGrid(item.gioiTinh),
-                    Index = count,
-                });
-                count++;
+                    ChucVuDonViVienChuc chucVuDonViVienChuc = listChucVuDonViVienChuc.OrderByDescending(x => x.idChucVuDonViVienChuc).FirstOrDefault();
+                    TrangThaiVienChuc trangThaiVienChuc = trangThaiVienChucRepository.GetTrangThaiByIdVienChucAndTimeline(item.idVienChuc, dtTimeline);
+                    string trangthai = string.Empty;
+                    if (trangThaiVienChuc != null)
+                        trangthai = trangThaiVienChuc.TrangThai.tenTrangThai;
+                    listExportObjects.Add(new ExportObjects
+                    {
+                        IdVienChuc = item.idVienChuc,
+                        MaVienChuc = item.maVienChuc,
+                        Ho = item.ho,
+                        Ten = item.ten,
+                        GioiTinh = ReturnGenderToGrid(item.gioiTinh),
+                        Index = count,
+                        DonVi = chucVuDonViVienChuc.DonVi.tenDonVi,
+                        TrangThai = trangthai
+                    });
+                    count++;
+                }                
             }
-            foreach (var item in listExportObjects)
-            {
-                ChucVuDonViVienChuc chucVuDonViVienChuc = chucVuDonViVienChucRepository.GetCongTacByIdVienChucAndTimeline(item.IdVienChuc, dtTimeline);
-                string donvi = string.Empty;
-                if (chucVuDonViVienChuc != null)
-                    donvi = chucVuDonViVienChuc.DonVi.tenDonVi;
-                TrangThaiVienChuc trangThaiVienChuc = trangThaiVienChucRepository.GetTrangThaiByIdVienChucAndTimeline(item.IdVienChuc, dtTimeline);
-                string trangthai = string.Empty;
-                if (trangThaiVienChuc != null)
-                    trangthai = trangThaiVienChuc.TrangThai.tenTrangThai;
-                var exportObjects = listExportObjects.Where(x => x.IdVienChuc == item.IdVienChuc).FirstOrDefault();
-                exportObjects.DonVi = donvi;
-                exportObjects.TrangThai = trangthai;
-            }
+            //foreach (var item in listExportObjects)
+            //{
+            //    ChucVuDonViVienChuc chucVuDonViVienChuc = chucVuDonViVienChucRepository.GetCongTacByIdVienChucAndTimeline(item.IdVienChuc, dtTimeline);
+            //    string donvi = string.Empty;
+            //    if (chucVuDonViVienChuc != null)
+            //        donvi = chucVuDonViVienChuc.DonVi.tenDonVi;
+            //    TrangThaiVienChuc trangThaiVienChuc = trangThaiVienChucRepository.GetTrangThaiByIdVienChucAndTimeline(item.IdVienChuc, dtTimeline);
+            //    string trangthai = string.Empty;
+            //    if (trangThaiVienChuc != null)
+            //        trangthai = trangThaiVienChuc.TrangThai.tenTrangThai;
+            //    var exportObjects = listExportObjects.Where(x => x.IdVienChuc == item.IdVienChuc).FirstOrDefault();
+            //    exportObjects.DonVi = donvi;
+            //    exportObjects.TrangThai = trangthai;
+            //}
             return listExportObjects;
-        }       
+        }
+
+        public bool CheckExist(string mavienchuc)
+        {
+            Dictionary<string, string> listMaVienChuc = _db.VienChucs.Select(y => y.maVienChuc).ToDictionary(x => x, x => x);
+            if (listMaVienChuc.ContainsKey(mavienchuc))
+                return true;
+            return false;
+        }
 
         public string ReturnLaDangVienToGrid(bool? laDangVien)
         {

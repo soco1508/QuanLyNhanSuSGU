@@ -91,7 +91,6 @@ namespace QLNS_SGU.View
             chkLaDangVien.CheckedChanged += new EventHandler(presenter.LaDangVienChanged);
             dtNgayVaoDang.DateTimeChanged += new EventHandler(presenter.NgayVaoDangChanged);
             txtVanHoa.TextChanged += new EventHandler(presenter.VanHoaChanged);
-            cbxQuanLyNhaNuoc.EditValueChanged += new EventHandler(presenter.QuanLyNhaNuocChanged);
             txtSoCMND.TextChanged += new EventHandler(presenter.SoCMNDChanged);
             txtGhiChu.TextChanged += new EventHandler(presenter.GhiChuChanged);
             picVienChuc.ImageChanged += new EventHandler(presenter.PicChanged);

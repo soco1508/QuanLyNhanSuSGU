@@ -59,8 +59,9 @@ namespace QLNS_SGU.Presenter
             _view.Attach(this);
             _view.XinChao = "Xin chào, " + name + "   ";
             _view.WindowState = FormWindowState.Maximized;
-            var presenter = new MainPresenter(new MainForm());
-            //var presenter = new ExportDataPresenter(new ExportDataForm());            
+            //var presenter = new MainPresenter(new MainForm());
+            var presenter = new ExportDataOneDomainPresenter(new ExportDataOneDomainForm());
+            //var presenter = new ImportDataPresenter(new ImportDataForm());
             presenter.Initialize();
             Form f = (Form)presenter.UI;
             f.MdiParent = _view;

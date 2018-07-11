@@ -4,81 +4,78 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="74ee03a4be0542f98ff8fc21507c86dd" Name="Diagram1">
-        <EntityTypeShape EntityType="QLNSSGU_1Model.Bac" Width="1.5" PointX="9" PointY="35.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLNSSGU_1Model.BaoHiemXaHoi" Width="1.5" PointX="5.25" PointY="19.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLNSSGU_1Model.ChucVu" Width="1.5" PointX="3" PointY="29.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLNSSGU_1Model.ChucVuDonViVienChuc" Width="1.5" PointX="5.25" PointY="23.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLNSSGU_1Model.ChungChiVienChuc" Width="1.5" PointX="8.25" PointY="22.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLNSSGU_1Model.ChuyenNganh" Width="1.5" PointX="6" PointY="39.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLNSSGU_1Model.DangHocNangCao" Width="1.5" PointX="8.25" PointY="17" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLNSSGU_1Model.DanhMucThoiGian" Width="1.5" PointX="9" PointY="14" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLNSSGU_1Model.DanToc" Width="1.5" PointX="0.75" PointY="23.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLNSSGU_1Model.DonVi" Width="1.5" PointX="3" PointY="32.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLNSSGU_1Model.HocHamHocViVienChuc" Width="1.5" PointX="8.25" PointY="26.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLNSSGU_1Model.HopDongVienChuc" Width="1.5" PointX="11.25" PointY="22.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLNSSGU_1Model.LoaiChucVu" Width="1.5" PointX="0.75" PointY="30" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLNSSGU_1Model.LoaiChungChi" Width="1.5" PointX="6" PointY="29.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLNSSGU_1Model.LoaiDonVi" Width="1.5" PointX="0.75" PointY="33.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLNSSGU_1Model.LoaiHocHamHocVi" Width="1.5" PointX="6" PointY="12" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLNSSGU_1Model.LoaiHopDong" Width="1.5" PointX="9" PointY="33" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLNSSGU_1Model.LoaiNganh" Width="1.5" PointX="1.5" PointY="39.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLNSSGU_1Model.MucDoDanhGia" Width="1.5" PointX="9" PointY="11.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLNSSGU_1Model.Ngach" Width="1.5" PointX="6.75" PointY="35.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLNSSGU_1Model.NganhDaoTao" Width="1.5" PointX="3.75" PointY="39.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLNSSGU_1Model.NganhVienChuc" Width="1.5" PointX="13.5" PointY="23.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLNSSGU_1Model.QuanLyNhaNuoc" Width="1.5" PointX="0.75" PointY="20" IsExpanded="true" />
+      <Diagram DiagramId="f8770cd6546642f29d4d0465bcc509c9" Name="Diagram1">
+        <EntityTypeShape EntityType="QLNSSGU_1Model.Bac" Width="1.5" PointX="9" PointY="36.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLNSSGU_1Model.BaoHiemXaHoi" Width="1.5" PointX="5.25" PointY="19.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLNSSGU_1Model.ChucVu" Width="1.5" PointX="3" PointY="29" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLNSSGU_1Model.ChucVuDonViVienChuc" Width="1.5" PointX="5.25" PointY="24.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLNSSGU_1Model.ChungChiVienChuc" Width="1.5" PointX="8.25" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLNSSGU_1Model.ChuyenNganh" Width="1.5" PointX="6" PointY="40.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLNSSGU_1Model.DangHocNangCao" Width="1.5" PointX="8.25" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLNSSGU_1Model.DanhMucThoiGian" Width="1.5" PointX="9" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLNSSGU_1Model.DanToc" Width="1.5" PointX="0.75" PointY="23.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLNSSGU_1Model.DonVi" Width="1.5" PointX="3" PointY="32" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLNSSGU_1Model.HocHamHocViVienChuc" Width="1.5" PointX="8.25" PointY="26.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLNSSGU_1Model.HopDongVienChuc" Width="1.5" PointX="11.25" PointY="22.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLNSSGU_1Model.LoaiChucVu" Width="1.5" PointX="0.75" PointY="29.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLNSSGU_1Model.LoaiChungChi" Width="1.5" PointX="6" PointY="29.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLNSSGU_1Model.LoaiDonVi" Width="1.5" PointX="0.75" PointY="32.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLNSSGU_1Model.LoaiHocHamHocVi" Width="1.5" PointX="6" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLNSSGU_1Model.LoaiHopDong" Width="1.5" PointX="9" PointY="33.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLNSSGU_1Model.LoaiNganh" Width="1.5" PointX="1.5" PointY="40.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLNSSGU_1Model.MucDoDanhGia" Width="1.5" PointX="9" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLNSSGU_1Model.Ngach" Width="1.5" PointX="6.75" PointY="36" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLNSSGU_1Model.NganhDaoTao" Width="1.5" PointX="3.75" PointY="40" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLNSSGU_1Model.NganhVienChuc" Width="1.5" PointX="13.5" PointY="23.875" IsExpanded="true" />
         <EntityTypeShape EntityType="QLNSSGU_1Model.QuanTriVien" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLNSSGU_1Model.QuaTrinhDanhGiaVienChuc" Width="1.5" PointX="11.25" PointY="18.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLNSSGU_1Model.QuaTrinhGianDoanBaoHiemXaHoi" Width="1.5" PointX="5.25" PointY="48.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLNSSGU_1Model.QuaTrinhLuong" Width="1.5" PointX="11.25" PointY="26.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLNSSGU_1Model.QuaTrinhPhuCapThamNienNhaGiao" Width="1.5" PointX="5.25" PointY="55.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLNSSGU_1Model.sysdiagram" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLNSSGU_1Model.ThamSo" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLNSSGU_1Model.ToChuyenMon" Width="1.5" PointX="3" PointY="36.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLNSSGU_1Model.TonGiao" Width="1.5" PointX="0.75" PointY="26.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLNSSGU_1Model.TrangThai" Width="1.5" PointX="3" PointY="16.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLNSSGU_1Model.TrangThaiVienChuc" Width="1.5" PointX="5.25" PointY="15.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLNSSGU_1Model.VienChuc" Width="1.5" PointX="3" PointY="19.75" IsExpanded="true" />
-        <AssociationConnector Association="QLNSSGU_1Model.FK__Bac__idNgach__440B1D61" ManuallyRouted="false" />
-        <AssociationConnector Association="QLNSSGU_1Model.FK__QuaTrinhL__idBac__5BE2A6F2" ManuallyRouted="false" />
-        <AssociationConnector Association="QLNSSGU_1Model.FK__BaoHiemXa__idVie__70DDC3D8" ManuallyRouted="false" />
-        <AssociationConnector Association="QLNSSGU_1Model.FK__ChucVu__idLoaiCh__44FF419A" ManuallyRouted="false" />
-        <AssociationConnector Association="QLNSSGU_1Model.FK__ChucVuDon__idChu__45F365D3" ManuallyRouted="false" />
-        <AssociationConnector Association="QLNSSGU_1Model.FK__ChucVuDon__idDon__46E78A0C" ManuallyRouted="false" />
-        <AssociationConnector Association="QLNSSGU_1Model.FK__ChucVuDon__idToC__47DBAE45" ManuallyRouted="false" />
-        <AssociationConnector Association="QLNSSGU_1Model.FK__ChucVuDon__idVie__48CFD27E" ManuallyRouted="false" />
-        <AssociationConnector Association="QLNSSGU_1Model.FK__ChungChiV__idLoa__49C3F6B7" ManuallyRouted="false" />
-        <AssociationConnector Association="QLNSSGU_1Model.FK__ChungChiV__idVie__4AB81AF0" ManuallyRouted="false" />
-        <AssociationConnector Association="QLNSSGU_1Model.FK__ChuyenNga__idNga__4BAC3F29" ManuallyRouted="false" />
-        <AssociationConnector Association="QLNSSGU_1Model.FK__HocHamHoc__idChu__4F7CD00D" ManuallyRouted="false" />
-        <AssociationConnector Association="QLNSSGU_1Model.FK__NganhVien__idChu__571DF1D5" ManuallyRouted="false" />
-        <AssociationConnector Association="QLNSSGU_1Model.FK__DangHocNa__idLoa__4CA06362" ManuallyRouted="false" />
-        <AssociationConnector Association="QLNSSGU_1Model.FK__DangHocNa__idVie__4D94879B" ManuallyRouted="false" />
-        <AssociationConnector Association="QLNSSGU_1Model.FK__DanhGiaVi__idDan__07C12930" ManuallyRouted="false" />
-        <AssociationConnector Association="QLNSSGU_1Model.FK__VienChuc__idDanT__60A75C0F" ManuallyRouted="false" />
-        <AssociationConnector Association="QLNSSGU_1Model.FK__DonVi__idLoaiDon__4E88ABD4" ManuallyRouted="false" />
-        <AssociationConnector Association="QLNSSGU_1Model.FK__ToChuyenM__idDon__5DCAEF64" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="QLNSSGU_1Model.QuaTrinhDanhGiaVienChuc" Width="1.5" PointX="11.25" PointY="18.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLNSSGU_1Model.QuaTrinhGianDoanBaoHiemXaHoi" Width="1.5" PointX="5.25" PointY="49.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLNSSGU_1Model.QuaTrinhLuong" Width="1.5" PointX="11.25" PointY="26.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLNSSGU_1Model.QuaTrinhPhuCapThamNienNhaGiao" Width="1.5" PointX="5.25" PointY="56.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLNSSGU_1Model.ThamSo" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLNSSGU_1Model.ToChuyenMon" Width="1.5" PointX="3" PointY="35.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLNSSGU_1Model.TonGiao" Width="1.5" PointX="0.75" PointY="20.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLNSSGU_1Model.TrangThai" Width="1.5" PointX="3" PointY="16.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLNSSGU_1Model.TrangThaiVienChuc" Width="1.5" PointX="5.25" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLNSSGU_1Model.VienChuc" Width="1.5" PointX="3" PointY="20.25" IsExpanded="true" />
+        <AssociationConnector Association="QLNSSGU_1Model.FK__Bac__idNgach__68487DD7" ManuallyRouted="false" />
+        <AssociationConnector Association="QLNSSGU_1Model.FK__QuaTrinhL__idBac__6C190EBB" ManuallyRouted="false" />
+        <AssociationConnector Association="QLNSSGU_1Model.FK__BaoHiemXa__idVie__398D8EEE" ManuallyRouted="false" />
+        <AssociationConnector Association="QLNSSGU_1Model.FK__ChucVu__idLoaiCh__21B6055D" ManuallyRouted="false" />
+        <AssociationConnector Association="QLNSSGU_1Model.FK__ChucVuDon__idChu__4316F928" ManuallyRouted="false" />
+        <AssociationConnector Association="QLNSSGU_1Model.FK__ChucVuDon__idDon__440B1D61" ManuallyRouted="false" />
+        <AssociationConnector Association="QLNSSGU_1Model.FK__ChucVuDon__idToC__44FF419A" ManuallyRouted="false" />
+        <AssociationConnector Association="QLNSSGU_1Model.FK__ChucVuDon__idVie__4222D4EF" ManuallyRouted="false" />
+        <AssociationConnector Association="QLNSSGU_1Model.FK__ChungChiV__idLoa__6383C8BA" ManuallyRouted="false" />
+        <AssociationConnector Association="QLNSSGU_1Model.FK__ChungChiV__idVie__628FA481" ManuallyRouted="false" />
+        <AssociationConnector Association="QLNSSGU_1Model.FK__ChuyenNga__idNga__29572725" ManuallyRouted="false" />
+        <AssociationConnector Association="QLNSSGU_1Model.FK__HocHamHoc__idChu__534D60F1" ManuallyRouted="false" />
+        <AssociationConnector Association="QLNSSGU_1Model.FK__NganhVien__idChu__59063A47" ManuallyRouted="false" />
+        <AssociationConnector Association="QLNSSGU_1Model.FK__DangHocNa__idLoa__5DCAEF64" ManuallyRouted="false" />
+        <AssociationConnector Association="QLNSSGU_1Model.FK__DangHocNa__idVie__5CD6CB2B" ManuallyRouted="false" />
+        <AssociationConnector Association="QLNSSGU_1Model.FK__QuaTrinhD__idDan__34C8D9D1" ManuallyRouted="false" />
+        <AssociationConnector Association="QLNSSGU_1Model.FK__VienChuc__idDanT__300424B4" ManuallyRouted="false" />
+        <AssociationConnector Association="QLNSSGU_1Model.FK__DonVi__idLoaiDon__1A14E395" ManuallyRouted="false" />
+        <AssociationConnector Association="QLNSSGU_1Model.FK__ToChuyenM__idDon__1CF15040" ManuallyRouted="false" />
         <AssociationConnector Association="QLNSSGU_1Model.FK__HocHamHoc__idLoa__5070F446" ManuallyRouted="false" />
         <AssociationConnector Association="QLNSSGU_1Model.FK__HocHamHoc__idLoa__5165187F" ManuallyRouted="false" />
         <AssociationConnector Association="QLNSSGU_1Model.FK__HocHamHoc__idNga__52593CB8" ManuallyRouted="false" />
-        <AssociationConnector Association="QLNSSGU_1Model.FK__HocHamHoc__idVie__534D60F1" ManuallyRouted="false" />
-        <AssociationConnector Association="QLNSSGU_1Model.FK__NganhVien__idHoc__5812160E" ManuallyRouted="false" />
-        <AssociationConnector Association="QLNSSGU_1Model.FK__HopDongVi__idLoa__5441852A" ManuallyRouted="false" />
-        <AssociationConnector Association="QLNSSGU_1Model.FK__HopDongVi__idVie__5535A963" ManuallyRouted="false" />
-        <AssociationConnector Association="QLNSSGU_1Model.FK__NganhDaoT__idLoa__5629CD9C" ManuallyRouted="false" />
-        <AssociationConnector Association="QLNSSGU_1Model.FK__NganhVien__idLoa__59063A47" ManuallyRouted="false" />
-        <AssociationConnector Association="QLNSSGU_1Model.FK__DanhGiaVi__idMuc__08B54D69" ManuallyRouted="false" />
-        <AssociationConnector Association="QLNSSGU_1Model.FK__NganhVien__idNga__59FA5E80" ManuallyRouted="false" />
-        <AssociationConnector Association="QLNSSGU_1Model.FK__NganhVien__idVie__5AEE82B9" ManuallyRouted="false" />
-        <AssociationConnector Association="QLNSSGU_1Model.FK__VienChuc__idQuan__619B8048" ManuallyRouted="false" />
-        <AssociationConnector Association="QLNSSGU_1Model.FK__DanhGiaVi__idVie__06CD04F7" ManuallyRouted="false" />
-        <AssociationConnector Association="QLNSSGU_1Model.FK__QuaTrinhG__idVie__73BA3083" ManuallyRouted="false" />
-        <AssociationConnector Association="QLNSSGU_1Model.FK__QuaTrinhL__idVie__5CD6CB2B" ManuallyRouted="false" />
-        <AssociationConnector Association="QLNSSGU_1Model.FK__QuaTrinhP__idVie__76969D2E" ManuallyRouted="false" />
-        <AssociationConnector Association="QLNSSGU_1Model.FK__VienChuc__idTonG__628FA481" ManuallyRouted="false" />
-        <AssociationConnector Association="QLNSSGU_1Model.FK__TrangThai__idTra__5EBF139D" ManuallyRouted="false" />
-        <AssociationConnector Association="QLNSSGU_1Model.FK__TrangThai__idVie__5FB337D6" ManuallyRouted="false" />
+        <AssociationConnector Association="QLNSSGU_1Model.FK__HocHamHoc__idVie__4F7CD00D" ManuallyRouted="false" />
+        <AssociationConnector Association="QLNSSGU_1Model.FK__NganhVien__idHoc__59FA5E80" ManuallyRouted="false" />
+        <AssociationConnector Association="QLNSSGU_1Model.FK__HopDongVi__idLoa__4AB81AF0" ManuallyRouted="false" />
+        <AssociationConnector Association="QLNSSGU_1Model.FK__HopDongVi__idVie__49C3F6B7" ManuallyRouted="false" />
+        <AssociationConnector Association="QLNSSGU_1Model.FK__NganhDaoT__idLoa__267ABA7A" ManuallyRouted="false" />
+        <AssociationConnector Association="QLNSSGU_1Model.FK__NganhVien__idLoa__571DF1D5" ManuallyRouted="false" />
+        <AssociationConnector Association="QLNSSGU_1Model.FK__QuaTrinhD__idMuc__35BCFE0A" ManuallyRouted="false" />
+        <AssociationConnector Association="QLNSSGU_1Model.FK__NganhVien__idNga__5812160E" ManuallyRouted="false" />
+        <AssociationConnector Association="QLNSSGU_1Model.FK__NganhVien__idVie__5629CD9C" ManuallyRouted="false" />
+        <AssociationConnector Association="QLNSSGU_1Model.FK__QuaTrinhD__idVie__33D4B598" ManuallyRouted="false" />
+        <AssociationConnector Association="QLNSSGU_1Model.FK__QuaTrinhG__idVie__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="QLNSSGU_1Model.FK__QuaTrinhL__idVie__6B24EA82" ManuallyRouted="false" />
+        <AssociationConnector Association="QLNSSGU_1Model.FK__QuaTrinhP__idVie__3F466844" ManuallyRouted="false" />
+        <AssociationConnector Association="QLNSSGU_1Model.FK__VienChuc__idTonG__30F848ED" ManuallyRouted="false" />
+        <AssociationConnector Association="QLNSSGU_1Model.FK__TrangThai__idTra__71D1E811" ManuallyRouted="false" />
+        <AssociationConnector Association="QLNSSGU_1Model.FK__TrangThai__idVie__70DDC3D8" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

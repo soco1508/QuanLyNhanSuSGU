@@ -20,7 +20,7 @@ namespace Model.Entities
             this.ChungChiVienChucs = new HashSet<ChungChiVienChuc>();
         }
     
-        public int idLoaiChungChi { get; set; }
+        public string idLoaiChungChi { get; set; }
         public string tenLoaiChungChi { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

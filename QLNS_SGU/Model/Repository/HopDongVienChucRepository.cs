@@ -64,6 +64,20 @@ namespace Model.Repository
             }
             else
             {
+                if (datetime.Contains("."))
+                {
+                    string[] arrDateTime = datetime.Split('.');
+                    if(arrDateTime[0].Length == 1)
+                    {
+                        arrDateTime[0] = "0" + arrDateTime[0];
+                    }
+                    if(arrDateTime[1].Length == 1)
+                    {
+                        arrDateTime[1] = "0" + arrDateTime[1];
+                    }
+                    string formatDateTime = arrDateTime[0] + "/" + arrDateTime[1] + "/" + arrDateTime[2];
+                    return DateTime.ParseExact(formatDateTime, "dd/MM/yyyy", null);
+                }
                 return DateTime.ParseExact(datetime, "dd/MM/yyyy", null);
             }
         }
@@ -138,7 +152,7 @@ namespace Model.Repository
 
         public List<HopDongVienChuc> GetListHopDongByIdVienChucAndDurationForExportFull(int idVienChuc, DateTime dtFromDuration, DateTime dtToDuration)
         {
-            var rows = _db.HopDongVienChucs.Where(x => x.idVienChuc == idVienChuc);
+            List<HopDongVienChuc> rows = _db.HopDongVienChucs.Where(x => x.idVienChuc == idVienChuc).ToList();
             List<HopDongVienChuc> listHopDongVienChuc = new List<HopDongVienChuc>();
             foreach (var row in rows)
             {
@@ -157,12 +171,14 @@ namespace Model.Repository
                     }
                 }
             }
-            return listHopDongVienChuc;
+            if (listHopDongVienChuc.Count > 0)
+                return listHopDongVienChuc;
+            return rows;
         }
 
         public List<HopDongVienChuc> GetListHopDongByIdVienChucAndTimelineForExportFull(int idVienChuc, DateTime dtTimeline)
         {
-            var rows = _db.HopDongVienChucs.Where(x => x.idVienChuc == idVienChuc);
+            List<HopDongVienChuc> rows = _db.HopDongVienChucs.Where(x => x.idVienChuc == idVienChuc).ToList();
             List<HopDongVienChuc> listHopDongVienChuc = new List<HopDongVienChuc>();
             foreach (var row in rows)
             {
@@ -181,7 +197,9 @@ namespace Model.Repository
                     }
                 }
             }
-            return listHopDongVienChuc;
+            if(listHopDongVienChuc.Count > 0)
+                return listHopDongVienChuc;
+            return rows;
         }
     }
 }

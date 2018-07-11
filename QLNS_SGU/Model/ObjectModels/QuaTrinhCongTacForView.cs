@@ -21,7 +21,6 @@ namespace Model.ObjectModels
         public string LoaiThayDoi { get; set; }
         public string KiemNhiem { get; set; }
         public string LinkVanBanDinhKem { get; set; }
-        public string NhanXet { get; set; }
 
         public QuaTrinhCongTacForView()
         {
@@ -37,8 +36,7 @@ namespace Model.ObjectModels
             NgayKetThuc = Convert.ToDateTime("01/01/2500");
             LoaiThayDoi = string.Empty;
             KiemNhiem = string.Empty;
-            LinkVanBanDinhKem = string.Empty;
-            NhanXet = string.Empty;
+            LinkVanBanDinhKem = string.Empty;           
         }
     }
 }

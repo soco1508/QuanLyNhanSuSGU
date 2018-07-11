@@ -140,7 +140,7 @@ namespace Model.Repository
 
         public List<TrangThaiVienChuc> GetListTrangThaiByIdVienChucAndDuration(int idVienChuc, DateTime dtFromDuration, DateTime dtToDuration)
         {
-            var rows = _db.TrangThaiVienChucs.Where(x => x.idVienChuc == idVienChuc);
+            List<TrangThaiVienChuc> rows = _db.TrangThaiVienChucs.Where(x => x.idVienChuc == idVienChuc).ToList();
             List<TrangThaiVienChuc> listTrangThaiVienChuc = new List<TrangThaiVienChuc>();
             foreach (var row in rows)
             {
@@ -159,12 +159,14 @@ namespace Model.Repository
                     }
                 }
             }
-            return listTrangThaiVienChuc;
+            if (listTrangThaiVienChuc.Count > 0)
+                return listTrangThaiVienChuc;
+            return rows;
         }
 
         public List<TrangThaiVienChuc> GetListTrangThaiByIdVienChucAndTimeline(int idVienChuc, DateTime dtTimeline)
         {
-            var rows = _db.TrangThaiVienChucs.Where(x => x.idVienChuc == idVienChuc);
+            List<TrangThaiVienChuc> rows = _db.TrangThaiVienChucs.Where(x => x.idVienChuc == idVienChuc).ToList();
             List<TrangThaiVienChuc> listTrangThaiVienChuc = new List<TrangThaiVienChuc>();
             foreach (var row in rows)
             {
@@ -183,7 +185,9 @@ namespace Model.Repository
                     }
                 }
             }
-            return listTrangThaiVienChuc;
+            if(listTrangThaiVienChuc.Count > 0)
+                return listTrangThaiVienChuc;
+            return rows;
         }      
 
         public List<string> GetListLinkVanBanDinhKem(string maVienChucForGetListLinkVanBanDinhKem)

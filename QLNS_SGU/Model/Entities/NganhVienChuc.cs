@@ -20,11 +20,11 @@ namespace Model.Entities
         public int idNganhDaoTao { get; set; }
         public int idChuyenNganh { get; set; }
         public int idHocHamHocViVienChuc { get; set; }
+        public Nullable<bool> phanLoai { get; set; }
         public Nullable<System.DateTime> ngayBatDau { get; set; }
         public Nullable<System.DateTime> ngayKetThuc { get; set; }
         public string linkVanBanDinhKem { get; set; }
         public string trinhDoDay { get; set; }
-        public Nullable<bool> phanLoai { get; set; }
     
         public virtual ChuyenNganh ChuyenNganh { get; set; }
         public virtual HocHamHocViVienChuc HocHamHocViVienChuc { get; set; }

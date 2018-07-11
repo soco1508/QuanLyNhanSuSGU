@@ -280,7 +280,7 @@ namespace Model.Repository
 
         public List<DangHocNangCao> GetListDangHocNangCaoByIdVienChucAndDurationForExportFull(int idVienChuc, DateTime dtFromDuration, DateTime dtToDuration)
         {
-            var rows = _db.DangHocNangCaos.Where(x => x.idVienChuc == idVienChuc);
+            List<DangHocNangCao> rows = _db.DangHocNangCaos.Where(x => x.idVienChuc == idVienChuc).ToList();
             List<DangHocNangCao> listDangHocNangCao = new List<DangHocNangCao>();
             foreach (var row in rows)
             {
@@ -299,12 +299,14 @@ namespace Model.Repository
                     }
                 }
             }
-            return listDangHocNangCao;
+            if (listDangHocNangCao.Count > 0)
+                return listDangHocNangCao;
+            return rows;
         }
 
         public List<DangHocNangCao> GetListDangHocNangCaoByIdVienChucAndTimelineForExportFull(int idVienChuc, DateTime dtTimeline)
         {
-            var rows = _db.DangHocNangCaos.Where(x => x.idVienChuc == idVienChuc);
+            List<DangHocNangCao> rows = _db.DangHocNangCaos.Where(x => x.idVienChuc == idVienChuc).ToList();
             List<DangHocNangCao> listDangHocNangCao = new List<DangHocNangCao>();
             foreach (var row in rows)
             {
@@ -323,7 +325,9 @@ namespace Model.Repository
                     }
                 }
             }
-            return listDangHocNangCao;
+            if (listDangHocNangCao.Count > 0)
+                return listDangHocNangCao;
+            return rows;
         }
     }
 }

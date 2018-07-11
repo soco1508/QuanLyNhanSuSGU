@@ -112,6 +112,7 @@ namespace QLNS_SGU.Presenter
             _view.GVCustom.Columns["LoaiThayDoi"].Caption = "Loại thay đổi";
             _view.GVCustom.Columns["KiemNhiem"].Caption = "Kiêm nhiệm";
             _view.GVCustom.Columns["LinkVanBanDinhKemCT"].Caption = "Link văn bản đính kèm (Công tác)";
+            _view.GVCustom.Columns["GhiChuCT"].Caption = "Ghi chú (Công tác)";
             //Qua trinh luong
             _view.GVCustom.Columns["MaNgach"].Caption = "Mã ngạch";
             _view.GVCustom.Columns["TenNgach"].Caption = "Tên ngạch";
@@ -179,7 +180,7 @@ namespace QLNS_SGU.Presenter
             //Chung chi
             _view.GVCustom.Columns["NgoaiNgu"].Caption = "Ngoại ngữ";
             _view.GVCustom.Columns["TinHoc"].Caption = "Tin học";
-            _view.GVCustom.Columns["LiLuanChinhTri"].Caption = "Lí luận chính trị";            
+            _view.GVCustom.Columns["ChinhTri"].Caption = "Chính trị";            
             _view.GVCustom.Columns["ChungChiChuyenMon"].Caption = "Chứng chỉ chuyên môn";
             //Dang hoc nang cao
             _view.GVCustom.Columns["SoQuyetDinh"].Caption = "Số quyết định";
@@ -228,7 +229,6 @@ namespace QLNS_SGU.Presenter
                         exportObjects.NgayVaoNganh = vienChuc.ngayVaoNganh;
                         exportObjects.NgayVeTruong = vienChuc.ngayVeTruong;
                         exportObjects.VanHoa = vienChuc.vanHoa;
-                        exportObjects.QuanLyNhaNuoc = vienChuc.QuanLyNhaNuoc.tenQuanLyNhaNuoc;
                         exportObjects.GhiChu = vienChuc.ghiChu;
                     }
                 }
@@ -257,6 +257,7 @@ namespace QLNS_SGU.Presenter
                         exportObjects.LoaiThayDoi = unitOfWorks.ChucVuDonViVienChucRepository.HardLoaiThayDoiToGrid(chucVuDonViVienChuc.loaiThayDoi);
                         exportObjects.KiemNhiem = unitOfWorks.ChucVuDonViVienChucRepository.HardKiemNhiemToGrid(chucVuDonViVienChuc.kiemNhiem);
                         exportObjects.LinkVanBanDinhKemCT = chucVuDonViVienChuc.linkVanBanDinhKem;
+                        exportObjects.GhiChuCT = chucVuDonViVienChuc.ghiChu;
                     }
                 }
             }
@@ -394,9 +395,9 @@ namespace QLNS_SGU.Presenter
                     }
                     if (liLuanChinhTri != null)
                     {
-                        exportObjects.LiLuanChinhTri = liLuanChinhTri.LoaiChungChi.tenLoaiChungChi;
+                        exportObjects.ChinhTri = liLuanChinhTri.LoaiChungChi.tenLoaiChungChi;
                         if (liLuanChinhTri.capDoChungChi != null)
-                            exportObjects.LiLuanChinhTri += ", " + liLuanChinhTri.capDoChungChi;
+                            exportObjects.ChinhTri += ", " + liLuanChinhTri.capDoChungChi;
                         exportObjects.ChungChiChuyenMon += liLuanChinhTri;
                     }
                 }
@@ -473,7 +474,6 @@ namespace QLNS_SGU.Presenter
                         exportObjects.NgayVaoNganh = vienChuc.ngayVaoNganh;
                         exportObjects.NgayVeTruong = vienChuc.ngayVeTruong;
                         exportObjects.VanHoa = vienChuc.vanHoa;
-                        exportObjects.QuanLyNhaNuoc = vienChuc.QuanLyNhaNuoc.tenQuanLyNhaNuoc;
                         exportObjects.GhiChu = vienChuc.ghiChu;
                     }
                 }
@@ -501,6 +501,7 @@ namespace QLNS_SGU.Presenter
                         exportObjects.LoaiThayDoi = unitOfWorks.ChucVuDonViVienChucRepository.HardLoaiThayDoiToGrid(congTac.loaiThayDoi);
                         exportObjects.KiemNhiem = unitOfWorks.ChucVuDonViVienChucRepository.HardKiemNhiemToGrid(congTac.kiemNhiem);
                         exportObjects.LinkVanBanDinhKemCT = congTac.linkVanBanDinhKem;
+                        exportObjects.GhiChuCT = congTac.ghiChu;
                     }                        
                 }
             }
@@ -637,9 +638,9 @@ namespace QLNS_SGU.Presenter
                     }
                     if(liLuanChinhTri != null)
                     {
-                        exportObjects.LiLuanChinhTri = liLuanChinhTri.LoaiChungChi.tenLoaiChungChi;
+                        exportObjects.ChinhTri = liLuanChinhTri.LoaiChungChi.tenLoaiChungChi;
                         if (liLuanChinhTri.capDoChungChi != null)
-                            exportObjects.LiLuanChinhTri += ", " + liLuanChinhTri.capDoChungChi;
+                            exportObjects.ChinhTri += ", " + liLuanChinhTri.capDoChungChi;
                         exportObjects.ChungChiChuyenMon += liLuanChinhTri;
                     }
                 }

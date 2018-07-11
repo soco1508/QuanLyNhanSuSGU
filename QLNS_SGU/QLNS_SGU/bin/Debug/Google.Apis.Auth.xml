@@ -57,6 +57,20 @@
             Optional. If true forces new certificates to be downloaded from Google. Defaults to false.
             </summary>
         </member>
+        <member name="P:Google.Apis.Auth.GoogleJsonWebSignature.ValidationSettings.IssuedAtClockTolerance">
+            <summary>
+            Clock tolerance for the issued-at check.
+            Causes a JWT to pass validation up to this duration before it is really valid;
+            this is to allow for possible local-client clock skew. Defaults to 30 seconds.
+            </summary>
+        </member>
+        <member name="P:Google.Apis.Auth.GoogleJsonWebSignature.ValidationSettings.ExpirationTimeClockTolerance">
+            <summary>
+            Clock tolerance for the expiration check.
+            Causes a JWT to pass validation up to this duration after it really expired;
+            this is to allow for possible local-client clock skew. Defaults to zero seconds.
+            </summary>
+        </member>
         <member name="M:Google.Apis.Auth.GoogleJsonWebSignature.ValidateAsync(System.String,Google.Apis.Auth.GoogleJsonWebSignature.ValidationSettings)">
             <summary>
             Validates a Google-issued Json Web Token (JWT).
@@ -65,6 +79,17 @@
             <remarks>
             <para>Follows the procedure to
             <see href="https://developers.google.com/identity/protocols/OpenIDConnect#validatinganidtoken">validate a JWT ID token</see>.
+            </para>
+            <para>
+            Issued-at validation and expiry validation is performed using the clock on this local client,
+            so local clock inaccuracies can lead to incorrect validation results.
+            Use <see cref="P:Google.Apis.Auth.GoogleJsonWebSignature.ValidationSettings.IssuedAtClockTolerance"/> and <see cref="P:Google.Apis.Auth.GoogleJsonWebSignature.ValidationSettings.ExpirationTimeClockTolerance"/>
+            to allow for local clock inaccuracy
+            <c>IssuedAtClockTolerance</c> defaults to 30 seconds; it is very unlikely a JWT will be issued that isn't already valid.
+            <c>ExpirationTimeClockTolerance</c> defaults to zero seconds; in some use-cases it may be useful to set this to a negative
+            value to help ensure that passing local validation means it will pass server validation.
+            Regardless of whether local validation passed, code must always correctly handle an invalid JWT error
+            from the server.
             </para>
             <para>Google certificates are cached, and refreshed once per hour. This can be overridden by setting
             <see cref="P:Google.Apis.Auth.GoogleJsonWebSignature.ValidationSettings.ForceGoogleCertRefresh"/> to true.</para>
@@ -390,8 +415,9 @@
         </member>
         <member name="F:Google.Apis.Auth.OAuth2.ComputeCredential.MetadataServerPingTimeoutInMilliseconds">
             <summary>
-            Experimentally, 200ms was found to be 99.9999% reliable. 
-            This is a conservative timeout to minimize hanging on some troublesome network. 
+            Originally 1000ms was used without a retry. This proved inadequate; even 2000ms without
+            a retry occasionally failed. We have observed that after a timeout, the next attempt
+            succeeds very quickly (sub-50ms) which suggests that this should be fine.
             </summary>
         </member>
         <member name="F:Google.Apis.Auth.OAuth2.ComputeCredential.MetadataFlavor">
@@ -658,6 +684,9 @@
         <member name="P:Google.Apis.Auth.OAuth2.Flows.GoogleAuthorizationCodeFlow.IncludeGrantedScopes">
             <summary>Gets or sets the include granted scopes indicator.</summary>
         </member>
+        <member name="P:Google.Apis.Auth.OAuth2.Flows.GoogleAuthorizationCodeFlow.LoginHint">
+            <summary>Gets the login_hint.</summary>
+        </member>
         <member name="P:Google.Apis.Auth.OAuth2.Flows.GoogleAuthorizationCodeFlow.UserDefinedQueryParams">
             <summary>Gets the user defined query parameters.</summary>
         </member>
@@ -683,6 +712,9 @@
             <summary>
             Gets or sets the optional indicator for including granted scopes for incremental authorization.
             </summary>
+        </member>
+        <member name="P:Google.Apis.Auth.OAuth2.Flows.GoogleAuthorizationCodeFlow.Initializer.LoginHint">
+            <summary>Gets or sets the login_hint.</summary>
         </member>
         <member name="P:Google.Apis.Auth.OAuth2.Flows.GoogleAuthorizationCodeFlow.Initializer.UserDefinedQueryParams">
             <summary>Gets or sets the optional user defined query parameters.</summary>
@@ -802,6 +834,7 @@
         </member>
         <member name="F:Google.Apis.Auth.OAuth2.GoogleAuthConsts.ComputeTokenUrl">
             <summary>The Compute Engine authorization token server URL</summary>
+            <remarks>IP address instead of name to avoid DNS resolution</remarks>
         </member>
         <member name="F:Google.Apis.Auth.OAuth2.GoogleAuthConsts.RevokeTokenUrl">
             <summary>The path to the Google revocation endpoint.</summary>
@@ -1384,6 +1417,14 @@
             off-line access or <c>null</c> for the default behavior. The default value is <c>offline</c>.
             </summary>
         </member>
+        <member name="P:Google.Apis.Auth.OAuth2.Requests.GoogleAuthorizationCodeRequestUrl.Prompt">
+            <summary>
+            Gets of sets prompt for consent behaviour.
+            Value can be <c>null</c>, <c>"none"</c>, <c>"consent"</c>, or <c>"select_account"</c>.
+            See <a href="https://developers.google.com/identity/protocols/OpenIDConnect#prompt">OpenIDConnect documentation</a>
+            for details.
+            </summary>
+        </member>
         <member name="P:Google.Apis.Auth.OAuth2.Requests.GoogleAuthorizationCodeRequestUrl.ApprovalPrompt">
             <summary>
             Gets or sets prompt for consent behavior <c>auto</c> to request auto-approval or<c>force</c> to force the 
@@ -1623,7 +1664,12 @@
         </member>
         <member name="M:Google.Apis.Auth.OAuth2.Responses.TokenResponse.IsExpired(Google.Apis.Util.IClock)">
             <summary>
-            Returns <c>true</c> if the token is expired or it's going to be expired in the next minute.
+            Returns <c>true</c> if the token is expired or it's going expire soon.
+            </summary>
+        </member>
+        <member name="M:Google.Apis.Auth.OAuth2.Responses.TokenResponse.IsEffectivelyExpired(Google.Apis.Util.IClock)">
+            <summary>
+            Returns true if the token is missing, expired, or sufficiently close to expiry that it shouldn't be used.
             </summary>
         </member>
         <member name="M:Google.Apis.Auth.OAuth2.Responses.TokenResponse.FromHttpResponseAsync(System.Net.Http.HttpResponseMessage,Google.Apis.Util.IClock,Google.Apis.Logging.ILogger)">
@@ -1899,7 +1945,7 @@
         </member>
         <member name="M:Google.Apis.Auth.OAuth2.ServiceCredential.GetAccessTokenForRequestAsync(System.String,System.Threading.CancellationToken)">
             <summary>
-            Gets an access token to authorize a request. If the existing token has expired, try to refresh it first.
+            Gets an access token to authorize a request. If the existing token expires soon, try to refresh it first.
             <seealso cref="M:Google.Apis.Auth.OAuth2.ITokenAccess.GetAccessTokenForRequestAsync(System.String,System.Threading.CancellationToken)"/>
             </summary>
         </member>
@@ -1907,6 +1953,20 @@
             <summary>Requests a new token.</summary>
             <param name="taskCancellationToken">Cancellation token to cancel operation.</param>
             <returns><c>true</c> if a new token was received successfully.</returns>
+        </member>
+        <member name="T:Google.Apis.Auth.OAuth2.TokenRefreshManager">
+            <summary>
+            Encapsulation of token refresh behaviour. This isn't entirely how we'd design the code now (in terms of the
+            callback in particular) but it fits in with the exposed API surface of ServiceCredential and UserCredential.
+            </summary>
+        </member>
+        <member name="M:Google.Apis.Auth.OAuth2.TokenRefreshManager.#ctor(System.Func{System.Threading.CancellationToken,System.Threading.Tasks.Task{System.Boolean}},Google.Apis.Util.IClock,Google.Apis.Logging.ILogger)">
+            <summary>
+            Creates a manager which executes the given refresh action when required.
+            </summary>
+            <param name="refreshAction">The refresh action which will populate the Token property when successful.</param>
+            <param name="clock">The clock to consult for timeouts.</param>
+            <param name="logger">The logger to use to record refreshes.</param>
         </member>
         <member name="T:Google.Apis.Auth.OAuth2.UserCredential">
             <summary>
@@ -1946,7 +2006,7 @@
             <inheritdoc/>
         </member>
         <member name="M:Google.Apis.Auth.OAuth2.UserCredential.GetAccessTokenForRequestAsync(System.String,System.Threading.CancellationToken)">
-            <inheritdoc/>
+            <inheritdoc />
         </member>
         <member name="M:Google.Apis.Auth.OAuth2.UserCredential.RefreshTokenAsync(System.Threading.CancellationToken)">
             <summary>

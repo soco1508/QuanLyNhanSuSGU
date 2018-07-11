@@ -38,14 +38,13 @@ namespace Model
         private DangHocNangCaoRepository _dangHocNangCaoRepository;
         private GridViewMainDataRepository _gridViewDataRepository;
         private DanTocRepository _danTocRepository;
-        private TonGiaoRepository _tonGiaoRepository;
-        private QuanLyNhaNuocRepository _quanLyNhaNuocRepository;
+        private TonGiaoRepository _tonGiaoRepository;       
         private QuaTrinhPhuCapThamNienNhaGiaoRepository _quaTrinhPhuCapThamNienNhaGiaoRepository;
         private BaoHiemXaHoiRepository _baoHiemXaHoiRepository;
         private QuaTrinhGianDoanBaoHiemXaHoiRepository _quaTrinhGianDoanBaoHiemXaHoiRepository;
         private QuaTrinhDanhGiaVienChucRepository _quaTrinhDanhGiaVienChucRepository;
         private DanhMucThoiGianRepository _danhMucThoiGianRepository;
-        private MucDoDanhGiaRepository _mucDoDanhGiaRepository;
+        private MucDoDanhGiaRepository _mucDoDanhGiaRepository;       
 
         private QLNSSGU_1Entities _db;
         public UnitOfWorks(QLNSSGU_1Entities db)
@@ -122,18 +121,6 @@ namespace Model
                     _quaTrinhPhuCapThamNienNhaGiaoRepository = new QuaTrinhPhuCapThamNienNhaGiaoRepository(_db);
                 }
                 return _quaTrinhPhuCapThamNienNhaGiaoRepository;
-            }
-        }
-
-        public QuanLyNhaNuocRepository QuanLyNhaNuocRepository
-        {
-            get
-            {
-                if (_quanLyNhaNuocRepository == null)
-                {
-                    _quanLyNhaNuocRepository = new QuanLyNhaNuocRepository(_db);
-                }
-                return _quanLyNhaNuocRepository;
             }
         }
 

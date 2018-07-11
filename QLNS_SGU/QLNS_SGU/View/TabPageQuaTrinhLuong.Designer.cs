@@ -624,7 +624,7 @@
             this.layoutControlItem7,
             this.layoutControlItem8});
             this.layoutControlGroup2.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlGroup2.Name = "layoutControlGroup1";
+            this.layoutControlGroup2.Name = "Root";
             this.layoutControlGroup2.Size = new System.Drawing.Size(1100, 477);
             this.layoutControlGroup2.TextVisible = false;
             // 
@@ -677,7 +677,7 @@
             // 
             this.layoutControlItem1.Control = this.cbxBac;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 58);
-            this.layoutControlItem1.Name = "layoutControlItem1";
+            this.layoutControlItem1.Name = "item0";
             this.layoutControlItem1.Size = new System.Drawing.Size(524, 24);
             this.layoutControlItem1.Text = "Bậc:";
             this.layoutControlItem1.TextSize = new System.Drawing.Size(109, 13);
@@ -734,7 +734,7 @@
             // 
             this.layoutControlItem21.Control = this.txtLinkVanBanDinhKem;
             this.layoutControlItem21.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem21.Name = "layoutControlItem2";
+            this.layoutControlItem21.Name = "item1";
             this.layoutControlItem21.Size = new System.Drawing.Size(454, 24);
             this.layoutControlItem21.Text = "Link văn bản đính kèm:";
             this.layoutControlItem21.TextSize = new System.Drawing.Size(109, 13);
@@ -751,7 +751,7 @@
             // 
             this.layoutControlItem4.Control = this.btnUpload;
             this.layoutControlItem4.Location = new System.Drawing.Point(300, 24);
-            this.layoutControlItem4.Name = "layoutControlItem4";
+            this.layoutControlItem4.Name = "item2";
             this.layoutControlItem4.Size = new System.Drawing.Size(68, 26);
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem4.TextVisible = false;

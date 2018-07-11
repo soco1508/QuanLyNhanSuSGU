@@ -1,41 +1,3 @@
-C:\Users\Dong\Documents\Visual Studio 2017\Projects\QLNS_SGU\Model\bin\Debug\Model.dll.config
-C:\Users\Dong\Documents\Visual Studio 2017\Projects\QLNS_SGU\Model\bin\Debug\Model.dll
-C:\Users\Dong\Documents\Visual Studio 2017\Projects\QLNS_SGU\Model\bin\Debug\Model.pdb
-C:\Users\Dong\Documents\Visual Studio 2017\Projects\QLNS_SGU\Model\bin\Debug\EntityFramework.dll
-C:\Users\Dong\Documents\Visual Studio 2017\Projects\QLNS_SGU\Model\bin\Debug\EntityFramework.SqlServer.dll
-C:\Users\Dong\Documents\Visual Studio 2017\Projects\QLNS_SGU\Model\bin\Debug\Google.Apis.Auth.dll
-C:\Users\Dong\Documents\Visual Studio 2017\Projects\QLNS_SGU\Model\bin\Debug\Google.Apis.Auth.PlatformServices.dll
-C:\Users\Dong\Documents\Visual Studio 2017\Projects\QLNS_SGU\Model\bin\Debug\Google.Apis.Core.dll
-C:\Users\Dong\Documents\Visual Studio 2017\Projects\QLNS_SGU\Model\bin\Debug\Google.Apis.dll
-C:\Users\Dong\Documents\Visual Studio 2017\Projects\QLNS_SGU\Model\bin\Debug\Google.Apis.Drive.v3.dll
-C:\Users\Dong\Documents\Visual Studio 2017\Projects\QLNS_SGU\Model\bin\Debug\Google.Apis.PlatformServices.dll
-C:\Users\Dong\Documents\Visual Studio 2017\Projects\QLNS_SGU\Model\bin\Debug\Microsoft.WindowsAPICodePack.dll
-C:\Users\Dong\Documents\Visual Studio 2017\Projects\QLNS_SGU\Model\bin\Debug\Microsoft.WindowsAPICodePack.Shell.dll
-C:\Users\Dong\Documents\Visual Studio 2017\Projects\QLNS_SGU\Model\bin\Debug\Microsoft.WindowsAPICodePack.ShellExtensions.dll
-C:\Users\Dong\Documents\Visual Studio 2017\Projects\QLNS_SGU\Model\bin\Debug\Newtonsoft.Json.dll
-C:\Users\Dong\Documents\Visual Studio 2017\Projects\QLNS_SGU\Model\bin\Debug\System.Net.Http.dll
-C:\Users\Dong\Documents\Visual Studio 2017\Projects\QLNS_SGU\Model\bin\Debug\System.Security.Cryptography.Algorithms.dll
-C:\Users\Dong\Documents\Visual Studio 2017\Projects\QLNS_SGU\Model\bin\Debug\System.Security.Cryptography.Encoding.dll
-C:\Users\Dong\Documents\Visual Studio 2017\Projects\QLNS_SGU\Model\bin\Debug\System.Security.Cryptography.Primitives.dll
-C:\Users\Dong\Documents\Visual Studio 2017\Projects\QLNS_SGU\Model\bin\Debug\System.Security.Cryptography.X509Certificates.dll
-C:\Users\Dong\Documents\Visual Studio 2017\Projects\QLNS_SGU\Model\bin\Debug\EntityFramework.xml
-C:\Users\Dong\Documents\Visual Studio 2017\Projects\QLNS_SGU\Model\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\Dong\Documents\Visual Studio 2017\Projects\QLNS_SGU\Model\bin\Debug\Google.Apis.xml
-C:\Users\Dong\Documents\Visual Studio 2017\Projects\QLNS_SGU\Model\bin\Debug\Google.Apis.Auth.xml
-C:\Users\Dong\Documents\Visual Studio 2017\Projects\QLNS_SGU\Model\bin\Debug\Google.Apis.Core.xml
-C:\Users\Dong\Documents\Visual Studio 2017\Projects\QLNS_SGU\Model\bin\Debug\Google.Apis.Drive.v3.xml
-C:\Users\Dong\Documents\Visual Studio 2017\Projects\QLNS_SGU\Model\bin\Debug\Microsoft.WindowsAPICodePack.pdb
-C:\Users\Dong\Documents\Visual Studio 2017\Projects\QLNS_SGU\Model\bin\Debug\Microsoft.WindowsAPICodePack.xml
-C:\Users\Dong\Documents\Visual Studio 2017\Projects\QLNS_SGU\Model\bin\Debug\Microsoft.WindowsAPICodePack.Shell.pdb
-C:\Users\Dong\Documents\Visual Studio 2017\Projects\QLNS_SGU\Model\bin\Debug\Microsoft.WindowsAPICodePack.Shell.xml
-C:\Users\Dong\Documents\Visual Studio 2017\Projects\QLNS_SGU\Model\bin\Debug\Microsoft.WindowsAPICodePack.ShellExtensions.pdb
-C:\Users\Dong\Documents\Visual Studio 2017\Projects\QLNS_SGU\Model\bin\Debug\Microsoft.WindowsAPICodePack.ShellExtensions.xml
-C:\Users\Dong\Documents\Visual Studio 2017\Projects\QLNS_SGU\Model\bin\Debug\Newtonsoft.Json.xml
-C:\Users\Dong\Documents\Visual Studio 2017\Projects\QLNS_SGU\Model\obj\Debug\Model.csproj.CoreCompileInputs.cache
-C:\Users\Dong\Documents\Visual Studio 2017\Projects\QLNS_SGU\Model\obj\Debug\Model.csproj.CopyComplete
-C:\Users\Dong\Documents\Visual Studio 2017\Projects\QLNS_SGU\Model\obj\Debug\Model.dll
-C:\Users\Dong\Documents\Visual Studio 2017\Projects\QLNS_SGU\Model\obj\Debug\Model.pdb
-C:\Users\DONG\Documents\Visual Studio 2017\Projects\QLNS_SGU\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
 D:\Project\QLNS_SGU\Model\bin\Debug\Model.dll.config
 D:\Project\QLNS_SGU\Model\bin\Debug\Model.dll
 D:\Project\QLNS_SGU\Model\bin\Debug\Model.pdb
@@ -58,9 +20,13 @@ D:\Project\QLNS_SGU\Model\bin\Debug\System.Security.Cryptography.Primitives.dll
 D:\Project\QLNS_SGU\Model\bin\Debug\System.Security.Cryptography.X509Certificates.dll
 D:\Project\QLNS_SGU\Model\bin\Debug\EntityFramework.xml
 D:\Project\QLNS_SGU\Model\bin\Debug\EntityFramework.SqlServer.xml
+D:\Project\QLNS_SGU\Model\bin\Debug\Google.Apis.pdb
 D:\Project\QLNS_SGU\Model\bin\Debug\Google.Apis.xml
+D:\Project\QLNS_SGU\Model\bin\Debug\Google.Apis.Auth.pdb
 D:\Project\QLNS_SGU\Model\bin\Debug\Google.Apis.Auth.xml
+D:\Project\QLNS_SGU\Model\bin\Debug\Google.Apis.Core.pdb
 D:\Project\QLNS_SGU\Model\bin\Debug\Google.Apis.Core.xml
+D:\Project\QLNS_SGU\Model\bin\Debug\Google.Apis.Drive.v3.pdb
 D:\Project\QLNS_SGU\Model\bin\Debug\Google.Apis.Drive.v3.xml
 D:\Project\QLNS_SGU\Model\bin\Debug\Microsoft.WindowsAPICodePack.pdb
 D:\Project\QLNS_SGU\Model\bin\Debug\Microsoft.WindowsAPICodePack.xml
@@ -69,8 +35,8 @@ D:\Project\QLNS_SGU\Model\bin\Debug\Microsoft.WindowsAPICodePack.Shell.xml
 D:\Project\QLNS_SGU\Model\bin\Debug\Microsoft.WindowsAPICodePack.ShellExtensions.pdb
 D:\Project\QLNS_SGU\Model\bin\Debug\Microsoft.WindowsAPICodePack.ShellExtensions.xml
 D:\Project\QLNS_SGU\Model\bin\Debug\Newtonsoft.Json.xml
+D:\Project\QLNS_SGU\Model\obj\Debug\Model.csprojAssemblyReference.cache
 D:\Project\QLNS_SGU\Model\obj\Debug\Model.csproj.CoreCompileInputs.cache
 D:\Project\QLNS_SGU\Model\obj\Debug\Model.csproj.CopyComplete
 D:\Project\QLNS_SGU\Model\obj\Debug\Model.dll
 D:\Project\QLNS_SGU\Model\obj\Debug\Model.pdb
-D:\Project\QLNS_SGU\Model\obj\Debug\Model.csprojAssemblyReference.cache

@@ -13,9 +13,14 @@ namespace Model.Repository
         {
         }
 
+        public List<string> GetListTenChucVu()
+        {
+            return _db.ChucVus.Select(x => x.tenChucVu).ToList();
+        }
+
         public string GetChucVu(int idchucvu)
         {
-            string chucvu = _db.ChucVus.Where(x => x.idChucVu == idchucvu).Select(y => y.tenChucVu).First();
+            string chucvu = _db.ChucVus.Where(x => x.idChucVu == idchucvu).Select(y => y.tenChucVu).FirstOrDefault();
             return chucvu;
         }
 

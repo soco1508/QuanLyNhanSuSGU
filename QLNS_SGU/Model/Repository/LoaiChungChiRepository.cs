@@ -21,31 +21,29 @@ namespace Model.Repository
             return list.ToList();
         }
 
-        public void Update(int id, string loaichungchi)
+        public void Update(string idloaichungchi, string tenloaichungchi)
         {
-            LoaiChungChi _loaichungchi = _db.LoaiChungChis.Where(x => x.idLoaiChungChi == id).First();
-            _loaichungchi.tenLoaiChungChi = loaichungchi;
-            _db.SaveChanges();
+            LoaiChungChi _loaichungchi = _db.LoaiChungChis.Where(x => x.idLoaiChungChi == idloaichungchi).FirstOrDefault();
+            _loaichungchi.tenLoaiChungChi = tenloaichungchi;
         }
 
-        public void Create(string loaichungchi)
+        public void Create(string idloaichungchi, string tenloaichungchi)
         {
-            _db.LoaiChungChis.Add(new LoaiChungChi { tenLoaiChungChi = loaichungchi });
-            _db.SaveChanges();
+            _db.LoaiChungChis.Add(new LoaiChungChi { idLoaiChungChi = idloaichungchi, tenLoaiChungChi = tenloaichungchi });
         }
 
-        public void DeleteById(int id)
+        public void DeleteById(string id)
         {
-            LoaiChungChi loaichungchi = _db.LoaiChungChis.Where(x => x.idLoaiChungChi == id).First();
+            LoaiChungChi loaichungchi = _db.LoaiChungChis.Where(x => x.idLoaiChungChi == id).FirstOrDefault();
             _db.LoaiChungChis.Remove(loaichungchi);
         }
 
         public bool CheckExistById(int idRowFocused)
         {
-            if (_db.LoaiChungChis.Any(x => x.idLoaiChungChi == idRowFocused))
-            {
-                return true;
-            }
+            //if (_db.LoaiChungChis.Any(x => x.idLoaiChungChi == idRowFocused))
+            //{
+            //    return true;
+            //}
             return false;
         }
 
@@ -67,9 +65,9 @@ namespace Model.Repository
             return _db.LoaiChungChis.ToList();
         }
 
-        public int GetIdLoaiChungChi(string loaichungchi)
+        public string GetIdLoaiChungChi(string tenloaichungchi)
         {
-            return _db.LoaiChungChis.Where(x => x.tenLoaiChungChi == loaichungchi).Select(y => y.idLoaiChungChi).FirstOrDefault();
+            return _db.LoaiChungChis.Where(x => x.tenLoaiChungChi == tenloaichungchi).Select(y => y.idLoaiChungChi).FirstOrDefault();
         }
 
         //public List<string> GetListCapDoChungChiByTenLoaiChungChi(string tenloaichungchi)
@@ -82,9 +80,14 @@ namespace Model.Repository
         //    return _db.LoaiChungChis.Where(x => x.capDo.Contains(capdo)).Select(y => y.tenLoaiChungChi).Distinct().ToList();
         //}
 
-        public int GetIdLoaiChungChiByTen(string tenloaichungchi)
+        public string GetIdLoaiChungChiByTen(string tenloaichungchi)
         {
             return _db.LoaiChungChis.Where(x => x.tenLoaiChungChi == tenloaichungchi).Select(y => y.idLoaiChungChi).FirstOrDefault();
+        }
+
+        public List<string> GetListIdLoaiChungChi()
+        {
+            return _db.LoaiChungChis.Select(x => x.idLoaiChungChi).ToList();
         }
     }
 }

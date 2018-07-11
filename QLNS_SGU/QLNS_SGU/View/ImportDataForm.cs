@@ -17,7 +17,7 @@ namespace QLNS_SGU.View
     public interface IImportDataForm : IView<IImportDataPresenter>
     {
         OpenFileDialog OpenFileDialog { get; set; }
-        BarStaticItem TxtPathFile { get; set; }
+        BarCheckItem CHKLog { get; set; }
         BarEditItem CbxListSheets { get; set; }
         XtraTabControl XtraTabControl { get; set; }
         XtraTabPage TabPageThongTinVienChuc { get; set; }
@@ -38,7 +38,7 @@ namespace QLNS_SGU.View
         }
         #region ---Controls---
         public OpenFileDialog OpenFileDialog { get => openFileDialog1; set => openFileDialog1 = value; }
-        public BarStaticItem TxtPathFile { get => txtPathFile; set => txtPathFile = value; }
+        public BarCheckItem CHKLog { get => chkLog; set => chkLog = value; }
         public BarEditItem CbxListSheets { get => cbxContainListSheets; set => cbxContainListSheets = value; }
         public XtraTabControl XtraTabControl { get => xtraTabControl1; set => xtraTabControl1 = value; }
         public XtraTabPage TabPageThongTinVienChuc { get => tabThongTinCaNhan; set => tabThongTinCaNhan = value; }
@@ -53,7 +53,7 @@ namespace QLNS_SGU.View
         #endregion
         public void Attach(IImportDataPresenter presenter)
         {
-            btnChooseFile.ItemClick += (sender, e) => presenter.ChooseFile();
+            btnChooseFile.ItemClick += (sender, e) => presenter.ChooseExcelFile();
             navBarThongTinVienChuc.LinkPressed += (sender, e) => presenter.OpenTabThongTinVienChuc();
             navBarTrangThai.LinkPressed += (sender, e) => presenter.OpenTabTrangThai();
             navBarChucVuDonVi.LinkPressed += (sender, e) => presenter.OpenTabChucVuDonVi();
