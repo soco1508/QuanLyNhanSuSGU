@@ -180,8 +180,9 @@ namespace QLNS_SGU.Presenter
             //Chung chi
             _view.GVCustom.Columns["NgoaiNgu"].Caption = "Ngoại ngữ";
             _view.GVCustom.Columns["TinHoc"].Caption = "Tin học";
-            _view.GVCustom.Columns["ChinhTri"].Caption = "Chính trị";            
-            _view.GVCustom.Columns["ChungChiChuyenMon"].Caption = "Chứng chỉ chuyên môn";
+			_view.GVCustom.Columns["ChungChiChuyenMon"].Caption = "Chứng chỉ chuyên môn";
+            _view.GVCustom.Columns["ChinhTri"].Caption = "Chính trị";                        
+			_view.GVCustom.Columns["QuanLyNhaNuoc"].Caption = "Quản lý nhà nước";
             //Dang hoc nang cao
             _view.GVCustom.Columns["SoQuyetDinh"].Caption = "Số quyết định";
             _view.GVCustom.Columns["LinkAnhQuyetDinh"].Caption = "Link ảnh quyết định";
@@ -373,33 +374,19 @@ namespace QLNS_SGU.Presenter
                     var ngoaiNgu = unitOfWorks.ChungChiVienChucRepository.GetChungChiNgoaiNguByIdVienChucAndDuration(row.IdVienChuc, dtFromDuration, dtToDuration);
                     var tinHoc = unitOfWorks.ChungChiVienChucRepository.GetChungChiTinHocByIdVienChucAndDuration(row.IdVienChuc, dtFromDuration, dtToDuration);
                     var nghiepVuSuPham = unitOfWorks.ChungChiVienChucRepository.GetChungChiNghiepVuSuPhamByIdVienChucAndDuration(row.IdVienChuc, dtFromDuration, dtToDuration);
-                    var liLuanChinhTri = unitOfWorks.ChungChiVienChucRepository.GetChungChiLiLuanChinhTriByIdVienChucAndDuration(row.IdVienChuc, dtFromDuration, dtToDuration);
+                    var chinhTri = unitOfWorks.ChungChiVienChucRepository.GetChungChiChinhTriByIdVienChucAndDuration(row.IdVienChuc, dtFromDuration, dtToDuration);
+                    var quanlynhanuoc = unitOfWorks.ChungChiVienChucRepository.GetChungChiQuanLyNhaNuocByIdVienChucAndDuration(row.IdVienChuc, dtFromDuration, dtToDuration);
                     ExportObjects exportObjects = listFieldsDefault.Where(x => x.IdVienChuc == row.IdVienChuc).FirstOrDefault();
                     if (ngoaiNgu != null)
-                    {
-                        exportObjects.NgoaiNgu = ngoaiNgu.LoaiChungChi.tenLoaiChungChi;
-                        if (ngoaiNgu.capDoChungChi != null)
-                            exportObjects.NgoaiNgu += ", " + ngoaiNgu.capDoChungChi;
-                        exportObjects.ChungChiChuyenMon += ngoaiNgu.LoaiChungChi.tenLoaiChungChi + ", ";
-                    }
+                        exportObjects.NgoaiNgu = ngoaiNgu.capDoChungChi;
                     if (tinHoc != null)
-                    {
-                        exportObjects.TinHoc = tinHoc.LoaiChungChi.tenLoaiChungChi;
-                        if (tinHoc.capDoChungChi != null)
-                            exportObjects.TinHoc += ", " + tinHoc.capDoChungChi;
-                        exportObjects.ChungChiChuyenMon += tinHoc.LoaiChungChi.tenLoaiChungChi + ", ";
-                    }
+                        exportObjects.TinHoc = tinHoc.capDoChungChi;
                     if (nghiepVuSuPham != null)
-                    {
-                        exportObjects.ChungChiChuyenMon += nghiepVuSuPham.LoaiChungChi.tenLoaiChungChi + ", ";
-                    }
-                    if (liLuanChinhTri != null)
-                    {
-                        exportObjects.ChinhTri = liLuanChinhTri.LoaiChungChi.tenLoaiChungChi;
-                        if (liLuanChinhTri.capDoChungChi != null)
-                            exportObjects.ChinhTri += ", " + liLuanChinhTri.capDoChungChi;
-                        exportObjects.ChungChiChuyenMon += liLuanChinhTri;
-                    }
+                        exportObjects.ChungChiChuyenMon = nghiepVuSuPham.capDoChungChi;
+                    if (chinhTri != null)
+                        exportObjects.ChinhTri = chinhTri.capDoChungChi;
+                    if (quanlynhanuoc != null)
+                        exportObjects.QuanLyNhaNuoc = quanlynhanuoc.capDoChungChi;
                 }
             }
             if (_view.CHKDangHocNangCao.Checked)
@@ -616,33 +603,19 @@ namespace QLNS_SGU.Presenter
                     var ngoaiNgu = unitOfWorks.ChungChiVienChucRepository.GetChungChiNgoaiNguByIdVienChucAndTimeline(row.IdVienChuc, dtTimeline);
                     var tinHoc = unitOfWorks.ChungChiVienChucRepository.GetChungChiTinHocByIdVienChucAndTimeline(row.IdVienChuc, dtTimeline);
                     var nghiepVuSuPham = unitOfWorks.ChungChiVienChucRepository.GetChungChiNghiepVuSuPhamByIdVienChucAndTimeline(row.IdVienChuc, dtTimeline);
-                    var liLuanChinhTri = unitOfWorks.ChungChiVienChucRepository.GetChungChiLiLuanChinhTriByIdVienChucAndTimeline(row.IdVienChuc, dtTimeline);
+                    var chinhTri = unitOfWorks.ChungChiVienChucRepository.GetChungChiChinhTriByIdVienChucAndTimeline(row.IdVienChuc, dtTimeline);
+                    var quanlynhanuoc = unitOfWorks.ChungChiVienChucRepository.GetChungChiQuanLyNhaNuocByIdVienChucAndTimeline(row.IdVienChuc, dtTimeline);
                     ExportObjects exportObjects = listFieldsDefault.Where(x => x.IdVienChuc == row.IdVienChuc).FirstOrDefault();
                     if (ngoaiNgu != null)
-                    {
-                        exportObjects.NgoaiNgu = ngoaiNgu.LoaiChungChi.tenLoaiChungChi;
-                        if (ngoaiNgu.capDoChungChi != null)
-                            exportObjects.NgoaiNgu += ", " + ngoaiNgu.capDoChungChi;
-                        exportObjects.ChungChiChuyenMon += ngoaiNgu.LoaiChungChi.tenLoaiChungChi + ", ";
-                    }
-                    if(tinHoc != null)
-                    {
-                        exportObjects.TinHoc = tinHoc.LoaiChungChi.tenLoaiChungChi;
-                        if (tinHoc.capDoChungChi != null)
-                            exportObjects.TinHoc += ", " + tinHoc.capDoChungChi;
-                        exportObjects.ChungChiChuyenMon += tinHoc.LoaiChungChi.tenLoaiChungChi + ", ";
-                    }
+                        exportObjects.NgoaiNgu = ngoaiNgu.capDoChungChi;
+                    if (tinHoc != null)
+                        exportObjects.TinHoc = tinHoc.capDoChungChi;
                     if (nghiepVuSuPham != null)
-                    {
-                        exportObjects.ChungChiChuyenMon += nghiepVuSuPham.LoaiChungChi.tenLoaiChungChi + ", ";
-                    }
-                    if(liLuanChinhTri != null)
-                    {
-                        exportObjects.ChinhTri = liLuanChinhTri.LoaiChungChi.tenLoaiChungChi;
-                        if (liLuanChinhTri.capDoChungChi != null)
-                            exportObjects.ChinhTri += ", " + liLuanChinhTri.capDoChungChi;
-                        exportObjects.ChungChiChuyenMon += liLuanChinhTri;
-                    }
+                        exportObjects.ChungChiChuyenMon = nghiepVuSuPham.capDoChungChi;
+                    if (chinhTri != null)
+                        exportObjects.ChinhTri = chinhTri.capDoChungChi;
+                    if (quanlynhanuoc != null)
+                        exportObjects.QuanLyNhaNuoc = quanlynhanuoc.capDoChungChi;
                 }
             }
             if (_view.CHKDangHocNangCao.Checked)
