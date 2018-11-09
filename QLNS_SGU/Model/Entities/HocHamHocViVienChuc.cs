@@ -26,7 +26,6 @@ namespace Model.Entities
         public int idLoaiNganh { get; set; }
         public int idNganhDaoTao { get; set; }
         public int idChuyenNganh { get; set; }
-        public Nullable<int> bacHocHamHocVi { get; set; }
         public string tenHocHamHocVi { get; set; }
         public string coSoDaoTao { get; set; }
         public string nuocCapBang { get; set; }

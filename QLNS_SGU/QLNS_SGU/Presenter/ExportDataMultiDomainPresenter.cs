@@ -37,7 +37,7 @@ namespace QLNS_SGU.Presenter
     {
         private ExportDataMultiDomainForm _view;
         private bool checkAllState = false;
-        private string FilterCurrent = "";
+        private string FilterCurrent = string.Empty;
         private List<bool> listCheckBoxValue = new List<bool> { false, false, false, false, false, false, false, false, false };
         public object UI => _view;
         public ExportDataMultiDomainPresenter(ExportDataMultiDomainForm view) => _view = view;
@@ -179,10 +179,23 @@ namespace QLNS_SGU.Presenter
             _view.GVCustom.Columns["LinkVanBanDinhKemND"].Caption = "Link văn bản đính kèm (Ngành dạy)";
             //Chung chi
             _view.GVCustom.Columns["NgoaiNgu"].Caption = "Ngoại ngữ";
+            _view.GVCustom.Columns["CapDoNgoaiNgu"].Caption = "Cấp độ ngoại ngữ";
+            _view.GVCustom.Columns["NgayCapChungChiNgoaiNgu"].Caption = "Ngày cấp chứng chỉ ngoại ngữ";
+            FormatDate("NgayCapChungChiNgoaiNgu");
             _view.GVCustom.Columns["TinHoc"].Caption = "Tin học";
-			_view.GVCustom.Columns["ChungChiChuyenMon"].Caption = "Chứng chỉ chuyên môn";
-            _view.GVCustom.Columns["ChinhTri"].Caption = "Chính trị";                        
-			_view.GVCustom.Columns["QuanLyNhaNuoc"].Caption = "Quản lý nhà nước";
+            _view.GVCustom.Columns["NgayCapChungChiTinHoc"].Caption = "Ngày cấp chứng chỉ tin học";
+            FormatDate("NgayCapChungChiTinHoc");
+            _view.GVCustom.Columns["ChungChiChuyenMon"].Caption = "Chứng chỉ chuyên môn";
+            _view.GVCustom.Columns["CapDoChuyenMon"].Caption = "Cấp độ chuyên môn";
+            _view.GVCustom.Columns["NgayCapChungChiChuyenMon"].Caption = "Ngày cấp chứng chỉ chuyên môn";
+            FormatDate("NgayCapChungChiChuyenMon");
+            _view.GVCustom.Columns["ChinhTri"].Caption = "Chính trị";
+            _view.GVCustom.Columns["NgayCapChungChiChinhTri"].Caption = "Ngày cấp chứng chỉ chính trị";
+            FormatDate("NgayCapChungChiChinhTri");
+            _view.GVCustom.Columns["QuanLyNhaNuoc"].Caption = "Quản lý nhà nước";
+            _view.GVCustom.Columns["NgayCapChungChiQuanLyNhaNuoc"].Caption = "Ngày cấp chứng chỉ quản lý nhà nước";
+            FormatDate("NgayCapChungChiQuanLyNhaNuoc");
+
             //Dang hoc nang cao
             _view.GVCustom.Columns["SoQuyetDinh"].Caption = "Số quyết định";
             _view.GVCustom.Columns["LinkAnhQuyetDinh"].Caption = "Link ảnh quyết định";
@@ -378,15 +391,32 @@ namespace QLNS_SGU.Presenter
                     var quanlynhanuoc = unitOfWorks.ChungChiVienChucRepository.GetChungChiQuanLyNhaNuocByIdVienChucAndDuration(row.IdVienChuc, dtFromDuration, dtToDuration);
                     ExportObjects exportObjects = listFieldsDefault.Where(x => x.IdVienChuc == row.IdVienChuc).FirstOrDefault();
                     if (ngoaiNgu != null)
-                        exportObjects.NgoaiNgu = ngoaiNgu.capDoChungChi;
+                    {
+                        exportObjects.NgoaiNgu = ngoaiNgu.tenChungChi;
+                        exportObjects.CapDoNgoaiNgu = ngoaiNgu.capDoChungChi;
+                        exportObjects.NgayCapChungChiNgoaiNgu = ngoaiNgu.ngayCapChungChi;
+                    }                        
                     if (tinHoc != null)
+                    {
                         exportObjects.TinHoc = tinHoc.capDoChungChi;
+                        exportObjects.NgayCapChungChiTinHoc = tinHoc.ngayCapChungChi;
+                    }
                     if (nghiepVuSuPham != null)
-                        exportObjects.ChungChiChuyenMon = nghiepVuSuPham.capDoChungChi;
+                    {
+                        exportObjects.ChungChiChuyenMon = nghiepVuSuPham.tenChungChi;
+                        exportObjects.CapDoChuyenMon = nghiepVuSuPham.capDoChungChi;
+                        exportObjects.NgayCapChungChiChuyenMon = nghiepVuSuPham.ngayCapChungChi;
+                    }
                     if (chinhTri != null)
+                    {
                         exportObjects.ChinhTri = chinhTri.capDoChungChi;
+                        exportObjects.NgayCapChungChiChinhTri = chinhTri.ngayCapChungChi;
+                    }
                     if (quanlynhanuoc != null)
+                    {
                         exportObjects.QuanLyNhaNuoc = quanlynhanuoc.capDoChungChi;
+                        exportObjects.NgayCapChungChiQuanLyNhaNuoc = quanlynhanuoc.ngayCapChungChi;
+                    }
                 }
             }
             if (_view.CHKDangHocNangCao.Checked)
@@ -425,7 +455,7 @@ namespace QLNS_SGU.Presenter
                         _view.GVCustom.Columns[i].Visible = true;
                         break;
                     }
-                    else { _view.GVCustom.Columns[i].Visible = false; }
+                    else _view.GVCustom.Columns[i].Visible = false;
                 }
             }
             SetCaptionColumn();
@@ -607,11 +637,17 @@ namespace QLNS_SGU.Presenter
                     var quanlynhanuoc = unitOfWorks.ChungChiVienChucRepository.GetChungChiQuanLyNhaNuocByIdVienChucAndTimeline(row.IdVienChuc, dtTimeline);
                     ExportObjects exportObjects = listFieldsDefault.Where(x => x.IdVienChuc == row.IdVienChuc).FirstOrDefault();
                     if (ngoaiNgu != null)
-                        exportObjects.NgoaiNgu = ngoaiNgu.capDoChungChi;
+                    {
+                        exportObjects.NgoaiNgu = ngoaiNgu.tenChungChi;
+                        exportObjects.CapDoNgoaiNgu = ngoaiNgu.capDoChungChi;
+                    }
                     if (tinHoc != null)
                         exportObjects.TinHoc = tinHoc.capDoChungChi;
                     if (nghiepVuSuPham != null)
-                        exportObjects.ChungChiChuyenMon = nghiepVuSuPham.capDoChungChi;
+                    {
+                        exportObjects.ChungChiChuyenMon = nghiepVuSuPham.tenChungChi;
+                        exportObjects.CapDoChuyenMon = nghiepVuSuPham.capDoChungChi;
+                    }
                     if (chinhTri != null)
                         exportObjects.ChinhTri = chinhTri.capDoChungChi;
                     if (quanlynhanuoc != null)

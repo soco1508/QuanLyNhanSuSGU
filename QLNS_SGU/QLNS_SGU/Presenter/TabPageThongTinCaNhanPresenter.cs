@@ -12,6 +12,7 @@ using System.IO;
 using System.ComponentModel;
 using System.Globalization;
 using System.Diagnostics;
+using Model.Helper;
 
 namespace QLNS_SGU.Presenter
 {
@@ -40,31 +41,37 @@ namespace QLNS_SGU.Presenter
         void SoCMNDChanged(object sender, EventArgs e);
         void GhiChuChanged(object sender, EventArgs e);
         void PicChanged(object sender, EventArgs e);
+        void NgayTuyenDungChinhThucChanged(object sender, EventArgs e);
+        void EmailChanged(object sender, EventArgs e);
+        void GioChuanChanged(object sender, EventArgs e);
     }
     public class TabPageThongTinCaNhanPresenter : ITabPageThongTinCaNhanPresenter
     {
         private TabPageThongTinCaNhan _view;
-        private bool checkAddNew = false;
-        private bool gioiTinhChanged = false;
-        private bool hoChanged = false;
-        private bool tenChanged = false;
-        private bool ngaySinhChanged = false;
-        private bool ngayThamGiaCongTacChanged = false;
-        private bool ngayVaoNganhChanged = false;
-        private bool ngayVeTruongChanged = false;
-        private bool soDienThoaiChanged = false;
-        private bool noiSinhChanged = false;
-        private bool queQuanChanged = false;
-        private bool danTocChanged = false;
-        private bool tonGiaoChanged = false;
-        private bool hoKhauThuongTruChanged = false;
-        private bool noiOHienNayChanged = false;
-        private bool laDangVienChanged = false;
-        private bool ngayVaoDangChanged = false;
-        private bool vanHoaChanged = false;
-        private bool soCMNDChanged = false;
-        private bool ghiChuChanged = false;
-        private bool picChanged = false;
+        bool checkAddNew = false;
+        bool gioiTinhChanged = false;
+        bool hoChanged = false;
+        bool tenChanged = false;
+        bool ngaySinhChanged = false;
+        bool ngayThamGiaCongTacChanged = false;
+        bool ngayVaoNganhChanged = false;
+        bool ngayVeTruongChanged = false;
+        bool soDienThoaiChanged = false;
+        bool noiSinhChanged = false;
+        bool queQuanChanged = false;
+        bool danTocChanged = false;
+        bool tonGiaoChanged = false;
+        bool hoKhauThuongTruChanged = false;
+        bool noiOHienNayChanged = false;
+        bool laDangVienChanged = false;
+        bool ngayVaoDangChanged = false;
+        bool vanHoaChanged = false;
+        bool soCMNDChanged = false;
+        bool ghiChuChanged = false;
+        bool picChanged = false;
+        bool ngayTuyenDungChinhThucChanged = false;
+        bool emailChanged = false;
+        bool gioChuanChanged = false;
         public object UI => _view;
         public TabPageThongTinCaNhanPresenter(TabPageThongTinCaNhan view) => _view = view;
         public void Initialize(string mavienchuc)
@@ -105,7 +112,7 @@ namespace QLNS_SGU.Presenter
         {            
             UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             _view.CBXDanToc.EditValue = unitOfWorks.DanTocRepository.SelectIdEmptyValue();
-            _view.CBXTonGiao.EditValue = unitOfWorks.TonGiaoRepository.SelectIdEmptyValue(x => x.tenTonGiao == string.Empty);
+            _view.CBXTonGiao.EditValue = unitOfWorks.TonGiaoRepository.SelectIdEmptyValue();
         }
         private byte[] ConvertImageToBinary(string filename)
         {
@@ -144,11 +151,11 @@ namespace QLNS_SGU.Presenter
                     gioiTinh = unitOfWorks.VienChucRepository.ReturnGenderToDatabase(_view.RADGioiTinh.SelectedIndex),
                     ho = _view.TXTHo.Text.Trim(),
                     ten = _view.TXTTen.Text.Trim(),
-                    ngaySinh = unitOfWorks.HopDongVienChucRepository.ReturnDateTimeToDatabase(_view.DTNgaySinh.Text),
-                    ngayThamGiaCongTac = unitOfWorks.HopDongVienChucRepository.ReturnDateTimeToDatabase(_view.DTNgayThamGiaCongTac.Text),
-                    ngayVeTruong = unitOfWorks.HopDongVienChucRepository.ReturnDateTimeToDatabase(_view.DTNgayVeTruong.Text),
-                    ngayVaoNganh = unitOfWorks.HopDongVienChucRepository.ReturnDateTimeToDatabase(_view.DTNgayVaoNganh.Text),
-                    ngayVaoDang = unitOfWorks.HopDongVienChucRepository.ReturnDateTimeToDatabase(_view.DTNgayVaoDang.Text),
+                    ngaySinh = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(_view.DTNgaySinh.Text),
+                    ngayThamGiaCongTac = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(_view.DTNgayThamGiaCongTac.Text),
+                    ngayVeTruong = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(_view.DTNgayVeTruong.Text),
+                    ngayVaoNganh = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(_view.DTNgayVaoNganh.Text),
+                    ngayVaoDang = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(_view.DTNgayVaoDang.Text),
                     laDangVien = _view.CHKLaDangVien.Checked,
                     sDT = _view.TXTSoDienThoai.Text,
                     noiSinh = _view.TXTNoiSinh.Text,
@@ -160,7 +167,10 @@ namespace QLNS_SGU.Presenter
                     noiOHienNay = _view.TXTNoiOHienNay.Text,
                     soChungMinhNhanDan = _view.TXTSoCMND.Text,
                     ghiChu = _view.TXTGhiChu.Text,
-                    anh = ConvertImageToBinary(_view.PICVienChuc.GetLoadedImageLocation())
+                    anh = ConvertImageToBinary(_view.PICVienChuc.GetLoadedImageLocation()),
+                    ngayTuyenDungChinhThuc = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(_view.DTNgayTuyenDungChinhThuc.Text),
+                    email = _view.TXTEmail.Text,
+                    gioChuan = Convert.ToInt32(_view.TXTGioChuan.EditValue)
                 });
                 unitOfWorks.Save();
                 MainPresenter.LoadDataToMainGrid();
@@ -184,7 +194,8 @@ namespace QLNS_SGU.Presenter
         {
             UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             string mavienchuc = _view.TXTMaVienChuc.Text.Trim();
-            VienChuc vienChuc = unitOfWorks.VienChucRepository.GetVienChucByMaVienChuc(mavienchuc);
+            int idVienChuc = unitOfWorks.VienChucRepository.GetIdVienChuc(mavienchuc);
+            VienChuc vienChuc = unitOfWorks.VienChucRepository.GetById(idVienChuc);
             if(hoChanged)
             {
                 vienChuc.ho = _view.TXTHo.Text;
@@ -202,22 +213,22 @@ namespace QLNS_SGU.Presenter
             }
             if(ngaySinhChanged)
             {
-                vienChuc.ngaySinh = unitOfWorks.HopDongVienChucRepository.ReturnDateTimeToDatabase(_view.DTNgaySinh.Text);
+                vienChuc.ngaySinh = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(_view.DTNgaySinh.Text);
                 ngaySinhChanged = false;
             }
             if(ngayThamGiaCongTacChanged)
             {
-                vienChuc.ngayThamGiaCongTac = unitOfWorks.HopDongVienChucRepository.ReturnDateTimeToDatabase(_view.DTNgayThamGiaCongTac.Text);
+                vienChuc.ngayThamGiaCongTac = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(_view.DTNgayThamGiaCongTac.Text);
                 ngayThamGiaCongTacChanged = false;
             }
             if(ngayVeTruongChanged)
             {
-                vienChuc.ngayVeTruong = unitOfWorks.HopDongVienChucRepository.ReturnDateTimeToDatabase(_view.DTNgayVeTruong.Text);
+                vienChuc.ngayVeTruong = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(_view.DTNgayVeTruong.Text);
                 ngayVeTruongChanged = false;
             }
             if(ngayVaoNganhChanged)
             {
-                vienChuc.ngayVaoNganh = unitOfWorks.HopDongVienChucRepository.ReturnDateTimeToDatabase(_view.DTNgayVaoNganh.Text);
+                vienChuc.ngayVaoNganh = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(_view.DTNgayVaoNganh.Text);
                 ngayVaoNganhChanged = false;
             }
             if(laDangVienChanged)
@@ -227,7 +238,7 @@ namespace QLNS_SGU.Presenter
             }
             if(ngayVaoDangChanged)
             {
-                vienChuc.ngayVaoDang = unitOfWorks.HopDongVienChucRepository.ReturnDateTimeToDatabase(_view.DTNgayVaoDang.Text);
+                vienChuc.ngayVaoDang = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(_view.DTNgayVaoDang.Text);
                 ngayVaoDangChanged = false;
             }
             if(soDienThoaiChanged)
@@ -285,6 +296,21 @@ namespace QLNS_SGU.Presenter
                 vienChuc.anh = ConvertImageToBinary(_view.PICVienChuc.GetLoadedImageLocation());
                 picChanged = false;
             }
+            if (ngayTuyenDungChinhThucChanged)
+            {
+                vienChuc.ngayTuyenDungChinhThuc = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(_view.DTNgayTuyenDungChinhThuc.Text);
+                ngayTuyenDungChinhThucChanged = false;
+            }
+            if (emailChanged)
+            {
+                vienChuc.email = _view.TXTEmail.Text;
+                emailChanged = false;
+            }
+            if (gioChuanChanged)
+            {
+                vienChuc.gioChuan = Convert.ToInt32(_view.TXTGioChuan.EditValue);
+                gioChuanChanged = false;
+            }
             unitOfWorks.Save();
             MainPresenter.LoadDataToMainGrid();
             MainPresenter.MoveRowManaging(mavienchuc);
@@ -298,7 +324,8 @@ namespace QLNS_SGU.Presenter
             if (mavienchuc != string.Empty)
             {
                 UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
-                VienChuc vienChuc = unitOfWorks.VienChucRepository.GetVienChucByMaVienChuc(mavienchuc);
+                int idVienChuc = unitOfWorks.VienChucRepository.GetIdVienChuc(mavienchuc);
+                VienChuc vienChuc = unitOfWorks.VienChucRepository.GetById(idVienChuc);
                 _view.PICVienChuc.Image = ConvertBinaryToImage(vienChuc.anh);
                 _view.RADGioiTinh.SelectedIndex = unitOfWorks.VienChucRepository.ReturnGenderToTabThongTinCaNhan(vienChuc.gioiTinh);
                 _view.TXTHo.Text = vienChuc.ho;
@@ -318,6 +345,9 @@ namespace QLNS_SGU.Presenter
                 _view.CBXDanToc.EditValue = vienChuc.idDanToc;
                 _view.CBXTonGiao.EditValue = vienChuc.idTonGiao;
                 _view.TXTSoCMND.Text = vienChuc.soChungMinhNhanDan;
+                _view.DTNgayTuyenDungChinhThuc.EditValue = vienChuc.ngayTuyenDungChinhThuc;
+                _view.TXTEmail.Text = vienChuc.email;
+                _view.TXTGioChuan.EditValue = vienChuc.gioChuan;
                 _view.TXTGhiChu.Text = vienChuc.ghiChu;
             }
             else
@@ -532,6 +562,21 @@ namespace QLNS_SGU.Presenter
         public void PicChanged(object sender, EventArgs e)
         {
             picChanged = true;
+        }
+
+        public void NgayTuyenDungChinhThucChanged(object sender, EventArgs e)
+        {
+            ngayTuyenDungChinhThucChanged = true;
+        }
+
+        public void EmailChanged(object sender, EventArgs e)
+        {
+            emailChanged = true;
+        }
+
+        public void GioChuanChanged(object sender, EventArgs e)
+        {
+            gioChuanChanged = true;
         }
     }
 }

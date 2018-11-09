@@ -33,7 +33,6 @@ namespace Model.Entities
         public virtual VienChuc VienChuc { get; set; }
 
         public NganhVienChuc() { }
-
         public NganhVienChuc(NganhVienChuc nganhVienChuc)
         {
             idNganhVienChuc = nganhVienChuc.idNganhVienChuc;

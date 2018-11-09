@@ -13,33 +13,34 @@ namespace Model.Repository
         {
         }
 
+        /// <summary>
+        /// Get idLoaiDonVi = chữ đầu của đơn vị, vd: Phòng đào tạo => Phòng
+        /// </summary>
+        /// <param name="donvi"></param>
+        /// <returns></returns>
         public int GetIdLoaiDonVi(string donvi)
         {
-            string[] temp_donvi = donvi.Split(' ');
-            if (temp_donvi[0].Contains("Phòng"))
+            int defaultId = _db.LoaiDonVis.Where(x => x.tenLoaiDonVi == "Khác").Select(y => y.idLoaiDonVi).FirstOrDefault();
+            if (donvi != string.Empty)
             {
-                return 1;
+                string[] arrDonVi = donvi.Split(' ');
+                switch (arrDonVi[0])
+                {
+                    case "Phòng":
+                        return _db.LoaiDonVis.Where(x => x.tenLoaiDonVi == "Phòng").Select(y => y.idLoaiDonVi).FirstOrDefault();
+                    case "Khoa":
+                        return _db.LoaiDonVis.Where(x => x.tenLoaiDonVi == "Khoa").Select(y => y.idLoaiDonVi).FirstOrDefault();
+                    case "Trung tâm":
+                        return _db.LoaiDonVis.Where(x => x.tenLoaiDonVi == "Trung tâm").Select(y => y.idLoaiDonVi).FirstOrDefault();
+                    case "Viện":
+                        return _db.LoaiDonVis.Where(x => x.tenLoaiDonVi == "Viện").Select(y => y.idLoaiDonVi).FirstOrDefault();
+                    case "Ban":
+                        return _db.LoaiDonVis.Where(x => x.tenLoaiDonVi == "Ban").Select(y => y.idLoaiDonVi).FirstOrDefault();
+                    default:
+                        return defaultId;
+                }
             }
-            else if (temp_donvi[0].Contains("Khoa"))
-            {
-                return 2;
-            }
-            else if (temp_donvi[0].Contains("Trung tâm"))
-            {
-                return 3;
-            }
-            else if (temp_donvi[0].Contains("Viện"))
-            {
-                return 4;
-            }
-            else if (temp_donvi[0].Contains("Ban"))
-            {
-                return 5;
-            }
-            else
-            {
-                return 6;
-            }
+            return defaultId;
         }
 
         public IList<LoaiDonVi> GetListLoaiDonVi()
@@ -73,6 +74,11 @@ namespace Model.Repository
                 return true;
             }
             return false;
+        }
+
+        public List<string> GetListTenLoaiDonVi()
+        {
+            return _db.LoaiDonVis.Select(x => x.tenLoaiDonVi).ToList();
         }
     }
 }

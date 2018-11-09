@@ -63,8 +63,10 @@
             this.gcChungChi = new DevExpress.XtraGrid.GridControl();
             this.gvChungChi = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn35 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn31 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn32 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn19 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn33 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemMemoEdit19 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             this.gridColumn43 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -220,6 +222,7 @@
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn46 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemMemoEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             this.txtRowIndex = new DevExpress.XtraEditors.TextEdit();
             this.popupMenuGVMain = new DevExpress.XtraBars.PopupMenu(this.components);
@@ -230,6 +233,10 @@
             this.popupMenuGVHocHamHocVi = new DevExpress.XtraBars.PopupMenu(this.components);
             this.popupMenuGVChungChi = new DevExpress.XtraBars.PopupMenu(this.components);
             this.popupMenuGVTrangThai = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.layoutViewColumn22 = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
+            this.layoutViewField_layoutViewColumn22 = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
+            this.layoutViewColumn23 = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
+            this.layoutViewField_layoutViewColumn23 = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -343,6 +350,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.popupMenuGVHocHamHocVi)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenuGVChungChi)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenuGVTrangThai)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_layoutViewColumn22)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_layoutViewColumn23)).BeginInit();
             this.SuspendLayout();
             // 
             // barManager1
@@ -635,8 +644,10 @@
             // 
             this.gvChungChi.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn13,
+            this.gridColumn35,
             this.gridColumn31,
             this.gridColumn32,
+            this.gridColumn19,
             this.gridColumn33,
             this.gridColumn43});
             this.gvChungChi.GridControl = this.gcChungChi;
@@ -647,12 +658,21 @@
             // 
             // gridColumn13
             // 
-            this.gridColumn13.Caption = "Chứng chỉ";
+            this.gridColumn13.Caption = "Loại chứng chỉ";
             this.gridColumn13.FieldName = "LoaiChungChi";
             this.gridColumn13.Name = "gridColumn13";
             this.gridColumn13.Visible = true;
             this.gridColumn13.VisibleIndex = 0;
-            this.gridColumn13.Width = 120;
+            this.gridColumn13.Width = 49;
+            // 
+            // gridColumn35
+            // 
+            this.gridColumn35.Caption = "Tên chứng chỉ";
+            this.gridColumn35.FieldName = "TenChungChi";
+            this.gridColumn35.Name = "gridColumn35";
+            this.gridColumn35.Visible = true;
+            this.gridColumn35.VisibleIndex = 1;
+            this.gridColumn35.Width = 49;
             // 
             // gridColumn31
             // 
@@ -660,7 +680,8 @@
             this.gridColumn31.FieldName = "CapDo";
             this.gridColumn31.Name = "gridColumn31";
             this.gridColumn31.Visible = true;
-            this.gridColumn31.VisibleIndex = 1;
+            this.gridColumn31.VisibleIndex = 2;
+            this.gridColumn31.Width = 31;
             // 
             // gridColumn32
             // 
@@ -670,8 +691,17 @@
             this.gridColumn32.FieldName = "NgayCapChungChi";
             this.gridColumn32.Name = "gridColumn32";
             this.gridColumn32.Visible = true;
-            this.gridColumn32.VisibleIndex = 2;
-            this.gridColumn32.Width = 100;
+            this.gridColumn32.VisibleIndex = 3;
+            this.gridColumn32.Width = 36;
+            // 
+            // gridColumn19
+            // 
+            this.gridColumn19.Caption = "Cơ sở đào tạo";
+            this.gridColumn19.FieldName = "CoSoDaoTao";
+            this.gridColumn19.Name = "gridColumn19";
+            this.gridColumn19.Visible = true;
+            this.gridColumn19.VisibleIndex = 4;
+            this.gridColumn19.Width = 31;
             // 
             // gridColumn33
             // 
@@ -680,8 +710,8 @@
             this.gridColumn33.FieldName = "LinkVanBanDinhKem";
             this.gridColumn33.Name = "gridColumn33";
             this.gridColumn33.Visible = true;
-            this.gridColumn33.VisibleIndex = 3;
-            this.gridColumn33.Width = 130;
+            this.gridColumn33.VisibleIndex = 5;
+            this.gridColumn33.Width = 47;
             // 
             // repositoryItemMemoEdit19
             // 
@@ -694,8 +724,8 @@
             this.gridColumn43.FieldName = "GhiChu";
             this.gridColumn43.Name = "gridColumn43";
             this.gridColumn43.Visible = true;
-            this.gridColumn43.VisibleIndex = 4;
-            this.gridColumn43.Width = 130;
+            this.gridColumn43.VisibleIndex = 6;
+            this.gridColumn43.Width = 49;
             // 
             // repositoryItemMemoEdit20
             // 
@@ -1164,6 +1194,7 @@
             this.layoutViewColumn4,
             this.layoutViewColumn5,
             this.layoutViewColumn6,
+            this.layoutViewColumn23,
             this.layoutViewColumn7,
             this.layoutViewColumn8,
             this.layoutViewColumn9,
@@ -1178,6 +1209,7 @@
             this.layoutViewColumn18,
             this.layoutViewColumn19,
             this.layoutViewColumn20,
+            this.layoutViewColumn22,
             this.layoutViewColumn21});
             this.layoutView1.GridControl = this.gcThongTinCaNhan;
             this.layoutView1.Name = "layoutView1";
@@ -1206,8 +1238,8 @@
             this.layoutViewField_layoutViewColumn1.EditorPreferredWidth = 10;
             this.layoutViewField_layoutViewColumn1.Location = new System.Drawing.Point(0, 0);
             this.layoutViewField_layoutViewColumn1.Name = "layoutViewField_layoutViewColumn1";
-            this.layoutViewField_layoutViewColumn1.Size = new System.Drawing.Size(134, 24);
-            this.layoutViewField_layoutViewColumn1.TextSize = new System.Drawing.Size(117, 13);
+            this.layoutViewField_layoutViewColumn1.Size = new System.Drawing.Size(157, 24);
+            this.layoutViewField_layoutViewColumn1.TextSize = new System.Drawing.Size(140, 13);
             // 
             // layoutViewColumn2
             // 
@@ -1221,8 +1253,8 @@
             this.layoutViewField_layoutViewColumn2.EditorPreferredWidth = 10;
             this.layoutViewField_layoutViewColumn2.Location = new System.Drawing.Point(0, 24);
             this.layoutViewField_layoutViewColumn2.Name = "layoutViewField_layoutViewColumn2";
-            this.layoutViewField_layoutViewColumn2.Size = new System.Drawing.Size(134, 24);
-            this.layoutViewField_layoutViewColumn2.TextSize = new System.Drawing.Size(117, 13);
+            this.layoutViewField_layoutViewColumn2.Size = new System.Drawing.Size(157, 24);
+            this.layoutViewField_layoutViewColumn2.TextSize = new System.Drawing.Size(140, 13);
             // 
             // layoutViewColumn3
             // 
@@ -1236,8 +1268,8 @@
             this.layoutViewField_layoutViewColumn3.EditorPreferredWidth = 10;
             this.layoutViewField_layoutViewColumn3.Location = new System.Drawing.Point(0, 48);
             this.layoutViewField_layoutViewColumn3.Name = "layoutViewField_layoutViewColumn3";
-            this.layoutViewField_layoutViewColumn3.Size = new System.Drawing.Size(134, 24);
-            this.layoutViewField_layoutViewColumn3.TextSize = new System.Drawing.Size(117, 13);
+            this.layoutViewField_layoutViewColumn3.Size = new System.Drawing.Size(157, 24);
+            this.layoutViewField_layoutViewColumn3.TextSize = new System.Drawing.Size(140, 13);
             // 
             // layoutViewColumn4
             // 
@@ -1251,8 +1283,8 @@
             this.layoutViewField_layoutViewColumn4.EditorPreferredWidth = 10;
             this.layoutViewField_layoutViewColumn4.Location = new System.Drawing.Point(0, 72);
             this.layoutViewField_layoutViewColumn4.Name = "layoutViewField_layoutViewColumn4";
-            this.layoutViewField_layoutViewColumn4.Size = new System.Drawing.Size(134, 24);
-            this.layoutViewField_layoutViewColumn4.TextSize = new System.Drawing.Size(117, 13);
+            this.layoutViewField_layoutViewColumn4.Size = new System.Drawing.Size(157, 24);
+            this.layoutViewField_layoutViewColumn4.TextSize = new System.Drawing.Size(140, 13);
             // 
             // layoutViewColumn5
             // 
@@ -1268,8 +1300,8 @@
             this.layoutViewField_layoutViewColumn5.EditorPreferredWidth = 10;
             this.layoutViewField_layoutViewColumn5.Location = new System.Drawing.Point(0, 96);
             this.layoutViewField_layoutViewColumn5.Name = "layoutViewField_layoutViewColumn5";
-            this.layoutViewField_layoutViewColumn5.Size = new System.Drawing.Size(134, 24);
-            this.layoutViewField_layoutViewColumn5.TextSize = new System.Drawing.Size(117, 13);
+            this.layoutViewField_layoutViewColumn5.Size = new System.Drawing.Size(157, 24);
+            this.layoutViewField_layoutViewColumn5.TextSize = new System.Drawing.Size(140, 13);
             // 
             // layoutViewColumn6
             // 
@@ -1283,8 +1315,8 @@
             this.layoutViewField_layoutViewColumn6.EditorPreferredWidth = 10;
             this.layoutViewField_layoutViewColumn6.Location = new System.Drawing.Point(0, 120);
             this.layoutViewField_layoutViewColumn6.Name = "layoutViewField_layoutViewColumn6";
-            this.layoutViewField_layoutViewColumn6.Size = new System.Drawing.Size(134, 24);
-            this.layoutViewField_layoutViewColumn6.TextSize = new System.Drawing.Size(117, 13);
+            this.layoutViewField_layoutViewColumn6.Size = new System.Drawing.Size(157, 24);
+            this.layoutViewField_layoutViewColumn6.TextSize = new System.Drawing.Size(140, 13);
             // 
             // layoutViewColumn7
             // 
@@ -1298,8 +1330,8 @@
             this.layoutViewField_layoutViewColumn7.EditorPreferredWidth = 10;
             this.layoutViewField_layoutViewColumn7.Location = new System.Drawing.Point(0, 144);
             this.layoutViewField_layoutViewColumn7.Name = "layoutViewField_layoutViewColumn7";
-            this.layoutViewField_layoutViewColumn7.Size = new System.Drawing.Size(134, 24);
-            this.layoutViewField_layoutViewColumn7.TextSize = new System.Drawing.Size(117, 13);
+            this.layoutViewField_layoutViewColumn7.Size = new System.Drawing.Size(157, 24);
+            this.layoutViewField_layoutViewColumn7.TextSize = new System.Drawing.Size(140, 13);
             // 
             // layoutViewColumn8
             // 
@@ -1313,8 +1345,8 @@
             this.layoutViewField_layoutViewColumn8.EditorPreferredWidth = 10;
             this.layoutViewField_layoutViewColumn8.Location = new System.Drawing.Point(0, 168);
             this.layoutViewField_layoutViewColumn8.Name = "layoutViewField_layoutViewColumn8";
-            this.layoutViewField_layoutViewColumn8.Size = new System.Drawing.Size(134, 24);
-            this.layoutViewField_layoutViewColumn8.TextSize = new System.Drawing.Size(117, 13);
+            this.layoutViewField_layoutViewColumn8.Size = new System.Drawing.Size(157, 24);
+            this.layoutViewField_layoutViewColumn8.TextSize = new System.Drawing.Size(140, 13);
             // 
             // layoutViewColumn9
             // 
@@ -1328,8 +1360,8 @@
             this.layoutViewField_layoutViewColumn9.EditorPreferredWidth = 10;
             this.layoutViewField_layoutViewColumn9.Location = new System.Drawing.Point(0, 192);
             this.layoutViewField_layoutViewColumn9.Name = "layoutViewField_layoutViewColumn9";
-            this.layoutViewField_layoutViewColumn9.Size = new System.Drawing.Size(134, 24);
-            this.layoutViewField_layoutViewColumn9.TextSize = new System.Drawing.Size(117, 13);
+            this.layoutViewField_layoutViewColumn9.Size = new System.Drawing.Size(157, 24);
+            this.layoutViewField_layoutViewColumn9.TextSize = new System.Drawing.Size(140, 13);
             // 
             // layoutViewColumn10
             // 
@@ -1343,8 +1375,8 @@
             this.layoutViewField_layoutViewColumn10.EditorPreferredWidth = 10;
             this.layoutViewField_layoutViewColumn10.Location = new System.Drawing.Point(0, 216);
             this.layoutViewField_layoutViewColumn10.Name = "layoutViewField_layoutViewColumn10";
-            this.layoutViewField_layoutViewColumn10.Size = new System.Drawing.Size(134, 24);
-            this.layoutViewField_layoutViewColumn10.TextSize = new System.Drawing.Size(117, 13);
+            this.layoutViewField_layoutViewColumn10.Size = new System.Drawing.Size(157, 24);
+            this.layoutViewField_layoutViewColumn10.TextSize = new System.Drawing.Size(140, 13);
             // 
             // layoutViewColumn11
             // 
@@ -1363,8 +1395,8 @@
             this.layoutViewField_layoutViewColumn11.EditorPreferredWidth = 10;
             this.layoutViewField_layoutViewColumn11.Location = new System.Drawing.Point(0, 240);
             this.layoutViewField_layoutViewColumn11.Name = "layoutViewField_layoutViewColumn11";
-            this.layoutViewField_layoutViewColumn11.Size = new System.Drawing.Size(134, 21);
-            this.layoutViewField_layoutViewColumn11.TextSize = new System.Drawing.Size(117, 13);
+            this.layoutViewField_layoutViewColumn11.Size = new System.Drawing.Size(157, 21);
+            this.layoutViewField_layoutViewColumn11.TextSize = new System.Drawing.Size(140, 13);
             // 
             // layoutViewColumn12
             // 
@@ -1383,8 +1415,8 @@
             this.layoutViewField_layoutViewColumn12.EditorPreferredWidth = 10;
             this.layoutViewField_layoutViewColumn12.Location = new System.Drawing.Point(0, 261);
             this.layoutViewField_layoutViewColumn12.Name = "layoutViewField_layoutViewColumn12";
-            this.layoutViewField_layoutViewColumn12.Size = new System.Drawing.Size(134, 21);
-            this.layoutViewField_layoutViewColumn12.TextSize = new System.Drawing.Size(117, 13);
+            this.layoutViewField_layoutViewColumn12.Size = new System.Drawing.Size(157, 21);
+            this.layoutViewField_layoutViewColumn12.TextSize = new System.Drawing.Size(140, 13);
             // 
             // layoutViewColumn13
             // 
@@ -1405,8 +1437,8 @@
             this.layoutViewField_layoutViewColumn13.EditorPreferredWidth = 10;
             this.layoutViewField_layoutViewColumn13.Location = new System.Drawing.Point(0, 282);
             this.layoutViewField_layoutViewColumn13.Name = "layoutViewField_layoutViewColumn13";
-            this.layoutViewField_layoutViewColumn13.Size = new System.Drawing.Size(134, 23);
-            this.layoutViewField_layoutViewColumn13.TextSize = new System.Drawing.Size(117, 13);
+            this.layoutViewField_layoutViewColumn13.Size = new System.Drawing.Size(157, 23);
+            this.layoutViewField_layoutViewColumn13.TextSize = new System.Drawing.Size(140, 13);
             // 
             // layoutViewColumn14
             // 
@@ -1422,8 +1454,8 @@
             this.layoutViewField_layoutViewColumn14.EditorPreferredWidth = 10;
             this.layoutViewField_layoutViewColumn14.Location = new System.Drawing.Point(0, 305);
             this.layoutViewField_layoutViewColumn14.Name = "layoutViewField_layoutViewColumn14";
-            this.layoutViewField_layoutViewColumn14.Size = new System.Drawing.Size(134, 24);
-            this.layoutViewField_layoutViewColumn14.TextSize = new System.Drawing.Size(117, 13);
+            this.layoutViewField_layoutViewColumn14.Size = new System.Drawing.Size(157, 24);
+            this.layoutViewField_layoutViewColumn14.TextSize = new System.Drawing.Size(140, 13);
             // 
             // layoutViewColumn15
             // 
@@ -1439,8 +1471,8 @@
             this.layoutViewField_layoutViewColumn15.EditorPreferredWidth = 10;
             this.layoutViewField_layoutViewColumn15.Location = new System.Drawing.Point(0, 329);
             this.layoutViewField_layoutViewColumn15.Name = "layoutViewField_layoutViewColumn15";
-            this.layoutViewField_layoutViewColumn15.Size = new System.Drawing.Size(134, 20);
-            this.layoutViewField_layoutViewColumn15.TextSize = new System.Drawing.Size(117, 13);
+            this.layoutViewField_layoutViewColumn15.Size = new System.Drawing.Size(157, 24);
+            this.layoutViewField_layoutViewColumn15.TextSize = new System.Drawing.Size(140, 13);
             // 
             // layoutViewColumn16
             // 
@@ -1454,10 +1486,10 @@
             // layoutViewField_layoutViewColumn16
             // 
             this.layoutViewField_layoutViewColumn16.EditorPreferredWidth = 10;
-            this.layoutViewField_layoutViewColumn16.Location = new System.Drawing.Point(0, 349);
+            this.layoutViewField_layoutViewColumn16.Location = new System.Drawing.Point(0, 353);
             this.layoutViewField_layoutViewColumn16.Name = "layoutViewField_layoutViewColumn16";
-            this.layoutViewField_layoutViewColumn16.Size = new System.Drawing.Size(134, 24);
-            this.layoutViewField_layoutViewColumn16.TextSize = new System.Drawing.Size(117, 13);
+            this.layoutViewField_layoutViewColumn16.Size = new System.Drawing.Size(157, 24);
+            this.layoutViewField_layoutViewColumn16.TextSize = new System.Drawing.Size(140, 13);
             // 
             // layoutViewColumn17
             // 
@@ -1471,10 +1503,10 @@
             // layoutViewField_layoutViewColumn17
             // 
             this.layoutViewField_layoutViewColumn17.EditorPreferredWidth = 10;
-            this.layoutViewField_layoutViewColumn17.Location = new System.Drawing.Point(0, 373);
+            this.layoutViewField_layoutViewColumn17.Location = new System.Drawing.Point(0, 377);
             this.layoutViewField_layoutViewColumn17.Name = "layoutViewField_layoutViewColumn17";
-            this.layoutViewField_layoutViewColumn17.Size = new System.Drawing.Size(134, 24);
-            this.layoutViewField_layoutViewColumn17.TextSize = new System.Drawing.Size(117, 13);
+            this.layoutViewField_layoutViewColumn17.Size = new System.Drawing.Size(157, 24);
+            this.layoutViewField_layoutViewColumn17.TextSize = new System.Drawing.Size(140, 13);
             // 
             // layoutViewColumn18
             // 
@@ -1486,30 +1518,30 @@
             // layoutViewField_layoutViewColumn18
             // 
             this.layoutViewField_layoutViewColumn18.EditorPreferredWidth = 10;
-            this.layoutViewField_layoutViewColumn18.Location = new System.Drawing.Point(0, 397);
+            this.layoutViewField_layoutViewColumn18.Location = new System.Drawing.Point(0, 401);
             this.layoutViewField_layoutViewColumn18.Name = "layoutViewField_layoutViewColumn18";
-            this.layoutViewField_layoutViewColumn18.Size = new System.Drawing.Size(134, 24);
-            this.layoutViewField_layoutViewColumn18.TextSize = new System.Drawing.Size(117, 13);
+            this.layoutViewField_layoutViewColumn18.Size = new System.Drawing.Size(157, 24);
+            this.layoutViewField_layoutViewColumn18.TextSize = new System.Drawing.Size(140, 13);
             // 
             // layoutViewColumn19
             // 
-            this.layoutViewColumn19.Caption = "Quản lý nhà nước";
-            this.layoutViewColumn19.FieldName = "quanLyNhaNuoc";
+            this.layoutViewColumn19.Caption = "Ngày tuyển dụng chính thức";
+            this.layoutViewColumn19.FieldName = "ngayTuyenDungChinhThuc";
             this.layoutViewColumn19.LayoutViewField = this.layoutViewField_layoutViewColumn19;
             this.layoutViewColumn19.Name = "layoutViewColumn19";
             // 
             // layoutViewField_layoutViewColumn19
             // 
             this.layoutViewField_layoutViewColumn19.EditorPreferredWidth = 10;
-            this.layoutViewField_layoutViewColumn19.Location = new System.Drawing.Point(0, 421);
+            this.layoutViewField_layoutViewColumn19.Location = new System.Drawing.Point(0, 425);
             this.layoutViewField_layoutViewColumn19.Name = "layoutViewField_layoutViewColumn19";
-            this.layoutViewField_layoutViewColumn19.Size = new System.Drawing.Size(134, 24);
-            this.layoutViewField_layoutViewColumn19.TextSize = new System.Drawing.Size(117, 13);
+            this.layoutViewField_layoutViewColumn19.Size = new System.Drawing.Size(157, 20);
+            this.layoutViewField_layoutViewColumn19.TextSize = new System.Drawing.Size(140, 13);
             // 
             // layoutViewColumn20
             // 
-            this.layoutViewColumn20.Caption = "Chính trị";
-            this.layoutViewColumn20.FieldName = "chinhTri";
+            this.layoutViewColumn20.Caption = "Email";
+            this.layoutViewColumn20.FieldName = "email";
             this.layoutViewColumn20.LayoutViewField = this.layoutViewField_layoutViewColumn20;
             this.layoutViewColumn20.Name = "layoutViewColumn20";
             // 
@@ -1518,8 +1550,8 @@
             this.layoutViewField_layoutViewColumn20.EditorPreferredWidth = 10;
             this.layoutViewField_layoutViewColumn20.Location = new System.Drawing.Point(0, 445);
             this.layoutViewField_layoutViewColumn20.Name = "layoutViewField_layoutViewColumn20";
-            this.layoutViewField_layoutViewColumn20.Size = new System.Drawing.Size(134, 24);
-            this.layoutViewField_layoutViewColumn20.TextSize = new System.Drawing.Size(117, 13);
+            this.layoutViewField_layoutViewColumn20.Size = new System.Drawing.Size(157, 24);
+            this.layoutViewField_layoutViewColumn20.TextSize = new System.Drawing.Size(140, 13);
             // 
             // layoutViewColumn21
             // 
@@ -1538,8 +1570,8 @@
             this.layoutViewField_layoutViewColumn21.EditorPreferredWidth = 10;
             this.layoutViewField_layoutViewColumn21.Location = new System.Drawing.Point(0, 469);
             this.layoutViewField_layoutViewColumn21.Name = "layoutViewField_layoutViewColumn21";
-            this.layoutViewField_layoutViewColumn21.Size = new System.Drawing.Size(134, 21);
-            this.layoutViewField_layoutViewColumn21.TextSize = new System.Drawing.Size(117, 13);
+            this.layoutViewField_layoutViewColumn21.Size = new System.Drawing.Size(157, 21);
+            this.layoutViewField_layoutViewColumn21.TextSize = new System.Drawing.Size(140, 13);
             // 
             // layoutViewCard1
             // 
@@ -1566,7 +1598,9 @@
             this.layoutViewField_layoutViewColumn18,
             this.layoutViewField_layoutViewColumn19,
             this.layoutViewField_layoutViewColumn20,
-            this.layoutViewField_layoutViewColumn21});
+            this.layoutViewField_layoutViewColumn21,
+            this.layoutViewField_layoutViewColumn22,
+            this.layoutViewField_layoutViewColumn23});
             this.layoutViewCard1.Name = "layoutViewCard1";
             // 
             // repositoryItemRadioGroup1
@@ -2142,7 +2176,8 @@
             this.gridColumn6,
             this.gridColumn7,
             this.gridColumn8,
-            this.gridColumn9});
+            this.gridColumn9,
+            this.gridColumn46});
             this.gvMain.GridControl = this.gcMain;
             this.gvMain.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Count, "gridColumn4", null, " ( Có {0} người )")});
@@ -2277,6 +2312,14 @@
             this.gridColumn9.VisibleIndex = 7;
             this.gridColumn9.Width = 300;
             // 
+            // gridColumn46
+            // 
+            this.gridColumn46.Caption = "Color";
+            this.gridColumn46.FieldName = "Color";
+            this.gridColumn46.Name = "gridColumn46";
+            this.gridColumn46.Visible = true;
+            this.gridColumn46.VisibleIndex = 8;
+            // 
             // repositoryItemMemoEdit1
             // 
             this.repositoryItemMemoEdit1.Name = "repositoryItemMemoEdit1";
@@ -2340,6 +2383,38 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.btnDownloadFileTrangThai)});
             this.popupMenuGVTrangThai.Manager = this.barManager1;
             this.popupMenuGVTrangThai.Name = "popupMenuGVTrangThai";
+            // 
+            // layoutViewColumn22
+            // 
+            this.layoutViewColumn22.AppearanceCell.Options.UseTextOptions = true;
+            this.layoutViewColumn22.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+            this.layoutViewColumn22.Caption = "Giờ chuẩn";
+            this.layoutViewColumn22.FieldName = "gioChuan";
+            this.layoutViewColumn22.LayoutViewField = this.layoutViewField_layoutViewColumn22;
+            this.layoutViewColumn22.Name = "layoutViewColumn22";
+            // 
+            // layoutViewField_layoutViewColumn22
+            // 
+            this.layoutViewField_layoutViewColumn22.EditorPreferredWidth = 10;
+            this.layoutViewField_layoutViewColumn22.Location = new System.Drawing.Point(0, 490);
+            this.layoutViewField_layoutViewColumn22.Name = "layoutViewField_layoutViewColumn22";
+            this.layoutViewField_layoutViewColumn22.Size = new System.Drawing.Size(157, 20);
+            this.layoutViewField_layoutViewColumn22.TextSize = new System.Drawing.Size(140, 13);
+            // 
+            // layoutViewColumn23
+            // 
+            this.layoutViewColumn23.Caption = "Số chứng minh nhân dân";
+            this.layoutViewColumn23.FieldName = "soCMND";
+            this.layoutViewColumn23.LayoutViewField = this.layoutViewField_layoutViewColumn23;
+            this.layoutViewColumn23.Name = "layoutViewColumn23";
+            // 
+            // layoutViewField_layoutViewColumn23
+            // 
+            this.layoutViewField_layoutViewColumn23.EditorPreferredWidth = 10;
+            this.layoutViewField_layoutViewColumn23.Location = new System.Drawing.Point(0, 510);
+            this.layoutViewField_layoutViewColumn23.Name = "layoutViewField_layoutViewColumn23";
+            this.layoutViewField_layoutViewColumn23.Size = new System.Drawing.Size(157, 20);
+            this.layoutViewField_layoutViewColumn23.TextSize = new System.Drawing.Size(140, 13);
             // 
             // MainForm
             // 
@@ -2476,6 +2551,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.popupMenuGVHocHamHocVi)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenuGVChungChi)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenuGVTrangThai)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_layoutViewColumn22)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_layoutViewColumn23)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2683,5 +2760,12 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn16;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn17;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn18;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn35;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn19;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn46;
+        private DevExpress.XtraGrid.Columns.LayoutViewColumn layoutViewColumn22;
+        private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_layoutViewColumn22;
+        private DevExpress.XtraGrid.Columns.LayoutViewColumn layoutViewColumn23;
+        private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_layoutViewColumn23;
     }
 }

@@ -3,6 +3,7 @@ using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 using Model;
 using Model.Entities;
+using Model.Helper;
 using QLNS_SGU.View;
 using System;
 using System.Collections.Generic;
@@ -59,9 +60,9 @@ namespace QLNS_SGU.Presenter
             unitOfWorks.BaoHiemXaHoiRepository.Insert(new BaoHiemXaHoi
             {
                 soSo = _view.TXTSoSo.Text,
-                ngayThamGia = unitOfWorks.HopDongVienChucRepository.ReturnDateTimeToDatabase(_view.DTNgayThamGia.Text),
-                ngayCapSo = unitOfWorks.HopDongVienChucRepository.ReturnDateTimeToDatabase(_view.DTNgayCapSo.Text),
-                ngayRutSo = unitOfWorks.HopDongVienChucRepository.ReturnDateTimeToDatabase(_view.DTNgayRutSo.Text),
+                ngayThamGia = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(_view.DTNgayThamGia.Text),
+                ngayCapSo = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(_view.DTNgayCapSo.Text),
+                ngayRutSo = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(_view.DTNgayRutSo.Text),
                 ghiChu = _view.TXTGhiChu.Text,
                 idVienChuc = idvienchuc
             });
@@ -79,17 +80,17 @@ namespace QLNS_SGU.Presenter
             }
             if (ngayThamGiaChanged)
             {
-                baoHiemXaHoi.ngayThamGia = unitOfWorks.HopDongVienChucRepository.ReturnDateTimeToDatabase(_view.DTNgayThamGia.Text);
+                baoHiemXaHoi.ngayThamGia = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(_view.DTNgayThamGia.Text);
                 ngayThamGiaChanged = false;
             }
             if (ngayCapSoChanged)
             {
-                baoHiemXaHoi.ngayCapSo = unitOfWorks.HopDongVienChucRepository.ReturnDateTimeToDatabase(_view.DTNgayCapSo.Text);
+                baoHiemXaHoi.ngayCapSo = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(_view.DTNgayCapSo.Text);
                 ngayCapSoChanged = false;
             }
             if (ngayRutSoChanged)
             {
-                baoHiemXaHoi.ngayRutSo = unitOfWorks.HopDongVienChucRepository.ReturnDateTimeToDatabase(_view.DTNgayRutSo.Text);
+                baoHiemXaHoi.ngayRutSo = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(_view.DTNgayRutSo.Text);
                 ngayRutSoChanged = false;
             }
             if (ghiChuChanged)
@@ -116,8 +117,8 @@ namespace QLNS_SGU.Presenter
             {
                 idVienChuc = idvienchuc,
                 lyDo = _view.GVQuaTrinhGianDoanBaoHiemXaHoi.GetFocusedRowCellDisplayText("lyDo"),
-                ngayBatDau = unitOfWorks.HopDongVienChucRepository.ReturnDateTimeToDatabase(_view.GVQuaTrinhGianDoanBaoHiemXaHoi.GetFocusedRowCellDisplayText("ngayBatDau")),
-                ngayKetThuc = unitOfWorks.HopDongVienChucRepository.ReturnDateTimeToDatabase(_view.GVQuaTrinhGianDoanBaoHiemXaHoi.GetFocusedRowCellDisplayText("ngayKetThuc"))
+                ngayBatDau = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(_view.GVQuaTrinhGianDoanBaoHiemXaHoi.GetFocusedRowCellDisplayText("ngayBatDau")),
+                ngayKetThuc = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(_view.GVQuaTrinhGianDoanBaoHiemXaHoi.GetFocusedRowCellDisplayText("ngayKetThuc"))
             });
             unitOfWorks.Save();
             _view.GVQuaTrinhGianDoanBaoHiemXaHoi.OptionsView.NewItemRowPosition = NewItemRowPosition.None;
@@ -132,8 +133,8 @@ namespace QLNS_SGU.Presenter
             int id = Convert.ToInt32(_view.GVQuaTrinhGianDoanBaoHiemXaHoi.GetFocusedRowCellValue("idQuaTrinhGianDoan"));
             QuaTrinhGianDoanBaoHiemXaHoi quaTrinhGianDoanBaoHiemXaHoi = unitOfWorks.QuaTrinhGianDoanBaoHiemXaHoiRepository.GetObjectById(id);
             quaTrinhGianDoanBaoHiemXaHoi.lyDo = _view.GVQuaTrinhGianDoanBaoHiemXaHoi.GetFocusedRowCellDisplayText("lyDo").ToString();
-            quaTrinhGianDoanBaoHiemXaHoi.ngayBatDau = unitOfWorks.HopDongVienChucRepository.ReturnDateTimeToDatabase(_view.GVQuaTrinhGianDoanBaoHiemXaHoi.GetFocusedRowCellDisplayText("ngayBatDau"));
-            quaTrinhGianDoanBaoHiemXaHoi.ngayKetThuc = unitOfWorks.HopDongVienChucRepository.ReturnDateTimeToDatabase(_view.GVQuaTrinhGianDoanBaoHiemXaHoi.GetFocusedRowCellDisplayText("ngayKetThuc"));
+            quaTrinhGianDoanBaoHiemXaHoi.ngayBatDau = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(_view.GVQuaTrinhGianDoanBaoHiemXaHoi.GetFocusedRowCellDisplayText("ngayBatDau"));
+            quaTrinhGianDoanBaoHiemXaHoi.ngayKetThuc = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(_view.GVQuaTrinhGianDoanBaoHiemXaHoi.GetFocusedRowCellDisplayText("ngayKetThuc"));
             unitOfWorks.Save();
             XtraMessageBox.Show("Cập nhật dữ liệu thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }

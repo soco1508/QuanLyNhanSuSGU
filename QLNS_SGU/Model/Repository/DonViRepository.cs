@@ -23,9 +23,12 @@ namespace Model.Repository
             return _db.DonVis.Where(x => x.idDonVi == iddonvi).Select(y => y.diaDiem).First();
         }
 
-        public int GetIdDonViCoDiaDiem(string donvi, string diadiem)
+        public int GetIdDonVi(string donvi)
         {
-            return _db.DonVis.Where(x => x.tenDonVi == donvi && x.diaDiem == diadiem).Select(y => y.idDonVi).First();
+            int idDonVi = _db.DonVis.Where(x => x.tenDonVi.ToLower() == donvi.ToLower()).Select(y => y.idDonVi).FirstOrDefault();
+            if (idDonVi > 0)
+                return idDonVi;
+            return _db.DonVis.Where(x => x.tenDonVi == string.Empty).Select(y => y.idDonVi).FirstOrDefault();
         }
 
         public void DeleteDuplicateRowInList(List<DonVi> listDonVi)
@@ -43,14 +46,6 @@ namespace Model.Repository
                     row.diaDiem = null;
                 }
             }
-        }
-
-        public int GetIdDonVi(string donvi)
-        {
-            int iddonvi = _db.DonVis.Where(x => x.tenDonVi == donvi).Select(y => y.idDonVi).FirstOrDefault();
-            if (iddonvi > 0)
-                return iddonvi;
-            return 1;
         }
 
         public IList<DonVi> GetListDonVi()
@@ -85,6 +80,14 @@ namespace Model.Repository
             donVi.sDT = sdt;
             donVi.idLoaiDonVi = idloaidonvi;
             _db.SaveChanges();
+        }
+
+        /// <summary>
+        /// Lấy danh sách "tên đơn vị" + "địa điểm" để import
+        /// </summary>
+        public List<string> GetListTenDonVi()
+        {
+            return _db.DonVis.Select(x => x.tenDonVi).ToList();
         }
     }
 }

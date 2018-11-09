@@ -15,7 +15,9 @@ namespace Model.Repository
 
         public int GetIdLoaiHocHamHocViByTenLoaiHocHamHocVi(string loaihochamhocvi)
         {
-            return _db.LoaiHocHamHocVis.Where(x => x.tenLoaiHocHamHocVi == loaihochamhocvi).Select(y => y.idLoaiHocHamHocVi).FirstOrDefault();
+            if(loaihochamhocvi != string.Empty)
+                return _db.LoaiHocHamHocVis.Where(x => x.tenLoaiHocHamHocVi == loaihochamhocvi).Select(y => y.idLoaiHocHamHocVi).FirstOrDefault();
+            return _db.LoaiHocHamHocVis.Where(x => x.tenLoaiHocHamHocVi == "Khác").Select(y => y.idLoaiHocHamHocVi).FirstOrDefault();
         }
 
         public IList<LoaiHocHamHocVi> GetListLoaiHocHamHocVi()
@@ -23,16 +25,17 @@ namespace Model.Repository
             return _db.LoaiHocHamHocVis.ToList();
         }
 
-        public void Update(int id, string loaihochamhocvi)
+        public void Update(int id, string loaihochamhocvi, int? phancap)
         {
-            LoaiHocHamHocVi _loaihochamhocvi = _db.LoaiHocHamHocVis.Where(x => x.idLoaiHocHamHocVi == id).First();
+            LoaiHocHamHocVi _loaihochamhocvi = _db.LoaiHocHamHocVis.Where(x => x.idLoaiHocHamHocVi == id).FirstOrDefault();
             _loaihochamhocvi.tenLoaiHocHamHocVi = loaihochamhocvi;
+            _loaihochamhocvi.phanCap = phancap;
             _db.SaveChanges();
         }
 
-        public void Create(string loaihochamhocvi)
+        public void Create(string loaihochamhocvi, int? phancap)
         {
-            _db.LoaiHocHamHocVis.Add(new LoaiHocHamHocVi { tenLoaiHocHamHocVi = loaihochamhocvi });
+            _db.LoaiHocHamHocVis.Add(new LoaiHocHamHocVi { tenLoaiHocHamHocVi = loaihochamhocvi , phanCap = phancap});
             _db.SaveChanges();
         }
 
@@ -51,29 +54,9 @@ namespace Model.Repository
             return false;
         }
 
-        public int GetIdLoaiHocHamHocViForDangHocNangCao(string s)
+        public List<string> GetListTenLoaiHocHamHocVi()
         {
-            switch (s)
-            {
-                case "cao học":
-                    return _db.LoaiHocHamHocVis.Where(x => x.tenLoaiHocHamHocVi == "Thạc sĩ").Select(y => y.idLoaiHocHamHocVi).FirstOrDefault();
-                case "nghiên cứu sinh":
-                    return _db.LoaiHocHamHocVis.Where(x => x.tenLoaiHocHamHocVi == "Tiến sĩ").Select(y => y.idLoaiHocHamHocVi).FirstOrDefault();
-                default:
-                    return -1;
-            }
-        }
-
-        public string ReturnFirstCharOfLoaiHocHamHocVi(string text)
-        {
-            string[] arrText = text.Split(' ');
-            string result = string.Empty;
-            for (int i = 0; i < arrText.Length; i++)
-            {
-                string temp = arrText[i];
-                result += temp[0];
-            }
-            return result;
+            return _db.LoaiHocHamHocVis.Select(x => x.tenLoaiHocHamHocVi).ToList();
         }
     }
 }

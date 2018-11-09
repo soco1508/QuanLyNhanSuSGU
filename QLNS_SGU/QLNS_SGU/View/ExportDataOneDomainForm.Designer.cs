@@ -157,9 +157,9 @@
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 439);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 440);
             this.barDockControlBottom.Manager = this.barManager1;
-            this.barDockControlBottom.Size = new System.Drawing.Size(1152, 27);
+            this.barDockControlBottom.Size = new System.Drawing.Size(1152, 26);
             // 
             // barDockControlLeft
             // 
@@ -167,7 +167,7 @@
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 0);
             this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 439);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 440);
             // 
             // barDockControlRight
             // 
@@ -175,7 +175,7 @@
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.barDockControlRight.Location = new System.Drawing.Point(1152, 0);
             this.barDockControlRight.Manager = this.barManager1;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 439);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 440);
             // 
             // layoutControl1
             // 
@@ -198,7 +198,7 @@
             // 
             // radSelectTimeToFilter
             // 
-            this.radSelectTimeToFilter.Location = new System.Drawing.Point(671, 69);
+            this.radSelectTimeToFilter.Location = new System.Drawing.Point(671, 71);
             this.radSelectTimeToFilter.MenuManager = this.barManager1;
             this.radSelectTimeToFilter.Name = "radSelectTimeToFilter";
             this.radSelectTimeToFilter.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
@@ -218,7 +218,7 @@
             // dtTimeline
             // 
             this.dtTimeline.EditValue = null;
-            this.dtTimeline.Location = new System.Drawing.Point(671, 100);
+            this.dtTimeline.Location = new System.Drawing.Point(671, 102);
             this.dtTimeline.MenuManager = this.barManager1;
             this.dtTimeline.Name = "dtTimeline";
             this.dtTimeline.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -235,7 +235,7 @@
             // 
             this.dtFromDuration.EditValue = null;
             this.dtFromDuration.Enabled = false;
-            this.dtFromDuration.Location = new System.Drawing.Point(912, 100);
+            this.dtFromDuration.Location = new System.Drawing.Point(911, 102);
             this.dtFromDuration.MenuManager = this.barManager1;
             this.dtFromDuration.Name = "dtFromDuration";
             this.dtFromDuration.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -252,9 +252,10 @@
             // 
             this.dtToDuration.EditValue = null;
             this.dtToDuration.Enabled = false;
-            this.dtToDuration.Location = new System.Drawing.Point(912, 124);
+            this.dtToDuration.Location = new System.Drawing.Point(911, 126);
             this.dtToDuration.MenuManager = this.barManager1;
             this.dtToDuration.Name = "dtToDuration";
+            this.dtToDuration.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
             this.dtToDuration.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtToDuration.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -268,7 +269,7 @@
             // btnCancel
             // 
             this.btnCancel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.ImageOptions.Image")));
-            this.btnCancel.Location = new System.Drawing.Point(960, 160);
+            this.btnCancel.Location = new System.Drawing.Point(960, 162);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(70, 22);
             this.btnCancel.StyleController = this.layoutControl1;
@@ -278,7 +279,7 @@
             // btnExportData
             // 
             this.btnExportData.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnExportData.ImageOptions.Image")));
-            this.btnExportData.Location = new System.Drawing.Point(1034, 160);
+            this.btnExportData.Location = new System.Drawing.Point(1034, 162);
             this.btnExportData.Name = "btnExportData";
             this.btnExportData.Size = new System.Drawing.Size(89, 22);
             this.btnExportData.StyleController = this.layoutControl1;
@@ -288,7 +289,7 @@
             // radDomain
             // 
             this.radDomain.EditValue = false;
-            this.radDomain.Location = new System.Drawing.Point(34, 86);
+            this.radDomain.Location = new System.Drawing.Point(34, 88);
             this.radDomain.MenuManager = this.barManager1;
             this.radDomain.Name = "radDomain";
             this.radDomain.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
@@ -322,7 +323,7 @@
             this.simpleLabelItem1});
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "Root";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(1135, 194);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(1135, 196);
             this.layoutControlGroup1.TextVisible = false;
             // 
             // layoutControlGroupCheckBox
@@ -335,7 +336,7 @@
             this.emptySpaceItem11});
             this.layoutControlGroupCheckBox.Location = new System.Drawing.Point(0, 27);
             this.layoutControlGroupCheckBox.Name = "layoutControlGroupCheckBox";
-            this.layoutControlGroupCheckBox.Size = new System.Drawing.Size(637, 121);
+            this.layoutControlGroupCheckBox.Size = new System.Drawing.Size(637, 123);
             this.layoutControlGroupCheckBox.Text = "Lĩnh vực";
             // 
             // emptySpaceItem7
@@ -399,7 +400,7 @@
             this.emptySpaceItem10});
             this.layoutControlGroup3.Location = new System.Drawing.Point(647, 27);
             this.layoutControlGroup3.Name = "layoutControlGroup3";
-            this.layoutControlGroup3.Size = new System.Drawing.Size(468, 121);
+            this.layoutControlGroup3.Size = new System.Drawing.Size(468, 123);
             this.layoutControlGroup3.Text = "Lọc theo thời gian";
             // 
             // layoutControlItem11
@@ -429,7 +430,7 @@
             // layoutControlItem12
             // 
             this.layoutControlItem12.Control = this.dtFromDuration;
-            this.layoutControlItem12.Location = new System.Drawing.Point(210, 31);
+            this.layoutControlItem12.Location = new System.Drawing.Point(209, 31);
             this.layoutControlItem12.MaxSize = new System.Drawing.Size(177, 24);
             this.layoutControlItem12.MinSize = new System.Drawing.Size(177, 24);
             this.layoutControlItem12.Name = "layoutControlItem12";
@@ -443,7 +444,7 @@
             // layoutControlItem13
             // 
             this.layoutControlItem13.Control = this.dtToDuration;
-            this.layoutControlItem13.Location = new System.Drawing.Point(210, 55);
+            this.layoutControlItem13.Location = new System.Drawing.Point(209, 55);
             this.layoutControlItem13.MaxSize = new System.Drawing.Size(177, 24);
             this.layoutControlItem13.MinSize = new System.Drawing.Size(177, 24);
             this.layoutControlItem13.Name = "layoutControlItem13";
@@ -470,7 +471,7 @@
             this.splitterItem1.AllowHotTrack = true;
             this.splitterItem1.Location = new System.Drawing.Point(192, 31);
             this.splitterItem1.Name = "splitterItem1";
-            this.splitterItem1.Size = new System.Drawing.Size(5, 48);
+            this.splitterItem1.Size = new System.Drawing.Size(4, 48);
             // 
             // emptySpaceItem6
             // 
@@ -497,7 +498,7 @@
             // emptySpaceItem9
             // 
             this.emptySpaceItem9.AllowHotTrack = false;
-            this.emptySpaceItem9.Location = new System.Drawing.Point(197, 31);
+            this.emptySpaceItem9.Location = new System.Drawing.Point(196, 31);
             this.emptySpaceItem9.MaxSize = new System.Drawing.Size(13, 48);
             this.emptySpaceItem9.MinSize = new System.Drawing.Size(13, 48);
             this.emptySpaceItem9.Name = "emptySpaceItem9";
@@ -508,15 +509,15 @@
             // emptySpaceItem10
             // 
             this.emptySpaceItem10.AllowHotTrack = false;
-            this.emptySpaceItem10.Location = new System.Drawing.Point(387, 31);
+            this.emptySpaceItem10.Location = new System.Drawing.Point(386, 31);
             this.emptySpaceItem10.Name = "emptySpaceItem10";
-            this.emptySpaceItem10.Size = new System.Drawing.Size(44, 48);
+            this.emptySpaceItem10.Size = new System.Drawing.Size(45, 48);
             this.emptySpaceItem10.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem3
             // 
             this.emptySpaceItem3.AllowHotTrack = false;
-            this.emptySpaceItem3.Location = new System.Drawing.Point(0, 148);
+            this.emptySpaceItem3.Location = new System.Drawing.Point(0, 150);
             this.emptySpaceItem3.Name = "emptySpaceItem3";
             this.emptySpaceItem3.Size = new System.Drawing.Size(948, 26);
             this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
@@ -524,7 +525,7 @@
             // layoutControlItem14
             // 
             this.layoutControlItem14.Control = this.btnCancel;
-            this.layoutControlItem14.Location = new System.Drawing.Point(948, 148);
+            this.layoutControlItem14.Location = new System.Drawing.Point(948, 150);
             this.layoutControlItem14.MaxSize = new System.Drawing.Size(74, 26);
             this.layoutControlItem14.MinSize = new System.Drawing.Size(74, 26);
             this.layoutControlItem14.Name = "layoutControlItem14";
@@ -536,7 +537,7 @@
             // layoutControlItem15
             // 
             this.layoutControlItem15.Control = this.btnExportData;
-            this.layoutControlItem15.Location = new System.Drawing.Point(1022, 148);
+            this.layoutControlItem15.Location = new System.Drawing.Point(1022, 150);
             this.layoutControlItem15.MaxSize = new System.Drawing.Size(93, 26);
             this.layoutControlItem15.MinSize = new System.Drawing.Size(93, 26);
             this.layoutControlItem15.Name = "layoutControlItem15";
@@ -552,7 +553,7 @@
             this.emptySpaceItem2.MaxSize = new System.Drawing.Size(10, 121);
             this.emptySpaceItem2.MinSize = new System.Drawing.Size(10, 121);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(10, 121);
+            this.emptySpaceItem2.Size = new System.Drawing.Size(10, 123);
             this.emptySpaceItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
@@ -578,7 +579,7 @@
             this.gcCustom.MainView = this.gvCustom;
             this.gcCustom.MenuManager = this.barManager1;
             this.gcCustom.Name = "gcCustom";
-            this.gcCustom.Size = new System.Drawing.Size(1152, 248);
+            this.gcCustom.Size = new System.Drawing.Size(1152, 249);
             this.gcCustom.TabIndex = 8;
             this.gcCustom.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvCustom});
@@ -589,6 +590,7 @@
             this.gvCustom.Name = "gvCustom";
             this.gvCustom.OptionsBehavior.Editable = false;
             this.gvCustom.OptionsView.ColumnAutoWidth = false;
+            this.gvCustom.OptionsView.ShowFooter = true;
             this.gvCustom.OptionsView.ShowGroupPanel = false;
             // 
             // ExportDataOneDomainForm

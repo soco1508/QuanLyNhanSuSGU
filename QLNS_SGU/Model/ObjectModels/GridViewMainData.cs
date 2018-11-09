@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,19 +19,21 @@ namespace Model.ObjectModels
         public string DonVi { get; set; }
         public string TrinhDo { get; set; }
         public double? HeSo { get; set; }
+        public string Color { get; set; }
 
         public GridViewMainData()
         {
             Order = -1;
-            MaVienChuc = "";
+            MaVienChuc = string.Empty;
             NgaySinh = Convert.ToDateTime("01/01/1900");
-            Ho = "";
-            Ten = "";
-            GioiTinh = "";
-            ChucVu = "";
-            DonVi = "";
-            TrinhDo = "";
+            Ho = string.Empty;
+            Ten = string.Empty;
+            GioiTinh = string.Empty;
+            ChucVu = string.Empty;
+            DonVi = string.Empty;
+            TrinhDo = string.Empty;
             HeSo = -1;
+            Color = string.Empty;
         }
     }
 }

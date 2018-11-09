@@ -38,6 +38,10 @@ namespace Model.Repository
             thongTinCaNhan.queQuan = vienChuc.queQuan;
             thongTinCaNhan.tonGiao = vienChuc.TonGiao.tenTonGiao;
             thongTinCaNhan.vanHoa = vienChuc.vanHoa;
+            thongTinCaNhan.soCMND = vienChuc.soChungMinhNhanDan;
+            thongTinCaNhan.ngayTuyenDungChinhThuc = vienChuc.ngayTuyenDungChinhThuc;
+            thongTinCaNhan.email = vienChuc.email;
+            thongTinCaNhan.gioChuan = vienChuc.gioChuan;
             return thongTinCaNhan;
         }        
 

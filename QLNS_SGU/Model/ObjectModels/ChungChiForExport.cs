@@ -36,32 +36,32 @@ namespace Model.ObjectModels
         public string GhiChuCC { get; set; }
         public ChungChiForExport()
         {
-            MaVienChuc = "";
-            Ho = "";
-            Ten = "";
-            SoDienThoai = "";
-            GioiTinh = "";
+            MaVienChuc = string.Empty;
+            Ho = string.Empty;
+            Ten = string.Empty;
+            SoDienThoai = string.Empty;
+            GioiTinh = string.Empty;
             NgaySinh = null;
-            NoiSinh = "";
-            QueQuan = "";
-            DanToc = "";
-            TonGiao = "";
-            HoKhauThuongTru = "";
-            NoiOHienNay = "";
+            NoiSinh = string.Empty;
+            QueQuan = string.Empty;
+            DanToc = string.Empty;
+            TonGiao = string.Empty;
+            HoKhauThuongTru = string.Empty;
+            NoiOHienNay = string.Empty;
             LaDangVien = false;
             NgayVaoDang = null;
             NgayThamGiaCongTac = null;
             NgayVaoNganh = null;
             NgayVeTruong = null;
-            VanHoa = "";
-            QuanLyNhaNuoc = "";
-            ChinhTri = "";
-            GhiChu = "";
-            LoaiChungChi = "";
-            CapDo = "";
+            VanHoa = string.Empty;
+            QuanLyNhaNuoc = string.Empty;
+            ChinhTri = string.Empty;
+            GhiChu = string.Empty;
+            LoaiChungChi = string.Empty;
+            CapDo = string.Empty;
             NgayCapChungChi = Convert.ToDateTime("01/01/1900");
-            LinkVanBanDinhKem = "";
-            GhiChuCC = "";
+            LinkVanBanDinhKem = string.Empty;
+            GhiChuCC = string.Empty;
         }
     }
 }

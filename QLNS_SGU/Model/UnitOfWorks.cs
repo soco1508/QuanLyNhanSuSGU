@@ -2,6 +2,7 @@
 using Model.Repository;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -474,7 +475,23 @@ namespace Model
 
         public void Save()
         {
-            _db.SaveChanges();
+            if (_db != null)
+            {
+                using (var dbTrans = _db.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        int rows = _db.SaveChanges();
+                        dbTrans.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        //Debug.WriteLine(ex);
+                        dbTrans.Rollback();
+                    }
+                }
+            }
+            else return;
         }
     }
 }

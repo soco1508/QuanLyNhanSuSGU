@@ -3,6 +3,7 @@ using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraSplashScreen;
 using Model;
 using Model.Entities;
+using Model.Helper;
 using Model.ObjectModels;
 using QLNS_SGU.View;
 using System;
@@ -95,8 +96,8 @@ namespace QLNS_SGU.Presenter
             {
                 idVienChuc = unitOfWorks.VienChucRepository.GetIdVienChuc(mavienchuc),
                 idTrangThai = Convert.ToInt32(_view.CBXTrangThai.EditValue),
-                ngayBatDau = unitOfWorks.HopDongVienChucRepository.ReturnDateTimeToDatabase(_view.DTNgayBatDau.Text),
-                ngayKetThuc = unitOfWorks.HopDongVienChucRepository.ReturnDateTimeToDatabase(_view.DTNgayKetThuc.Text),
+                ngayBatDau = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(_view.DTNgayBatDau.Text),
+                ngayKetThuc = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(_view.DTNgayKetThuc.Text),
                 moTa = _view.TXTMoTa.Text,
                 diaDiem = _view.TXTDiaDiem.Text,
                 linkVanBanDinhKem = _view.TXTLinkVanBanDinhKem.Text
@@ -111,8 +112,8 @@ namespace QLNS_SGU.Presenter
         {
             UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             int idtrangthaivienchuc = Convert.ToInt32(_view.GVTabPageTrangThai.GetFocusedRowCellDisplayText("Id"));
-            DateTime? ngaybatdau = unitOfWorks.HopDongVienChucRepository.ReturnDateTimeToDatabase(_view.DTNgayBatDau.Text);
-            DateTime? ngayketthuc = unitOfWorks.HopDongVienChucRepository.ReturnDateTimeToDatabase(_view.DTNgayKetThuc.Text);
+            DateTime? ngaybatdau = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(_view.DTNgayBatDau.Text);
+            DateTime? ngayketthuc = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(_view.DTNgayKetThuc.Text);
             TrangThaiVienChuc trangThaiVienChuc = unitOfWorks.TrangThaiVienChucRepository.GetObjectById(idtrangthaivienchuc);
             if (trangThaiChanged)
             {
@@ -186,7 +187,7 @@ namespace QLNS_SGU.Presenter
             {
                 unitOfWorks.Save();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 XtraMessageBox.Show("Vui lòng nhập dữ liệu trạng thái.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }

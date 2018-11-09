@@ -104,12 +104,14 @@ namespace QLNS_SGU.Presenter
         public void HiddenEditor(object sender, EventArgs e)
         {
             _view.GVLoaiHocHamHocVi.Columns[1].OptionsColumn.AllowEdit = false;
+            _view.GVLoaiHocHamHocVi.Columns[2].OptionsColumn.AllowEdit = false;
         }
 
         public void InitNewRow(object sender, InitNewRowEventArgs e)
         {
             GridView gridView = sender as GridView;
             gridView.SetRowCellValue(e.RowHandle, gridView.Columns[1], string.Empty);
+            gridView.SetRowCellValue(e.RowHandle, gridView.Columns[2], 0);
         }
 
         public void MouseDoubleClick(object sender, MouseEventArgs e)
@@ -118,6 +120,11 @@ namespace QLNS_SGU.Presenter
             if (hinfo.Column == _view.GVLoaiHocHamHocVi.Columns[1])
             {
                 _view.GVLoaiHocHamHocVi.Columns[1].OptionsColumn.AllowEdit = true;
+                _view.GVLoaiHocHamHocVi.ShowEditor();
+            }
+            if (hinfo.Column == _view.GVLoaiHocHamHocVi.Columns[2])
+            {
+                _view.GVLoaiHocHamHocVi.Columns[2].OptionsColumn.AllowEdit = true;
                 _view.GVLoaiHocHamHocVi.ShowEditor();
             }
         }
@@ -131,12 +138,13 @@ namespace QLNS_SGU.Presenter
             UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             int row_handle = _view.GVLoaiHocHamHocVi.FocusedRowHandle;
             int idRowFocused = Convert.ToInt32(_view.GVLoaiHocHamHocVi.GetFocusedRowCellDisplayText("idLoaiHocHamHocVi"));
-            if (idRowFocused == 0)
+            if (idRowFocused == 0) // create
             {
                 string loaihochamhocvi = _view.GVLoaiHocHamHocVi.GetFocusedRowCellDisplayText("tenLoaiHocHamHocVi").ToString();
+                int? phancap = Convert.ToInt32(_view.GVLoaiHocHamHocVi.GetFocusedRowCellDisplayText("phanCap"));
                 if (loaihochamhocvi != string.Empty)
                 {
-                    unitOfWorks.LoaiHocHamHocViRepository.Create(loaihochamhocvi);
+                    unitOfWorks.LoaiHocHamHocViRepository.Create(loaihochamhocvi, phancap);
                     LoadDataToGrid();
                     XtraMessageBox.Show("Lưu dữ liệu thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     _view.GVLoaiHocHamHocVi.MoveLast();
@@ -147,13 +155,14 @@ namespace QLNS_SGU.Presenter
                     XtraMessageBox.Show("Bạn chưa nhập Loại Học Hàm Học Vị.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            else
+            else //update
             {
                 int id = Convert.ToInt32(_view.GVLoaiHocHamHocVi.GetRowCellValue(row_handle, "idLoaiHocHamHocVi"));
                 string loaihochamhocvi = _view.GVLoaiHocHamHocVi.GetFocusedRowCellDisplayText("tenLoaiHocHamHocVi").ToString();
+                int? phancap = Convert.ToInt32(_view.GVLoaiHocHamHocVi.GetFocusedRowCellDisplayText("phanCap"));
                 if (loaihochamhocvi != string.Empty)
                 {
-                    unitOfWorks.LoaiHocHamHocViRepository.Update(id, loaihochamhocvi);
+                    unitOfWorks.LoaiHocHamHocViRepository.Update(id, loaihochamhocvi, phancap);
                     XtraMessageBox.Show("Lưu dữ liệu thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else

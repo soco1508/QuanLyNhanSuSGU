@@ -50,5 +50,10 @@ namespace Model.Repository
             }
             return false;
         }
+
+        public List<string> GetListTenTrangThai()
+        {
+            return _db.TrangThais.Select(x => x.tenTrangThai).ToList();
+        }
     }
 }

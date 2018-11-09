@@ -31,6 +31,7 @@ namespace QLNS_SGU.View
         {
             Load += (s, e) => presenter.LoadForm();
             FormClosing += new FormClosingEventHandler(presenter.FormClosing);
+            xtraTabbedMdiManager1.MouseDown += new MouseEventHandler(presenter.MouseDown);
         }
     }
 }

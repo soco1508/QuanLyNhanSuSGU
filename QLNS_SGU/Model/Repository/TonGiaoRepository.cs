@@ -23,9 +23,14 @@ namespace Model.Repository
             return _db.TonGiaos.ToList();
         }
 
-        public int SelectIdEmptyValue(Func<TonGiao, bool> p)
+        public int SelectIdEmptyValue()
         {
-            return _db.TonGiaos.Where(x => x.tenTonGiao == "").Select(y => y.idTonGiao).FirstOrDefault();
+            return _db.TonGiaos.Where(x => x.tenTonGiao == string.Empty).Select(y => y.idTonGiao).FirstOrDefault();
+        }
+
+        public List<string> GetListTenTonGiao()
+        {
+            return _db.TonGiaos.Select(x => x.tenTonGiao).ToList();
         }
     }
 }

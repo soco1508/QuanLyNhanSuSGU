@@ -11,6 +11,7 @@ using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraSplashScreen;
 using Model;
 using Model.Entities;
+using Model.Helper;
 using Model.ObjectModels;
 using QLNS_SGU.View;
 
@@ -91,8 +92,10 @@ namespace QLNS_SGU.Presenter
         void UploadFileToGoogleDriveCC();
         void DownloadFileToDeviceCC();
         void LoaiChungChiChanged(object sender, EventArgs e);
+        void TenChungChiChanged(object sender, EventArgs e);
         void CapDoChungChiChanged(object sender, EventArgs e);
         void NgayCapChungChiChanged(object sender, EventArgs e);
+        void CoSoDaoTaoChanged(object sender, EventArgs e);
         void GhiChuChungChiChanged(object sender, EventArgs e);
         void LinkVanBanDinhKemChungChiChanged(object sender, EventArgs e);
         void RowIndicatorCC(object sender, RowIndicatorCustomDrawEventArgs e);
@@ -382,7 +385,7 @@ namespace QLNS_SGU.Presenter
             if (_view.CBXLoaiHocHamHocViHHHV.Text != string.Empty && _view.CBXNganhDaoTaoHHHV.Text != string.Empty && _view.CBXChuyenNganhHHHV.Text != string.Empty)
             {
                 UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
-                string loaihochamhocvi = unitOfWorks.LoaiHocHamHocViRepository.ReturnFirstCharOfLoaiHocHamHocVi(_view.CBXLoaiHocHamHocViHHHV.Text);
+                string loaihochamhocvi = _view.CBXLoaiHocHamHocViHHHV.Text;
                 string nganhdaotao = _view.CBXNganhDaoTaoHHHV.Text;
                 string chuyennganh = _view.CBXChuyenNganhHHHV.Text;
                 string tenhochamhocvi = loaihochamhocvi + " " + nganhdaotao + " - " + chuyennganh;
@@ -412,13 +415,12 @@ namespace QLNS_SGU.Presenter
                 idLoaiNganh = idloainganh,                
                 idNganhDaoTao = idnganhdaotao,
                 idChuyenNganh = idchuyennganh,
-                bacHocHamHocVi = unitOfWorks.HocHamHocViVienChucRepository.HardCodeBacToDatabase(_view.CBXLoaiHocHamHocViHHHV.Text),
                 tenHocHamHocVi = tenhochamhocvi,
                 coSoDaoTao = _view.TXTCoSoDaoTaoHHHV.Text,
                 ngonNguDaoTao = _view.TXTNgonNguDaoTaoHHHV.Text,
                 hinhThucDaoTao = _view.TXTHinhThucDaoTaoHHHV.Text,
                 nuocCapBang = _view.TXTNuocCapBangHHHV.Text,
-                ngayCapBang = unitOfWorks.HopDongVienChucRepository.ReturnDateTimeToDatabase(_view.DTNgayCapBang.Text),
+                ngayCapBang = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(_view.DTNgayCapBang.Text),
                 linkVanBanDinhKem = _view.TXTLinkVanBanDinhKemHHHV.Text
             });
             unitOfWorks.Save();
@@ -493,7 +495,7 @@ namespace QLNS_SGU.Presenter
             }
             if (ngayCapBangHHHVChanged)
             {
-                hocHamHocViVienChuc.ngayCapBang = unitOfWorks.HopDongVienChucRepository.ReturnDateTimeToDatabase(_view.DTNgayCapBang.Text);
+                hocHamHocViVienChuc.ngayCapBang = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(_view.DTNgayCapBang.Text);
                 ngayCapBangHHHVChanged = false;
             }
             if (nuocCapBangHHHVChanged)
@@ -856,8 +858,8 @@ namespace QLNS_SGU.Presenter
             {
                 idVienChuc = unitOfWorks.VienChucRepository.GetIdVienChuc(mavienchuc),
                 idLoaiHocHamHocVi = Convert.ToInt32(_view.CBXLoaiHocHamHocViDHNC.EditValue),
-                ngayBatDau = unitOfWorks.HopDongVienChucRepository.ReturnDateTimeToDatabase(_view.DTNgayBatDauDHNC.Text),
-                ngayKetThuc = unitOfWorks.HopDongVienChucRepository.ReturnDateTimeToDatabase(_view.DTNgayKetThucDHNC.Text),
+                ngayBatDau = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(_view.DTNgayBatDauDHNC.Text),
+                ngayKetThuc = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(_view.DTNgayKetThucDHNC.Text),
                 tenHocHamHocVi = _view.TXTTenHocHamHocViDHNC.Text,
                 loai = unitOfWorks.DangHocNangCaoRepository.HardCodeLoaiToDatabase(_view.CBXLoai.EditValue.ToString()),
                 coSoDaoTao = _view.TXTCoSoDaoTaoDHNC.Text,
@@ -884,7 +886,7 @@ namespace QLNS_SGU.Presenter
             }
             if (loaiDangHocNangCaoChanged)
             {
-                dangHocNangCao.loai = unitOfWorks.HocHamHocViVienChucRepository.HardCodeBacToDatabase(_view.CBXLoai.EditValue.ToString());
+                dangHocNangCao.loai = unitOfWorks.DangHocNangCaoRepository.HardCodeLoaiToDatabase(_view.CBXLoai.EditValue.ToString());
                 loaiDangHocNangCaoChanged = false;
             }
             if (tenHocHamHocViDangHocNangCaoChanged)
@@ -914,12 +916,12 @@ namespace QLNS_SGU.Presenter
             }
             if (ngayBatDauDangHocNangCaoChanged)
             {
-                dangHocNangCao.ngayBatDau = unitOfWorks.HopDongVienChucRepository.ReturnDateTimeToDatabase(_view.DTNgayBatDauDHNC.Text);
+                dangHocNangCao.ngayBatDau = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(_view.DTNgayBatDauDHNC.Text);
                 ngayBatDauDangHocNangCaoChanged = false;
             }
             if (ngayKetThucDangHocNangCaoChanged)
             {
-                dangHocNangCao.ngayKetThuc = unitOfWorks.HopDongVienChucRepository.ReturnDateTimeToDatabase(_view.DTNgayKetThucDHNC.Text);
+                dangHocNangCao.ngayKetThuc = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(_view.DTNgayKetThucDHNC.Text);
                 ngayKetThucDangHocNangCaoChanged = false;
             }
             if (soQuyetDinhChanged)
@@ -1245,8 +1247,8 @@ namespace QLNS_SGU.Presenter
                 idNganhDaoTao = nganhdaotao,
                 idChuyenNganh = Convert.ToInt32(_view.CBXChuyenNganhN.EditValue),
                 phanLoai = unitOfWorks.NganhVienChucRepository.HardCodePhanLoaiToDatabase(_view.RADPhanLoaiN.SelectedIndex),
-                ngayBatDau = unitOfWorks.HopDongVienChucRepository.ReturnDateTimeToDatabase(_view.DTNgayBatDauN.Text),
-                ngayKetThuc = unitOfWorks.HopDongVienChucRepository.ReturnDateTimeToDatabase(_view.DTNgayKetThucN.Text),
+                ngayBatDau = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(_view.DTNgayBatDauN.Text),
+                ngayKetThuc = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(_view.DTNgayKetThucN.Text),
                 linkVanBanDinhKem = _view.TXTLinkVanBanDinhKemN.Text,
                 trinhDoDay = _view.TXTTrinhDoDay.Text.Trim()
             });
@@ -1291,12 +1293,12 @@ namespace QLNS_SGU.Presenter
             }
             if (ngayBatDauNChanged)
             {
-                nganhVienChuc.ngayBatDau = unitOfWorks.HopDongVienChucRepository.ReturnDateTimeToDatabase(_view.DTNgayBatDauN.Text);
+                nganhVienChuc.ngayBatDau = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(_view.DTNgayBatDauN.Text);
                 ngayBatDauNChanged = false;
             }
             if (ngayKetThucNChanged)
             {
-                nganhVienChuc.ngayKetThuc = unitOfWorks.HopDongVienChucRepository.ReturnDateTimeToDatabase(_view.DTNgayKetThucN.Text);
+                nganhVienChuc.ngayKetThuc = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(_view.DTNgayKetThucN.Text);
                 ngayKetThucNChanged = false;
             }
             if (trinhDoDayNChanged)
@@ -1587,8 +1589,10 @@ namespace QLNS_SGU.Presenter
         #endregion
         #region ChungChi
         private bool loaiChungChiChanged = false;
+        private bool tenChungChiChanged = false;
         private bool capDoChungChiChanged = false;
         private bool ngayCapChungChiChanged = false;
+        private bool coSoDaoTaoChanged = false;
         private bool ghiChuChungChiChanged = false;
         private bool linkVanBanDinhKemChungChiChanged = false;
         private bool checkAddNewCC = true;
@@ -1609,7 +1613,14 @@ namespace QLNS_SGU.Presenter
             _view.CBXLoaiChungChi.Properties.DataSource = listTenLoaiChungChi;
             _view.CBXLoaiChungChi.Properties.DropDownRows = listTenLoaiChungChi.Count;
 
-            List<string> listCapDoChungChi = unitOfWorks.NganhVienChucRepository.GetListCapDoChungChi();
+            List<string> listTenChungChi = unitOfWorks.ChungChiVienChucRepository.GetListTenChungChi();
+            AutoCompleteStringCollection tenChungChiSource = new AutoCompleteStringCollection();
+            listTenChungChi.ForEach(x => tenChungChiSource.Add(x)); // autocompleteStringCollection if add null value app will be crashed
+            _view.TXTTenChungChi.MaskBox.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            _view.TXTTenChungChi.MaskBox.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            _view.TXTTenChungChi.MaskBox.AutoCompleteCustomSource = tenChungChiSource;
+
+            List<string> listCapDoChungChi = unitOfWorks.ChungChiVienChucRepository.GetListCapDoChungChi();
             AutoCompleteStringCollection capdoSource = new AutoCompleteStringCollection();
             listCapDoChungChi.ForEach(x => capdoSource.Add(x)); // autocompleteStringCollection if add null value app will be crashed
             _view.TXTCapDoChungChi.MaskBox.AutoCompleteSource = AutoCompleteSource.CustomSource;
@@ -1620,11 +1631,14 @@ namespace QLNS_SGU.Presenter
         {
             checkAddNewCC = true;
             _view.CBXLoaiChungChi.ErrorText = string.Empty;
-            _view.TXTCapDoChungChi.ErrorText = string.Empty;
+            _view.TXTTenChungChi.ErrorText = string.Empty;
+            //_view.TXTCapDoChungChi.ErrorText = string.Empty;
             _view.CBXLoaiChungChi.Text = string.Empty;
+            _view.TXTTenChungChi.Text = string.Empty;
             _view.TXTCapDoChungChi.Text = string.Empty;
             _view.TXTGhiChuCC.Text = string.Empty;
             _view.DTNgayCapChungChi.Text = string.Empty;
+            _view.TXTCoSoDaoTaoCC.Text = string.Empty;
             _view.TXTLinkVanBanDinhKemCC.Text = string.Empty;
         }
         private void InsertDataCC()
@@ -1632,7 +1646,9 @@ namespace QLNS_SGU.Presenter
             UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             string mavienchuc = _view.TXTMaVienChuc.Text;
             string loaichungchi = _view.CBXLoaiChungChi.Text;
+            string tenchungchi = _view.TXTTenChungChi.Text.Trim();
             string capdo = _view.TXTCapDoChungChi.Text.Trim();
+            string cosodaotao = _view.TXTCoSoDaoTaoCC.Text.Trim();
             string idloaichungchi = unitOfWorks.LoaiChungChiRepository.GetIdLoaiChungChi(loaichungchi);
             if (idloaichungchi != null)
             {
@@ -1640,8 +1656,10 @@ namespace QLNS_SGU.Presenter
                 {
                     idVienChuc = unitOfWorks.VienChucRepository.GetIdVienChuc(mavienchuc),
                     idLoaiChungChi = idloaichungchi,
+                    tenChungChi = tenchungchi,
                     capDoChungChi = capdo,
-                    ngayCapChungChi = unitOfWorks.HopDongVienChucRepository.ReturnDateTimeToDatabase(_view.DTNgayCapChungChi.Text),
+                    ngayCapChungChi = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(_view.DTNgayCapChungChi.Text),
+                    coSoDaoTao = cosodaotao,
                     ghiChu = _view.TXTGhiChuCC.Text,
                     linkVanBanDinhKem = _view.TXTGhiChuCC.Text
                 });
@@ -1658,12 +1676,19 @@ namespace QLNS_SGU.Presenter
             UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             int idchungchivienchuc = Convert.ToInt32(_view.GVChungChi.GetFocusedRowCellDisplayText("Id"));
             string tenloaichungchi = _view.CBXLoaiChungChi.EditValue.ToString();
-            string capdo = _view.TXTCapDoChungChi.Text;
+            string tenchungchi = _view.TXTTenChungChi.Text.Trim();
+            string capdo = _view.TXTCapDoChungChi.Text.Trim();
+            string cosodaotao = _view.TXTCoSoDaoTaoCC.Text.Trim();
             ChungChiVienChuc chungChiVienChuc = unitOfWorks.ChungChiVienChucRepository.GetObjectById(idchungchivienchuc);
             if (loaiChungChiChanged)
             {
                 chungChiVienChuc.idLoaiChungChi = unitOfWorks.LoaiChungChiRepository.GetIdLoaiChungChiByTen(tenloaichungchi);
                 loaiChungChiChanged = false;
+            }
+            if (tenChungChiChanged)
+            {
+                chungChiVienChuc.tenChungChi = tenchungchi;
+                tenChungChiChanged = false;
             }
             if (capDoChungChiChanged)
             {
@@ -1672,8 +1697,13 @@ namespace QLNS_SGU.Presenter
             }
             if (ngayCapChungChiChanged)
             {
-                chungChiVienChuc.ngayCapChungChi = unitOfWorks.HopDongVienChucRepository.ReturnDateTimeToDatabase(_view.DTNgayCapChungChi.Text);
+                chungChiVienChuc.ngayCapChungChi = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(_view.DTNgayCapChungChi.Text);
                 ngayCapChungChiChanged = false;
+            }
+            if (coSoDaoTaoChanged)
+            {
+                chungChiVienChuc.coSoDaoTao = cosodaotao;
+                coSoDaoTaoChanged = false;
             }
             if (ghiChuChungChiChanged)
             {
@@ -1701,8 +1731,10 @@ namespace QLNS_SGU.Presenter
             if (row_handle >= 0)
             {
                 _view.CBXLoaiChungChi.EditValue = _view.GVChungChi.GetFocusedRowCellDisplayText("LoaiChungChi");
+                _view.TXTTenChungChi.Text = _view.GVChungChi.GetFocusedRowCellDisplayText("TenChungChi");
                 _view.TXTCapDoChungChi.Text = _view.GVChungChi.GetFocusedRowCellDisplayText("CapDo");
                 _view.DTNgayCapChungChi.EditValue = unitOfWorks.HopDongVienChucRepository.ReturnNullIfDateTimeNullToView(_view.GVChungChi.GetFocusedRowCellDisplayText("NgayCapChungChi"));
+                _view.TXTCoSoDaoTaoCC.Text = _view.GVChungChi.GetFocusedRowCellDisplayText("CoSoDaoTao");
                 _view.TXTGhiChuCC.Text = _view.GVChungChi.GetFocusedRowCellDisplayText("GhiChu");
                 _view.TXTLinkVanBanDinhKemCC.Text = _view.GVChungChi.GetFocusedRowCellDisplayText("LinkVanBanDinhKem");
             }
@@ -1720,10 +1752,10 @@ namespace QLNS_SGU.Presenter
                 {                    
                     if (_view.CBXLoaiChungChi.Text == string.Empty)
                     {
-                        _view.CBXLoaiChungChi.ErrorText = "Vui lòng chọn chứng chỉ.";
+                        _view.CBXLoaiChungChi.ErrorText = "Vui lòng chọn loại chứng chỉ.";
                         _view.CBXLoaiChungChi.ErrorIconAlignment = ErrorIconAlignment.MiddleRight;
                     }
-                    if (_view.CBXLoaiChungChi.Text != string.Empty && _view.TXTCapDoChungChi.Text != string.Empty)
+                    if (_view.CBXLoaiChungChi.Text != string.Empty && _view.TXTTenChungChi.Text != string.Empty)
                     {
                         InsertDataCC();
                     }
@@ -1733,10 +1765,10 @@ namespace QLNS_SGU.Presenter
                     _view.TXTMaVienChuc.Text = maVienChucFromTabPageThongTinCaNhan;
                     if (_view.CBXLoaiChungChi.Text == string.Empty)
                     {
-                        _view.CBXLoaiChungChi.ErrorText = "Vui lòng chọn chứng chỉ.";
+                        _view.CBXLoaiChungChi.ErrorText = "Vui lòng chọn loại chứng chỉ.";
                         _view.CBXLoaiChungChi.ErrorIconAlignment = ErrorIconAlignment.MiddleRight;
                     }
-                    if (_view.CBXLoaiChungChi.Text != string.Empty && _view.TXTCapDoChungChi.Text != string.Empty)
+                    if (_view.CBXLoaiChungChi.Text != string.Empty && _view.TXTTenChungChi.Text != string.Empty)
                     {
                         InsertDataCC();
                     }                    
@@ -1747,9 +1779,7 @@ namespace QLNS_SGU.Presenter
             {
                 int row_handle = _view.GVChungChi.FocusedRowHandle;
                 if (row_handle >= 0)
-                {
                     UpdateDataCC();
-                }
             }            
         }
 
@@ -1852,6 +1882,11 @@ namespace QLNS_SGU.Presenter
             loaiChungChiChanged = true;
         }
 
+        public void TenChungChiChanged(object sender, EventArgs e)
+        {
+            tenChungChiChanged = true;
+        }
+
         public void CapDoChungChiChanged(object sender, EventArgs e)
         {
             capDoChungChiChanged = true;
@@ -1860,6 +1895,11 @@ namespace QLNS_SGU.Presenter
         public void NgayCapChungChiChanged(object sender, EventArgs e)
         {
             ngayCapChungChiChanged = true;
+        }
+
+        public void CoSoDaoTaoChanged(object sender, EventArgs e)
+        {
+            coSoDaoTaoChanged = true;
         }
 
         public void GhiChuChungChiChanged(object sender, EventArgs e)

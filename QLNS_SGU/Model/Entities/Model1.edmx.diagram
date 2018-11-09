@@ -4,40 +4,40 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f8770cd6546642f29d4d0465bcc509c9" Name="Diagram1">
-        <EntityTypeShape EntityType="QLNSSGU_1Model.Bac" Width="1.5" PointX="9" PointY="36.125" IsExpanded="true" />
+      <Diagram DiagramId="7efbd35621f5465fa2b82703587775da" Name="Diagram1">
+        <EntityTypeShape EntityType="QLNSSGU_1Model.Bac" Width="1.5" PointX="9" PointY="35.125" IsExpanded="true" />
         <EntityTypeShape EntityType="QLNSSGU_1Model.BaoHiemXaHoi" Width="1.5" PointX="5.25" PointY="19.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLNSSGU_1Model.ChucVu" Width="1.5" PointX="3" PointY="29" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLNSSGU_1Model.ChucVu" Width="1.5" PointX="3" PointY="30" IsExpanded="true" />
         <EntityTypeShape EntityType="QLNSSGU_1Model.ChucVuDonViVienChuc" Width="1.5" PointX="5.25" PointY="24.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLNSSGU_1Model.ChungChiVienChuc" Width="1.5" PointX="8.25" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLNSSGU_1Model.ChungChiVienChuc" Width="1.5" PointX="8.25" PointY="22.625" IsExpanded="true" />
         <EntityTypeShape EntityType="QLNSSGU_1Model.ChuyenNganh" Width="1.5" PointX="6" PointY="40.125" IsExpanded="true" />
         <EntityTypeShape EntityType="QLNSSGU_1Model.DangHocNangCao" Width="1.5" PointX="8.25" PointY="17.25" IsExpanded="true" />
         <EntityTypeShape EntityType="QLNSSGU_1Model.DanhMucThoiGian" Width="1.5" PointX="9" PointY="14.25" IsExpanded="true" />
         <EntityTypeShape EntityType="QLNSSGU_1Model.DanToc" Width="1.5" PointX="0.75" PointY="23.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLNSSGU_1Model.DonVi" Width="1.5" PointX="3" PointY="32" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLNSSGU_1Model.HocHamHocViVienChuc" Width="1.5" PointX="8.25" PointY="26.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLNSSGU_1Model.DonVi" Width="1.5" PointX="3" PointY="33" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLNSSGU_1Model.HocHamHocViVienChuc" Width="1.5" PointX="8.25" PointY="26.875" IsExpanded="true" />
         <EntityTypeShape EntityType="QLNSSGU_1Model.HopDongVienChuc" Width="1.5" PointX="11.25" PointY="22.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLNSSGU_1Model.LoaiChucVu" Width="1.5" PointX="0.75" PointY="29.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLNSSGU_1Model.LoaiChucVu" Width="1.5" PointX="0.75" PointY="30.375" IsExpanded="true" />
         <EntityTypeShape EntityType="QLNSSGU_1Model.LoaiChungChi" Width="1.5" PointX="6" PointY="29.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLNSSGU_1Model.LoaiDonVi" Width="1.5" PointX="0.75" PointY="32.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLNSSGU_1Model.LoaiHocHamHocVi" Width="1.5" PointX="6" PointY="12.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLNSSGU_1Model.LoaiHopDong" Width="1.5" PointX="9" PointY="33.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLNSSGU_1Model.LoaiDonVi" Width="1.5" PointX="0.75" PointY="33.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLNSSGU_1Model.LoaiHocHamHocVi" Width="1.5" PointX="6" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLNSSGU_1Model.LoaiHopDong" Width="1.5" PointX="9" PointY="32.375" IsExpanded="true" />
         <EntityTypeShape EntityType="QLNSSGU_1Model.LoaiNganh" Width="1.5" PointX="1.5" PointY="40.25" IsExpanded="true" />
         <EntityTypeShape EntityType="QLNSSGU_1Model.MucDoDanhGia" Width="1.5" PointX="9" PointY="11.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLNSSGU_1Model.Ngach" Width="1.5" PointX="6.75" PointY="36" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLNSSGU_1Model.Ngach" Width="1.5" PointX="6.75" PointY="35" IsExpanded="true" />
         <EntityTypeShape EntityType="QLNSSGU_1Model.NganhDaoTao" Width="1.5" PointX="3.75" PointY="40" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLNSSGU_1Model.NganhVienChuc" Width="1.5" PointX="13.5" PointY="23.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLNSSGU_1Model.NganhVienChuc" Width="1.5" PointX="13.5" PointY="23.75" IsExpanded="true" />
         <EntityTypeShape EntityType="QLNSSGU_1Model.QuanTriVien" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="QLNSSGU_1Model.QuaTrinhDanhGiaVienChuc" Width="1.5" PointX="11.25" PointY="18.625" IsExpanded="true" />
         <EntityTypeShape EntityType="QLNSSGU_1Model.QuaTrinhGianDoanBaoHiemXaHoi" Width="1.5" PointX="5.25" PointY="49.625" IsExpanded="true" />
         <EntityTypeShape EntityType="QLNSSGU_1Model.QuaTrinhLuong" Width="1.5" PointX="11.25" PointY="26.625" IsExpanded="true" />
         <EntityTypeShape EntityType="QLNSSGU_1Model.QuaTrinhPhuCapThamNienNhaGiao" Width="1.5" PointX="5.25" PointY="56.375" IsExpanded="true" />
         <EntityTypeShape EntityType="QLNSSGU_1Model.ThamSo" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLNSSGU_1Model.ToChuyenMon" Width="1.5" PointX="3" PointY="35.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLNSSGU_1Model.ToChuyenMon" Width="1.5" PointX="3" PointY="36.5" IsExpanded="true" />
         <EntityTypeShape EntityType="QLNSSGU_1Model.TonGiao" Width="1.5" PointX="0.75" PointY="20.375" IsExpanded="true" />
         <EntityTypeShape EntityType="QLNSSGU_1Model.TrangThai" Width="1.5" PointX="3" PointY="16.375" IsExpanded="true" />
         <EntityTypeShape EntityType="QLNSSGU_1Model.TrangThaiVienChuc" Width="1.5" PointX="5.25" PointY="15.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLNSSGU_1Model.VienChuc" Width="1.5" PointX="3" PointY="20.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLNSSGU_1Model.VienChuc" Width="1.5" PointX="3" PointY="20" IsExpanded="true" />
         <AssociationConnector Association="QLNSSGU_1Model.FK__Bac__idNgach__68487DD7" ManuallyRouted="false" />
         <AssociationConnector Association="QLNSSGU_1Model.FK__QuaTrinhL__idBac__6C190EBB" ManuallyRouted="false" />
         <AssociationConnector Association="QLNSSGU_1Model.FK__BaoHiemXa__idVie__398D8EEE" ManuallyRouted="false" />

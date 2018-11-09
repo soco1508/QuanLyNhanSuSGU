@@ -84,33 +84,18 @@ namespace Model.Repository
             }
         }
 
-        public DateTime? ParseDatetimeMatchDatetimeDatabase(string s)
+        public string ParseTrinhDoDaoTao(string trinhdo)
         {
-            if(s != string.Empty)
-            {
-                if (s.Contains("/"))
-                {
-                    return Convert.ToDateTime(s);
-                }
-                else
-                {
-                    return Convert.ToDateTime("01/01/" + s); // s = 2017
-                }
-            }
-            return null;
-        }
-
-        public string ConcatString(string trinhdo, string chuyennganh)
-        {
-            switch (trinhdo)
-            {
-                case "cao học":
-                    return "ThS " + chuyennganh;
-                case "nghiên cứu sinh":
-                    return "TS " + chuyennganh;
-                default:
-                    return "";
-            }
+            List<string> listTienSi = new List<string> { "nghiên cứu sinh", "sau tiến sĩ", "dự tuyển nghiên cứu sinh" };
+            List<string> listThacSi = new List<string> { "cao học" };
+            List<string> listDaiHoc = new List<string> { "cử nhân văn bằng 2" };
+            if (listTienSi.Contains(trinhdo))
+                return "Tiến sĩ";
+            if (listDaiHoc.Contains(trinhdo))
+                return "Đại học";
+            if (listThacSi.Contains(trinhdo))
+                return "Thạc sĩ";
+            return string.Empty;
         }
 
         public int? HardCodeLoaiToDatabase(string loai)
@@ -141,60 +126,6 @@ namespace Model.Repository
             _db.DangHocNangCaos.Remove(a);
         }
 
-        public DangHocNangCao GetMaxLoaiHocHamHocVi(List<DangHocNangCao> list)
-        {
-            DangHocNangCao dangHocNangCao = null;
-            for (int i = 0; i < list.Count; i++)
-            {
-                if (list[i].LoaiHocHamHocVi.tenLoaiHocHamHocVi.Equals("Giáo sư"))
-                {
-                    dangHocNangCao = new DangHocNangCao(list[i]);
-                    break;
-                }
-                if (list[i].LoaiHocHamHocVi.tenLoaiHocHamHocVi.Equals("Phó giáo sư"))
-                {
-                    dangHocNangCao = new DangHocNangCao(list[i]);
-                    break;
-                }
-                if (list[i].LoaiHocHamHocVi.tenLoaiHocHamHocVi.Equals("Tiến sĩ"))
-                {
-                    dangHocNangCao = new DangHocNangCao(list[i]);
-                    break;
-                }
-                if (list[i].LoaiHocHamHocVi.tenLoaiHocHamHocVi.Equals("Thạc sĩ"))
-                {
-                    dangHocNangCao = new DangHocNangCao(list[i]);
-                    break;
-                }
-                if (list[i].LoaiHocHamHocVi.tenLoaiHocHamHocVi.Equals("Đại học"))
-                {
-                    dangHocNangCao = new DangHocNangCao(list[i]);
-                    break;
-                }
-                if (list[i].LoaiHocHamHocVi.tenLoaiHocHamHocVi.Equals("Cao đẳng"))
-                {
-                    dangHocNangCao = new DangHocNangCao(list[i]);
-                    break;
-                }
-                if (list[i].LoaiHocHamHocVi.tenLoaiHocHamHocVi.Equals("Trung cấp"))
-                {
-                    dangHocNangCao = new DangHocNangCao(list[i]);
-                    break;
-                }
-                if (list[i].LoaiHocHamHocVi.tenLoaiHocHamHocVi.Equals("Phổ thông"))
-                {
-                    dangHocNangCao = new DangHocNangCao(list[i]);
-                    break;
-                }
-                if (list[i].LoaiHocHamHocVi.tenLoaiHocHamHocVi.Equals("Khác"))
-                {
-                    dangHocNangCao = new DangHocNangCao(list[i]);
-                    break;
-                }
-            }
-            return dangHocNangCao;
-        }
-
         public DangHocNangCao GetDangHocNangCaoByIdVienChucAndTimelineForExportOne(int idVienChuc, DateTime dtTimeline)
         {
             var rows = _db.DangHocNangCaos.Where(x => x.idVienChuc == idVienChuc);
@@ -204,24 +135,17 @@ namespace Model.Repository
                 if (row.ngayKetThuc != null)
                 {
                     if (row.ngayBatDau <= dtTimeline && row.ngayKetThuc >= dtTimeline)
-                    {
                         listDangHocNangCao.Add(row);
-                    }
                 }
                 else
                 {
                     if (row.ngayBatDau <= dtTimeline)
-                    {
                         listDangHocNangCao.Add(row);
-                    }
                 }
             }
-            if(listDangHocNangCao.Count > 0)
-            {
-                DangHocNangCao dangHocNangCao = GetMaxLoaiHocHamHocVi(listDangHocNangCao);
-                return dangHocNangCao;
-            }
-            return null;            
+            if (listDangHocNangCao.Count > 0)
+                return listDangHocNangCao.OrderByDescending(x => x.ngayBatDau).FirstOrDefault();
+            return null;
         }
 
         public DangHocNangCao GetDangHocNangCaoByIdVienChucAndDurationForExportOne(int idVienChuc, DateTime dtFromDuration, DateTime dtToDuration)
@@ -233,23 +157,16 @@ namespace Model.Repository
                 if (row.ngayKetThuc != null)
                 {
                     if (row.ngayBatDau >= dtFromDuration && row.ngayKetThuc <= dtToDuration)
-                    {
                         listDangHocNangCao.Add(row);
-                    }
                 }
                 else
                 {
                     if (row.ngayBatDau >= dtFromDuration)
-                    {
                         listDangHocNangCao.Add(row);
-                    }
                 }
             }
             if (listDangHocNangCao.Count > 0)
-            {
-                DangHocNangCao dangHocNangCao = GetMaxLoaiHocHamHocVi(listDangHocNangCao);
-                return dangHocNangCao;
-            }
+                return listDangHocNangCao.OrderByDescending(x => x.ngayBatDau).FirstOrDefault();
             return null;
         }
 
@@ -278,7 +195,7 @@ namespace Model.Repository
             return _db.DangHocNangCaos.Where(x => x.VienChuc.maVienChuc == maVienChucForGetListLinkAnhQuyetDinh).Select(y => y.linkAnhQuyetDinh).ToList();
         }
 
-        public List<DangHocNangCao> GetListDangHocNangCaoByIdVienChucAndDurationForExportFull(int idVienChuc, DateTime dtFromDuration, DateTime dtToDuration)
+        public List<DangHocNangCao> GetListDangHocNangCaoByIdVienChucAndDurationForExportFull(int idVienChuc, DateTime? dtFromDuration, DateTime? dtToDuration)
         {
             List<DangHocNangCao> rows = _db.DangHocNangCaos.Where(x => x.idVienChuc == idVienChuc).ToList();
             List<DangHocNangCao> listDangHocNangCao = new List<DangHocNangCao>();
@@ -301,10 +218,10 @@ namespace Model.Repository
             }
             if (listDangHocNangCao.Count > 0)
                 return listDangHocNangCao;
-            return rows;
+            return rows.Where(x => x.ngayBatDau == null && x.ngayKetThuc == null).ToList();
         }
 
-        public List<DangHocNangCao> GetListDangHocNangCaoByIdVienChucAndTimelineForExportFull(int idVienChuc, DateTime dtTimeline)
+        public List<DangHocNangCao> GetListDangHocNangCaoByIdVienChucAndTimelineForExportFull(int idVienChuc, DateTime? dtTimeline)
         {
             List<DangHocNangCao> rows = _db.DangHocNangCaos.Where(x => x.idVienChuc == idVienChuc).ToList();
             List<DangHocNangCao> listDangHocNangCao = new List<DangHocNangCao>();
@@ -327,7 +244,7 @@ namespace Model.Repository
             }
             if (listDangHocNangCao.Count > 0)
                 return listDangHocNangCao;
-            return rows;
+            return rows.Where(x => x.ngayBatDau == null && x.ngayKetThuc == null).ToList();
         }
     }
 }

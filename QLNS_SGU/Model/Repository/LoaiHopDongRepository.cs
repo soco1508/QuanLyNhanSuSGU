@@ -43,9 +43,14 @@ namespace Model.Repository
             }
         }
 
-        public int GetIdLoaiHopDong(string loaihopdong)
+        /// <summary>
+        /// Get id by maloaihopdong
+        /// </summary>
+        /// <param name="maloaihopdong"></param>
+        /// <returns></returns>
+        public int GetIdLoaiHopDong(string maloaihopdong)
         {
-            return _db.LoaiHopDongs.Where(x => x.tenLoaiHopDong == loaihopdong).Select(y => y.idLoaiHopDong).FirstOrDefault();
+            return _db.LoaiHopDongs.Where(x => x.maLoaiHopDong == maloaihopdong).Select(y => y.idLoaiHopDong).FirstOrDefault();
         }
 
         public IList<LoaiHopDong> GetListLoaiHopDong()
@@ -99,6 +104,11 @@ namespace Model.Repository
                 default:
                     return string.Empty;
             }
+        }
+
+        public List<string> GetListMaLoaiHopDong()
+        {
+            return _db.LoaiHopDongs.Select(x => x.maLoaiHopDong).ToList();
         }
     }
 }

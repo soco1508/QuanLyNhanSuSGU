@@ -59,7 +59,7 @@ namespace QLNS_SGU.View
         #endregion
         public void Attach(ITabPageQuaTrinhLuongPresenter presenter)
         {
-            Load += (s, e) => presenter.LoadForm();
+            //Load += (s, e) => presenter.LoadForm();            
             cbxMaNgach.EditValueChanged += new EventHandler(presenter.MaNgachChanged);
             txtTenNgach.TextChanged += new EventHandler(presenter.TenNgachChanged);
             cbxBac.EditValueChanged += new EventHandler(presenter.BacChanged);

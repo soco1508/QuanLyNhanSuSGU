@@ -13,12 +13,13 @@ using Model.Entities;
 using Model.ObjectModels;
 using System.Globalization;
 using DevExpress.XtraGrid.Views.Grid;
+using Model.Helper;
 
 namespace QLNS_SGU.Presenter
 {
     public interface ITabPageQuaTrinhLuongPresenter : IPresenterArgument
     {
-        void LoadForm();
+        //void LoadForm();
         void ClickRowAndShowInfo();
         void UploadFileToGoogleDrive();
         void DownloadFileToDevice();
@@ -119,8 +120,8 @@ namespace QLNS_SGU.Presenter
             {
                 idVienChuc = unitOfWorks.VienChucRepository.GetIdVienChuc(mavienchuc),
                 idBac = unitOfWorks.BacRepository.GetIdBac(bac, idngach),
-                ngayBatDau = unitOfWorks.HopDongVienChucRepository.ReturnDateTimeToDatabase(_view.DTNgayBatDau.Text),
-                ngayLenLuong = unitOfWorks.HopDongVienChucRepository.ReturnDateTimeToDatabase(_view.DTNgayLenLuong.Text),                
+                ngayBatDau = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(_view.DTNgayBatDau.Text),
+                ngayLenLuong = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(_view.DTNgayLenLuong.Text),                
                 dangHuongLuong = _view.CHKDangHuongLuong.Checked,
                 truocHan = Convert.ToInt32(_view.TXTTruocHan.EditValue),
                 heSoVuotKhung = Convert.ToDouble(_view.TXTHeSoVuotKhung.EditValue),
@@ -136,8 +137,8 @@ namespace QLNS_SGU.Presenter
         {
             UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             int idquatrinhluong = Convert.ToInt32(_view.GVTabPageQuaTrinhLuong.GetFocusedRowCellDisplayText("Id"));
-            DateTime? ngaybatdau = unitOfWorks.HopDongVienChucRepository.ReturnDateTimeToDatabase(_view.DTNgayBatDau.Text);
-            DateTime? ngaylenluong = unitOfWorks.HopDongVienChucRepository.ReturnDateTimeToDatabase(_view.DTNgayLenLuong.Text);
+            DateTime? ngaybatdau = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(_view.DTNgayBatDau.Text);
+            DateTime? ngaylenluong = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(_view.DTNgayLenLuong.Text);
             int idngach = Convert.ToInt32(_view.CBXMaNgach.EditValue);
             int bac = Convert.ToInt32(_view.CBXBac.EditValue);
             QuaTrinhLuong quaTrinhLuong = unitOfWorks.QuaTrinhLuongRepository.GetObjectById(idquatrinhluong);

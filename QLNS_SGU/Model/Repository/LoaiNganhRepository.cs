@@ -54,7 +54,10 @@ namespace Model.Repository
 
         public int GetIdLoaiNganh(string tenloainganh)
         {
-            return _db.LoaiNganhs.Where(x => x.tenLoaiNganh == tenloainganh).Select(y => y.idLoaiNganh).FirstOrDefault();
+            int idLoaiNganh = _db.LoaiNganhs.Where(x => x.tenLoaiNganh.ToLower() == tenloainganh.ToLower()).Select(y => y.idLoaiNganh).FirstOrDefault();
+            if (idLoaiNganh > 0)
+                return idLoaiNganh;
+            return _db.LoaiNganhs.Where(x => x.tenLoaiNganh == string.Empty).Select(y => y.idLoaiNganh).FirstOrDefault();
         }
 
         public int GetIdLoaiNganhByIdNganhDaoTao(int idnganhdaotao)
@@ -65,6 +68,11 @@ namespace Model.Repository
         public int GetIdLoaiNganhEmpty()
         {
             return _db.LoaiNganhs.Where(x => x.tenLoaiNganh == string.Empty).Select(y => y.idLoaiNganh).FirstOrDefault();
+        }
+
+        public List<string> GetListTenLoaiNganh()
+        {
+            return _db.LoaiNganhs.Select(x => x.tenLoaiNganh).ToList();
         }
     }
 }

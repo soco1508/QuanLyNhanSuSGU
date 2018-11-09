@@ -13,17 +13,9 @@ namespace Model.Repository
         {
         }
 
-        public int GetIdLoaiChucVu(string chucvudang, string chucvudoan)
-        {
-            if(chucvudang != string.Empty)
-            {
-                return 1;
-            }
-            else if(chucvudang == string.Empty && chucvudoan != string.Empty)
-            {
-                return 3;
-            }
-            return 2;
+        public int GetIdLoaiChucVuByName(string name)
+        {            
+            return _db.LoaiChucVus.Where(x => x.tenLoaiChucVu == name).Select(y => y.idLoaiChucVu).FirstOrDefault();
         }
 
         public IList<LoaiChucVu> GetListLoaiChucVu()
@@ -57,6 +49,11 @@ namespace Model.Repository
                 return true;
             }
             return false;
+        }
+
+        public List<string> GetListTenLoaiChucVu()
+        {
+            return _db.LoaiChucVus.Select(x => x.tenLoaiChucVu).ToList();
         }
     }
 }

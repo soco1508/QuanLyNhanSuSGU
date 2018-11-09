@@ -27,34 +27,38 @@ namespace Model.Models
         public DateTime? ngayVaoNganh { get; set; }
         public DateTime? ngayVeTruong { get; set; }
         public string vanHoa { get; set; }
-        public string quanLyNhaNuoc { get; set; }
-        public string chinhTri { get; set; }
+        public string soCMND { get; set; }
+        public DateTime? ngayTuyenDungChinhThuc { get; set; }
+        public string email { get; set; }
+        public int? gioChuan { get; set; }
         public string ghiChu { get; set; }
         public byte[] anh { get; set; }
 
         public ThongTinCaNhan()
         {
-            maTheVC = "";
-            ho = "";
-            ten = "";
-            sDT = "";
-            gioiTinh = "";
-            ngaySinh = Convert.ToDateTime("01/01/1900");
-            noiSinh = "";
-            queQuan = "";
-            danToc = "";
-            tonGiao = "";
-            hoKhauThuongTru = "";
-            noiOHienNay = "";
-            ngayThamGiaCongTac = Convert.ToDateTime("01/01/1900");
+            maTheVC = string.Empty;
+            ho = string.Empty;
+            ten = string.Empty;
+            sDT = string.Empty;
+            gioiTinh = string.Empty;
+            ngaySinh = null;
+            noiSinh = string.Empty;
+            queQuan = string.Empty;
+            danToc = string.Empty;
+            tonGiao = string.Empty;
+            hoKhauThuongTru = string.Empty;
+            noiOHienNay = string.Empty;
+            ngayThamGiaCongTac = null;
             laDangVien = false;
-            ngayVaoDang = Convert.ToDateTime("01/01/1900");
-            ngayVaoNganh = Convert.ToDateTime("01/01/1900");
-            ngayVeTruong = Convert.ToDateTime("01/01/1900");
-            vanHoa = "";
-            quanLyNhaNuoc = "";
-            chinhTri = "";
-            ghiChu = "";
+            ngayVaoDang = null;
+            ngayVaoNganh = null;
+            ngayVeTruong = null;
+            vanHoa = string.Empty;
+            ngayTuyenDungChinhThuc = null;
+            soCMND = string.Empty;
+            email = string.Empty;
+            gioChuan = 0;
+            ghiChu = string.Empty;
             anh = null;
         }        
     }

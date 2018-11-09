@@ -39,18 +39,6 @@ namespace Model.Repository
             return listQuaTrinhLuongForView;
         }
 
-        private string SplitString(string s)
-        {
-            string[] words = s.Split('/');
-            return words[1] + "/" + words[0] + "/" + words[2];
-        }
-
-        public DateTime? ParseDatetimeMatchDatetimeDatabase(string s)
-        {
-            string temp = SplitString(s);
-            return Convert.ToDateTime(temp);
-        }
-
         public QuaTrinhLuong GetObjectById(int idquatrinhluong)
         {
             return _db.QuaTrinhLuongs.Where(x => x.idQuaTrinhLuong == idquatrinhluong).FirstOrDefault();
@@ -102,16 +90,12 @@ namespace Model.Repository
                 if (row.ngayLenLuong != null)
                 {
                     if (row.ngayBatDau >= dtFromDuration && row.ngayLenLuong <= dtToDuration)
-                    {
                         listQuaTrinhLuong.Add(row);
-                    }
                 }
                 else
                 {
                     if (row.ngayBatDau >= dtFromDuration)
-                    {
                         listQuaTrinhLuong.Add(row);
-                    }
                 }
             }
             if (listQuaTrinhLuong.Count > 0)
@@ -119,7 +103,7 @@ namespace Model.Repository
             return null;
         }
 
-        public List<QuaTrinhLuong> GetListQuaTrinhLuongByIdVienChucAndDurationForExportFull(int idVienChuc, DateTime dtFromDuration, DateTime dtToDuration)
+        public List<QuaTrinhLuong> GetListQuaTrinhLuongByIdVienChucAndDurationForExportFull(int idVienChuc, DateTime? dtFromDuration, DateTime? dtToDuration)
         {
             List<QuaTrinhLuong> rows = _db.QuaTrinhLuongs.Where(x => x.idVienChuc == idVienChuc).ToList();
             List<QuaTrinhLuong> listQuaTrinhLuong = new List<QuaTrinhLuong>();
@@ -142,10 +126,10 @@ namespace Model.Repository
             }
             if (listQuaTrinhLuong.Count > 0)
                 return listQuaTrinhLuong;
-            return rows;
+            return rows.Where(x => x.ngayBatDau == null && x.ngayLenLuong == null).ToList();
         }
 
-        public List<QuaTrinhLuong> GetListQuaTrinhLuongByIdVienChucAndTimelineForExportFull(int idVienChuc, DateTime dtTimeline)
+        public List<QuaTrinhLuong> GetListQuaTrinhLuongByIdVienChucAndTimelineForExportFull(int idVienChuc, DateTime? dtTimeline)
         {
             List<QuaTrinhLuong> rows = _db.QuaTrinhLuongs.Where(x => x.idVienChuc == idVienChuc).ToList();
             List<QuaTrinhLuong> listQuaTrinhLuong = new List<QuaTrinhLuong>();
@@ -168,7 +152,7 @@ namespace Model.Repository
             }
             if(listQuaTrinhLuong.Count > 0)
                 return listQuaTrinhLuong;
-            return rows;
+            return rows.Where(x => x.ngayBatDau == null && x.ngayLenLuong == null).ToList();
         }
     }
 }

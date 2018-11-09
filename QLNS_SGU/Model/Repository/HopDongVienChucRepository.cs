@@ -30,7 +30,7 @@ namespace Model.Repository
                 listHopDong.Add(new HopDongForView
                 {
                     Id = listHopDongVienChuc[i].idHopDongVienChuc,
-                    LoaiHopDong = listHopDongVienChuc[i].LoaiHopDong.tenLoaiHopDong,
+                    LoaiHopDong = listHopDongVienChuc[i].LoaiHopDong.maLoaiHopDong,
                     NgayBatDau = listHopDongVienChuc[i].ngayBatDau,
                     NgayKetThuc = listHopDongVienChuc[i].ngayKetThuc,
                     LinkVanBanDinhKem = listHopDongVienChuc[i].linkVanBanDinhKem,
@@ -45,7 +45,7 @@ namespace Model.Repository
             int idvienchuc = _db.VienChucs.Where(x => x.maVienChuc == mavienchuc).Select(y => y.idVienChuc).FirstOrDefault();
             return _db.HopDongVienChucs.Where(x => x.idVienChuc == idvienchuc)
                                                      .OrderByDescending(t => t.ngayBatDau)
-                                                     .Select(y => y.LoaiHopDong.tenLoaiHopDong)
+                                                     .Select(y => y.LoaiHopDong.maLoaiHopDong)
                                                      .FirstOrDefault();
         }
 
@@ -54,32 +54,6 @@ namespace Model.Repository
             if (datetime != string.Empty)
                 return DateTime.ParseExact(datetime, "dd/MM/yyyy", null);
             return null;
-        }
-
-        public DateTime? ReturnDateTimeToDatabase(string datetime)
-        {
-            if (datetime == string.Empty)
-            {
-                return null;
-            }
-            else
-            {
-                if (datetime.Contains("."))
-                {
-                    string[] arrDateTime = datetime.Split('.');
-                    if(arrDateTime[0].Length == 1)
-                    {
-                        arrDateTime[0] = "0" + arrDateTime[0];
-                    }
-                    if(arrDateTime[1].Length == 1)
-                    {
-                        arrDateTime[1] = "0" + arrDateTime[1];
-                    }
-                    string formatDateTime = arrDateTime[0] + "/" + arrDateTime[1] + "/" + arrDateTime[2];
-                    return DateTime.ParseExact(formatDateTime, "dd/MM/yyyy", null);
-                }
-                return DateTime.ParseExact(datetime, "dd/MM/yyyy", null);
-            }
         }
 
         public HopDongVienChuc GetObjectById(int idhopdongvienchuc)
@@ -102,16 +76,12 @@ namespace Model.Repository
                 if (row.ngayKetThuc != null)
                 {
                     if (row.ngayBatDau <= dtTimeline && row.ngayKetThuc >= dtTimeline)
-                    {
                         listHopDongVienChuc.Add(row);
-                    }
                 }
                 else
                 {
                     if (row.ngayBatDau <= dtTimeline)
-                    {
                         listHopDongVienChuc.Add(row);
-                    }
                 }
             }
             if (listHopDongVienChuc.Count > 0)
@@ -128,16 +98,12 @@ namespace Model.Repository
                 if (row.ngayKetThuc != null)
                 {
                     if (row.ngayBatDau >= dtFromDuration && row.ngayKetThuc <= dtToDuration)
-                    {
                         listHopDongVienChuc.Add(row);
-                    }
                 }
                 else
                 {
                     if (row.ngayBatDau >= dtFromDuration)
-                    {
                         listHopDongVienChuc.Add(row);
-                    }
                 }
             }
             if (listHopDongVienChuc.Count > 0)
@@ -150,7 +116,7 @@ namespace Model.Repository
             return _db.HopDongVienChucs.Where(x => x.VienChuc.maVienChuc == maVienChucForGetListLinkVanBanDinhKemHD).Select(y => y.linkVanBanDinhKem).ToList();
         }
 
-        public List<HopDongVienChuc> GetListHopDongByIdVienChucAndDurationForExportFull(int idVienChuc, DateTime dtFromDuration, DateTime dtToDuration)
+        public List<HopDongVienChuc> GetListHopDongByIdVienChucAndDurationForExportFull(int idVienChuc, DateTime? dtFromDuration, DateTime? dtToDuration)
         {
             List<HopDongVienChuc> rows = _db.HopDongVienChucs.Where(x => x.idVienChuc == idVienChuc).ToList();
             List<HopDongVienChuc> listHopDongVienChuc = new List<HopDongVienChuc>();
@@ -173,10 +139,10 @@ namespace Model.Repository
             }
             if (listHopDongVienChuc.Count > 0)
                 return listHopDongVienChuc;
-            return rows;
+            return rows.Where(x => x.ngayBatDau == null && x.ngayKetThuc == null).ToList();
         }
 
-        public List<HopDongVienChuc> GetListHopDongByIdVienChucAndTimelineForExportFull(int idVienChuc, DateTime dtTimeline)
+        public List<HopDongVienChuc> GetListHopDongByIdVienChucAndTimelineForExportFull(int idVienChuc, DateTime? dtTimeline)
         {
             List<HopDongVienChuc> rows = _db.HopDongVienChucs.Where(x => x.idVienChuc == idVienChuc).ToList();
             List<HopDongVienChuc> listHopDongVienChuc = new List<HopDongVienChuc>();
@@ -199,7 +165,7 @@ namespace Model.Repository
             }
             if(listHopDongVienChuc.Count > 0)
                 return listHopDongVienChuc;
-            return rows;
+            return rows.Where(x => x.ngayBatDau == null && x.ngayKetThuc == null).ToList();
         }
     }
 }

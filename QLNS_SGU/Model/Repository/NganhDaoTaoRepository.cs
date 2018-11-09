@@ -15,7 +15,10 @@ namespace Model.Repository
 
         public int GetIdNganhDaoTao(string nganhdaotao)
         {
-            return _db.NganhDaoTaos.Where(x => x.tenNganhDaoTao == nganhdaotao).Select(y => y.idNganhDaoTao).FirstOrDefault();
+            int idNganhDaoTao = _db.NganhDaoTaos.Where(x => x.tenNganhDaoTao.ToLower() == nganhdaotao.ToLower()).Select(y => y.idNganhDaoTao).FirstOrDefault();
+            if (idNganhDaoTao > 0)
+                return idNganhDaoTao;
+            return _db.NganhDaoTaos.Where(x => x.tenNganhDaoTao == string.Empty).Select(y => y.idNganhDaoTao).FirstOrDefault();
         }
 
         public List<string> GetListNganhDaoTaoForImport()
@@ -67,6 +70,22 @@ namespace Model.Repository
         public int GetIdNganhDaoTaoByIdChuyenNganh(int idchuyennganh)
         {
             return _db.ChuyenNganhs.Where(x => x.idChuyenNganh == idchuyennganh).Select(y => y.idNganhDaoTao).FirstOrDefault();
+        }
+
+        /// <summary>
+        /// nganhdaotao + loainganh
+        /// </summary>
+        /// <returns></returns>
+        public List<string> GetListTenNganhDaoTaoVaLoaiNganh()
+        {
+            var rows = _db.NganhDaoTaos.Select(x => new { x.tenNganhDaoTao, x.LoaiNganh.tenLoaiNganh });
+            var list = new List<string>();
+            foreach(var row in rows)
+            {
+                string temp = row.tenNganhDaoTao + row.tenLoaiNganh;
+                list.Add(temp);
+            }
+            return list;
         }
     }
 }

@@ -39,29 +39,27 @@ namespace Model.Repository
             return listNganhForView;
         }
 
-        public List<NganhVienChuc> GetListNganhHocByIdVienChucAndDurationForExportFull(int idVienChuc, DateTime dtFromDuration, DateTime dtToDuration)
+        public List<NganhVienChuc> GetListNganhHocByIdVienChucAndDurationForExportFull(int idVienChuc, DateTime? dtFromDuration, DateTime? dtToDuration)
         {
             List<NganhVienChuc> listNganhVienChucByIdVienChucAndDuration = _db.NganhVienChucs
                                 .Where(x => x.idVienChuc == idVienChuc && x.phanLoai == true && x.HocHamHocViVienChuc.ngayCapBang <= dtToDuration && x.HocHamHocViVienChuc.ngayCapBang >= dtFromDuration)
                                 .ToList();
             if (listNganhVienChucByIdVienChucAndDuration.Count > 0)
                 return listNganhVienChucByIdVienChucAndDuration;
-            else
-                return _db.NganhVienChucs.Where(x => x.idVienChuc == idVienChuc && x.phanLoai == true).ToList();
+            return _db.NganhVienChucs.Where(x => x.idVienChuc == idVienChuc && x.phanLoai == true && x.HocHamHocViVienChuc.ngayCapBang == null).ToList();
         }
 
-        public List<NganhVienChuc> GetListNganhHocByIdVienChucAndTimelineForExportFull(int idVienChuc, DateTime dtTimeline)
+        public List<NganhVienChuc> GetListNganhHocByIdVienChucAndTimelineForExportFull(int idVienChuc, DateTime? dtTimeline)
         {
             List<NganhVienChuc> listNganhVienChucByIdVienChucAndTimeline = _db.NganhVienChucs
                                 .Where(x => x.idVienChuc == idVienChuc && x.phanLoai == true && x.HocHamHocViVienChuc.ngayCapBang <= dtTimeline)
                                 .ToList();
             if (listNganhVienChucByIdVienChucAndTimeline.Count > 0)
                 return listNganhVienChucByIdVienChucAndTimeline;
-            else
-                return _db.NganhVienChucs.Where(x => x.idVienChuc == idVienChuc && x.phanLoai == true).ToList();
+            return _db.NganhVienChucs.Where(x => x.idVienChuc == idVienChuc && x.phanLoai == true && x.HocHamHocViVienChuc.ngayCapBang == null).ToList();
         }
 
-        public List<NganhVienChuc> GetListNganhDayByIdVienChucAndDurationForExportFull(int idVienChuc, DateTime dtFromDuration, DateTime dtToDuration)
+        public List<NganhVienChuc> GetListNganhDayByIdVienChucAndDurationForExportFull(int idVienChuc, DateTime? dtFromDuration, DateTime? dtToDuration)
         {
             var rows = _db.NganhVienChucs.Where(x => x.idVienChuc == idVienChuc && x.phanLoai == false);
             List<NganhVienChuc> listNganhVienChuc = new List<NganhVienChuc>();
@@ -111,7 +109,7 @@ namespace Model.Repository
 
         public NganhVienChuc GetNganhHocByIdVienChucAndDurationForExportOne(int idVienChuc, DateTime dtFromDuration, DateTime dtToDuration)
         {
-            List<NganhVienChuc> listNganhVienChucByIdVienChucAndDuration = _db.NganhVienChucs.Where(x => x.idVienChuc == idVienChuc && x.phanLoai == true && x.HocHamHocViVienChuc.ngayCapBang >= dtFromDuration && x.HocHamHocViVienChuc.ngayCapBang <= dtToDuration).OrderByDescending(y => y.HocHamHocViVienChuc.bacHocHamHocVi).ToList();
+            List<NganhVienChuc> listNganhVienChucByIdVienChucAndDuration = _db.NganhVienChucs.Where(x => x.idVienChuc == idVienChuc && x.phanLoai == true && x.HocHamHocViVienChuc.ngayCapBang >= dtFromDuration && x.HocHamHocViVienChuc.ngayCapBang <= dtToDuration).OrderByDescending(y => y.HocHamHocViVienChuc.LoaiHocHamHocVi.phanCap).ToList();
             NganhVienChuc nganhVienChuc = null;
             List<NganhVienChuc> listNganhVienChucToAdd = new List<NganhVienChuc>();
             if (listNganhVienChucByIdVienChucAndDuration.Count == 1)
@@ -120,20 +118,16 @@ namespace Model.Repository
             }
             if (listNganhVienChucByIdVienChucAndDuration.Count > 1)
             {
-                int? bac = listNganhVienChucByIdVienChucAndDuration[0].HocHamHocViVienChuc.bacHocHamHocVi;
-                int? countbac = listNganhVienChucByIdVienChucAndDuration.Where(x => x.HocHamHocViVienChuc.bacHocHamHocVi == bac).Count();
+                int? bac = listNganhVienChucByIdVienChucAndDuration[0].HocHamHocViVienChuc.LoaiHocHamHocVi.phanCap;
+                int? countbac = listNganhVienChucByIdVienChucAndDuration.Where(x => x.HocHamHocViVienChuc.LoaiHocHamHocVi.phanCap == bac).Count();
                 if (countbac > 1)
                 {
                     for (int i = 0; i < listNganhVienChucByIdVienChucAndDuration.Count; i++)
                     {
-                        if (listNganhVienChucByIdVienChucAndDuration[i].HocHamHocViVienChuc.bacHocHamHocVi == bac)
-                        {
+                        if (listNganhVienChucByIdVienChucAndDuration[i].HocHamHocViVienChuc.LoaiHocHamHocVi.phanCap == bac)
                             listNganhVienChucToAdd.Add(listNganhVienChucByIdVienChucAndDuration[i]);
-                        }
                         else
-                        {
                             break;
-                        }
                     }
                     nganhVienChuc = listNganhVienChucToAdd.OrderByDescending(x => x.HocHamHocViVienChuc.ngayCapBang).FirstOrDefault();
                 }
@@ -147,7 +141,7 @@ namespace Model.Repository
 
         public NganhVienChuc GetNganhHocByIdVienChucAndTimelineForExportOne(int idVienChuc, DateTime dtTimeline)
         {
-            List<NganhVienChuc> listNganhVienChucByIdVienChucAndTimeline = _db.NganhVienChucs.Where(x => x.idVienChuc == idVienChuc && x.phanLoai == true && x.HocHamHocViVienChuc.ngayCapBang <= dtTimeline).OrderByDescending(y => y.HocHamHocViVienChuc.bacHocHamHocVi).ToList();
+            List<NganhVienChuc> listNganhVienChucByIdVienChucAndTimeline = _db.NganhVienChucs.Where(x => x.idVienChuc == idVienChuc && x.phanLoai == true && x.HocHamHocViVienChuc.ngayCapBang <= dtTimeline).OrderByDescending(y => y.HocHamHocViVienChuc.LoaiHocHamHocVi.phanCap).ToList();
             NganhVienChuc nganhVienChuc = null;
             List<NganhVienChuc> listNganhVienChucToAdd = new List<NganhVienChuc>();
             if(listNganhVienChucByIdVienChucAndTimeline.Count == 1)
@@ -156,13 +150,13 @@ namespace Model.Repository
             }
             if(listNganhVienChucByIdVienChucAndTimeline.Count > 1)
             {
-                int? bac = listNganhVienChucByIdVienChucAndTimeline[0].HocHamHocViVienChuc.bacHocHamHocVi;
-                int? countbac = listNganhVienChucByIdVienChucAndTimeline.Where(x => x.HocHamHocViVienChuc.bacHocHamHocVi == bac).Count();
+                int? bac = listNganhVienChucByIdVienChucAndTimeline[0].HocHamHocViVienChuc.LoaiHocHamHocVi.phanCap;
+                int? countbac = listNganhVienChucByIdVienChucAndTimeline.Where(x => x.HocHamHocViVienChuc.LoaiHocHamHocVi.phanCap == bac).Count();
                 if(countbac > 1)
                 {
                     for (int i = 0; i < listNganhVienChucByIdVienChucAndTimeline.Count; i++)
                     {
-                        if(listNganhVienChucByIdVienChucAndTimeline[i].HocHamHocViVienChuc.bacHocHamHocVi == bac)
+                        if(listNganhVienChucByIdVienChucAndTimeline[i].HocHamHocViVienChuc.LoaiHocHamHocVi.phanCap == bac)
                         {
                             listNganhVienChucToAdd.Add(listNganhVienChucByIdVienChucAndTimeline[i]);
                         }
@@ -257,14 +251,11 @@ namespace Model.Repository
                 }
             }
             if(listNganhVienChuc.Count > 0)
-            {
-                NganhVienChuc nganhVienChuc = GetMaxTrinhDoDay(listNganhVienChuc);
-                return nganhVienChuc;
-            }
+                return GetMaxTrinhDoDay(listNganhVienChuc);
             return null;
         }
 
-        public NganhVienChuc GetNganhDayByIdVienChucAndDuration(int idVienChuc, DateTime dtFromPeriodOfTime, DateTime dtToPeriodOfTime)
+        public NganhVienChuc GetNganhDayByIdVienChucAndDuration(int idVienChuc, DateTime dtFromDuration, DateTime dtToDuration)
         {
             var rows = _db.NganhVienChucs.Where(x => x.idVienChuc == idVienChuc && x.phanLoai == false);
             List<NganhVienChuc> listNganhVienChuc = new List<NganhVienChuc>();
@@ -272,24 +263,21 @@ namespace Model.Repository
             {
                 if (row.ngayKetThuc != null)
                 {
-                    if (row.ngayBatDau >= dtFromPeriodOfTime && row.ngayKetThuc <= dtToPeriodOfTime)
+                    if (row.ngayBatDau >= dtFromDuration && row.ngayKetThuc <= dtToDuration)
                     {
                         listNganhVienChuc.Add(row);
                     }
                 }
                 else
                 {
-                    if (row.ngayBatDau >= dtFromPeriodOfTime)
+                    if (row.ngayBatDau >= dtFromDuration)
                     {
                         listNganhVienChuc.Add(row);
                     }
                 }
             }
             if (listNganhVienChuc.Count > 0)
-            {
-                NganhVienChuc nganhVienChuc = GetMaxTrinhDoDay(listNganhVienChuc);
-                return nganhVienChuc;
-            }
+                return GetMaxTrinhDoDay(listNganhVienChuc);
             return null;
         }
 
@@ -303,12 +291,7 @@ namespace Model.Repository
             if (phanloai == "Học")
                 return 0;
             return 1;
-        }
-
-        public List<string> GetListCapDoChungChi()
-        {
-            return _db.ChungChiVienChucs.Where(x => x.capDoChungChi != null).Select(x => x.capDoChungChi).Distinct().ToList();
-        }
+        }       
 
         public List<string> GetListLinkVanBanDinhKem(string maVienChucForGetListLinkVanBanDinhKemN)
         {

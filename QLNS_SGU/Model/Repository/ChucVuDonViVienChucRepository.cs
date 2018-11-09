@@ -34,8 +34,7 @@ namespace Model.Repository
                     Id = listChucVuDonViVienChuc[i].idChucVuDonViVienChuc,
                     ChucVu = listChucVuDonViVienChuc[i].ChucVu.tenChucVu,
                     DonVi = listChucVuDonViVienChuc[i].DonVi.tenDonVi,
-                    ToChuyenMon = listChucVuDonViVienChuc[i].ToChuyenMon.tenToChuyenMon,
-                    DiaDiem = listChucVuDonViVienChuc[i].DonVi.diaDiem,
+                    ToChuyenMon = listChucVuDonViVienChuc[i].ToChuyenMon.tenToChuyenMon,                    
                     NgayBatDau = listChucVuDonViVienChuc[i].ngayBatDau,
                     NgayKetThuc = listChucVuDonViVienChuc[i].ngayKetThuc,
                     PhanLoaiCongTac = listChucVuDonViVienChuc[i].phanLoaiCongTac,
@@ -62,7 +61,6 @@ namespace Model.Repository
                     ChucVu = listChucVuDonViVienChuc[i].ChucVu.tenChucVu,
                     DonVi = listChucVuDonViVienChuc[i].DonVi.tenDonVi,
                     ToChuyenMon = listChucVuDonViVienChuc[i].ToChuyenMon.tenToChuyenMon,
-                    DiaDiem = listChucVuDonViVienChuc[i].DonVi.diaDiem,
                     NgayBatDau = listChucVuDonViVienChuc[i].ngayBatDau,
                     NgayKetThuc = listChucVuDonViVienChuc[i].ngayKetThuc,
                     PhanLoaiCongTac = listChucVuDonViVienChuc[i].phanLoaiCongTac,
@@ -102,16 +100,12 @@ namespace Model.Repository
                 if (row.ngayKetThuc != null)
                 {
                     if (row.ngayBatDau >= dtFromDuration && row.ngayKetThuc <= dtToDuration)
-                    {
                         listChucVuDonViVienChuc.Add(row);
-                    }
                 }
                 else
                 {
                     if (row.ngayBatDau >= dtFromDuration)
-                    {
                         listChucVuDonViVienChuc.Add(row);
-                    }
                 }
             }
             if(listChucVuDonViVienChuc.Count > 0)
@@ -129,14 +123,14 @@ namespace Model.Repository
                 {
                     if (row.ngayBatDau <= dtTimeline && row.ngayKetThuc >= dtTimeline)
                     {
-                        listChucVuDonViVienChuc.Add(new ChucVuDonViVienChuc(row));
+                        listChucVuDonViVienChuc.Add(row);
                     }
                 }
                 if (row.ngayKetThuc == null)
                 {
                     if (row.ngayBatDau <= dtTimeline)
                     {
-                        listChucVuDonViVienChuc.Add(new ChucVuDonViVienChuc(row));
+                        listChucVuDonViVienChuc.Add(row);
                     }
                 }
             }
@@ -145,7 +139,7 @@ namespace Model.Repository
             return null;
         }
 
-        public List<ChucVuDonViVienChuc> GetListCongTacByIdVienChucAndTimeline(int idVienChuc, DateTime dtTimeline)
+        public List<ChucVuDonViVienChuc> GetListCongTacByIdVienChucAndTimeline(int idVienChuc, DateTime? dtTimeline)
         {
             List<ChucVuDonViVienChuc> rows = _db.ChucVuDonViVienChucs.Where(x => x.idVienChuc == idVienChuc).ToList();
             List<ChucVuDonViVienChuc> listChucVuDonViVienChuc = new List<ChucVuDonViVienChuc>();
@@ -155,23 +149,23 @@ namespace Model.Repository
                 {
                     if (row.ngayBatDau <= dtTimeline && row.ngayKetThuc >= dtTimeline)
                     {
-                        listChucVuDonViVienChuc.Add(new ChucVuDonViVienChuc(row));
+                        listChucVuDonViVienChuc.Add(row);
                     }
                 }
                 if (row.ngayKetThuc == null)
                 {
                     if (row.ngayBatDau <= dtTimeline)
                     {
-                        listChucVuDonViVienChuc.Add(new ChucVuDonViVienChuc(row));
+                        listChucVuDonViVienChuc.Add(row);
                     }
                 }
             }
             if(listChucVuDonViVienChuc.Count > 0)
                 return listChucVuDonViVienChuc;
-            return rows;
+            return rows.Where(x => x.ngayBatDau == null && x.ngayKetThuc == null).ToList();
         }
 
-        public List<ChucVuDonViVienChuc> GetListCongTacByIdVienChucAndDuration(int idVienChuc, DateTime dtFromDuration, DateTime dtToDuration)
+        public List<ChucVuDonViVienChuc> GetListCongTacByIdVienChucAndDuration(int idVienChuc, DateTime? dtFromDuration, DateTime? dtToDuration)
         {
             List<ChucVuDonViVienChuc> rows = _db.ChucVuDonViVienChucs.Where(x => x.idVienChuc == idVienChuc).ToList();
             List<ChucVuDonViVienChuc> listChucVuDonViVienChuc = new List<ChucVuDonViVienChuc>();
@@ -194,7 +188,7 @@ namespace Model.Repository
             }
             if (listChucVuDonViVienChuc.Count > 0)
                 return listChucVuDonViVienChuc;
-            return rows;
+            return rows.Where(x => x.ngayBatDau == null && x.ngayKetThuc == null).ToList();
         }
 
         public List<ChucVuDonViVienChuc> GetListCongTacByIdVienChuc(int idVienChuc)

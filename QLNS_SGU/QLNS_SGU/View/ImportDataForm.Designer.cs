@@ -48,11 +48,6 @@
             this.repositoryItemComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
-            this.navBarGroupChuyenMon = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navBarNganh = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarHocHamHocVi = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarDangHocNangCao = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarChungChi = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroupThongTinCaNhan = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarThongTinVienChuc = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarTrangThai = new DevExpress.XtraNavBar.NavBarItem();
@@ -61,6 +56,11 @@
             this.navBarGroupQuaTrinhLuong = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarHopDong = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarNgachBacLuong = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarGroupChuyenMon = new DevExpress.XtraNavBar.NavBarGroup();
+            this.navBarNganh = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarHocHamHocVi = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarDangHocNangCao = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarChungChi = new DevExpress.XtraNavBar.NavBarItem();
             this.splitterControl1 = new DevExpress.XtraEditors.SplitterControl();
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
             this.tabDangHocNangCao = new DevExpress.XtraTab.XtraTabPage();
@@ -73,11 +73,19 @@
             this.tabThongTinCaNhan = new DevExpress.XtraTab.XtraTabPage();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.btnImportVienChuc = new DevExpress.XtraEditors.SimpleButton();
+            this.btnImportDanToc = new DevExpress.XtraEditors.SimpleButton();
+            this.btnImportTonGiao = new DevExpress.XtraEditors.SimpleButton();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.simpleLabelItem1 = new DevExpress.XtraLayout.SimpleLabelItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.simpleSeparator1 = new DevExpress.XtraLayout.SimpleSeparator();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.simpleLabelItem24 = new DevExpress.XtraLayout.SimpleLabelItem();
+            this.layoutControlItem24 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem24 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.simpleLabelItem25 = new DevExpress.XtraLayout.SimpleLabelItem();
+            this.emptySpaceItem25 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.layoutControlItem25 = new DevExpress.XtraLayout.LayoutControlItem();
             this.tabTrangThai = new DevExpress.XtraTab.XtraTabPage();
             this.layoutControl2 = new DevExpress.XtraLayout.LayoutControl();
             this.btnImportTrangThai = new DevExpress.XtraEditors.SimpleButton();
@@ -207,6 +215,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.simpleLabelItem24)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem24)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.simpleLabelItem25)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem25)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).BeginInit();
             this.tabTrangThai.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl2)).BeginInit();
             this.layoutControl2.SuspendLayout();
@@ -470,7 +484,7 @@
             // 
             // navBarControl1
             // 
-            this.navBarControl1.ActiveGroup = this.navBarGroupChuyenMon;
+            this.navBarControl1.ActiveGroup = this.navBarGroupThongTinCaNhan;
             this.navBarControl1.BackColor = System.Drawing.Color.Transparent;
             this.navBarControl1.Dock = System.Windows.Forms.DockStyle.Left;
             this.navBarControl1.Groups.AddRange(new DevExpress.XtraNavBar.NavBarGroup[] {
@@ -496,40 +510,10 @@
             this.navBarControl1.TabIndex = 6;
             this.navBarControl1.Text = "navBarControl1";
             // 
-            // navBarGroupChuyenMon
-            // 
-            this.navBarGroupChuyenMon.Caption = "Chuyên môn";
-            this.navBarGroupChuyenMon.Expanded = true;
-            this.navBarGroupChuyenMon.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarNganh),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarHocHamHocVi),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarDangHocNangCao),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarChungChi)});
-            this.navBarGroupChuyenMon.Name = "navBarGroupChuyenMon";
-            // 
-            // navBarNganh
-            // 
-            this.navBarNganh.Caption = "Ngành";
-            this.navBarNganh.Name = "navBarNganh";
-            // 
-            // navBarHocHamHocVi
-            // 
-            this.navBarHocHamHocVi.Caption = "Học hàm - Học vị";
-            this.navBarHocHamHocVi.Name = "navBarHocHamHocVi";
-            // 
-            // navBarDangHocNangCao
-            // 
-            this.navBarDangHocNangCao.Caption = "Đang học nâng cao";
-            this.navBarDangHocNangCao.Name = "navBarDangHocNangCao";
-            // 
-            // navBarChungChi
-            // 
-            this.navBarChungChi.Caption = "Chứng chỉ";
-            this.navBarChungChi.Name = "navBarChungChi";
-            // 
             // navBarGroupThongTinCaNhan
             // 
             this.navBarGroupThongTinCaNhan.Caption = "Thông tin cá nhân";
+            this.navBarGroupThongTinCaNhan.Expanded = true;
             this.navBarGroupThongTinCaNhan.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarThongTinVienChuc),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarTrangThai)});
@@ -575,6 +559,36 @@
             // 
             this.navBarNgachBacLuong.Caption = "Ngạch - Bậc - Lương";
             this.navBarNgachBacLuong.Name = "navBarNgachBacLuong";
+            // 
+            // navBarGroupChuyenMon
+            // 
+            this.navBarGroupChuyenMon.Caption = "Chuyên môn";
+            this.navBarGroupChuyenMon.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarNganh),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarHocHamHocVi),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarDangHocNangCao),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarChungChi)});
+            this.navBarGroupChuyenMon.Name = "navBarGroupChuyenMon";
+            // 
+            // navBarNganh
+            // 
+            this.navBarNganh.Caption = "Ngành";
+            this.navBarNganh.Name = "navBarNganh";
+            // 
+            // navBarHocHamHocVi
+            // 
+            this.navBarHocHamHocVi.Caption = "Học hàm - Học vị";
+            this.navBarHocHamHocVi.Name = "navBarHocHamHocVi";
+            // 
+            // navBarDangHocNangCao
+            // 
+            this.navBarDangHocNangCao.Caption = "Đang học nâng cao";
+            this.navBarDangHocNangCao.Name = "navBarDangHocNangCao";
+            // 
+            // navBarChungChi
+            // 
+            this.navBarChungChi.Caption = "Chứng chỉ";
+            this.navBarChungChi.Name = "navBarChungChi";
             // 
             // splitterControl1
             // 
@@ -634,7 +648,7 @@
             this.btnImportDangHocNangCao.Size = new System.Drawing.Size(142, 24);
             this.btnImportDangHocNangCao.StyleController = this.layoutControl7;
             this.btnImportDangHocNangCao.TabIndex = 4;
-            this.btnImportDangHocNangCao.Text = "Nhập dữ liệu";
+            this.btnImportDangHocNangCao.Text = "Import";
             // 
             // layoutControlGroup7
             // 
@@ -697,6 +711,8 @@
             // layoutControl1
             // 
             this.layoutControl1.Controls.Add(this.btnImportVienChuc);
+            this.layoutControl1.Controls.Add(this.btnImportDanToc);
+            this.layoutControl1.Controls.Add(this.btnImportTonGiao);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
@@ -712,12 +728,38 @@
             this.btnImportVienChuc.Appearance.ForeColor = System.Drawing.Color.DimGray;
             this.btnImportVienChuc.Appearance.Options.UseFont = true;
             this.btnImportVienChuc.Appearance.Options.UseForeColor = true;
-            this.btnImportVienChuc.Location = new System.Drawing.Point(222, 12);
+            this.btnImportVienChuc.Location = new System.Drawing.Point(222, 108);
             this.btnImportVienChuc.Name = "btnImportVienChuc";
             this.btnImportVienChuc.Size = new System.Drawing.Size(142, 24);
             this.btnImportVienChuc.StyleController = this.layoutControl1;
             this.btnImportVienChuc.TabIndex = 4;
-            this.btnImportVienChuc.Text = "Nhập dữ liệu";
+            this.btnImportVienChuc.Text = "Import";
+            // 
+            // btnImportDanToc
+            // 
+            this.btnImportDanToc.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.btnImportDanToc.Appearance.ForeColor = System.Drawing.Color.DimGray;
+            this.btnImportDanToc.Appearance.Options.UseFont = true;
+            this.btnImportDanToc.Appearance.Options.UseForeColor = true;
+            this.btnImportDanToc.Location = new System.Drawing.Point(222, 12);
+            this.btnImportDanToc.Name = "btnImportDanToc";
+            this.btnImportDanToc.Size = new System.Drawing.Size(142, 24);
+            this.btnImportDanToc.StyleController = this.layoutControl1;
+            this.btnImportDanToc.TabIndex = 5;
+            this.btnImportDanToc.Text = "Import";
+            // 
+            // btnImportTonGiao
+            // 
+            this.btnImportTonGiao.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.btnImportTonGiao.Appearance.ForeColor = System.Drawing.Color.DimGray;
+            this.btnImportTonGiao.Appearance.Options.UseFont = true;
+            this.btnImportTonGiao.Appearance.Options.UseForeColor = true;
+            this.btnImportTonGiao.Location = new System.Drawing.Point(222, 60);
+            this.btnImportTonGiao.Name = "btnImportTonGiao";
+            this.btnImportTonGiao.Size = new System.Drawing.Size(142, 24);
+            this.btnImportTonGiao.StyleController = this.layoutControl1;
+            this.btnImportTonGiao.TabIndex = 6;
+            this.btnImportTonGiao.Text = "Import";
             // 
             // layoutControlGroup1
             // 
@@ -727,7 +769,13 @@
             this.simpleLabelItem1,
             this.emptySpaceItem1,
             this.simpleSeparator1,
-            this.layoutControlItem1});
+            this.layoutControlItem1,
+            this.simpleLabelItem24,
+            this.layoutControlItem24,
+            this.emptySpaceItem24,
+            this.simpleLabelItem25,
+            this.emptySpaceItem25,
+            this.layoutControlItem25});
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "Root";
             this.layoutControlGroup1.Size = new System.Drawing.Size(376, 350);
@@ -742,7 +790,7 @@
             this.simpleLabelItem1.AppearanceItemCaption.Options.UseForeColor = true;
             this.simpleLabelItem1.AppearanceItemCaption.Options.UseTextOptions = true;
             this.simpleLabelItem1.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
-            this.simpleLabelItem1.Location = new System.Drawing.Point(0, 0);
+            this.simpleLabelItem1.Location = new System.Drawing.Point(0, 96);
             this.simpleLabelItem1.MaxSize = new System.Drawing.Size(210, 23);
             this.simpleLabelItem1.MinSize = new System.Drawing.Size(210, 23);
             this.simpleLabelItem1.Name = "simpleLabelItem1";
@@ -754,9 +802,9 @@
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 28);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 124);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(356, 300);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(356, 204);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // simpleSeparator1
@@ -769,7 +817,7 @@
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.btnImportVienChuc;
-            this.layoutControlItem1.Location = new System.Drawing.Point(210, 0);
+            this.layoutControlItem1.Location = new System.Drawing.Point(210, 96);
             this.layoutControlItem1.MaxSize = new System.Drawing.Size(146, 28);
             this.layoutControlItem1.MinSize = new System.Drawing.Size(146, 28);
             this.layoutControlItem1.Name = "layoutControlItem1";
@@ -777,6 +825,88 @@
             this.layoutControlItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
+            // 
+            // simpleLabelItem24
+            // 
+            this.simpleLabelItem24.AllowHotTrack = false;
+            this.simpleLabelItem24.AppearanceItemCaption.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.simpleLabelItem24.AppearanceItemCaption.ForeColor = System.Drawing.Color.DimGray;
+            this.simpleLabelItem24.AppearanceItemCaption.Options.UseFont = true;
+            this.simpleLabelItem24.AppearanceItemCaption.Options.UseForeColor = true;
+            this.simpleLabelItem24.AppearanceItemCaption.Options.UseTextOptions = true;
+            this.simpleLabelItem24.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+            this.simpleLabelItem24.Location = new System.Drawing.Point(0, 0);
+            this.simpleLabelItem24.MaxSize = new System.Drawing.Size(210, 28);
+            this.simpleLabelItem24.MinSize = new System.Drawing.Size(210, 28);
+            this.simpleLabelItem24.Name = "simpleLabelItem24";
+            this.simpleLabelItem24.Size = new System.Drawing.Size(210, 28);
+            this.simpleLabelItem24.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.simpleLabelItem24.Text = "Dân tộc";
+            this.simpleLabelItem24.TextSize = new System.Drawing.Size(69, 19);
+            // 
+            // layoutControlItem24
+            // 
+            this.layoutControlItem24.Control = this.btnImportDanToc;
+            this.layoutControlItem24.Location = new System.Drawing.Point(210, 0);
+            this.layoutControlItem24.MaxSize = new System.Drawing.Size(146, 28);
+            this.layoutControlItem24.MinSize = new System.Drawing.Size(146, 28);
+            this.layoutControlItem24.Name = "layoutControlItem24";
+            this.layoutControlItem24.Size = new System.Drawing.Size(146, 28);
+            this.layoutControlItem24.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem24.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem24.TextVisible = false;
+            // 
+            // emptySpaceItem24
+            // 
+            this.emptySpaceItem24.AllowHotTrack = false;
+            this.emptySpaceItem24.Location = new System.Drawing.Point(0, 28);
+            this.emptySpaceItem24.MaxSize = new System.Drawing.Size(0, 20);
+            this.emptySpaceItem24.MinSize = new System.Drawing.Size(1, 20);
+            this.emptySpaceItem24.Name = "emptySpaceItem24";
+            this.emptySpaceItem24.Size = new System.Drawing.Size(356, 20);
+            this.emptySpaceItem24.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.emptySpaceItem24.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // simpleLabelItem25
+            // 
+            this.simpleLabelItem25.AllowHotTrack = false;
+            this.simpleLabelItem25.AppearanceItemCaption.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.simpleLabelItem25.AppearanceItemCaption.ForeColor = System.Drawing.Color.DimGray;
+            this.simpleLabelItem25.AppearanceItemCaption.Options.UseFont = true;
+            this.simpleLabelItem25.AppearanceItemCaption.Options.UseForeColor = true;
+            this.simpleLabelItem25.AppearanceItemCaption.Options.UseTextOptions = true;
+            this.simpleLabelItem25.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+            this.simpleLabelItem25.Location = new System.Drawing.Point(0, 48);
+            this.simpleLabelItem25.MaxSize = new System.Drawing.Size(210, 28);
+            this.simpleLabelItem25.MinSize = new System.Drawing.Size(210, 28);
+            this.simpleLabelItem25.Name = "simpleLabelItem25";
+            this.simpleLabelItem25.Size = new System.Drawing.Size(210, 28);
+            this.simpleLabelItem25.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.simpleLabelItem25.Text = "Tôn giáo";
+            this.simpleLabelItem25.TextSize = new System.Drawing.Size(69, 19);
+            // 
+            // emptySpaceItem25
+            // 
+            this.emptySpaceItem25.AllowHotTrack = false;
+            this.emptySpaceItem25.Location = new System.Drawing.Point(0, 76);
+            this.emptySpaceItem25.MaxSize = new System.Drawing.Size(0, 20);
+            this.emptySpaceItem25.MinSize = new System.Drawing.Size(1, 20);
+            this.emptySpaceItem25.Name = "emptySpaceItem25";
+            this.emptySpaceItem25.Size = new System.Drawing.Size(356, 20);
+            this.emptySpaceItem25.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.emptySpaceItem25.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // layoutControlItem25
+            // 
+            this.layoutControlItem25.Control = this.btnImportTonGiao;
+            this.layoutControlItem25.Location = new System.Drawing.Point(210, 48);
+            this.layoutControlItem25.MaxSize = new System.Drawing.Size(146, 28);
+            this.layoutControlItem25.MinSize = new System.Drawing.Size(146, 28);
+            this.layoutControlItem25.Name = "layoutControlItem25";
+            this.layoutControlItem25.Size = new System.Drawing.Size(146, 28);
+            this.layoutControlItem25.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem25.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem25.TextVisible = false;
             // 
             // tabTrangThai
             // 
@@ -808,7 +938,7 @@
             this.btnImportTrangThai.Size = new System.Drawing.Size(142, 24);
             this.btnImportTrangThai.StyleController = this.layoutControl2;
             this.btnImportTrangThai.TabIndex = 4;
-            this.btnImportTrangThai.Text = "Nhập dữ liệu";
+            this.btnImportTrangThai.Text = "Import";
             // 
             // btnImportTrangThaiVienChuc
             // 
@@ -821,7 +951,7 @@
             this.btnImportTrangThaiVienChuc.Size = new System.Drawing.Size(142, 24);
             this.btnImportTrangThaiVienChuc.StyleController = this.layoutControl2;
             this.btnImportTrangThaiVienChuc.TabIndex = 5;
-            this.btnImportTrangThaiVienChuc.Text = "Nhập dữ liệu";
+            this.btnImportTrangThaiVienChuc.Text = "Import";
             // 
             // layoutControlGroup2
             // 
@@ -837,7 +967,7 @@
             this.emptySpaceItem11});
             this.layoutControlGroup2.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup2.Name = "layoutControlGroup2";
-            this.layoutControlGroup2.Size = new System.Drawing.Size(376, 333);
+            this.layoutControlGroup2.Size = new System.Drawing.Size(376, 350);
             this.layoutControlGroup2.TextVisible = false;
             // 
             // simpleLabelItem2
@@ -862,7 +992,7 @@
             this.emptySpaceItem2.Location = new System.Drawing.Point(0, 78);
             this.emptySpaceItem2.MinSize = new System.Drawing.Size(104, 24);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(356, 233);
+            this.emptySpaceItem2.Size = new System.Drawing.Size(356, 250);
             this.emptySpaceItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
@@ -887,7 +1017,7 @@
             // simpleSeparator6
             // 
             this.simpleSeparator6.AllowHotTrack = false;
-            this.simpleSeparator6.Location = new System.Drawing.Point(0, 311);
+            this.simpleSeparator6.Location = new System.Drawing.Point(0, 328);
             this.simpleSeparator6.Name = "simpleSeparator6";
             this.simpleSeparator6.Size = new System.Drawing.Size(356, 2);
             // 
@@ -960,7 +1090,7 @@
             this.btnImportLoaiChucVu.Size = new System.Drawing.Size(142, 24);
             this.btnImportLoaiChucVu.StyleController = this.layoutControl3;
             this.btnImportLoaiChucVu.TabIndex = 4;
-            this.btnImportLoaiChucVu.Text = "Nhập dữ liệu";
+            this.btnImportLoaiChucVu.Text = "Import";
             // 
             // btnImportChucVu
             // 
@@ -973,7 +1103,7 @@
             this.btnImportChucVu.Size = new System.Drawing.Size(142, 24);
             this.btnImportChucVu.StyleController = this.layoutControl3;
             this.btnImportChucVu.TabIndex = 5;
-            this.btnImportChucVu.Text = "Nhập dữ liệu";
+            this.btnImportChucVu.Text = "Import";
             // 
             // btnImportLoaiDonVi
             // 
@@ -986,7 +1116,7 @@
             this.btnImportLoaiDonVi.Size = new System.Drawing.Size(142, 24);
             this.btnImportLoaiDonVi.StyleController = this.layoutControl3;
             this.btnImportLoaiDonVi.TabIndex = 6;
-            this.btnImportLoaiDonVi.Text = "Nhập dữ liệu";
+            this.btnImportLoaiDonVi.Text = "Import";
             // 
             // btnImportDonVi
             // 
@@ -999,7 +1129,7 @@
             this.btnImportDonVi.Size = new System.Drawing.Size(142, 24);
             this.btnImportDonVi.StyleController = this.layoutControl3;
             this.btnImportDonVi.TabIndex = 7;
-            this.btnImportDonVi.Text = "Nhập dữ liệu";
+            this.btnImportDonVi.Text = "Import";
             // 
             // btnImportToChuyenMon
             // 
@@ -1012,7 +1142,7 @@
             this.btnImportToChuyenMon.Size = new System.Drawing.Size(142, 24);
             this.btnImportToChuyenMon.StyleController = this.layoutControl3;
             this.btnImportToChuyenMon.TabIndex = 8;
-            this.btnImportToChuyenMon.Text = "Nhập dữ liệu";
+            this.btnImportToChuyenMon.Text = "Import";
             // 
             // btnImportChucVuDonViVienChuc
             // 
@@ -1025,7 +1155,7 @@
             this.btnImportChucVuDonViVienChuc.Size = new System.Drawing.Size(142, 24);
             this.btnImportChucVuDonViVienChuc.StyleController = this.layoutControl3;
             this.btnImportChucVuDonViVienChuc.TabIndex = 9;
-            this.btnImportChucVuDonViVienChuc.Text = "Nhập dữ liệu";
+            this.btnImportChucVuDonViVienChuc.Text = "Import";
             // 
             // layoutControlGroup3
             // 
@@ -1052,7 +1182,7 @@
             this.layoutControlItem4});
             this.layoutControlGroup3.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup3.Name = "layoutControlGroup3";
-            this.layoutControlGroup3.Size = new System.Drawing.Size(376, 333);
+            this.layoutControlGroup3.Size = new System.Drawing.Size(376, 350);
             this.layoutControlGroup3.TextVisible = false;
             // 
             // simpleLabelItem4
@@ -1177,7 +1307,7 @@
             this.emptySpaceItem5.Location = new System.Drawing.Point(0, 267);
             this.emptySpaceItem5.MinSize = new System.Drawing.Size(104, 24);
             this.emptySpaceItem5.Name = "emptySpaceItem5";
-            this.emptySpaceItem5.Size = new System.Drawing.Size(356, 46);
+            this.emptySpaceItem5.Size = new System.Drawing.Size(356, 63);
             this.emptySpaceItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.emptySpaceItem5.TextSize = new System.Drawing.Size(0, 0);
             // 
@@ -1319,7 +1449,7 @@
             this.btnImportNgach.Size = new System.Drawing.Size(142, 24);
             this.btnImportNgach.StyleController = this.layoutControl4;
             this.btnImportNgach.TabIndex = 4;
-            this.btnImportNgach.Text = "Nhập dữ liệu";
+            this.btnImportNgach.Text = "Import";
             // 
             // btnImportBac
             // 
@@ -1332,7 +1462,7 @@
             this.btnImportBac.Size = new System.Drawing.Size(142, 24);
             this.btnImportBac.StyleController = this.layoutControl4;
             this.btnImportBac.TabIndex = 5;
-            this.btnImportBac.Text = "Nhập dữ liệu";
+            this.btnImportBac.Text = "Import";
             // 
             // btnImportQuaTrinhLuong
             // 
@@ -1345,7 +1475,7 @@
             this.btnImportQuaTrinhLuong.Size = new System.Drawing.Size(142, 24);
             this.btnImportQuaTrinhLuong.StyleController = this.layoutControl4;
             this.btnImportQuaTrinhLuong.TabIndex = 6;
-            this.btnImportQuaTrinhLuong.Text = "Nhập dữ liệu";
+            this.btnImportQuaTrinhLuong.Text = "Import";
             // 
             // layoutControlGroup4
             // 
@@ -1363,7 +1493,7 @@
             this.emptySpaceItem14});
             this.layoutControlGroup4.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup4.Name = "layoutControlGroup4";
-            this.layoutControlGroup4.Size = new System.Drawing.Size(376, 333);
+            this.layoutControlGroup4.Size = new System.Drawing.Size(376, 350);
             this.layoutControlGroup4.TextVisible = false;
             // 
             // simpleLabelItem10
@@ -1444,7 +1574,7 @@
             this.emptySpaceItem12.Location = new System.Drawing.Point(0, 124);
             this.emptySpaceItem12.MinSize = new System.Drawing.Size(104, 24);
             this.emptySpaceItem12.Name = "emptySpaceItem12";
-            this.emptySpaceItem12.Size = new System.Drawing.Size(356, 189);
+            this.emptySpaceItem12.Size = new System.Drawing.Size(356, 206);
             this.emptySpaceItem12.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.emptySpaceItem12.TextSize = new System.Drawing.Size(0, 0);
             // 
@@ -1514,7 +1644,7 @@
             this.btnImportLoaiNganh.Size = new System.Drawing.Size(142, 24);
             this.btnImportLoaiNganh.StyleController = this.layoutControl5;
             this.btnImportLoaiNganh.TabIndex = 4;
-            this.btnImportLoaiNganh.Text = "Nhập dữ liệu";
+            this.btnImportLoaiNganh.Text = "Import";
             // 
             // btnImportNganhDaoTao
             // 
@@ -1527,7 +1657,7 @@
             this.btnImportNganhDaoTao.Size = new System.Drawing.Size(142, 24);
             this.btnImportNganhDaoTao.StyleController = this.layoutControl5;
             this.btnImportNganhDaoTao.TabIndex = 5;
-            this.btnImportNganhDaoTao.Text = "Nhập dữ liệu";
+            this.btnImportNganhDaoTao.Text = "Import";
             // 
             // btnImportChuyenNganh
             // 
@@ -1540,7 +1670,7 @@
             this.btnImportChuyenNganh.Size = new System.Drawing.Size(142, 24);
             this.btnImportChuyenNganh.StyleController = this.layoutControl5;
             this.btnImportChuyenNganh.TabIndex = 6;
-            this.btnImportChuyenNganh.Text = "Nhập dữ liệu";
+            this.btnImportChuyenNganh.Text = "Import";
             // 
             // btnImportNganhVienChuc
             // 
@@ -1553,7 +1683,7 @@
             this.btnImportNganhVienChuc.Size = new System.Drawing.Size(142, 24);
             this.btnImportNganhVienChuc.StyleController = this.layoutControl5;
             this.btnImportNganhVienChuc.TabIndex = 7;
-            this.btnImportNganhVienChuc.Text = "Nhập dữ liệu";
+            this.btnImportNganhVienChuc.Text = "Import";
             // 
             // layoutControlGroup5
             // 
@@ -1574,7 +1704,7 @@
             this.emptySpaceItem18});
             this.layoutControlGroup5.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup5.Name = "layoutControlGroup5";
-            this.layoutControlGroup5.Size = new System.Drawing.Size(376, 333);
+            this.layoutControlGroup5.Size = new System.Drawing.Size(376, 350);
             this.layoutControlGroup5.TextVisible = false;
             // 
             // simpleLabelItem13
@@ -1647,7 +1777,7 @@
             this.emptySpaceItem15.Location = new System.Drawing.Point(0, 171);
             this.emptySpaceItem15.MinSize = new System.Drawing.Size(104, 24);
             this.emptySpaceItem15.Name = "emptySpaceItem15";
-            this.emptySpaceItem15.Size = new System.Drawing.Size(356, 142);
+            this.emptySpaceItem15.Size = new System.Drawing.Size(356, 159);
             this.emptySpaceItem15.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.emptySpaceItem15.TextSize = new System.Drawing.Size(0, 0);
             // 
@@ -1762,7 +1892,7 @@
             this.btnImportLoaiHocHamHocVi.Size = new System.Drawing.Size(142, 24);
             this.btnImportLoaiHocHamHocVi.StyleController = this.layoutControl6;
             this.btnImportLoaiHocHamHocVi.TabIndex = 4;
-            this.btnImportLoaiHocHamHocVi.Text = "Nhập dữ liệu";
+            this.btnImportLoaiHocHamHocVi.Text = "Import";
             // 
             // btnImportHocHamHocViVienChuc
             // 
@@ -1775,7 +1905,7 @@
             this.btnImportHocHamHocViVienChuc.Size = new System.Drawing.Size(142, 24);
             this.btnImportHocHamHocViVienChuc.StyleController = this.layoutControl6;
             this.btnImportHocHamHocViVienChuc.TabIndex = 5;
-            this.btnImportHocHamHocViVienChuc.Text = "Nhập dữ liệu";
+            this.btnImportHocHamHocViVienChuc.Text = "Import";
             // 
             // layoutControlGroup6
             // 
@@ -1790,7 +1920,7 @@
             this.emptySpaceItem23});
             this.layoutControlGroup6.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup6.Name = "layoutControlGroup6";
-            this.layoutControlGroup6.Size = new System.Drawing.Size(376, 333);
+            this.layoutControlGroup6.Size = new System.Drawing.Size(376, 350);
             this.layoutControlGroup6.TextVisible = false;
             // 
             // simpleLabelItem17
@@ -1843,7 +1973,7 @@
             this.emptySpaceItem19.Location = new System.Drawing.Point(0, 76);
             this.emptySpaceItem19.MinSize = new System.Drawing.Size(104, 24);
             this.emptySpaceItem19.Name = "emptySpaceItem19";
-            this.emptySpaceItem19.Size = new System.Drawing.Size(356, 237);
+            this.emptySpaceItem19.Size = new System.Drawing.Size(356, 254);
             this.emptySpaceItem19.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.emptySpaceItem19.TextSize = new System.Drawing.Size(0, 0);
             // 
@@ -1900,7 +2030,7 @@
             this.btnImportLoaiChungChi.Size = new System.Drawing.Size(142, 24);
             this.btnImportLoaiChungChi.StyleController = this.layoutControl8;
             this.btnImportLoaiChungChi.TabIndex = 4;
-            this.btnImportLoaiChungChi.Text = "Nhập dữ liệu";
+            this.btnImportLoaiChungChi.Text = "Import";
             // 
             // btnImportChungChiVienChuc
             // 
@@ -1913,7 +2043,7 @@
             this.btnImportChungChiVienChuc.Size = new System.Drawing.Size(142, 24);
             this.btnImportChungChiVienChuc.StyleController = this.layoutControl8;
             this.btnImportChungChiVienChuc.TabIndex = 5;
-            this.btnImportChungChiVienChuc.Text = "Nhập dữ liệu";
+            this.btnImportChungChiVienChuc.Text = "Import";
             // 
             // layoutControlGroup8
             // 
@@ -1928,7 +2058,7 @@
             this.emptySpaceItem22});
             this.layoutControlGroup8.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup8.Name = "layoutControlGroup8";
-            this.layoutControlGroup8.Size = new System.Drawing.Size(376, 333);
+            this.layoutControlGroup8.Size = new System.Drawing.Size(376, 350);
             this.layoutControlGroup8.TextVisible = false;
             // 
             // simpleLabelItem20
@@ -1981,7 +2111,7 @@
             this.emptySpaceItem21.Location = new System.Drawing.Point(0, 75);
             this.emptySpaceItem21.MinSize = new System.Drawing.Size(104, 24);
             this.emptySpaceItem21.Name = "emptySpaceItem21";
-            this.emptySpaceItem21.Size = new System.Drawing.Size(356, 238);
+            this.emptySpaceItem21.Size = new System.Drawing.Size(356, 255);
             this.emptySpaceItem21.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.emptySpaceItem21.TextSize = new System.Drawing.Size(0, 0);
             // 
@@ -2038,7 +2168,7 @@
             this.btnImportLoaiHopDong.Size = new System.Drawing.Size(142, 24);
             this.btnImportLoaiHopDong.StyleController = this.layoutControl9;
             this.btnImportLoaiHopDong.TabIndex = 4;
-            this.btnImportLoaiHopDong.Text = "Nhập dữ liệu";
+            this.btnImportLoaiHopDong.Text = "Import";
             // 
             // btnImportHopDongVienChuc
             // 
@@ -2051,7 +2181,7 @@
             this.btnImportHopDongVienChuc.Size = new System.Drawing.Size(142, 24);
             this.btnImportHopDongVienChuc.StyleController = this.layoutControl9;
             this.btnImportHopDongVienChuc.TabIndex = 5;
-            this.btnImportHopDongVienChuc.Text = "Nhập dữ liệu";
+            this.btnImportHopDongVienChuc.Text = "Import";
             // 
             // layoutControlGroup9
             // 
@@ -2190,6 +2320,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.simpleLabelItem24)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem24)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.simpleLabelItem25)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem25)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).EndInit();
             this.tabTrangThai.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl2)).EndInit();
             this.layoutControl2.ResumeLayout(false);
@@ -2443,5 +2579,13 @@
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem23;
         private DevExpress.XtraBars.BarStaticItem barStaticItem1;
         private DevExpress.XtraBars.BarCheckItem chkLog;
+        private DevExpress.XtraEditors.SimpleButton btnImportDanToc;
+        private DevExpress.XtraEditors.SimpleButton btnImportTonGiao;
+        private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItem24;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem24;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem24;
+        private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItem25;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem25;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem25;
     }
 }

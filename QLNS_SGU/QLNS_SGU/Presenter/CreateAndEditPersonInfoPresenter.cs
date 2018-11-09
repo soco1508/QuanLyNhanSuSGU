@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using DevExpress.XtraSplashScreen;
 using System.Diagnostics;
 using System.Configuration.Install;
+using DevExpress.XtraTabbedMdi;
 
 namespace QLNS_SGU.Presenter
 {
@@ -11,6 +12,7 @@ namespace QLNS_SGU.Presenter
     {
         void LoadForm();
         void FormClosing(object sender, FormClosingEventArgs e);
+        void MouseDown(object sender, MouseEventArgs e);
     }
     public class CreateAndEditPersonInfoPresenter : ICreateAndEditPersonInfoPresenter
     {
@@ -149,6 +151,12 @@ namespace QLNS_SGU.Presenter
             {
                 TabPagePhuCapThamNienNhaGiaoPresenter.RemoveFileIfNotSave(TabPagePhuCapThamNienNhaGiaoPresenter.idFileUpload);
             }
+        }
+
+        public void MouseDown(object sender, MouseEventArgs e)
+        {
+            _view.Update();
+            string name = _view.XtraTabbedMdiManager.SelectedPage.MdiChild.Name;
         }
     }
 }

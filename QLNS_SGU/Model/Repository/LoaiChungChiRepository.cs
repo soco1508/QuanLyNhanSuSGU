@@ -14,11 +14,8 @@ namespace Model.Repository
         }
 
         public List<string> GetListTenLoaiChungChi()
-        {
-            var list = from a in _db.LoaiChungChis
-                       group a.tenLoaiChungChi by a.tenLoaiChungChi into g
-                       select g.Key;
-            return list.ToList();
+        {            
+            return _db.LoaiChungChis.Select(x => x.tenLoaiChungChi).ToList();
         }
 
         public void Update(string idloaichungchi, string tenloaichungchi)

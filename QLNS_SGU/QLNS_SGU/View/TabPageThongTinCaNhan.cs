@@ -66,6 +66,9 @@ namespace QLNS_SGU.View
         public TextEdit TXTVanHoa { get => txtVanHoa; set => txtVanHoa = value; }
         public LookUpEdit CBXQuanLyNhaNuoc { get => cbxQuanLyNhaNuoc; set => cbxQuanLyNhaNuoc = value; }
         public TextEdit TXTSoCMND { get => txtSoCMND; set => txtSoCMND = value; }
+        public DateEdit DTNgayTuyenDungChinhThuc { get => dtNgayTuyenDungChinhThuc; set => dtNgayTuyenDungChinhThuc = value; }
+        public TextEdit TXTEmail { get => txtEmail; set => txtEmail = value; }
+        public SpinEdit TXTGioChuan { get => txtGioChuan; set => txtGioChuan = value; }
         public MemoEdit TXTGhiChu { get => txtGhiChu; set => txtGhiChu = value; }
         #endregion
         public void Attach(ITabPageThongTinCaNhanPresenter presenter)

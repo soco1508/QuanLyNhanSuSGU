@@ -333,7 +333,7 @@
             // 
             // btnNaviLoaiHocHamHocVi
             // 
-            this.btnNaviLoaiHocHamHocVi.Caption = "Học hàm && Học vị";
+            this.btnNaviLoaiHocHamHocVi.Caption = "Loại Học hàm/Học vị";
             this.btnNaviLoaiHocHamHocVi.Id = 38;
             this.btnNaviLoaiHocHamHocVi.ImageOptions.LargeImage = global::QLNS_SGU.Properties.Resources.hochamhocvi;
             this.btnNaviLoaiHocHamHocVi.Name = "btnNaviLoaiHocHamHocVi";

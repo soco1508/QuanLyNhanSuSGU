@@ -105,14 +105,22 @@ namespace Model.ObjectModels
         public string LinkVanBanDinhKemND { get; set; }
         //Chung chi
         public string NgoaiNgu { get; set; }
-        public string TinHoc { get; set; }       
+        public string CapDoNgoaiNgu { get; set; }
+        public DateTime? NgayCapChungChiNgoaiNgu { get; set; }
+        public string TinHoc { get; set; }
+        public DateTime? NgayCapChungChiTinHoc { get; set; }
         public string ChungChiChuyenMon { get; set; }
+        public string CapDoChuyenMon { get; set; }
+        public DateTime? NgayCapChungChiChuyenMon { get; set; }
         public string QuanLyNhaNuoc { get; set; }
+        public DateTime? NgayCapChungChiQuanLyNhaNuoc { get; set; }
         public string ChinhTri { get; set; }
+        public DateTime? NgayCapChungChiChinhTri { get; set; }
         public string LoaiChungChi { get; set; }
-        public string ChungChi { get; set; }
+        public string ChungChi { get; set; }//field nay su dung cho export one domain
+        public string CapDoChungChi { get; set; }
         public DateTime? NgayCapChungChi { get; set; }
-        public string CoSoDaoTaoCC { get; set; }
+        public string CoSoDaoTaoCC { get; set; }      
         //Dang hoc nang cao
         public string SoQuyetDinh { get; set; }
         public string LinkAnhQuyetDinh { get; set; }
@@ -227,14 +235,23 @@ namespace Model.ObjectModels
             LinkVanBanDinhKemND = string.Empty;
             //Chung chi
             NgoaiNgu = string.Empty;
+            CapDoNgoaiNgu = string.Empty;
             TinHoc = string.Empty;
             ChinhTri = string.Empty;
             ChungChiChuyenMon = string.Empty;
+            CapDoChuyenMon = string.Empty;
             QuanLyNhaNuoc = string.Empty;
             LoaiChungChi = string.Empty;
             ChungChi = string.Empty;
+            CapDoChungChi = string.Empty;
             NgayCapChungChi = null;
             CoSoDaoTaoCC = string.Empty;
+
+            NgayCapChungChiNgoaiNgu = null;
+            NgayCapChungChiTinHoc = null;
+            NgayCapChungChiChuyenMon = null;
+            NgayCapChungChiChinhTri = null;
+            NgayCapChungChiQuanLyNhaNuoc = null;
             //Dang hoc nang cao
             LoaiHocHamHocViDHNC = string.Empty;
             SoQuyetDinh = string.Empty;

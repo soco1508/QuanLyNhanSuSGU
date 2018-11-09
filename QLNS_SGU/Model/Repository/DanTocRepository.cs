@@ -27,5 +27,10 @@ namespace Model.Repository
         {
             return _db.DanTocs.Where(x => x.tenDanToc == "").Select(y => y.idDanToc).FirstOrDefault();
         }
+
+        public List<string> GetListTenDanToc()
+        {
+            return _db.DanTocs.Select(x => x.tenDanToc).ToList();
+        }
     }
 }

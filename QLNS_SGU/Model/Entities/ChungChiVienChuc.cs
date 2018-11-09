@@ -17,6 +17,7 @@ namespace Model.Entities
         public int idChungChiVienChuc { get; set; }
         public int idVienChuc { get; set; }
         public string idLoaiChungChi { get; set; }
+        public string tenChungChi { get; set; }
         public string capDoChungChi { get; set; }
         public Nullable<System.DateTime> ngayCapChungChi { get; set; }
         public string coSoDaoTao { get; set; }

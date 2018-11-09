@@ -46,20 +46,20 @@ namespace Model.Repository
 
         public void DeleteById(int id)
         {
-            ChucVu ChucVu = _db.ChucVus.Where(x => x.idChucVu == id).First();
+            ChucVu ChucVu = _db.ChucVus.Where(x => x.idChucVu == id).FirstOrDefault();
             _db.ChucVus.Remove(ChucVu);
         }
 
-        public void Create(string chucvu, /*double hesochucvu,*/ int idloaichucvu)
+        public void Create(string chucvu, double hesochucvu, int idloaichucvu)
         {
-            _db.ChucVus.Add(new ChucVu { tenChucVu = chucvu, /*heSoChucVu = hesochucvu, */idLoaiChucVu = idloaichucvu });
+            _db.ChucVus.Add(new ChucVu { tenChucVu = chucvu, heSoChucVu = hesochucvu, idLoaiChucVu = idloaichucvu });
             _db.SaveChanges();
         }
 
-        public void Update(int id, string chucvu, /*double hesochucvu,*/ int idloaichucvu)
+        public void Update(int id, string chucvu, double hesochucvu, int idloaichucvu)
         {
-            ChucVu _chucvu = _db.ChucVus.Where(x => x.idChucVu == id).First();
-            //_chucvu.heSoChucVu = hesochucvu;
+            ChucVu _chucvu = _db.ChucVus.Where(x => x.idChucVu == id).FirstOrDefault();
+            _chucvu.heSoChucVu = hesochucvu;
             _chucvu.tenChucVu = chucvu;
             _chucvu.idLoaiChucVu = idloaichucvu;
             _db.SaveChanges();

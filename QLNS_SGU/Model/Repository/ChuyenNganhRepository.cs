@@ -63,5 +63,21 @@ namespace Model.Repository
         {
             return _db.ChuyenNganhs.Where(x => x.idNganhDaoTao == idnganhdaotao).ToList();
         }
+
+        /// <summary>
+        /// chuyennganh + nganhdaotao
+        /// </summary>
+        /// <returns></returns>
+        public List<string> GetListTenChuyenNganhVaNganhDaoTao()
+        {
+            var rows = _db.ChuyenNganhs.Select(x => new { x.tenChuyenNganh, x.NganhDaoTao.tenNganhDaoTao });
+            var list = new List<string>();
+            foreach (var row in rows)
+            {
+                string temp = row.tenChuyenNganh + row.tenNganhDaoTao;
+                list.Add(temp);
+            }
+            return list;
+        }
     }
 }

@@ -52,63 +52,9 @@ namespace Model.Repository
                    .Select(y => y.idHocHamHocViVienChuc).First();
         }
 
-        public int? AssignBacHocHamHocVi(string trinhdo)
-        {
-            switch (trinhdo)
-            {
-                case "Khác":
-                    return 0;
-                case "Phổ thông":
-                    return 1;
-                case "Trung cấp":
-                    return 2;
-                case "Cao đẳng":
-                    return 3;
-                case "Đại học":
-                    return 4;
-                case "Thạc sĩ":
-                    return 5;
-                case "Tiến sĩ":
-                    return 6;
-                case "Phó giáo sư":
-                    return 7;
-                case "Giáo sư":
-                    return 8;                
-                default:
-                    return 0;
-            }
-        }
-
         public string ConcatString(string trinhdo, string nganhdaotao, string chuyennganh)
         {
             return trinhdo + " " + nganhdaotao + " - " + chuyennganh;
-        }
-
-        public int? HardCodeBacToDatabase(string loaihochamhocvi)
-        {
-            switch (loaihochamhocvi)
-            {
-                case "Phổ thông":
-                    return 1;
-                case "Trung cấp":
-                    return 2;
-                case "Cao đẳng":
-                    return 3;
-                case "Đại học":
-                    return 4;
-                case "Thạc sĩ":
-                    return 5;
-                case "Tiến sĩ":
-                    return 6;
-                case "Phó giáo sư":
-                    return 7;
-                case "Giáo sư":
-                    return 8;
-                case "Khác":
-                    return 0;
-                default:
-                    return 0;
-            }
         }
 
         public HocHamHocViVienChuc GetObjectById(int idhochamhocvi)
@@ -130,7 +76,7 @@ namespace Model.Repository
         public List<HocHamHocViGridAtRightViewInMainForm> GetListHocHamHocViGridAtRightViewInMainForm(string mavienchuc)
         {
             int idvienchuc = GetIdVienChuc(mavienchuc);
-            var listHocHamHocViVienChuc = _db.HocHamHocViVienChucs.Where(x => x.idVienChuc == idvienchuc).OrderByDescending(y => y.bacHocHamHocVi).ToList();
+            var listHocHamHocViVienChuc = _db.HocHamHocViVienChucs.Where(x => x.idVienChuc == idvienchuc).OrderByDescending(y => y.LoaiHocHamHocVi.phanCap).ToList();
             List<HocHamHocViGridAtRightViewInMainForm> list = new List<HocHamHocViGridAtRightViewInMainForm>();
             listHocHamHocViVienChuc.ForEach(x =>
             {
@@ -178,16 +124,6 @@ namespace Model.Repository
         public int GetIdHocHamHocViVienChucEmpty()
         {
             return _db.HocHamHocViVienChucs.Where(x => x.tenHocHamHocVi == string.Empty).Select(y => y.idHocHamHocViVienChuc).FirstOrDefault();
-        }
-
-        public DateTime? ParseDatetimeMatchDatetimeDatabase(string date)
-        {
-            if(date != string.Empty)
-            {
-                string temp = "01/01/" + date;
-                return Convert.ToDateTime(temp);
-            }
-            return null;
         }
     }
 }

@@ -70,8 +70,10 @@ namespace QLNS_SGU.View
         GridControl GCChungChi { get; set; }
         GridView GVChungChi { get; set; }
         LookUpEdit CBXLoaiChungChi { get; set; }
+        TextEdit TXTTenChungChi { get; set; }
         TextEdit TXTCapDoChungChi { get; set; }
         DateEdit DTNgayCapChungChi { get; set; }
+        TextEdit TXTCoSoDaoTaoCC { get; set; }
         TextEdit TXTGhiChuCC { get; set; }
         TextEdit TXTLinkVanBanDinhKemCC { get; set; }
         SimpleButton BTNExportExcelCC { get; set; }
@@ -136,8 +138,10 @@ namespace QLNS_SGU.View
         public GridControl GCChungChi { get => gcChungChi; set => gcChungChi = value; }
         public GridView GVChungChi { get => gvChungChi; set => gvChungChi = value; }
         public LookUpEdit CBXLoaiChungChi { get => cbxLoaiChungChi; set => cbxLoaiChungChi = value; }
+        public TextEdit TXTTenChungChi { get => txtTenChungChi; set => txtTenChungChi = value; }
         public TextEdit TXTCapDoChungChi { get => txtCapDoChungChi; set => txtCapDoChungChi = value; }
         public DateEdit DTNgayCapChungChi { get => dtNgayCapChungChi; set => dtNgayCapChungChi = value; }
+        public TextEdit TXTCoSoDaoTaoCC { get => txtCoSoDaoTao; set => txtCoSoDaoTao = value; }
         public TextEdit TXTGhiChuCC { get => txtGhiChuCC; set => txtGhiChuCC = value; }
         public TextEdit TXTLinkVanBanDinhKemCC { get => txtLinkVanBanDinhKemCC; set => txtLinkVanBanDinhKemCC = value; }
         #endregion
@@ -216,8 +220,10 @@ namespace QLNS_SGU.View
             btnUploadCC.Click += (s, e) => presenter.UploadFileToGoogleDriveCC();
             btnDownloadCC.Click += (s, e) => presenter.DownloadFileToDeviceCC();
             cbxLoaiChungChi.EditValueChanged += new EventHandler(presenter.LoaiChungChiChanged);
+            txtTenChungChi.EditValueChanged += new EventHandler(presenter.TenChungChiChanged);
             txtCapDoChungChi.EditValueChanged += new EventHandler(presenter.CapDoChungChiChanged);
             dtNgayCapChungChi.EditValueChanged += new EventHandler(presenter.NgayCapChungChiChanged);
+            txtCoSoDaoTao.EditValueChanged += new EventHandler(presenter.CoSoDaoTaoChanged);
             txtGhiChuCC.TextChanged += new EventHandler(presenter.GhiChuChungChiChanged);
             txtLinkVanBanDinhKemCC.TextChanged += new EventHandler(presenter.LinkVanBanDinhKemHHHVChanged);
             gvChungChi.CustomDrawRowIndicator += new RowIndicatorCustomDrawEventHandler(presenter.RowIndicatorCC);

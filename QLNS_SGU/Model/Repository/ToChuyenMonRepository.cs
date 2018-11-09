@@ -75,5 +75,33 @@ namespace Model.Repository
         {
             return _db.ToChuyenMons.Where(x => x.idDonVi == iddonvi).ToList();
         }
+
+        /// <summary>
+        /// lấy danh sách tổ chuyên môn, còn đơn vị để ktra nếu trùng
+        /// [0]: tổ chuyên môn, [1]: đơn vị, [2]: địa điểm 
+        /// </summary>
+        /// <returns></returns>
+        public List<string> GetListTenToChuyenMonVaDonVi()
+        {
+            List<string> listTenToChuyenMonVaDonVi = new List<string>();
+            var rows = _db.ToChuyenMons.Select(x => new { x.tenToChuyenMon, x.DonVi.tenDonVi });
+            foreach (var row in rows)
+            {                
+                listTenToChuyenMonVaDonVi.Add(row.tenToChuyenMon + row.tenDonVi);
+            }
+            return listTenToChuyenMonVaDonVi;
+        }
+
+        public int GetIdByIdDonViVaTenToChuyenMon(int iddonvi, string tochuyenmon)
+        {
+            int id = _db.ToChuyenMons.Where(x => x.idDonVi == iddonvi && x.tenToChuyenMon == tochuyenmon).Select(y => y.idToChuyenMon).FirstOrDefault();
+            if (id > 0)
+                return id;
+            else
+            {
+                int idDonVi = _db.DonVis.Where(x => x.tenDonVi == string.Empty && x.diaDiem == string.Empty).Select(y => y.idDonVi).FirstOrDefault();
+                return _db.ToChuyenMons.Where(x => x.idDonVi == idDonVi && x.tenToChuyenMon == string.Empty).Select(y => y.idToChuyenMon).FirstOrDefault();
+            }
+        }
     }
 }

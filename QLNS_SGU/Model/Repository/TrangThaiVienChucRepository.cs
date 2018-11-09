@@ -34,18 +34,6 @@ namespace Model.Repository
             return false;
         }
 
-        public void Update(string mavienchuc, DateTime ngaybatdau, DateTime ngayketthuc, string mota, string diadiem)
-        {
-            int idvienchuc = _db.VienChucs.Where(x => x.maVienChuc == mavienchuc).Select(y => y.idVienChuc).FirstOrDefault();
-            TrangThaiVienChuc trangThaiVienChuc = _db.TrangThaiVienChucs.Where(x => x.idVienChuc == idvienchuc).FirstOrDefault();
-            trangThaiVienChuc.idTrangThai = 2;
-            trangThaiVienChuc.ngayBatDau = ngaybatdau;
-            trangThaiVienChuc.ngayKetThuc = ngayketthuc;
-            trangThaiVienChuc.moTa = mota;
-            trangThaiVienChuc.diaDiem = diadiem;
-            _db.SaveChanges();
-        }
-
         public List<TrangThaiForView> GetListTrangThaiVienChuc(string mavienchuc)
         {
             int idvienchuc = _db.VienChucs.Where(x => x.maVienChuc == mavienchuc).Select(y => y.idVienChuc).FirstOrDefault();
@@ -95,16 +83,12 @@ namespace Model.Repository
                 if (row.ngayKetThuc != null)
                 {
                     if (row.ngayBatDau >= dtFromDuration && row.ngayKetThuc <= dtToDuration)
-                    {
                         listTrangThaiVienChuc.Add(row);
-                    }
                 }
                 else
                 {
                     if (row.ngayBatDau >= dtFromDuration)
-                    {
                         listTrangThaiVienChuc.Add(row);
-                    }
                 }
             }
             if (listTrangThaiVienChuc.Count > 0)
@@ -122,14 +106,14 @@ namespace Model.Repository
                 {
                     if (row.ngayBatDau <= dtTimeline && row.ngayKetThuc >= dtTimeline)
                     {
-                        listTrangThaiVienChuc.Add(new TrangThaiVienChuc(row));
+                        listTrangThaiVienChuc.Add(row);
                     }
                 }
                 if (row.ngayKetThuc == null)
                 {
                     if (row.ngayBatDau <= dtTimeline)
                     {
-                        listTrangThaiVienChuc.Add(new TrangThaiVienChuc(row));
+                        listTrangThaiVienChuc.Add(row);
                     }
                 }
             }
@@ -138,7 +122,7 @@ namespace Model.Repository
             return null;
         }
 
-        public List<TrangThaiVienChuc> GetListTrangThaiByIdVienChucAndDuration(int idVienChuc, DateTime dtFromDuration, DateTime dtToDuration)
+        public List<TrangThaiVienChuc> GetListTrangThaiByIdVienChucAndDuration(int idVienChuc, DateTime? dtFromDuration, DateTime? dtToDuration)
         {
             List<TrangThaiVienChuc> rows = _db.TrangThaiVienChucs.Where(x => x.idVienChuc == idVienChuc).ToList();
             List<TrangThaiVienChuc> listTrangThaiVienChuc = new List<TrangThaiVienChuc>();
@@ -161,10 +145,10 @@ namespace Model.Repository
             }
             if (listTrangThaiVienChuc.Count > 0)
                 return listTrangThaiVienChuc;
-            return rows;
+            return rows.Where(x => x.ngayBatDau == null && x.ngayKetThuc == null).ToList();
         }
 
-        public List<TrangThaiVienChuc> GetListTrangThaiByIdVienChucAndTimeline(int idVienChuc, DateTime dtTimeline)
+        public List<TrangThaiVienChuc> GetListTrangThaiByIdVienChucAndTimeline(int idVienChuc, DateTime? dtTimeline)
         {
             List<TrangThaiVienChuc> rows = _db.TrangThaiVienChucs.Where(x => x.idVienChuc == idVienChuc).ToList();
             List<TrangThaiVienChuc> listTrangThaiVienChuc = new List<TrangThaiVienChuc>();
@@ -174,20 +158,20 @@ namespace Model.Repository
                 {
                     if (row.ngayBatDau <= dtTimeline && row.ngayKetThuc >= dtTimeline)
                     {
-                        listTrangThaiVienChuc.Add(new TrangThaiVienChuc(row));
+                        listTrangThaiVienChuc.Add(row);
                     }
                 }
                 if (row.ngayKetThuc == null)
                 {
                     if (row.ngayBatDau <= dtTimeline)
                     {
-                        listTrangThaiVienChuc.Add(new TrangThaiVienChuc(row));
+                        listTrangThaiVienChuc.Add(row);
                     }
                 }
             }
             if(listTrangThaiVienChuc.Count > 0)
                 return listTrangThaiVienChuc;
-            return rows;
+            return rows.Where(x => x.ngayBatDau == null && x.ngayKetThuc == null).ToList();
         }      
 
         public List<string> GetListLinkVanBanDinhKem(string maVienChucForGetListLinkVanBanDinhKem)

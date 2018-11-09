@@ -23,6 +23,7 @@ namespace Model.Entities
     
         public int idLoaiHocHamHocVi { get; set; }
         public string tenLoaiHocHamHocVi { get; set; }
+        public Nullable<int> phanCap { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DangHocNangCao> DangHocNangCaos { get; set; }

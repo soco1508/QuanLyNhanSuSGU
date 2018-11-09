@@ -13,21 +13,15 @@ namespace Model.Repository
         {
         }
 
-        private string ChangeCommaToDot(string hesobac)
-        {
-            string[] temp = hesobac.Split(',');
-            return temp[0] + "." + temp[1];
-        }
-
         public double ParseHeSoBacToDouble(string hesobac)
         {
             if (hesobac != string.Empty)
             {
-                string temp = ChangeCommaToDot(hesobac);
-                double a = Math.Round(Convert.ToDouble(temp), 3);
-                return a;
+                if (hesobac.Contains(','))
+                    hesobac = hesobac.Replace(',', '.');
+                return Math.Round(Convert.ToDouble(hesobac), 3);
             }
-            return 0;
+            return Math.Round(Convert.ToDouble(0), 3);
         }
 
         public int GetIdBac(int bac, int idngach)
@@ -52,12 +46,6 @@ namespace Model.Repository
             return b;
         }
 
-        public void Create(int bac, double hesobac, int idngach)
-        {
-            _db.Bacs.Add(new Bac { bac1 = bac, heSoBac = hesobac, idNgach = idngach });
-            _db.SaveChanges();
-        }
-
         public void Update(int id, int bac, double hesobac, int idngach)
         {
             Bac _bac = _db.Bacs.Where(x => x.idBac == id).FirstOrDefault();
@@ -70,6 +58,17 @@ namespace Model.Repository
         public double GetHeSoBac(int idngach, int bac)
         {
             return _db.Bacs.Where(x => x.idNgach == idngach && x.bac1 == bac).Select(y => y.heSoBac).FirstOrDefault();
+        }
+
+        public List<string> GetListBacVaNgach()
+        {
+            List<string> list = new List<string>();
+            var rows = _db.Bacs.Select(x => new { x.bac1, x.Ngach.maNgach });
+            foreach(var row in rows)
+            {
+                list.Add(row.bac1.ToString() + row.maNgach);
+            }
+            return list;
         }
     }
 }

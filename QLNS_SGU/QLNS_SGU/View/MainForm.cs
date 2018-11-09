@@ -138,6 +138,8 @@ namespace QLNS_SGU.View
             gvChungChi.Click += (s, e) => presenter.ClickRowGVChungChi();
             gvTrangThai.Click += (s, e) => presenter.ClickRowGVTrangThai();
             btnExportExcel.ItemClick += (s, e) => presenter.ExportExcelMainGrid();
+
+            //gvMain.RowCellStyle += new RowCellStyleEventHandler(presenter.RowCellStyle);
         }
     }
 }

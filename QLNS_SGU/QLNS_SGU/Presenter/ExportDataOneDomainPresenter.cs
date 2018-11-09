@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraEditors;
+using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraSplashScreen;
 using Model;
@@ -36,7 +37,7 @@ namespace QLNS_SGU.Presenter
         }
 
         public void RowIndicator(object sender, RowIndicatorCustomDrawEventArgs e)
-        {
+        {            
             if (e.RowHandle >= 0)
                 e.Info.DisplayText = (e.RowHandle + 1).ToString();
         }
@@ -89,7 +90,7 @@ namespace QLNS_SGU.Presenter
             int selectedDomain = _view.RADDomain.SelectedIndex;
             if (_view.RADSelectTimeToFilter.SelectedIndex == 0) //moc thoi gian
             {
-                if (_view.DTTimeline.Text != "")
+                if (_view.DTTimeline.Text != string.Empty)
                 {                   
                     GetDataTimeline(selectedDomain);
                 }
@@ -101,7 +102,7 @@ namespace QLNS_SGU.Presenter
             }
             else                                            //khoang thoi gian
             {
-                if (_view.DTFromDuration.Text != "")
+                if (_view.DTFromDuration.Text != string.Empty)
                 {
                     GetDataDuration(selectedDomain);
                 }
@@ -121,575 +122,31 @@ namespace QLNS_SGU.Presenter
             DateTime dtToDuration = _view.DTToDuration.DateTime;
             List<ExportObjects> listFieldsDefault = unitOfWorks.VienChucRepository.GetListFieldsDefaultByDuration(dtFromDuration, dtToDuration).ToList();
             int tempIdVienChuc = -1;
-            if (selectedDomain == 0) // thong tin ca nhan
+            if (selectedDomain == 0) // Tat ca
             {
-                foreach (var row in listFieldsDefault)
-                {
-                    VienChuc vienChuc = unitOfWorks.VienChucRepository.GetVienChucByIdVienChuc(row.IdVienChuc);
-                    if (vienChuc != null)
-                    {
-                        ExportObjects exportObjects = listFieldsDefault.Where(x => x.IdVienChuc == row.IdVienChuc).FirstOrDefault();
-                        exportObjects.SoDienThoai = vienChuc.sDT;
-                        exportObjects.NgaySinh = vienChuc.ngaySinh;
-                        exportObjects.NoiSinh = vienChuc.noiSinh;
-                        exportObjects.QueQuan = vienChuc.queQuan;
-                        exportObjects.DanToc = vienChuc.DanToc.tenDanToc;
-                        exportObjects.TonGiao = vienChuc.TonGiao.tenTonGiao;
-                        exportObjects.HoKhauThuongTru = vienChuc.hoKhauThuongTru;
-                        exportObjects.NoiOHienNay = vienChuc.noiOHienNay;
-                        exportObjects.LaDangVien = unitOfWorks.VienChucRepository.ReturnLaDangVienToGrid(vienChuc.laDangVien);
-                        exportObjects.NgayVaoDang = vienChuc.ngayVaoDang;
-                        exportObjects.NgayThamGiaCongTac = vienChuc.ngayThamGiaCongTac;
-                        exportObjects.NgayVaoNganh = vienChuc.ngayVaoNganh;
-                        exportObjects.NgayVeTruong = vienChuc.ngayVeTruong;
-                        exportObjects.VanHoa = vienChuc.vanHoa;
-                        exportObjects.GhiChu = vienChuc.ghiChu;
-                    }
-                }
+                ExportThongTinCaNhan(listFieldsDefault, unitOfWorks);
+                ExportTrangThai(listFieldsDefault, null, dtFromDuration, dtToDuration, unitOfWorks, tempIdVienChuc);
+                ExportCongTac(listFieldsDefault, null, dtFromDuration, dtToDuration, unitOfWorks, tempIdVienChuc);
+                ExportNganhHoc(listFieldsDefault, null, dtFromDuration, dtToDuration, unitOfWorks, tempIdVienChuc);
+                ExportQuaTrinhLuong(listFieldsDefault, null, dtFromDuration, dtToDuration, unitOfWorks, tempIdVienChuc);
+                ExportHopDong(listFieldsDefault, null, dtFromDuration, dtToDuration, unitOfWorks, tempIdVienChuc);
+                ExportChungChi(listFieldsDefault, null, dtFromDuration, dtToDuration, unitOfWorks, tempIdVienChuc);
+                ExportDangHocNangCao(listFieldsDefault, null, dtFromDuration, dtToDuration, unitOfWorks, tempIdVienChuc);
             }
             if (selectedDomain == 1) // trang thai
-            {
-                foreach (var row in listFieldsDefault)
-                {
-                    ExportObjects exportObjects = listFieldsDefault.Where(x => x.IdVienChuc == row.IdVienChuc && x.Index == row.Index).FirstOrDefault();
-                    List<TrangThaiVienChuc> listTrangThai = unitOfWorks.TrangThaiVienChucRepository.GetListTrangThaiByIdVienChucAndDuration(row.IdVienChuc, dtFromDuration, dtToDuration);
-                    if (row.IdVienChuc != tempIdVienChuc)
-                    {
-                        tempIdVienChuc = row.IdVienChuc;
-                        if (listTrangThai.Count > 1)
-                        {
-                            exportObjects.MoTaTT = listTrangThai[0].moTa;
-                            exportObjects.DiaDiemTT = listTrangThai[0].diaDiem;
-                            exportObjects.NgayBatDauTT = listTrangThai[0].ngayBatDau;
-                            exportObjects.NgayKetThucTT = listTrangThai[0].ngayKetThuc;
-                            exportObjects.LinkVanBanDinhKemTT = listTrangThai[0].linkVanBanDinhKem;
-
-                            IncreaseIndex(listFieldsDefault, row.Index, listTrangThai.Count - 1);
-                            for (int i = 1; i < listTrangThai.Count; i++)
-                            {
-                                listFieldsDefault.Insert(row.Index + 1, new ExportObjects
-                                {
-                                    Index = row.Index + 1,
-                                    IdVienChuc = row.IdVienChuc,
-                                    MaVienChuc = row.MaVienChuc,
-                                    Ho = row.Ho,
-                                    Ten = row.Ten,
-                                    GioiTinh = row.GioiTinh,
-                                    DonVi = row.DonVi,
-                                    TrangThai = listTrangThai[i].TrangThai.tenTrangThai,
-                                    MoTaTT = listTrangThai[i].moTa,
-                                    DiaDiemTT = listTrangThai[i].diaDiem,
-                                    NgayBatDauTT = listTrangThai[i].ngayBatDau,
-                                    NgayKetThucTT = listTrangThai[i].ngayKetThuc,
-                                    LinkVanBanDinhKemTT = listTrangThai[i].linkVanBanDinhKem
-                                });
-                            }
-                        }
-                        if (listTrangThai.Count == 1)
-                        {
-                            exportObjects.MoTaTT = listTrangThai[0].moTa;
-                            exportObjects.DiaDiemTT = listTrangThai[0].diaDiem;
-                            exportObjects.NgayBatDauTT = listTrangThai[0].ngayBatDau;
-                            exportObjects.NgayKetThucTT = listTrangThai[0].ngayKetThuc;
-                            exportObjects.LinkVanBanDinhKemTT = listTrangThai[0].linkVanBanDinhKem;
-                        }
-                    }
-                }
-                tempIdVienChuc = -1;
-            }
+                ExportTrangThai(listFieldsDefault, null, dtFromDuration, dtToDuration, unitOfWorks, tempIdVienChuc);
             if (selectedDomain == 2) // cong tac
-            {
-                foreach (var row in listFieldsDefault)
-                {
-                    ExportObjects exportObjects = listFieldsDefault.Where(x => x.IdVienChuc == row.IdVienChuc && x.Index == row.Index).FirstOrDefault();
-                    List<ChucVuDonViVienChuc> listCongTac = unitOfWorks.ChucVuDonViVienChucRepository.GetListCongTacByIdVienChucAndDuration(row.IdVienChuc, dtFromDuration, dtToDuration);
-                    if (row.IdVienChuc != tempIdVienChuc)
-                    {
-                        tempIdVienChuc = row.IdVienChuc;
-                        if (listCongTac.Count > 1)
-                        {
-                            exportObjects.LoaiChucVu = listCongTac[0].ChucVu.LoaiChucVu.tenLoaiChucVu;
-                            exportObjects.ChucVu = listCongTac[0].ChucVu.tenChucVu;
-                            exportObjects.HeSoChucVu = listCongTac[0].ChucVu.heSoChucVu;
-                            exportObjects.LoaiDonVi = listCongTac[0].DonVi.LoaiDonVi.tenLoaiDonVi;
-                            exportObjects.DonVi = listCongTac[0].DonVi.tenDonVi;
-                            exportObjects.DiaDiemCT = listCongTac[0].DonVi.diaDiem;
-                            exportObjects.DiaChi = listCongTac[0].DonVi.diaChi;
-                            exportObjects.SoDienThoaiDonVi = listCongTac[0].DonVi.sDT;
-                            exportObjects.ToChuyenMon = listCongTac[0].ToChuyenMon.tenToChuyenMon;
-                            exportObjects.PhanLoaiCongTac = listCongTac[0].phanLoaiCongTac;
-                            exportObjects.CheckPhanLoaiCongTac = unitOfWorks.ChucVuDonViVienChucRepository.HardCheckPhanLoaiCongTacToGrid(listCongTac[0].checkPhanLoaiCongTac);
-                            exportObjects.NgayBatDauCT = listCongTac[0].ngayBatDau;
-                            exportObjects.NgayKetThucCT = listCongTac[0].ngayKetThuc;
-                            exportObjects.LoaiThayDoi = unitOfWorks.ChucVuDonViVienChucRepository.HardLoaiThayDoiToGrid(listCongTac[0].loaiThayDoi);
-                            exportObjects.KiemNhiem = unitOfWorks.ChucVuDonViVienChucRepository.HardKiemNhiemToGrid(listCongTac[0].kiemNhiem);
-                            exportObjects.LinkVanBanDinhKemCT = listCongTac[0].linkVanBanDinhKem;
-                            exportObjects.GhiChuCT = listCongTac[0].ghiChu;
-
-                            IncreaseIndex(listFieldsDefault, row.Index, listCongTac.Count - 1);
-                            for (int i = 1; i < listCongTac.Count; i++)
-                            {
-                                listFieldsDefault.Insert(row.Index + 1, new ExportObjects
-                                {
-                                    Index = row.Index + 1,
-                                    IdVienChuc = row.IdVienChuc,
-                                    MaVienChuc = row.MaVienChuc,
-                                    Ho = row.Ho,
-                                    Ten = row.Ten,
-                                    GioiTinh = row.GioiTinh,
-                                    DonVi = listCongTac[i].DonVi.tenDonVi,
-                                    TrangThai = row.TrangThai,
-                                    LoaiChucVu = listCongTac[i].ChucVu.LoaiChucVu.tenLoaiChucVu,
-                                    ChucVu = listCongTac[i].ChucVu.tenChucVu,
-                                    HeSoChucVu = listCongTac[i].ChucVu.heSoChucVu,
-                                    LoaiDonVi = listCongTac[i].DonVi.LoaiDonVi.tenLoaiDonVi,
-                                    DiaDiemCT = listCongTac[i].DonVi.diaDiem,
-                                    DiaChi = listCongTac[i].DonVi.diaChi,
-                                    SoDienThoaiDonVi = listCongTac[i].DonVi.sDT,
-                                    ToChuyenMon = listCongTac[i].ToChuyenMon.tenToChuyenMon,
-                                    PhanLoaiCongTac = listCongTac[i].phanLoaiCongTac,
-                                    CheckPhanLoaiCongTac = unitOfWorks.ChucVuDonViVienChucRepository.HardCheckPhanLoaiCongTacToGrid(listCongTac[i].checkPhanLoaiCongTac),
-                                    NgayBatDauCT = listCongTac[i].ngayBatDau,
-                                    NgayKetThucCT = listCongTac[i].ngayKetThuc,
-                                    LoaiThayDoi = unitOfWorks.ChucVuDonViVienChucRepository.HardLoaiThayDoiToGrid(listCongTac[i].loaiThayDoi),
-                                    KiemNhiem = unitOfWorks.ChucVuDonViVienChucRepository.HardKiemNhiemToGrid(listCongTac[i].kiemNhiem),
-                                    LinkVanBanDinhKemCT = listCongTac[i].linkVanBanDinhKem,
-                                    GhiChuCT = listCongTac[i].ghiChu
-                                });
-                            }
-                        }
-                        if (listCongTac.Count == 1)
-                        {
-                            exportObjects.LoaiChucVu = listCongTac[0].ChucVu.LoaiChucVu.tenLoaiChucVu;
-                            exportObjects.ChucVu = listCongTac[0].ChucVu.tenChucVu;
-                            exportObjects.HeSoChucVu = listCongTac[0].ChucVu.heSoChucVu;
-                            exportObjects.LoaiDonVi = listCongTac[0].DonVi.LoaiDonVi.tenLoaiDonVi;
-                            //exportObjects.DonVi = listCongTac[0].DonVi.tenDonVi;
-                            exportObjects.DiaDiemCT = listCongTac[0].DonVi.diaDiem;
-                            exportObjects.DiaChi = listCongTac[0].DonVi.diaChi;
-                            exportObjects.SoDienThoaiDonVi = listCongTac[0].DonVi.sDT;
-                            exportObjects.ToChuyenMon = listCongTac[0].ToChuyenMon.tenToChuyenMon;
-                            exportObjects.PhanLoaiCongTac = listCongTac[0].phanLoaiCongTac;
-                            exportObjects.CheckPhanLoaiCongTac = unitOfWorks.ChucVuDonViVienChucRepository.HardCheckPhanLoaiCongTacToGrid(listCongTac[0].checkPhanLoaiCongTac);
-                            exportObjects.NgayBatDauCT = listCongTac[0].ngayBatDau;
-                            exportObjects.NgayKetThucCT = listCongTac[0].ngayKetThuc;
-                            exportObjects.LoaiThayDoi = unitOfWorks.ChucVuDonViVienChucRepository.HardLoaiThayDoiToGrid(listCongTac[0].loaiThayDoi);
-                            exportObjects.KiemNhiem = unitOfWorks.ChucVuDonViVienChucRepository.HardKiemNhiemToGrid(listCongTac[0].kiemNhiem);
-                            exportObjects.LinkVanBanDinhKemCT = listCongTac[0].linkVanBanDinhKem;
-                            exportObjects.GhiChuCT = listCongTac[0].ghiChu;
-                        }
-                    }
-                }
-                tempIdVienChuc = -1;
-            }
+                ExportCongTac(listFieldsDefault, null, dtFromDuration, dtToDuration, unitOfWorks, tempIdVienChuc);
             if (selectedDomain == 3) // nganh hoc
-            {
-                foreach (var row in listFieldsDefault)
-                {
-                    ExportObjects exportObjects = listFieldsDefault.Where(x => x.IdVienChuc == row.IdVienChuc && x.Index == row.Index).FirstOrDefault();
-                    List<NganhVienChuc> listNganhHoc = unitOfWorks.NganhVienChucRepository.GetListNganhHocByIdVienChucAndDurationForExportFull(row.IdVienChuc, dtFromDuration, dtToDuration);
-                    if (row.IdVienChuc != tempIdVienChuc)
-                    {
-                        tempIdVienChuc = row.IdVienChuc;
-                        if (listNganhHoc.Count > 1)
-                        {
-                            exportObjects.LoaiNganhNH = listNganhHoc[0].LoaiNganh.tenLoaiNganh;
-                            exportObjects.NganhDaoTaoNH = listNganhHoc[0].NganhDaoTao.tenNganhDaoTao;
-                            exportObjects.ChuyenNganhNH = listNganhHoc[0].ChuyenNganh.tenChuyenNganh;
-                            exportObjects.LoaiHocHamHocViNH = listNganhHoc[0].HocHamHocViVienChuc.LoaiHocHamHocVi.tenLoaiHocHamHocVi;
-                            exportObjects.TenHocHamHocViNH = listNganhHoc[0].HocHamHocViVienChuc.tenHocHamHocVi;
-                            exportObjects.CoSoDaoTaoNH = listNganhHoc[0].HocHamHocViVienChuc.coSoDaoTao;
-                            exportObjects.NgonNguDaoTaoNH = listNganhHoc[0].HocHamHocViVienChuc.ngonNguDaoTao;
-                            exportObjects.HinhThucDaoTaoNH = listNganhHoc[0].HocHamHocViVienChuc.hinhThucDaoTao;
-                            exportObjects.NuocCapBangNH = listNganhHoc[0].HocHamHocViVienChuc.nuocCapBang;
-                            exportObjects.NgayCapBangNH = listNganhHoc[0].HocHamHocViVienChuc.ngayCapBang;
-                            exportObjects.LinkVanBanDinhKemHHHV_NH = listNganhHoc[0].HocHamHocViVienChuc.linkVanBanDinhKem;
-                            exportObjects.PhanLoaiNH = unitOfWorks.NganhVienChucRepository.HardCodePhanLoaiToGrid(listNganhHoc[0].phanLoai);
-                            exportObjects.LinkVanBanDinhKemNH = listNganhHoc[0].linkVanBanDinhKem;
-
-                            IncreaseIndex(listFieldsDefault, row.Index, listNganhHoc.Count - 1); // tru phan tu 0, con lai bn phan tu thi cong len bay nhieu
-                            for (int i = 1; i < listNganhHoc.Count; i++)
-                            {
-                                listFieldsDefault.Insert(row.Index + 1, new ExportObjects
-                                {
-                                    Index = row.Index + 1,
-                                    IdVienChuc = row.IdVienChuc,
-                                    MaVienChuc = row.MaVienChuc,
-                                    Ho = row.Ho,
-                                    Ten = row.Ten,
-                                    GioiTinh = row.GioiTinh,
-                                    DonVi = row.DonVi,
-                                    TrangThai = row.TrangThai,
-                                    LoaiNganhNH = listNganhHoc[i].LoaiNganh.tenLoaiNganh,
-                                    NganhDaoTaoNH = listNganhHoc[i].NganhDaoTao.tenNganhDaoTao,
-                                    ChuyenNganhNH = listNganhHoc[i].ChuyenNganh.tenChuyenNganh,
-                                    LoaiHocHamHocViNH = listNganhHoc[i].HocHamHocViVienChuc.LoaiHocHamHocVi.tenLoaiHocHamHocVi,
-                                    TenHocHamHocViNH = listNganhHoc[i].HocHamHocViVienChuc.tenHocHamHocVi,
-                                    CoSoDaoTaoNH = listNganhHoc[i].HocHamHocViVienChuc.coSoDaoTao,
-                                    NgonNguDaoTaoNH = listNganhHoc[i].HocHamHocViVienChuc.ngonNguDaoTao,
-                                    HinhThucDaoTaoNH = listNganhHoc[i].HocHamHocViVienChuc.hinhThucDaoTao,
-                                    NuocCapBangNH = listNganhHoc[i].HocHamHocViVienChuc.nuocCapBang,
-                                    NgayCapBangNH = listNganhHoc[i].HocHamHocViVienChuc.ngayCapBang,
-                                    LinkVanBanDinhKemHHHV_NH = listNganhHoc[i].HocHamHocViVienChuc.linkVanBanDinhKem,
-                                    PhanLoaiNH = unitOfWorks.NganhVienChucRepository.HardCodePhanLoaiToGrid(listNganhHoc[i].phanLoai),
-                                    LinkVanBanDinhKemNH = listNganhHoc[i].linkVanBanDinhKem
-                                });
-                            }
-                        }
-                        if (listNganhHoc.Count == 1)
-                        {
-                            exportObjects.LoaiNganhNH = listNganhHoc[0].LoaiNganh.tenLoaiNganh;
-                            exportObjects.NganhDaoTaoNH = listNganhHoc[0].NganhDaoTao.tenNganhDaoTao;
-                            exportObjects.ChuyenNganhNH = listNganhHoc[0].ChuyenNganh.tenChuyenNganh;
-                            exportObjects.LoaiHocHamHocViNH = listNganhHoc[0].HocHamHocViVienChuc.LoaiHocHamHocVi.tenLoaiHocHamHocVi;
-                            exportObjects.TenHocHamHocViNH = listNganhHoc[0].HocHamHocViVienChuc.tenHocHamHocVi;
-                            exportObjects.CoSoDaoTaoNH = listNganhHoc[0].HocHamHocViVienChuc.coSoDaoTao;
-                            exportObjects.NgonNguDaoTaoNH = listNganhHoc[0].HocHamHocViVienChuc.ngonNguDaoTao;
-                            exportObjects.HinhThucDaoTaoNH = listNganhHoc[0].HocHamHocViVienChuc.hinhThucDaoTao;
-                            exportObjects.NuocCapBangNH = listNganhHoc[0].HocHamHocViVienChuc.nuocCapBang;
-                            exportObjects.NgayCapBangNH = listNganhHoc[0].HocHamHocViVienChuc.ngayCapBang;
-                            exportObjects.LinkVanBanDinhKemHHHV_NH = listNganhHoc[0].HocHamHocViVienChuc.linkVanBanDinhKem;
-                            exportObjects.PhanLoaiNH = unitOfWorks.NganhVienChucRepository.HardCodePhanLoaiToGrid(listNganhHoc[0].phanLoai);
-                            exportObjects.LinkVanBanDinhKemNH = listNganhHoc[0].linkVanBanDinhKem;
-                        }
-                    }
-                }
-                tempIdVienChuc = -1;
-            }
+                ExportNganhHoc(listFieldsDefault, null, dtFromDuration, dtToDuration, unitOfWorks, tempIdVienChuc);
             if (selectedDomain == 4) // qua trinh luong
-            {
-                foreach (var row in listFieldsDefault)
-                {
-                    ExportObjects exportObjects = listFieldsDefault.Where(x => x.IdVienChuc == row.IdVienChuc && x.Index == row.Index).FirstOrDefault();
-                    List<QuaTrinhLuong> listQuaTrinhLuong = unitOfWorks.QuaTrinhLuongRepository.GetListQuaTrinhLuongByIdVienChucAndDurationForExportFull(row.IdVienChuc, dtFromDuration, dtToDuration);
-                    if (row.IdVienChuc != tempIdVienChuc)
-                    {
-                        tempIdVienChuc = row.IdVienChuc;
-                        if (listQuaTrinhLuong.Count > 1)
-                        {
-                            exportObjects.MaNgach = listQuaTrinhLuong[0].Bac.Ngach.maNgach;
-                            exportObjects.TenNgach = listQuaTrinhLuong[0].Bac.Ngach.tenNgach;
-                            exportObjects.HeSoVuotKhungBaNamDau = listQuaTrinhLuong[0].Bac.Ngach.heSoVuotKhungBaNamDau;
-                            exportObjects.HeSoVuotKhungTrenBaNam = listQuaTrinhLuong[0].Bac.Ngach.heSoVuotKhungTrenBaNam;
-                            exportObjects.ThoiHanNangBac = listQuaTrinhLuong[0].Bac.Ngach.thoiHanNangBac;
-                            exportObjects.Bac = listQuaTrinhLuong[0].Bac.bac1;
-                            exportObjects.HeSoBac = listQuaTrinhLuong[0].Bac.heSoBac;
-                            exportObjects.NgayBatDauQTL = listQuaTrinhLuong[0].ngayBatDau;
-                            exportObjects.NgayLenLuong = listQuaTrinhLuong[0].ngayLenLuong;
-                            exportObjects.LinkVanBanDinhKemQTL = listQuaTrinhLuong[0].linkVanBanDinhKem;
-
-                            IncreaseIndex(listFieldsDefault, row.Index, listQuaTrinhLuong.Count - 1);
-                            for (int i = 1; i < listQuaTrinhLuong.Count; i++)
-                            {
-                                listFieldsDefault.Insert(row.Index + 1, new ExportObjects
-                                {
-                                    Index = row.Index + 1,
-                                    IdVienChuc = row.IdVienChuc,
-                                    MaVienChuc = row.MaVienChuc,
-                                    Ho = row.Ho,
-                                    Ten = row.Ten,
-                                    GioiTinh = row.GioiTinh,
-                                    DonVi = row.DonVi,
-                                    TrangThai = row.TrangThai,
-                                    MaNgach = listQuaTrinhLuong[i].Bac.Ngach.maNgach,
-                                    TenNgach = listQuaTrinhLuong[i].Bac.Ngach.tenNgach,
-                                    HeSoVuotKhungBaNamDau = listQuaTrinhLuong[i].Bac.Ngach.heSoVuotKhungBaNamDau,
-                                    HeSoVuotKhungTrenBaNam = listQuaTrinhLuong[i].Bac.Ngach.heSoVuotKhungTrenBaNam,
-                                    ThoiHanNangBac = listQuaTrinhLuong[i].Bac.Ngach.thoiHanNangBac,
-                                    Bac = listQuaTrinhLuong[i].Bac.bac1,
-                                    HeSoBac = listQuaTrinhLuong[i].Bac.heSoBac,
-                                    NgayBatDauQTL = listQuaTrinhLuong[i].ngayBatDau,
-                                    NgayLenLuong = listQuaTrinhLuong[i].ngayLenLuong,
-                                    LinkVanBanDinhKemQTL = listQuaTrinhLuong[i].linkVanBanDinhKem
-                                });
-                            }
-                        }
-                        if (listQuaTrinhLuong.Count == 1)
-                        {
-                            exportObjects.MaNgach = listQuaTrinhLuong[0].Bac.Ngach.maNgach;
-                            exportObjects.TenNgach = listQuaTrinhLuong[0].Bac.Ngach.tenNgach;
-                            exportObjects.HeSoVuotKhungBaNamDau = listQuaTrinhLuong[0].Bac.Ngach.heSoVuotKhungBaNamDau;
-                            exportObjects.HeSoVuotKhungTrenBaNam = listQuaTrinhLuong[0].Bac.Ngach.heSoVuotKhungTrenBaNam;
-                            exportObjects.ThoiHanNangBac = listQuaTrinhLuong[0].Bac.Ngach.thoiHanNangBac;
-                            exportObjects.Bac = listQuaTrinhLuong[0].Bac.bac1;
-                            exportObjects.HeSoBac = listQuaTrinhLuong[0].Bac.heSoBac;
-                            exportObjects.NgayBatDauQTL = listQuaTrinhLuong[0].ngayBatDau;
-                            exportObjects.NgayLenLuong = listQuaTrinhLuong[0].ngayLenLuong;
-                            exportObjects.LinkVanBanDinhKemQTL = listQuaTrinhLuong[0].linkVanBanDinhKem;
-                        }
-                    }
-                }
-                tempIdVienChuc = -1;
-            }
-            if (selectedDomain == 5) // nganh day
-            {
-                foreach (var row in listFieldsDefault)
-                {
-                    ExportObjects exportObjects = listFieldsDefault.Where(x => x.IdVienChuc == row.IdVienChuc && x.Index == row.Index).FirstOrDefault();
-                    List<NganhVienChuc> listNganhDay = unitOfWorks.NganhVienChucRepository.GetListNganhDayByIdVienChucAndDurationForExportFull(row.IdVienChuc, dtFromDuration, dtToDuration);
-                    if (row.IdVienChuc != tempIdVienChuc)
-                    {
-                        tempIdVienChuc = row.IdVienChuc;
-                        if (listNganhDay.Count > 1)
-                        {
-                            exportObjects.LoaiNganhND = listNganhDay[0].LoaiNganh.tenLoaiNganh;
-                            exportObjects.NganhDaoTaoND = listNganhDay[0].NganhDaoTao.tenNganhDaoTao;
-                            exportObjects.ChuyenNganhND = listNganhDay[0].ChuyenNganh.tenChuyenNganh;
-                            exportObjects.LoaiHocHamHocViND = listNganhDay[0].HocHamHocViVienChuc.LoaiHocHamHocVi.tenLoaiHocHamHocVi;
-                            exportObjects.TenHocHamHocViND = listNganhDay[0].HocHamHocViVienChuc.tenHocHamHocVi;
-                            exportObjects.CoSoDaoTaoND = listNganhDay[0].HocHamHocViVienChuc.coSoDaoTao;
-                            exportObjects.NgonNguDaoTaoND = listNganhDay[0].HocHamHocViVienChuc.ngonNguDaoTao;
-                            exportObjects.HinhThucDaoTaoND = listNganhDay[0].HocHamHocViVienChuc.hinhThucDaoTao;
-                            exportObjects.NuocCapBangND = listNganhDay[0].HocHamHocViVienChuc.nuocCapBang;
-                            exportObjects.NgayCapBangND = listNganhDay[0].HocHamHocViVienChuc.ngayCapBang;
-                            exportObjects.LinkVanBanDinhKemHHHV_ND = listNganhDay[0].HocHamHocViVienChuc.linkVanBanDinhKem;
-                            exportObjects.PhanLoaiND = unitOfWorks.NganhVienChucRepository.HardCodePhanLoaiToGrid(listNganhDay[0].phanLoai);
-                            exportObjects.NgayBatDauND = listNganhDay[0].ngayBatDau;
-                            exportObjects.NgayKetThucND = listNganhDay[0].ngayKetThuc;
-                            exportObjects.LinkVanBanDinhKemND = listNganhDay[0].linkVanBanDinhKem;
-
-                            IncreaseIndex(listFieldsDefault, row.Index, listNganhDay.Count - 1);
-                            for (int i = 1; i < listNganhDay.Count; i++)
-                            {
-                                listFieldsDefault.Insert(row.Index + 1, new ExportObjects
-                                {
-                                    Index = row.Index + 1,
-                                    IdVienChuc = row.IdVienChuc,
-                                    MaVienChuc = row.MaVienChuc,
-                                    Ho = row.Ho,
-                                    Ten = row.Ten,
-                                    GioiTinh = row.GioiTinh,
-                                    DonVi = row.DonVi,
-                                    TrangThai = row.TrangThai,
-                                    LoaiNganhND = listNganhDay[i].LoaiNganh.tenLoaiNganh,
-                                    NganhDaoTaoND = listNganhDay[i].NganhDaoTao.tenNganhDaoTao,
-                                    ChuyenNganhND = listNganhDay[i].ChuyenNganh.tenChuyenNganh,
-                                    LoaiHocHamHocViND = listNganhDay[i].HocHamHocViVienChuc.LoaiHocHamHocVi.tenLoaiHocHamHocVi,
-                                    TenHocHamHocViND = listNganhDay[i].HocHamHocViVienChuc.tenHocHamHocVi,
-                                    CoSoDaoTaoND = listNganhDay[i].HocHamHocViVienChuc.coSoDaoTao,
-                                    NgonNguDaoTaoND = listNganhDay[i].HocHamHocViVienChuc.ngonNguDaoTao,
-                                    HinhThucDaoTaoND = listNganhDay[i].HocHamHocViVienChuc.hinhThucDaoTao,
-                                    NuocCapBangND = listNganhDay[i].HocHamHocViVienChuc.nuocCapBang,
-                                    NgayCapBangND = listNganhDay[i].HocHamHocViVienChuc.ngayCapBang,
-                                    LinkVanBanDinhKemHHHV_ND = listNganhDay[i].HocHamHocViVienChuc.linkVanBanDinhKem,
-                                    PhanLoaiND = unitOfWorks.NganhVienChucRepository.HardCodePhanLoaiToGrid(listNganhDay[i].phanLoai),
-                                    NgayBatDauND = listNganhDay[i].ngayBatDau,
-                                    NgayKetThucND = listNganhDay[i].ngayKetThuc,
-                                    LinkVanBanDinhKemND = listNganhDay[i].linkVanBanDinhKem
-                                });
-                            }
-                        }
-                        if (listNganhDay.Count == 1)
-                        {
-                            exportObjects.LoaiNganhND = listNganhDay[0].LoaiNganh.tenLoaiNganh;
-                            exportObjects.NganhDaoTaoND = listNganhDay[0].NganhDaoTao.tenNganhDaoTao;
-                            exportObjects.ChuyenNganhND = listNganhDay[0].ChuyenNganh.tenChuyenNganh;
-                            exportObjects.LoaiHocHamHocViND = listNganhDay[0].HocHamHocViVienChuc.LoaiHocHamHocVi.tenLoaiHocHamHocVi;
-                            exportObjects.TenHocHamHocViND = listNganhDay[0].HocHamHocViVienChuc.tenHocHamHocVi;
-                            exportObjects.CoSoDaoTaoND = listNganhDay[0].HocHamHocViVienChuc.coSoDaoTao;
-                            exportObjects.NgonNguDaoTaoND = listNganhDay[0].HocHamHocViVienChuc.ngonNguDaoTao;
-                            exportObjects.HinhThucDaoTaoND = listNganhDay[0].HocHamHocViVienChuc.hinhThucDaoTao;
-                            exportObjects.NuocCapBangND = listNganhDay[0].HocHamHocViVienChuc.nuocCapBang;
-                            exportObjects.NgayCapBangND = listNganhDay[0].HocHamHocViVienChuc.ngayCapBang;
-                            exportObjects.LinkVanBanDinhKemHHHV_ND = listNganhDay[0].HocHamHocViVienChuc.linkVanBanDinhKem;
-                            exportObjects.PhanLoaiND = unitOfWorks.NganhVienChucRepository.HardCodePhanLoaiToGrid(listNganhDay[0].phanLoai);
-                            exportObjects.NgayBatDauND = listNganhDay[0].ngayBatDau;
-                            exportObjects.NgayKetThucND = listNganhDay[0].ngayKetThuc;
-                            exportObjects.LinkVanBanDinhKemND = listNganhDay[0].linkVanBanDinhKem;
-                        }
-                    }
-                }
-                tempIdVienChuc = -1;
-            }
-            if (selectedDomain == 6) //hop dong
-            {
-                foreach (var row in listFieldsDefault)
-                {
-                    ExportObjects exportObjects = listFieldsDefault.Where(x => x.IdVienChuc == row.IdVienChuc && x.Index == row.Index).FirstOrDefault();
-                    List<HopDongVienChuc> listHopDongVienChuc = unitOfWorks.HopDongVienChucRepository.GetListHopDongByIdVienChucAndDurationForExportFull(row.IdVienChuc, dtFromDuration, dtToDuration);
-                    if (row.IdVienChuc != tempIdVienChuc)
-                    {
-                        tempIdVienChuc = row.IdVienChuc;
-                        if (listHopDongVienChuc.Count > 1)
-                        {
-                            exportObjects.MaHopDong = listHopDongVienChuc[0].LoaiHopDong.maLoaiHopDong;
-                            exportObjects.TenHopDong = listHopDongVienChuc[0].LoaiHopDong.tenLoaiHopDong;
-                            exportObjects.NgayBatDauHD = listHopDongVienChuc[0].ngayBatDau;
-                            exportObjects.NgayKetThucHD = listHopDongVienChuc[0].ngayKetThuc;
-                            exportObjects.MoTaHD = listHopDongVienChuc[0].moTa;
-                            exportObjects.LinkVanBanDinhKemHD = listHopDongVienChuc[0].linkVanBanDinhKem;
-
-                            IncreaseIndex(listFieldsDefault, row.Index, listHopDongVienChuc.Count - 1);
-                            for (int i = 1; i < listHopDongVienChuc.Count; i++)
-                            {
-                                listFieldsDefault.Insert(row.Index + 1, new ExportObjects
-                                {
-                                    Index = row.Index + 1,
-                                    IdVienChuc = row.IdVienChuc,
-                                    MaVienChuc = row.MaVienChuc,
-                                    Ho = row.Ho,
-                                    Ten = row.Ten,
-                                    GioiTinh = row.GioiTinh,
-                                    DonVi = row.DonVi,
-                                    TrangThai = row.TrangThai,
-                                    MaHopDong = listHopDongVienChuc[i].LoaiHopDong.maLoaiHopDong,
-                                    TenHopDong = listHopDongVienChuc[i].LoaiHopDong.tenLoaiHopDong,
-                                    NgayBatDauHD = listHopDongVienChuc[i].ngayBatDau,
-                                    NgayKetThucHD = listHopDongVienChuc[i].ngayKetThuc,
-                                    MoTaHD = listHopDongVienChuc[i].moTa,
-                                    LinkVanBanDinhKemHD = listHopDongVienChuc[i].linkVanBanDinhKem
-                                });
-                            }
-                        }
-                        if (listHopDongVienChuc.Count == 1)
-                        {
-                            exportObjects.MaHopDong = listHopDongVienChuc[0].LoaiHopDong.maLoaiHopDong;
-                            exportObjects.TenHopDong = listHopDongVienChuc[0].LoaiHopDong.tenLoaiHopDong;
-                            exportObjects.NgayBatDauHD = listHopDongVienChuc[0].ngayBatDau;
-                            exportObjects.NgayKetThucHD = listHopDongVienChuc[0].ngayKetThuc;
-                            exportObjects.MoTaHD = listHopDongVienChuc[0].moTa;
-                            exportObjects.LinkVanBanDinhKemHD = listHopDongVienChuc[0].linkVanBanDinhKem;
-                        }
-                    }
-                }
-                tempIdVienChuc = -1;
-            }
-            if (selectedDomain == 7) //chung chi
-            {
-                foreach (var row in listFieldsDefault)
-                {
-                    ExportObjects exportObjects = listFieldsDefault.Where(x => x.IdVienChuc == row.IdVienChuc && x.Index == row.Index).FirstOrDefault();
-                    List<ChungChiVienChuc> listChungChi = unitOfWorks.ChungChiVienChucRepository.GetListChungChiByIdVienChucAndDurationForExportFull(row.IdVienChuc, dtFromDuration, dtToDuration);
-                    if (row.IdVienChuc != tempIdVienChuc)
-                    {
-                        tempIdVienChuc = row.IdVienChuc;
-                        if (listChungChi.Count > 1)
-                        {
-                            exportObjects.LoaiChungChi = listChungChi[0].LoaiChungChi.tenLoaiChungChi;
-                            exportObjects.ChungChi = listChungChi[0].capDoChungChi;
-                            exportObjects.NgayCapChungChi = listChungChi[0].ngayCapChungChi;
-                            exportObjects.CoSoDaoTaoCC = listChungChi[0].coSoDaoTao;
-
-                            IncreaseIndex(listFieldsDefault, row.Index, listChungChi.Count - 1);
-                            for (int i = 1; i < listChungChi.Count; i++)
-                            {
-                                if (listChungChi[i].capDoChungChi != null)
-                                {
-                                    listFieldsDefault.Insert(row.Index + 1, new ExportObjects
-                                    {
-                                        Index = row.Index + 1,
-                                        IdVienChuc = row.IdVienChuc,
-                                        MaVienChuc = row.MaVienChuc,
-                                        Ho = row.Ho,
-                                        Ten = row.Ten,
-                                        GioiTinh = row.GioiTinh,
-                                        DonVi = row.DonVi,
-                                        TrangThai = row.TrangThai,
-                                        LoaiChungChi = listChungChi[i].LoaiChungChi.tenLoaiChungChi,
-                                        ChungChi = listChungChi[i].capDoChungChi,
-                                        NgayCapChungChi = listChungChi[i].ngayCapChungChi,
-                                        CoSoDaoTaoCC = listChungChi[i].coSoDaoTao
-                                    });
-                                }
-                                else
-                                {
-                                    listFieldsDefault.Insert(row.Index + 1, new ExportObjects
-                                    {
-                                        Index = row.Index + 1,
-                                        IdVienChuc = row.IdVienChuc,
-                                        MaVienChuc = row.MaVienChuc,
-                                        Ho = row.Ho,
-                                        Ten = row.Ten,
-                                        GioiTinh = row.GioiTinh,
-                                        DonVi = row.DonVi,
-                                        TrangThai = row.TrangThai,
-                                        LoaiChungChi = listChungChi[i].LoaiChungChi.tenLoaiChungChi,
-                                        ChungChi = listChungChi[i].capDoChungChi,
-                                        NgayCapChungChi = listChungChi[i].ngayCapChungChi,
-                                        CoSoDaoTaoCC = listChungChi[i].coSoDaoTao
-                                    });
-                                }
-                            }
-                        }
-                        if (listChungChi.Count == 1)
-                        {
-                            exportObjects.LoaiChungChi = listChungChi[0].LoaiChungChi.tenLoaiChungChi;
-                            exportObjects.ChungChi = listChungChi[0].capDoChungChi;
-                            exportObjects.NgayCapChungChi = listChungChi[0].ngayCapChungChi;
-                            exportObjects.CoSoDaoTaoCC = listChungChi[0].coSoDaoTao;
-                        }
-                    }
-                }
-                tempIdVienChuc = -1;
-            }
-            if (selectedDomain == 8) // dang hoc nang cao
-            {
-                foreach (var row in listFieldsDefault)
-                {
-                    ExportObjects exportObjects = listFieldsDefault.Where(x => x.IdVienChuc == row.IdVienChuc && x.Index == row.Index).FirstOrDefault();
-                    List<DangHocNangCao> listDangHocNangCao = unitOfWorks.DangHocNangCaoRepository.GetListDangHocNangCaoByIdVienChucAndDurationForExportFull(row.IdVienChuc, dtFromDuration, dtToDuration);
-                    if (row.IdVienChuc != tempIdVienChuc)
-                    {
-                        tempIdVienChuc = row.IdVienChuc;
-                        if (listDangHocNangCao.Count > 1)
-                        {
-                            exportObjects.LoaiHocHamHocViDHNC = unitOfWorks.DangHocNangCaoRepository.HardCodeLoaiHocHamHocViToGrid(listDangHocNangCao[0].LoaiHocHamHocVi.tenLoaiHocHamHocVi);
-                            exportObjects.SoQuyetDinh = listDangHocNangCao[0].soQuyetDinh;
-                            exportObjects.LinkAnhQuyetDinh = listDangHocNangCao[0].linkAnhQuyetDinh;
-                            exportObjects.TenHocHamHocViDHNC = listDangHocNangCao[0].tenHocHamHocVi;
-                            exportObjects.CoSoDaoTaoDHNC = listDangHocNangCao[0].coSoDaoTao;
-                            exportObjects.NgonNguDaoTaoDHNC = listDangHocNangCao[0].ngonNguDaoTao;
-                            exportObjects.HinhThucDaoTaoDHNC = listDangHocNangCao[0].hinhThucDaoTao;
-                            exportObjects.NuocCapBangDHNC = listDangHocNangCao[0].nuocCapBang;
-                            exportObjects.NgayBatDauTT = listDangHocNangCao[0].ngayBatDau;
-                            exportObjects.NgayKetThucTT = listDangHocNangCao[0].ngayKetThuc;
-                            exportObjects.Loai = unitOfWorks.DangHocNangCaoRepository.HardCodeLoaiToGrid(listDangHocNangCao[0].loai);
-
-                            IncreaseIndex(listFieldsDefault, row.Index, listDangHocNangCao.Count - 1);
-                            for (int i = 1; i < listDangHocNangCao.Count; i++)
-                            {
-                                listFieldsDefault.Insert(row.Index + 1, new ExportObjects
-                                {
-                                    Index = row.Index + 1,
-                                    IdVienChuc = row.IdVienChuc,
-                                    MaVienChuc = row.MaVienChuc,
-                                    Ho = row.Ho,
-                                    Ten = row.Ten,
-                                    GioiTinh = row.GioiTinh,
-                                    DonVi = row.DonVi,
-                                    TrangThai = row.TrangThai,
-                                    LoaiHocHamHocViDHNC = unitOfWorks.DangHocNangCaoRepository.HardCodeLoaiHocHamHocViToGrid(listDangHocNangCao[i].LoaiHocHamHocVi.tenLoaiHocHamHocVi),
-                                    SoQuyetDinh = listDangHocNangCao[i].soQuyetDinh,
-                                    LinkAnhQuyetDinh = listDangHocNangCao[i].linkAnhQuyetDinh,
-                                    TenHocHamHocViDHNC = listDangHocNangCao[i].tenHocHamHocVi,
-                                    CoSoDaoTaoDHNC = listDangHocNangCao[i].coSoDaoTao,
-                                    NgonNguDaoTaoDHNC = listDangHocNangCao[i].ngonNguDaoTao,
-                                    HinhThucDaoTaoDHNC = listDangHocNangCao[i].hinhThucDaoTao,
-                                    NuocCapBangDHNC = listDangHocNangCao[i].nuocCapBang,
-                                    NgayBatDauTT = listDangHocNangCao[i].ngayBatDau,
-                                    NgayKetThucTT = listDangHocNangCao[i].ngayKetThuc,
-                                    Loai = unitOfWorks.DangHocNangCaoRepository.HardCodeLoaiToGrid(listDangHocNangCao[i].loai)
-                                });
-                            }
-                        }
-                        if (listDangHocNangCao.Count == 1)
-                        {
-                            exportObjects.LoaiHocHamHocViDHNC = unitOfWorks.DangHocNangCaoRepository.HardCodeLoaiHocHamHocViToGrid(listDangHocNangCao[0].LoaiHocHamHocVi.tenLoaiHocHamHocVi);
-                            exportObjects.SoQuyetDinh = listDangHocNangCao[0].soQuyetDinh;
-                            exportObjects.LinkAnhQuyetDinh = listDangHocNangCao[0].linkAnhQuyetDinh;
-                            exportObjects.TenHocHamHocViDHNC = listDangHocNangCao[0].tenHocHamHocVi;
-                            exportObjects.CoSoDaoTaoDHNC = listDangHocNangCao[0].coSoDaoTao;
-                            exportObjects.NgonNguDaoTaoDHNC = listDangHocNangCao[0].ngonNguDaoTao;
-                            exportObjects.HinhThucDaoTaoDHNC = listDangHocNangCao[0].hinhThucDaoTao;
-                            exportObjects.NuocCapBangDHNC = listDangHocNangCao[0].nuocCapBang;
-                            exportObjects.NgayBatDauTT = listDangHocNangCao[0].ngayBatDau;
-                            exportObjects.NgayKetThucTT = listDangHocNangCao[0].ngayKetThuc;
-                            exportObjects.Loai = unitOfWorks.DangHocNangCaoRepository.HardCodeLoaiToGrid(listDangHocNangCao[0].loai);
-                        }
-                    }
-                }
-                tempIdVienChuc = -1;
-            }
+                ExportQuaTrinhLuong(listFieldsDefault, null, dtFromDuration, dtToDuration, unitOfWorks, tempIdVienChuc);
+            if (selectedDomain == 5) //hop dong
+                ExportHopDong(listFieldsDefault, null, dtFromDuration, dtToDuration, unitOfWorks, tempIdVienChuc);
+            if (selectedDomain == 6) //chung chi
+                ExportChungChi(listFieldsDefault, null, dtFromDuration, dtToDuration, unitOfWorks, tempIdVienChuc);
+            if (selectedDomain == 7) // dang hoc nang cao
+                ExportDangHocNangCao(listFieldsDefault, null, dtFromDuration, dtToDuration, unitOfWorks, tempIdVienChuc);
             _view.GCCustom.DataSource = null;
             _view.GCCustom.DataSource = listFieldsDefault;
             _view.GVCustom.PopulateColumns();
@@ -708,7 +165,7 @@ namespace QLNS_SGU.Presenter
                 }
             }
             SetCaptionColumn();
-            SetCellMergeColumn(selectedDomain);
+            //SetCellMergeColumn(selectedDomain);
         }
 
         private void GetDataTimeline(int selectedDomain)
@@ -718,575 +175,31 @@ namespace QLNS_SGU.Presenter
             DateTime dtTimeline = _view.DTTimeline.DateTime;
             List<ExportObjects> listFieldsDefault = unitOfWorks.VienChucRepository.GetListFieldsDefaultByTimeline(dtTimeline);
             int tempIdVienChuc = -1;
-            if (selectedDomain == 0) // thong tin ca nhan
+            if (selectedDomain == 0) // Tat ca
             {
-                foreach (var row in listFieldsDefault.ToList())
-                {
-                    VienChuc vienChuc = unitOfWorks.VienChucRepository.GetVienChucByIdVienChuc(row.IdVienChuc);
-                    if (vienChuc != null)
-                    {
-                        ExportObjects exportObjects = listFieldsDefault.Where(x => x.IdVienChuc == row.IdVienChuc).FirstOrDefault();
-                        exportObjects.SoDienThoai = vienChuc.sDT;
-                        exportObjects.NgaySinh = vienChuc.ngaySinh;
-                        exportObjects.NoiSinh = vienChuc.noiSinh;
-                        exportObjects.QueQuan = vienChuc.queQuan;
-                        exportObjects.DanToc = vienChuc.DanToc.tenDanToc;
-                        exportObjects.TonGiao = vienChuc.TonGiao.tenTonGiao;
-                        exportObjects.HoKhauThuongTru = vienChuc.hoKhauThuongTru;
-                        exportObjects.NoiOHienNay = vienChuc.noiOHienNay;
-                        exportObjects.LaDangVien = unitOfWorks.VienChucRepository.ReturnLaDangVienToGrid(vienChuc.laDangVien);
-                        exportObjects.NgayVaoDang = vienChuc.ngayVaoDang;
-                        exportObjects.NgayThamGiaCongTac = vienChuc.ngayThamGiaCongTac;
-                        exportObjects.NgayVaoNganh = vienChuc.ngayVaoNganh;
-                        exportObjects.NgayVeTruong = vienChuc.ngayVeTruong;
-                        exportObjects.VanHoa = vienChuc.vanHoa;
-                        exportObjects.GhiChu = vienChuc.ghiChu;
-                    }
-                }
+                ExportThongTinCaNhan(listFieldsDefault, unitOfWorks);
+                ExportTrangThai(listFieldsDefault, dtTimeline, null, null, unitOfWorks, tempIdVienChuc);
+                ExportCongTac(listFieldsDefault, dtTimeline, null, null, unitOfWorks, tempIdVienChuc);
+                ExportNganhHoc(listFieldsDefault, dtTimeline, null, null, unitOfWorks, tempIdVienChuc);
+                ExportQuaTrinhLuong(listFieldsDefault, dtTimeline, null, null, unitOfWorks, tempIdVienChuc);
+                ExportHopDong(listFieldsDefault, dtTimeline, null, null, unitOfWorks, tempIdVienChuc);
+                ExportChungChi(listFieldsDefault, dtTimeline, null, null, unitOfWorks, tempIdVienChuc);
+                ExportDangHocNangCao(listFieldsDefault, dtTimeline, null, null, unitOfWorks, tempIdVienChuc);
             }
             if (selectedDomain == 1) // trang thai
-            {
-                foreach (var row in listFieldsDefault.ToList())
-                {
-                    ExportObjects exportObjects = listFieldsDefault.Where(x => x.IdVienChuc == row.IdVienChuc && x.Index == row.Index).FirstOrDefault();
-                    List<TrangThaiVienChuc> listTrangThai = unitOfWorks.TrangThaiVienChucRepository.GetListTrangThaiByIdVienChucAndTimeline(row.IdVienChuc, dtTimeline);
-                    if (row.IdVienChuc != tempIdVienChuc)
-                    {
-                        tempIdVienChuc = row.IdVienChuc;
-                        if (listTrangThai.Count > 1)
-                        {
-                            exportObjects.MoTaTT = listTrangThai[0].moTa;
-                            exportObjects.DiaDiemTT = listTrangThai[0].diaDiem;
-                            exportObjects.NgayBatDauTT = listTrangThai[0].ngayBatDau;
-                            exportObjects.NgayKetThucTT = listTrangThai[0].ngayKetThuc;
-                            exportObjects.LinkVanBanDinhKemTT = listTrangThai[0].linkVanBanDinhKem;
-
-                            IncreaseIndex(listFieldsDefault, row.Index, listTrangThai.Count - 1);
-                            for (int i = 1; i < listTrangThai.Count; i++)
-                            {
-                                listFieldsDefault.Insert(row.Index + 1, new ExportObjects
-                                {
-                                    Index = row.Index + 1,
-                                    IdVienChuc = row.IdVienChuc,
-                                    MaVienChuc = row.MaVienChuc,
-                                    Ho = row.Ho,
-                                    Ten = row.Ten,
-                                    GioiTinh = row.GioiTinh,
-                                    DonVi = row.DonVi,
-                                    TrangThai = listTrangThai[i].TrangThai.tenTrangThai,
-                                    MoTaTT = listTrangThai[i].moTa,
-                                    DiaDiemTT = listTrangThai[i].diaDiem,
-                                    NgayBatDauTT = listTrangThai[i].ngayBatDau,
-                                    NgayKetThucTT = listTrangThai[i].ngayKetThuc,
-                                    LinkVanBanDinhKemTT = listTrangThai[i].linkVanBanDinhKem
-                                });
-                            }
-                        }
-                        if (listTrangThai.Count == 1)
-                        {
-                            exportObjects.MoTaTT = listTrangThai[0].moTa;
-                            exportObjects.DiaDiemTT = listTrangThai[0].diaDiem;
-                            exportObjects.NgayBatDauTT = listTrangThai[0].ngayBatDau;
-                            exportObjects.NgayKetThucTT = listTrangThai[0].ngayKetThuc;
-                            exportObjects.LinkVanBanDinhKemTT = listTrangThai[0].linkVanBanDinhKem;
-                        }
-                    }
-                }
-                tempIdVienChuc = -1;
-            }
+                ExportTrangThai(listFieldsDefault, dtTimeline, null, null, unitOfWorks, tempIdVienChuc);
             if (selectedDomain == 2) // cong tac
-            {
-                foreach (var row in listFieldsDefault.ToList())
-                {
-                    ExportObjects exportObjects = listFieldsDefault.Where(x => x.IdVienChuc == row.IdVienChuc && x.Index == row.Index).FirstOrDefault();
-                    List<ChucVuDonViVienChuc> listCongTac = unitOfWorks.ChucVuDonViVienChucRepository.GetListCongTacByIdVienChucAndTimeline(row.IdVienChuc, dtTimeline);
-                    if (row.IdVienChuc != tempIdVienChuc)
-                    {
-                        tempIdVienChuc = row.IdVienChuc;                        
-                        if (listCongTac.Count > 1)
-                        {
-                            exportObjects.LoaiChucVu = listCongTac[0].ChucVu.LoaiChucVu.tenLoaiChucVu;
-                            exportObjects.ChucVu = listCongTac[0].ChucVu.tenChucVu;
-                            exportObjects.HeSoChucVu = listCongTac[0].ChucVu.heSoChucVu;
-                            exportObjects.LoaiDonVi = listCongTac[0].DonVi.LoaiDonVi.tenLoaiDonVi;
-                            exportObjects.DonVi = listCongTac[0].DonVi.tenDonVi;
-                            exportObjects.DiaDiemCT = listCongTac[0].DonVi.diaDiem;
-                            exportObjects.DiaChi = listCongTac[0].DonVi.diaChi;
-                            exportObjects.SoDienThoaiDonVi = listCongTac[0].DonVi.sDT;
-                            exportObjects.ToChuyenMon = listCongTac[0].ToChuyenMon.tenToChuyenMon;
-                            exportObjects.PhanLoaiCongTac = listCongTac[0].phanLoaiCongTac;
-                            exportObjects.CheckPhanLoaiCongTac = unitOfWorks.ChucVuDonViVienChucRepository.HardCheckPhanLoaiCongTacToGrid(listCongTac[0].checkPhanLoaiCongTac);
-                            exportObjects.NgayBatDauCT = listCongTac[0].ngayBatDau;
-                            exportObjects.NgayKetThucCT = listCongTac[0].ngayKetThuc;
-                            exportObjects.LoaiThayDoi = unitOfWorks.ChucVuDonViVienChucRepository.HardLoaiThayDoiToGrid(listCongTac[0].loaiThayDoi);
-                            exportObjects.KiemNhiem = unitOfWorks.ChucVuDonViVienChucRepository.HardKiemNhiemToGrid(listCongTac[0].kiemNhiem);
-                            exportObjects.LinkVanBanDinhKemCT = listCongTac[0].linkVanBanDinhKem;
-                            exportObjects.GhiChuCT = listCongTac[0].ghiChu;
-
-                            IncreaseIndex(listFieldsDefault, row.Index, listCongTac.Count - 1);
-                            for (int i = 1; i < listCongTac.Count; i++)
-                            {
-                                listFieldsDefault.Insert(row.Index + 1, new ExportObjects
-                                {
-                                    Index = row.Index + 1,
-                                    IdVienChuc = row.IdVienChuc,
-                                    MaVienChuc = row.MaVienChuc,
-                                    Ho = row.Ho,
-                                    Ten = row.Ten,
-                                    GioiTinh = row.GioiTinh,
-                                    DonVi = listCongTac[i].DonVi.tenDonVi,
-                                    TrangThai = row.TrangThai,
-                                    LoaiChucVu = listCongTac[i].ChucVu.LoaiChucVu.tenLoaiChucVu,
-                                    ChucVu = listCongTac[i].ChucVu.tenChucVu,
-                                    HeSoChucVu = listCongTac[i].ChucVu.heSoChucVu,
-                                    LoaiDonVi = listCongTac[i].DonVi.LoaiDonVi.tenLoaiDonVi,
-                                    DiaDiemCT = listCongTac[i].DonVi.diaDiem,
-                                    DiaChi = listCongTac[i].DonVi.diaChi,
-                                    SoDienThoaiDonVi = listCongTac[i].DonVi.sDT,
-                                    ToChuyenMon = listCongTac[i].ToChuyenMon.tenToChuyenMon,
-                                    PhanLoaiCongTac = listCongTac[i].phanLoaiCongTac,
-                                    CheckPhanLoaiCongTac = unitOfWorks.ChucVuDonViVienChucRepository.HardCheckPhanLoaiCongTacToGrid(listCongTac[i].checkPhanLoaiCongTac),
-                                    NgayBatDauCT = listCongTac[i].ngayBatDau,
-                                    NgayKetThucCT = listCongTac[i].ngayKetThuc,
-                                    LoaiThayDoi = unitOfWorks.ChucVuDonViVienChucRepository.HardLoaiThayDoiToGrid(listCongTac[i].loaiThayDoi),
-                                    KiemNhiem = unitOfWorks.ChucVuDonViVienChucRepository.HardKiemNhiemToGrid(listCongTac[i].kiemNhiem),
-                                    LinkVanBanDinhKemCT = listCongTac[i].linkVanBanDinhKem,
-                                    GhiChuCT = listCongTac[i].ghiChu
-                                });
-                            }
-                        }
-                        if (listCongTac.Count == 1)
-                        {
-                            exportObjects.LoaiChucVu = listCongTac[0].ChucVu.LoaiChucVu.tenLoaiChucVu;
-                            exportObjects.ChucVu = listCongTac[0].ChucVu.tenChucVu;
-                            exportObjects.HeSoChucVu = listCongTac[0].ChucVu.heSoChucVu;
-                            exportObjects.LoaiDonVi = listCongTac[0].DonVi.LoaiDonVi.tenLoaiDonVi;
-                            //exportObjects.DonVi = listCongTac[0].DonVi.tenDonVi;
-                            exportObjects.DiaDiemCT = listCongTac[0].DonVi.diaDiem;
-                            exportObjects.DiaChi = listCongTac[0].DonVi.diaChi;
-                            exportObjects.SoDienThoaiDonVi = listCongTac[0].DonVi.sDT;
-                            exportObjects.ToChuyenMon = listCongTac[0].ToChuyenMon.tenToChuyenMon;
-                            exportObjects.PhanLoaiCongTac = listCongTac[0].phanLoaiCongTac;
-                            exportObjects.CheckPhanLoaiCongTac = unitOfWorks.ChucVuDonViVienChucRepository.HardCheckPhanLoaiCongTacToGrid(listCongTac[0].checkPhanLoaiCongTac);
-                            exportObjects.NgayBatDauCT = listCongTac[0].ngayBatDau;
-                            exportObjects.NgayKetThucCT = listCongTac[0].ngayKetThuc;
-                            exportObjects.LoaiThayDoi = unitOfWorks.ChucVuDonViVienChucRepository.HardLoaiThayDoiToGrid(listCongTac[0].loaiThayDoi);
-                            exportObjects.KiemNhiem = unitOfWorks.ChucVuDonViVienChucRepository.HardKiemNhiemToGrid(listCongTac[0].kiemNhiem);
-                            exportObjects.LinkVanBanDinhKemCT = listCongTac[0].linkVanBanDinhKem;
-                            exportObjects.GhiChuCT = listCongTac[0].ghiChu;
-                        }
-                    }
-                }
-                tempIdVienChuc = -1;
-            }
+                ExportCongTac(listFieldsDefault, dtTimeline, null, null, unitOfWorks, tempIdVienChuc);
             if (selectedDomain == 3) // nganh hoc
-            {
-                foreach (var row in listFieldsDefault.ToList())
-                {
-                    ExportObjects exportObjects = listFieldsDefault.Where(x => x.IdVienChuc == row.IdVienChuc && x.Index == row.Index).FirstOrDefault();
-                    List<NganhVienChuc> listNganhHoc = unitOfWorks.NganhVienChucRepository.GetListNganhHocByIdVienChucAndTimelineForExportFull(row.IdVienChuc, dtTimeline);
-                    if (row.IdVienChuc != tempIdVienChuc)
-                    {
-                        tempIdVienChuc = row.IdVienChuc;
-                        if (listNganhHoc.Count > 1)
-                        {
-                            exportObjects.LoaiNganhNH = listNganhHoc[0].LoaiNganh.tenLoaiNganh;
-                            exportObjects.NganhDaoTaoNH = listNganhHoc[0].NganhDaoTao.tenNganhDaoTao;
-                            exportObjects.ChuyenNganhNH = listNganhHoc[0].ChuyenNganh.tenChuyenNganh;
-                            exportObjects.LoaiHocHamHocViNH = listNganhHoc[0].HocHamHocViVienChuc.LoaiHocHamHocVi.tenLoaiHocHamHocVi;
-                            exportObjects.TenHocHamHocViNH = listNganhHoc[0].HocHamHocViVienChuc.tenHocHamHocVi;
-                            exportObjects.CoSoDaoTaoNH = listNganhHoc[0].HocHamHocViVienChuc.coSoDaoTao;
-                            exportObjects.NgonNguDaoTaoNH = listNganhHoc[0].HocHamHocViVienChuc.ngonNguDaoTao;
-                            exportObjects.HinhThucDaoTaoNH = listNganhHoc[0].HocHamHocViVienChuc.hinhThucDaoTao;
-                            exportObjects.NuocCapBangNH = listNganhHoc[0].HocHamHocViVienChuc.nuocCapBang;
-                            exportObjects.NgayCapBangNH = listNganhHoc[0].HocHamHocViVienChuc.ngayCapBang;
-                            exportObjects.LinkVanBanDinhKemHHHV_NH = listNganhHoc[0].HocHamHocViVienChuc.linkVanBanDinhKem;
-                            exportObjects.PhanLoaiNH = unitOfWorks.NganhVienChucRepository.HardCodePhanLoaiToGrid(listNganhHoc[0].phanLoai);
-                            exportObjects.LinkVanBanDinhKemNH = listNganhHoc[0].linkVanBanDinhKem;
-
-                            IncreaseIndex(listFieldsDefault, row.Index, listNganhHoc.Count - 1); // tru phan tu 0, con lai bn phan tu thi cong len bay nhieu
-                            for (int i = 1; i < listNganhHoc.Count; i++)
-                            {
-                                listFieldsDefault.Insert(row.Index + 1, new ExportObjects
-                                {
-                                    Index = row.Index + 1,
-                                    IdVienChuc = row.IdVienChuc,
-                                    MaVienChuc = row.MaVienChuc,
-                                    Ho = row.Ho,
-                                    Ten = row.Ten,
-                                    GioiTinh = row.GioiTinh,
-                                    DonVi = row.DonVi,
-                                    TrangThai = row.TrangThai,
-                                    LoaiNganhNH = listNganhHoc[i].LoaiNganh.tenLoaiNganh,
-                                    NganhDaoTaoNH = listNganhHoc[i].NganhDaoTao.tenNganhDaoTao,
-                                    ChuyenNganhNH = listNganhHoc[i].ChuyenNganh.tenChuyenNganh,
-                                    LoaiHocHamHocViNH = listNganhHoc[i].HocHamHocViVienChuc.LoaiHocHamHocVi.tenLoaiHocHamHocVi,
-                                    TenHocHamHocViNH = listNganhHoc[i].HocHamHocViVienChuc.tenHocHamHocVi,
-                                    CoSoDaoTaoNH = listNganhHoc[i].HocHamHocViVienChuc.coSoDaoTao,
-                                    NgonNguDaoTaoNH = listNganhHoc[i].HocHamHocViVienChuc.ngonNguDaoTao,
-                                    HinhThucDaoTaoNH = listNganhHoc[i].HocHamHocViVienChuc.hinhThucDaoTao,
-                                    NuocCapBangNH = listNganhHoc[i].HocHamHocViVienChuc.nuocCapBang,
-                                    NgayCapBangNH = listNganhHoc[i].HocHamHocViVienChuc.ngayCapBang,
-                                    LinkVanBanDinhKemHHHV_NH = listNganhHoc[i].HocHamHocViVienChuc.linkVanBanDinhKem,
-                                    PhanLoaiNH = unitOfWorks.NganhVienChucRepository.HardCodePhanLoaiToGrid(listNganhHoc[i].phanLoai),
-                                    LinkVanBanDinhKemNH = listNganhHoc[i].linkVanBanDinhKem
-                                });
-                            }
-                        }
-                        if (listNganhHoc.Count == 1)
-                        {
-                            exportObjects.LoaiNganhNH = listNganhHoc[0].LoaiNganh.tenLoaiNganh;
-                            exportObjects.NganhDaoTaoNH = listNganhHoc[0].NganhDaoTao.tenNganhDaoTao;
-                            exportObjects.ChuyenNganhNH = listNganhHoc[0].ChuyenNganh.tenChuyenNganh;
-                            exportObjects.LoaiHocHamHocViNH = listNganhHoc[0].HocHamHocViVienChuc.LoaiHocHamHocVi.tenLoaiHocHamHocVi;
-                            exportObjects.TenHocHamHocViNH = listNganhHoc[0].HocHamHocViVienChuc.tenHocHamHocVi;
-                            exportObjects.CoSoDaoTaoNH = listNganhHoc[0].HocHamHocViVienChuc.coSoDaoTao;
-                            exportObjects.NgonNguDaoTaoNH = listNganhHoc[0].HocHamHocViVienChuc.ngonNguDaoTao;
-                            exportObjects.HinhThucDaoTaoNH = listNganhHoc[0].HocHamHocViVienChuc.hinhThucDaoTao;
-                            exportObjects.NuocCapBangNH = listNganhHoc[0].HocHamHocViVienChuc.nuocCapBang;
-                            exportObjects.NgayCapBangNH = listNganhHoc[0].HocHamHocViVienChuc.ngayCapBang;
-                            exportObjects.LinkVanBanDinhKemHHHV_NH = listNganhHoc[0].HocHamHocViVienChuc.linkVanBanDinhKem;
-                            exportObjects.PhanLoaiNH = unitOfWorks.NganhVienChucRepository.HardCodePhanLoaiToGrid(listNganhHoc[0].phanLoai);
-                            exportObjects.LinkVanBanDinhKemNH = listNganhHoc[0].linkVanBanDinhKem;
-                        }
-                    }
-                }
-                tempIdVienChuc = -1;
-            }
+                ExportNganhHoc(listFieldsDefault, dtTimeline, null, null, unitOfWorks, tempIdVienChuc);
             if (selectedDomain == 4) // qua trinh luong
-            {
-                foreach(var row in listFieldsDefault.ToList())
-                {
-                    ExportObjects exportObjects = listFieldsDefault.Where(x => x.IdVienChuc == row.IdVienChuc && x.Index == row.Index).FirstOrDefault();
-                    List<QuaTrinhLuong> listQuaTrinhLuong = unitOfWorks.QuaTrinhLuongRepository.GetListQuaTrinhLuongByIdVienChucAndTimelineForExportFull(row.IdVienChuc, dtTimeline);
-                    if(row.IdVienChuc != tempIdVienChuc)
-                    {
-                        tempIdVienChuc = row.IdVienChuc;
-                        if(listQuaTrinhLuong.Count > 1)
-                        {
-                            exportObjects.MaNgach = listQuaTrinhLuong[0].Bac.Ngach.maNgach;
-                            exportObjects.TenNgach = listQuaTrinhLuong[0].Bac.Ngach.tenNgach;
-                            exportObjects.HeSoVuotKhungBaNamDau = listQuaTrinhLuong[0].Bac.Ngach.heSoVuotKhungBaNamDau;
-                            exportObjects.HeSoVuotKhungTrenBaNam = listQuaTrinhLuong[0].Bac.Ngach.heSoVuotKhungTrenBaNam;
-                            exportObjects.ThoiHanNangBac = listQuaTrinhLuong[0].Bac.Ngach.thoiHanNangBac;
-                            exportObjects.Bac = listQuaTrinhLuong[0].Bac.bac1;
-                            exportObjects.HeSoBac = listQuaTrinhLuong[0].Bac.heSoBac;
-                            exportObjects.NgayBatDauQTL = listQuaTrinhLuong[0].ngayBatDau;
-                            exportObjects.NgayLenLuong = listQuaTrinhLuong[0].ngayLenLuong;
-                            exportObjects.LinkVanBanDinhKemQTL = listQuaTrinhLuong[0].linkVanBanDinhKem;
-
-                            IncreaseIndex(listFieldsDefault, row.Index, listQuaTrinhLuong.Count - 1);
-                            for (int i = 1; i < listQuaTrinhLuong.Count; i++)
-                            {
-                                listFieldsDefault.Insert(row.Index + 1, new ExportObjects
-                                {
-                                    Index = row.Index + 1,
-                                    IdVienChuc = row.IdVienChuc,
-                                    MaVienChuc = row.MaVienChuc,
-                                    Ho = row.Ho,
-                                    Ten = row.Ten,
-                                    GioiTinh = row.GioiTinh,
-                                    DonVi = row.DonVi,
-                                    TrangThai = row.TrangThai,
-                                    MaNgach = listQuaTrinhLuong[i].Bac.Ngach.maNgach,
-                                    TenNgach = listQuaTrinhLuong[i].Bac.Ngach.tenNgach,
-                                    HeSoVuotKhungBaNamDau = listQuaTrinhLuong[i].Bac.Ngach.heSoVuotKhungBaNamDau,
-                                    HeSoVuotKhungTrenBaNam = listQuaTrinhLuong[i].Bac.Ngach.heSoVuotKhungTrenBaNam,
-                                    ThoiHanNangBac = listQuaTrinhLuong[i].Bac.Ngach.thoiHanNangBac,
-                                    Bac = listQuaTrinhLuong[i].Bac.bac1,
-                                    HeSoBac = listQuaTrinhLuong[i].Bac.heSoBac,
-                                    NgayBatDauQTL = listQuaTrinhLuong[i].ngayBatDau,
-                                    NgayLenLuong = listQuaTrinhLuong[i].ngayLenLuong,
-                                    LinkVanBanDinhKemQTL = listQuaTrinhLuong[i].linkVanBanDinhKem
-                                });
-                            }
-                        }
-                        if(listQuaTrinhLuong.Count == 1)
-                        {
-                            exportObjects.MaNgach = listQuaTrinhLuong[0].Bac.Ngach.maNgach;
-                            exportObjects.TenNgach = listQuaTrinhLuong[0].Bac.Ngach.tenNgach;
-                            exportObjects.HeSoVuotKhungBaNamDau = listQuaTrinhLuong[0].Bac.Ngach.heSoVuotKhungBaNamDau;
-                            exportObjects.HeSoVuotKhungTrenBaNam = listQuaTrinhLuong[0].Bac.Ngach.heSoVuotKhungTrenBaNam;
-                            exportObjects.ThoiHanNangBac = listQuaTrinhLuong[0].Bac.Ngach.thoiHanNangBac;
-                            exportObjects.Bac = listQuaTrinhLuong[0].Bac.bac1;
-                            exportObjects.HeSoBac = listQuaTrinhLuong[0].Bac.heSoBac;
-                            exportObjects.NgayBatDauQTL = listQuaTrinhLuong[0].ngayBatDau;
-                            exportObjects.NgayLenLuong = listQuaTrinhLuong[0].ngayLenLuong;
-                            exportObjects.LinkVanBanDinhKemQTL = listQuaTrinhLuong[0].linkVanBanDinhKem;
-                        }
-                    }
-                }
-                tempIdVienChuc = -1;
-            }
-            //if (selectedDomain == 5) // nganh day
-            //{
-            //    foreach(var row in listFieldsDefault)
-            //    {
-            //        ExportObjects exportObjects = listFieldsDefault.Where(x => x.IdVienChuc == row.IdVienChuc && x.Index == row.Index).FirstOrDefault();
-            //        List<NganhVienChuc> listNganhDay = unitOfWorks.NganhVienChucRepository.GetListNganhDayByIdVienChucAndTimelineForExportFull(row.IdVienChuc, dtTimeline);
-            //        if(row.IdVienChuc != tempIdVienChuc)
-            //        {
-            //            tempIdVienChuc = row.IdVienChuc;
-            //            if(listNganhDay.Count > 1)
-            //            {
-            //                exportObjects.LoaiNganhND = listNganhDay[0].LoaiNganh.tenLoaiNganh;
-            //                exportObjects.NganhDaoTaoND = listNganhDay[0].NganhDaoTao.tenNganhDaoTao;
-            //                exportObjects.ChuyenNganhND = listNganhDay[0].ChuyenNganh.tenChuyenNganh;
-            //                exportObjects.LoaiHocHamHocViND = listNganhDay[0].HocHamHocViVienChuc.LoaiHocHamHocVi.tenLoaiHocHamHocVi;
-            //                exportObjects.TenHocHamHocViND = listNganhDay[0].HocHamHocViVienChuc.tenHocHamHocVi;
-            //                exportObjects.CoSoDaoTaoND = listNganhDay[0].HocHamHocViVienChuc.coSoDaoTao;
-            //                exportObjects.NgonNguDaoTaoND = listNganhDay[0].HocHamHocViVienChuc.ngonNguDaoTao;
-            //                exportObjects.HinhThucDaoTaoND = listNganhDay[0].HocHamHocViVienChuc.hinhThucDaoTao;
-            //                exportObjects.NuocCapBangND = listNganhDay[0].HocHamHocViVienChuc.nuocCapBang;
-            //                exportObjects.NgayCapBangND = listNganhDay[0].HocHamHocViVienChuc.ngayCapBang;
-            //                exportObjects.LinkVanBanDinhKemHHHV_ND = listNganhDay[0].HocHamHocViVienChuc.linkVanBanDinhKem;
-            //                exportObjects.PhanLoaiND = unitOfWorks.NganhVienChucRepository.HardCodePhanLoaiToGrid(listNganhDay[0].phanLoai);
-            //                exportObjects.NgayBatDauND = listNganhDay[0].ngayBatDau;
-            //                exportObjects.NgayKetThucND = listNganhDay[0].ngayKetThuc;
-            //                exportObjects.LinkVanBanDinhKemND = listNganhDay[0].linkVanBanDinhKem;
-
-            //                IncreaseIndex(listFieldsDefault, row.Index, listNganhDay.Count - 1);
-            //                for (int i = 1; i < listNganhDay.Count; i++)
-            //                {
-            //                    listFieldsDefault.Insert(row.Index + 1, new ExportObjects
-            //                    {
-            //                        Index = row.Index + 1,
-            //                        IdVienChuc = row.IdVienChuc,
-            //                        MaVienChuc = row.MaVienChuc,
-            //                        Ho = row.Ho,
-            //                        Ten = row.Ten,
-            //                        GioiTinh = row.GioiTinh,
-            //                        DonVi = row.DonVi,
-            //                        TrangThai = row.TrangThai,
-            //                        LoaiNganhND = listNganhDay[i].LoaiNganh.tenLoaiNganh,
-            //                        NganhDaoTaoND = listNganhDay[i].NganhDaoTao.tenNganhDaoTao,
-            //                        ChuyenNganhND = listNganhDay[i].ChuyenNganh.tenChuyenNganh,
-            //                        LoaiHocHamHocViND = listNganhDay[i].HocHamHocViVienChuc.LoaiHocHamHocVi.tenLoaiHocHamHocVi,
-            //                        TenHocHamHocViND = listNganhDay[i].HocHamHocViVienChuc.tenHocHamHocVi,
-            //                        CoSoDaoTaoND = listNganhDay[i].HocHamHocViVienChuc.coSoDaoTao,
-            //                        NgonNguDaoTaoND = listNganhDay[i].HocHamHocViVienChuc.ngonNguDaoTao,
-            //                        HinhThucDaoTaoND = listNganhDay[i].HocHamHocViVienChuc.hinhThucDaoTao,
-            //                        NuocCapBangND = listNganhDay[i].HocHamHocViVienChuc.nuocCapBang,
-            //                        NgayCapBangND = listNganhDay[i].HocHamHocViVienChuc.ngayCapBang,
-            //                        LinkVanBanDinhKemHHHV_ND = listNganhDay[i].HocHamHocViVienChuc.linkVanBanDinhKem,
-            //                        PhanLoaiND = unitOfWorks.NganhVienChucRepository.HardCodePhanLoaiToGrid(listNganhDay[i].phanLoai),
-            //                        NgayBatDauND = listNganhDay[i].ngayBatDau,
-            //                        NgayKetThucND = listNganhDay[i].ngayKetThuc,
-            //                        LinkVanBanDinhKemND = listNganhDay[i].linkVanBanDinhKem
-            //                    });
-            //                }
-            //            }
-            //            if (listNganhDay.Count == 1)
-            //            {
-            //                exportObjects.LoaiNganhND = listNganhDay[0].LoaiNganh.tenLoaiNganh;
-            //                exportObjects.NganhDaoTaoND = listNganhDay[0].NganhDaoTao.tenNganhDaoTao;
-            //                exportObjects.ChuyenNganhND = listNganhDay[0].ChuyenNganh.tenChuyenNganh;
-            //                exportObjects.LoaiHocHamHocViND = listNganhDay[0].HocHamHocViVienChuc.LoaiHocHamHocVi.tenLoaiHocHamHocVi;
-            //                exportObjects.TenHocHamHocViND = listNganhDay[0].HocHamHocViVienChuc.tenHocHamHocVi;
-            //                exportObjects.CoSoDaoTaoND = listNganhDay[0].HocHamHocViVienChuc.coSoDaoTao;
-            //                exportObjects.NgonNguDaoTaoND = listNganhDay[0].HocHamHocViVienChuc.ngonNguDaoTao;
-            //                exportObjects.HinhThucDaoTaoND = listNganhDay[0].HocHamHocViVienChuc.hinhThucDaoTao;
-            //                exportObjects.NuocCapBangND = listNganhDay[0].HocHamHocViVienChuc.nuocCapBang;
-            //                exportObjects.NgayCapBangND = listNganhDay[0].HocHamHocViVienChuc.ngayCapBang;
-            //                exportObjects.LinkVanBanDinhKemHHHV_ND = listNganhDay[0].HocHamHocViVienChuc.linkVanBanDinhKem;
-            //                exportObjects.PhanLoaiND = unitOfWorks.NganhVienChucRepository.HardCodePhanLoaiToGrid(listNganhDay[0].phanLoai);
-            //                exportObjects.NgayBatDauND = listNganhDay[0].ngayBatDau;
-            //                exportObjects.NgayKetThucND = listNganhDay[0].ngayKetThuc;
-            //                exportObjects.LinkVanBanDinhKemND = listNganhDay[0].linkVanBanDinhKem;
-            //            }
-            //        }
-            //    }
-            //    tempIdVienChuc = -1;
-            //}
+                ExportQuaTrinhLuong(listFieldsDefault, dtTimeline, null, null, unitOfWorks, tempIdVienChuc);
             if (selectedDomain == 5) //hop dong
-            {
-                foreach (var row in listFieldsDefault.ToList())
-                {
-                    ExportObjects exportObjects = listFieldsDefault.Where(x => x.IdVienChuc == row.IdVienChuc && x.Index == row.Index).FirstOrDefault();
-                    List<HopDongVienChuc> listHopDongVienChuc = unitOfWorks.HopDongVienChucRepository.GetListHopDongByIdVienChucAndTimelineForExportFull(row.IdVienChuc, dtTimeline);
-                    if(row.IdVienChuc != tempIdVienChuc)
-                    {
-                        tempIdVienChuc = row.IdVienChuc;
-                        if(listHopDongVienChuc.Count > 1)
-                        {
-                            exportObjects.MaHopDong = listHopDongVienChuc[0].LoaiHopDong.maLoaiHopDong;
-                            exportObjects.TenHopDong = listHopDongVienChuc[0].LoaiHopDong.tenLoaiHopDong;
-                            exportObjects.NgayBatDauHD = listHopDongVienChuc[0].ngayBatDau;
-                            exportObjects.NgayKetThucHD = listHopDongVienChuc[0].ngayKetThuc;
-                            exportObjects.MoTaHD = listHopDongVienChuc[0].moTa;
-                            exportObjects.LinkVanBanDinhKemHD = listHopDongVienChuc[0].linkVanBanDinhKem;
-
-                            IncreaseIndex(listFieldsDefault, row.Index, listHopDongVienChuc.Count - 1);
-                            for (int i = 1; i < listHopDongVienChuc.Count; i++)
-                            {
-                                listFieldsDefault.Insert(row.Index + 1, new ExportObjects
-                                {
-                                    Index = row.Index + 1,
-                                    IdVienChuc = row.IdVienChuc,
-                                    MaVienChuc = row.MaVienChuc,
-                                    Ho = row.Ho,
-                                    Ten = row.Ten,
-                                    GioiTinh = row.GioiTinh,
-                                    DonVi = row.DonVi,
-                                    TrangThai = row.TrangThai,
-                                    MaHopDong = listHopDongVienChuc[i].LoaiHopDong.maLoaiHopDong,
-                                    TenHopDong = listHopDongVienChuc[i].LoaiHopDong.tenLoaiHopDong,
-                                    NgayBatDauHD = listHopDongVienChuc[i].ngayBatDau,
-                                    NgayKetThucHD = listHopDongVienChuc[i].ngayKetThuc,
-                                    MoTaHD = listHopDongVienChuc[i].moTa,
-                                    LinkVanBanDinhKemHD = listHopDongVienChuc[i].linkVanBanDinhKem
-                                });
-                            }
-                        }
-                        if(listHopDongVienChuc.Count == 1)
-                        {
-                            exportObjects.MaHopDong = listHopDongVienChuc[0].LoaiHopDong.maLoaiHopDong;
-                            exportObjects.TenHopDong = listHopDongVienChuc[0].LoaiHopDong.tenLoaiHopDong;
-                            exportObjects.NgayBatDauHD = listHopDongVienChuc[0].ngayBatDau;
-                            exportObjects.NgayKetThucHD = listHopDongVienChuc[0].ngayKetThuc;
-                            exportObjects.MoTaHD = listHopDongVienChuc[0].moTa;
-                            exportObjects.LinkVanBanDinhKemHD = listHopDongVienChuc[0].linkVanBanDinhKem;
-                        }
-                    }
-                }
-                tempIdVienChuc = -1;
-            }
+                ExportHopDong(listFieldsDefault, dtTimeline, null, null, unitOfWorks, tempIdVienChuc);
             if (selectedDomain == 6) //chung chi
-            {
-                foreach (var row in listFieldsDefault.ToList())
-                {
-                    ExportObjects exportObjects = listFieldsDefault.Where(x => x.IdVienChuc == row.IdVienChuc && x.Index == row.Index).FirstOrDefault();
-                    List<ChungChiVienChuc> listChungChi = unitOfWorks.ChungChiVienChucRepository.GetListChungChiByIdVienChucAndTimelineForExportFull(row.IdVienChuc, dtTimeline);
-                    if (row.IdVienChuc != tempIdVienChuc)
-                    {
-                        tempIdVienChuc = row.IdVienChuc;
-                        if (listChungChi.Count > 1)
-                        {
-                            exportObjects.LoaiChungChi = listChungChi[0].LoaiChungChi.tenLoaiChungChi;
-                            exportObjects.ChungChi = listChungChi[0].capDoChungChi;
-                            exportObjects.NgayCapChungChi = listChungChi[0].ngayCapChungChi;
-                            exportObjects.CoSoDaoTaoCC = listChungChi[0].coSoDaoTao;
-
-                            IncreaseIndex(listFieldsDefault, row.Index, listChungChi.Count - 1);
-                            for (int i = 1; i < listChungChi.Count; i++)
-                            {
-                                if (listChungChi[i].capDoChungChi != null)
-                                {
-                                    listFieldsDefault.Insert(row.Index + 1, new ExportObjects
-                                    {
-                                        Index = row.Index + 1,
-                                        IdVienChuc = row.IdVienChuc,
-                                        MaVienChuc = row.MaVienChuc,
-                                        Ho = row.Ho,
-                                        Ten = row.Ten,
-                                        GioiTinh = row.GioiTinh,
-                                        DonVi = row.DonVi,
-                                        TrangThai = row.TrangThai,
-                                        LoaiChungChi = listChungChi[i].LoaiChungChi.tenLoaiChungChi,
-                                        ChungChi = listChungChi[i].capDoChungChi,
-                                        NgayCapChungChi = listChungChi[i].ngayCapChungChi,
-                                        CoSoDaoTaoCC = listChungChi[i].coSoDaoTao
-                                    });
-                                }
-                                else
-                                {
-                                    listFieldsDefault.Insert(row.Index + 1, new ExportObjects
-                                    {
-                                        Index = row.Index + 1,
-                                        IdVienChuc = row.IdVienChuc,
-                                        MaVienChuc = row.MaVienChuc,
-                                        Ho = row.Ho,
-                                        Ten = row.Ten,
-                                        GioiTinh = row.GioiTinh,
-                                        DonVi = row.DonVi,
-                                        TrangThai = row.TrangThai,
-                                        LoaiChungChi = listChungChi[i].LoaiChungChi.tenLoaiChungChi,
-                                        ChungChi = listChungChi[i].capDoChungChi,
-                                        NgayCapChungChi = listChungChi[i].ngayCapChungChi,
-                                        CoSoDaoTaoCC = listChungChi[i].coSoDaoTao
-                                    });
-                                }
-                            }
-                        }
-                        if (listChungChi.Count == 1)
-                        {
-                            exportObjects.LoaiChungChi = listChungChi[0].LoaiChungChi.tenLoaiChungChi;
-                            exportObjects.ChungChi = listChungChi[0].capDoChungChi;
-                            exportObjects.NgayCapChungChi = listChungChi[0].ngayCapChungChi;
-                            exportObjects.CoSoDaoTaoCC = listChungChi[0].coSoDaoTao;
-                        }
-                    }
-                }
-                tempIdVienChuc = -1;
-            }
+                ExportChungChi(listFieldsDefault, dtTimeline, null, null, unitOfWorks, tempIdVienChuc);
             if (selectedDomain == 7) // dang hoc nang cao
-            {
-                foreach(var row in listFieldsDefault.ToList())
-                {
-                    ExportObjects exportObjects = listFieldsDefault.Where(x => x.IdVienChuc == row.IdVienChuc && x.Index == row.Index).FirstOrDefault();
-                    List<DangHocNangCao> listDangHocNangCao = unitOfWorks.DangHocNangCaoRepository.GetListDangHocNangCaoByIdVienChucAndTimelineForExportFull(row.IdVienChuc, dtTimeline);
-                    if(row.IdVienChuc != tempIdVienChuc)
-                    {
-                        tempIdVienChuc = row.IdVienChuc;
-                        if (listDangHocNangCao.Count > 1)
-                        {
-                            exportObjects.LoaiHocHamHocViDHNC = unitOfWorks.DangHocNangCaoRepository.HardCodeLoaiHocHamHocViToGrid(listDangHocNangCao[0].LoaiHocHamHocVi.tenLoaiHocHamHocVi);
-                            exportObjects.SoQuyetDinh = listDangHocNangCao[0].soQuyetDinh;
-                            exportObjects.LinkAnhQuyetDinh = listDangHocNangCao[0].linkAnhQuyetDinh;
-                            exportObjects.TenHocHamHocViDHNC = listDangHocNangCao[0].tenHocHamHocVi;
-                            exportObjects.CoSoDaoTaoDHNC = listDangHocNangCao[0].coSoDaoTao;
-                            exportObjects.NgonNguDaoTaoDHNC = listDangHocNangCao[0].ngonNguDaoTao;
-                            exportObjects.HinhThucDaoTaoDHNC = listDangHocNangCao[0].hinhThucDaoTao;
-                            exportObjects.NuocCapBangDHNC = listDangHocNangCao[0].nuocCapBang;
-                            exportObjects.NgayBatDauTT = listDangHocNangCao[0].ngayBatDau;
-                            exportObjects.NgayKetThucTT = listDangHocNangCao[0].ngayKetThuc;
-                            exportObjects.Loai = unitOfWorks.DangHocNangCaoRepository.HardCodeLoaiToGrid(listDangHocNangCao[0].loai);
-
-                            IncreaseIndex(listFieldsDefault, row.Index, listDangHocNangCao.Count - 1);
-                            for (int i = 1; i < listDangHocNangCao.Count; i++)
-                            {
-                                listFieldsDefault.Insert(row.Index + 1, new ExportObjects
-                                {
-                                    Index = row.Index + 1,
-                                    IdVienChuc = row.IdVienChuc,
-                                    MaVienChuc = row.MaVienChuc,
-                                    Ho = row.Ho,
-                                    Ten = row.Ten,
-                                    GioiTinh = row.GioiTinh,
-                                    DonVi = row.DonVi,
-                                    TrangThai = row.TrangThai,
-                                    LoaiHocHamHocViDHNC = unitOfWorks.DangHocNangCaoRepository.HardCodeLoaiHocHamHocViToGrid(listDangHocNangCao[i].LoaiHocHamHocVi.tenLoaiHocHamHocVi),
-                                    SoQuyetDinh = listDangHocNangCao[i].soQuyetDinh,
-                                    LinkAnhQuyetDinh = listDangHocNangCao[i].linkAnhQuyetDinh,
-                                    TenHocHamHocViDHNC = listDangHocNangCao[i].tenHocHamHocVi,
-                                    CoSoDaoTaoDHNC = listDangHocNangCao[i].coSoDaoTao,
-                                    NgonNguDaoTaoDHNC = listDangHocNangCao[i].ngonNguDaoTao,
-                                    HinhThucDaoTaoDHNC = listDangHocNangCao[i].hinhThucDaoTao,
-                                    NuocCapBangDHNC = listDangHocNangCao[i].nuocCapBang,
-                                    NgayBatDauTT = listDangHocNangCao[i].ngayBatDau,
-                                    NgayKetThucTT = listDangHocNangCao[i].ngayKetThuc,
-                                    Loai = unitOfWorks.DangHocNangCaoRepository.HardCodeLoaiToGrid(listDangHocNangCao[i].loai)
-                                });
-                            }
-                        }
-                        if (listDangHocNangCao.Count == 1)
-                        {
-                            exportObjects.LoaiHocHamHocViDHNC = unitOfWorks.DangHocNangCaoRepository.HardCodeLoaiHocHamHocViToGrid(listDangHocNangCao[0].LoaiHocHamHocVi.tenLoaiHocHamHocVi);
-                            exportObjects.SoQuyetDinh = listDangHocNangCao[0].soQuyetDinh;
-                            exportObjects.LinkAnhQuyetDinh = listDangHocNangCao[0].linkAnhQuyetDinh;
-                            exportObjects.TenHocHamHocViDHNC = listDangHocNangCao[0].tenHocHamHocVi;
-                            exportObjects.CoSoDaoTaoDHNC = listDangHocNangCao[0].coSoDaoTao;
-                            exportObjects.NgonNguDaoTaoDHNC = listDangHocNangCao[0].ngonNguDaoTao;
-                            exportObjects.HinhThucDaoTaoDHNC = listDangHocNangCao[0].hinhThucDaoTao;
-                            exportObjects.NuocCapBangDHNC = listDangHocNangCao[0].nuocCapBang;
-                            exportObjects.NgayBatDauTT = listDangHocNangCao[0].ngayBatDau;
-                            exportObjects.NgayKetThucTT = listDangHocNangCao[0].ngayKetThuc;
-                            exportObjects.Loai = unitOfWorks.DangHocNangCaoRepository.HardCodeLoaiToGrid(listDangHocNangCao[0].loai);
-                        }
-                    }
-                }
-                tempIdVienChuc = -1;
-            }
+                ExportDangHocNangCao(listFieldsDefault, dtTimeline, null, null, unitOfWorks, tempIdVienChuc);
             _view.GCCustom.DataSource = null;
             _view.GCCustom.DataSource = listFieldsDefault;
             _view.GVCustom.PopulateColumns();
@@ -1305,23 +218,23 @@ namespace QLNS_SGU.Presenter
                 }
             }
             SetCaptionColumn();
-            SetCellMergeColumn(selectedDomain);
-        }
+            //SetCellMergeColumn(selectedDomain);
+        }        
 
         private void IncreaseIndex(List<ExportObjects> listFieldDefault, int index/*vi tri de filter cac item con lai*/, int count/*so phan tu con lai trong list cua moi~ vien chuc*/)
         {
             List<ExportObjects> listExportObjects = listFieldDefault.Where(x => x.Index > index).ToList();
             listExportObjects.ForEach(x => x.Index += count);
         }
-        private void SetCellMergeColumn(int selectedDomain)
-        {
-            _view.GVCustom.Columns["MaVienChuc"].OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.True;
-            _view.GVCustom.Columns["MaVienChuc"].Width = 100;
-            for (int i = 2; i < _view.GVCustom.Columns.Count; i++)
-            {
-                _view.GVCustom.Columns[i].OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-            }
-        }
+        //private void SetCellMergeColumn(int selectedDomain)
+        //{
+        //    _view.GVCustom.Columns["MaVienChuc"].OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.True;
+        //    _view.GVCustom.Columns["MaVienChuc"].Width = 100;
+        //    for (int i = 2; i < _view.GVCustom.Columns.Count; i++)
+        //    {
+        //        _view.GVCustom.Columns[i].OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+        //    }
+        //}
         private void FormatDate(string fieldname)
         {
             _view.GVCustom.Columns[fieldname].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
@@ -1439,7 +352,8 @@ namespace QLNS_SGU.Presenter
             _view.GVCustom.Columns["LinkVanBanDinhKemND"].Caption = "Link văn bản đính kèm (Ngành dạy)";
             //Chung chi
             _view.GVCustom.Columns["LoaiChungChi"].Caption = "Loại chứng chỉ";
-            _view.GVCustom.Columns["ChungChi"].Caption = "Chứng chỉ";
+            _view.GVCustom.Columns["ChungChi"].Caption = "Tên chứng chỉ";
+            _view.GVCustom.Columns["CapDoChungChi"].Caption = "Cấp độ chứng chỉ";
             _view.GVCustom.Columns["NgayCapChungChi"].Caption = "Ngày cấp chứng chỉ";
             _view.GVCustom.Columns["CoSoDaoTaoCC"].Caption = "Cơ sở đào tạo";
             _view.GVCustom.Columns["NgoaiNgu"].Caption = "Ngoại ngữ";
@@ -1463,6 +377,995 @@ namespace QLNS_SGU.Presenter
             FormatDate("NgayKetThucDHNC");
             // index to add row for export one domain
             _view.GVCustom.Columns["Index"].Visible = false;
+        }
+
+        private void ExportTrangThai(List<ExportObjects> listFieldsDefault, DateTime? dtTimeline, DateTime? dtFromDuration, DateTime? dtToDuration, UnitOfWorks unitOfWorks, int tempIdVienChuc)
+        {
+            if(dtTimeline != null)
+            {
+                foreach (var row in listFieldsDefault.ToList())
+                {
+                    ExportObjects exportObjects = listFieldsDefault.Where(x => x.IdVienChuc == row.IdVienChuc && x.Index == row.Index).FirstOrDefault();
+                    List<TrangThaiVienChuc> listTrangThai = unitOfWorks.TrangThaiVienChucRepository.GetListTrangThaiByIdVienChucAndTimeline(row.IdVienChuc, dtTimeline);
+                    if (row.IdVienChuc != tempIdVienChuc)
+                    {
+                        tempIdVienChuc = row.IdVienChuc;
+                        if (listTrangThai.Count > 1)
+                        {
+                            exportObjects.MoTaTT = listTrangThai[0].moTa;
+                            exportObjects.DiaDiemTT = listTrangThai[0].diaDiem;
+                            exportObjects.NgayBatDauTT = listTrangThai[0].ngayBatDau;
+                            exportObjects.NgayKetThucTT = listTrangThai[0].ngayKetThuc;
+                            exportObjects.LinkVanBanDinhKemTT = listTrangThai[0].linkVanBanDinhKem;
+
+                            IncreaseIndex(listFieldsDefault, row.Index, listTrangThai.Count - 1);
+                            for (int i = 1; i < listTrangThai.Count; i++)
+                            {
+                                listFieldsDefault.Insert(row.Index + 1, new ExportObjects
+                                {
+                                    Index = row.Index + 1,
+                                    IdVienChuc = row.IdVienChuc,
+                                    MaVienChuc = row.MaVienChuc,
+                                    Ho = row.Ho,
+                                    Ten = row.Ten,
+                                    GioiTinh = row.GioiTinh,
+                                    DonVi = row.DonVi,
+                                    TrangThai = listTrangThai[i].TrangThai.tenTrangThai,
+                                    MoTaTT = listTrangThai[i].moTa,
+                                    DiaDiemTT = listTrangThai[i].diaDiem,
+                                    NgayBatDauTT = listTrangThai[i].ngayBatDau,
+                                    NgayKetThucTT = listTrangThai[i].ngayKetThuc,
+                                    LinkVanBanDinhKemTT = listTrangThai[i].linkVanBanDinhKem
+                                });
+                            }
+                        }
+                        if (listTrangThai.Count == 1)
+                        {
+                            exportObjects.MoTaTT = listTrangThai[0].moTa;
+                            exportObjects.DiaDiemTT = listTrangThai[0].diaDiem;
+                            exportObjects.NgayBatDauTT = listTrangThai[0].ngayBatDau;
+                            exportObjects.NgayKetThucTT = listTrangThai[0].ngayKetThuc;
+                            exportObjects.LinkVanBanDinhKemTT = listTrangThai[0].linkVanBanDinhKem;
+                        }
+                    }
+                }
+                tempIdVienChuc = -1;
+            }
+            else
+            {
+                foreach (var row in listFieldsDefault.ToList())
+                {
+                    ExportObjects exportObjects = listFieldsDefault.Where(x => x.IdVienChuc == row.IdVienChuc && x.Index == row.Index).FirstOrDefault();
+                    List<TrangThaiVienChuc> listTrangThai = unitOfWorks.TrangThaiVienChucRepository.GetListTrangThaiByIdVienChucAndDuration(row.IdVienChuc, dtFromDuration, dtToDuration);
+                    if (row.IdVienChuc != tempIdVienChuc)
+                    {
+                        tempIdVienChuc = row.IdVienChuc;
+                        if (listTrangThai.Count > 1)
+                        {
+                            exportObjects.MoTaTT = listTrangThai[0].moTa;
+                            exportObjects.DiaDiemTT = listTrangThai[0].diaDiem;
+                            exportObjects.NgayBatDauTT = listTrangThai[0].ngayBatDau;
+                            exportObjects.NgayKetThucTT = listTrangThai[0].ngayKetThuc;
+                            exportObjects.LinkVanBanDinhKemTT = listTrangThai[0].linkVanBanDinhKem;
+
+                            IncreaseIndex(listFieldsDefault, row.Index, listTrangThai.Count - 1);
+                            for (int i = 1; i < listTrangThai.Count; i++)
+                            {
+                                listFieldsDefault.Insert(row.Index + 1, new ExportObjects
+                                {
+                                    Index = row.Index + 1,
+                                    IdVienChuc = row.IdVienChuc,
+                                    MaVienChuc = row.MaVienChuc,
+                                    Ho = row.Ho,
+                                    Ten = row.Ten,
+                                    GioiTinh = row.GioiTinh,
+                                    DonVi = row.DonVi,
+                                    TrangThai = listTrangThai[i].TrangThai.tenTrangThai,
+                                    MoTaTT = listTrangThai[i].moTa,
+                                    DiaDiemTT = listTrangThai[i].diaDiem,
+                                    NgayBatDauTT = listTrangThai[i].ngayBatDau,
+                                    NgayKetThucTT = listTrangThai[i].ngayKetThuc,
+                                    LinkVanBanDinhKemTT = listTrangThai[i].linkVanBanDinhKem
+                                });
+                            }
+                        }
+                        if (listTrangThai.Count == 1)
+                        {
+                            exportObjects.MoTaTT = listTrangThai[0].moTa;
+                            exportObjects.DiaDiemTT = listTrangThai[0].diaDiem;
+                            exportObjects.NgayBatDauTT = listTrangThai[0].ngayBatDau;
+                            exportObjects.NgayKetThucTT = listTrangThai[0].ngayKetThuc;
+                            exportObjects.LinkVanBanDinhKemTT = listTrangThai[0].linkVanBanDinhKem;
+                        }
+                    }
+                }
+                tempIdVienChuc = -1;
+            }
+        }
+
+        private void ExportCongTac(List<ExportObjects> listFieldsDefault, DateTime? dtTimeline, DateTime? dtFromDuration, DateTime? dtToDuration, UnitOfWorks unitOfWorks, int tempIdVienChuc)
+        {
+            if (dtTimeline != null)
+            {
+                foreach (var row in listFieldsDefault.ToList())
+                {
+                    ExportObjects exportObjects = listFieldsDefault.Where(x => x.IdVienChuc == row.IdVienChuc && x.Index == row.Index).FirstOrDefault();
+                    List<ChucVuDonViVienChuc> listCongTac = unitOfWorks.ChucVuDonViVienChucRepository.GetListCongTacByIdVienChucAndTimeline(row.IdVienChuc, dtTimeline);
+                    if (row.IdVienChuc != tempIdVienChuc)
+                    {
+                        tempIdVienChuc = row.IdVienChuc;
+                        if (listCongTac.Count > 1)
+                        {
+                            exportObjects.LoaiChucVu = listCongTac[0].ChucVu.LoaiChucVu.tenLoaiChucVu;
+                            exportObjects.ChucVu = listCongTac[0].ChucVu.tenChucVu;
+                            exportObjects.HeSoChucVu = listCongTac[0].ChucVu.heSoChucVu;
+                            exportObjects.LoaiDonVi = listCongTac[0].DonVi.LoaiDonVi.tenLoaiDonVi;
+                            exportObjects.DonVi = listCongTac[0].DonVi.tenDonVi;
+                            exportObjects.DiaDiemCT = listCongTac[0].DonVi.diaDiem;
+                            exportObjects.DiaChi = listCongTac[0].DonVi.diaChi;
+                            exportObjects.SoDienThoaiDonVi = listCongTac[0].DonVi.sDT;
+                            exportObjects.ToChuyenMon = listCongTac[0].ToChuyenMon.tenToChuyenMon;
+                            exportObjects.PhanLoaiCongTac = listCongTac[0].phanLoaiCongTac;
+                            exportObjects.CheckPhanLoaiCongTac = unitOfWorks.ChucVuDonViVienChucRepository.HardCheckPhanLoaiCongTacToGrid(listCongTac[0].checkPhanLoaiCongTac);
+                            exportObjects.NgayBatDauCT = listCongTac[0].ngayBatDau;
+                            exportObjects.NgayKetThucCT = listCongTac[0].ngayKetThuc;
+                            exportObjects.LoaiThayDoi = unitOfWorks.ChucVuDonViVienChucRepository.HardLoaiThayDoiToGrid(listCongTac[0].loaiThayDoi);
+                            exportObjects.KiemNhiem = unitOfWorks.ChucVuDonViVienChucRepository.HardKiemNhiemToGrid(listCongTac[0].kiemNhiem);
+                            exportObjects.LinkVanBanDinhKemCT = listCongTac[0].linkVanBanDinhKem;
+                            exportObjects.GhiChuCT = listCongTac[0].ghiChu;
+
+                            IncreaseIndex(listFieldsDefault, row.Index, listCongTac.Count - 1);
+                            for (int i = 1; i < listCongTac.Count; i++)
+                            {
+                                listFieldsDefault.Insert(row.Index + 1, new ExportObjects
+                                {
+                                    Index = row.Index + 1,
+                                    IdVienChuc = row.IdVienChuc,
+                                    MaVienChuc = row.MaVienChuc,
+                                    Ho = row.Ho,
+                                    Ten = row.Ten,
+                                    GioiTinh = row.GioiTinh,
+                                    DonVi = listCongTac[i].DonVi.tenDonVi,
+                                    TrangThai = row.TrangThai,
+                                    LoaiChucVu = listCongTac[i].ChucVu.LoaiChucVu.tenLoaiChucVu,
+                                    ChucVu = listCongTac[i].ChucVu.tenChucVu,
+                                    HeSoChucVu = listCongTac[i].ChucVu.heSoChucVu,
+                                    LoaiDonVi = listCongTac[i].DonVi.LoaiDonVi.tenLoaiDonVi,
+                                    DiaDiemCT = listCongTac[i].DonVi.diaDiem,
+                                    DiaChi = listCongTac[i].DonVi.diaChi,
+                                    SoDienThoaiDonVi = listCongTac[i].DonVi.sDT,
+                                    ToChuyenMon = listCongTac[i].ToChuyenMon.tenToChuyenMon,
+                                    PhanLoaiCongTac = listCongTac[i].phanLoaiCongTac,
+                                    CheckPhanLoaiCongTac = unitOfWorks.ChucVuDonViVienChucRepository.HardCheckPhanLoaiCongTacToGrid(listCongTac[i].checkPhanLoaiCongTac),
+                                    NgayBatDauCT = listCongTac[i].ngayBatDau,
+                                    NgayKetThucCT = listCongTac[i].ngayKetThuc,
+                                    LoaiThayDoi = unitOfWorks.ChucVuDonViVienChucRepository.HardLoaiThayDoiToGrid(listCongTac[i].loaiThayDoi),
+                                    KiemNhiem = unitOfWorks.ChucVuDonViVienChucRepository.HardKiemNhiemToGrid(listCongTac[i].kiemNhiem),
+                                    LinkVanBanDinhKemCT = listCongTac[i].linkVanBanDinhKem,
+                                    GhiChuCT = listCongTac[i].ghiChu
+                                });
+                            }
+                        }
+                        if (listCongTac.Count == 1)
+                        {
+                            exportObjects.LoaiChucVu = listCongTac[0].ChucVu.LoaiChucVu.tenLoaiChucVu;
+                            exportObjects.ChucVu = listCongTac[0].ChucVu.tenChucVu;
+                            exportObjects.HeSoChucVu = listCongTac[0].ChucVu.heSoChucVu;
+                            exportObjects.LoaiDonVi = listCongTac[0].DonVi.LoaiDonVi.tenLoaiDonVi;
+                            //exportObjects.DonVi = listCongTac[0].DonVi.tenDonVi;
+                            exportObjects.DiaDiemCT = listCongTac[0].DonVi.diaDiem;
+                            exportObjects.DiaChi = listCongTac[0].DonVi.diaChi;
+                            exportObjects.SoDienThoaiDonVi = listCongTac[0].DonVi.sDT;
+                            exportObjects.ToChuyenMon = listCongTac[0].ToChuyenMon.tenToChuyenMon;
+                            exportObjects.PhanLoaiCongTac = listCongTac[0].phanLoaiCongTac;
+                            exportObjects.CheckPhanLoaiCongTac = unitOfWorks.ChucVuDonViVienChucRepository.HardCheckPhanLoaiCongTacToGrid(listCongTac[0].checkPhanLoaiCongTac);
+                            exportObjects.NgayBatDauCT = listCongTac[0].ngayBatDau;
+                            exportObjects.NgayKetThucCT = listCongTac[0].ngayKetThuc;
+                            exportObjects.LoaiThayDoi = unitOfWorks.ChucVuDonViVienChucRepository.HardLoaiThayDoiToGrid(listCongTac[0].loaiThayDoi);
+                            exportObjects.KiemNhiem = unitOfWorks.ChucVuDonViVienChucRepository.HardKiemNhiemToGrid(listCongTac[0].kiemNhiem);
+                            exportObjects.LinkVanBanDinhKemCT = listCongTac[0].linkVanBanDinhKem;
+                            exportObjects.GhiChuCT = listCongTac[0].ghiChu;
+                        }
+                    }
+                }
+                tempIdVienChuc = -1;
+            }
+            else
+            {
+                foreach (var row in listFieldsDefault.ToList())
+                {
+                    ExportObjects exportObjects = listFieldsDefault.Where(x => x.IdVienChuc == row.IdVienChuc && x.Index == row.Index).FirstOrDefault();
+                    List<ChucVuDonViVienChuc> listCongTac = unitOfWorks.ChucVuDonViVienChucRepository.GetListCongTacByIdVienChucAndDuration(row.IdVienChuc, dtFromDuration, dtToDuration);
+                    if (row.IdVienChuc != tempIdVienChuc)
+                    {
+                        tempIdVienChuc = row.IdVienChuc;
+                        if (listCongTac.Count > 1)
+                        {
+                            exportObjects.LoaiChucVu = listCongTac[0].ChucVu.LoaiChucVu.tenLoaiChucVu;
+                            exportObjects.ChucVu = listCongTac[0].ChucVu.tenChucVu;
+                            exportObjects.HeSoChucVu = listCongTac[0].ChucVu.heSoChucVu;
+                            exportObjects.LoaiDonVi = listCongTac[0].DonVi.LoaiDonVi.tenLoaiDonVi;
+                            exportObjects.DonVi = listCongTac[0].DonVi.tenDonVi;
+                            exportObjects.DiaDiemCT = listCongTac[0].DonVi.diaDiem;
+                            exportObjects.DiaChi = listCongTac[0].DonVi.diaChi;
+                            exportObjects.SoDienThoaiDonVi = listCongTac[0].DonVi.sDT;
+                            exportObjects.ToChuyenMon = listCongTac[0].ToChuyenMon.tenToChuyenMon;
+                            exportObjects.PhanLoaiCongTac = listCongTac[0].phanLoaiCongTac;
+                            exportObjects.CheckPhanLoaiCongTac = unitOfWorks.ChucVuDonViVienChucRepository.HardCheckPhanLoaiCongTacToGrid(listCongTac[0].checkPhanLoaiCongTac);
+                            exportObjects.NgayBatDauCT = listCongTac[0].ngayBatDau;
+                            exportObjects.NgayKetThucCT = listCongTac[0].ngayKetThuc;
+                            exportObjects.LoaiThayDoi = unitOfWorks.ChucVuDonViVienChucRepository.HardLoaiThayDoiToGrid(listCongTac[0].loaiThayDoi);
+                            exportObjects.KiemNhiem = unitOfWorks.ChucVuDonViVienChucRepository.HardKiemNhiemToGrid(listCongTac[0].kiemNhiem);
+                            exportObjects.LinkVanBanDinhKemCT = listCongTac[0].linkVanBanDinhKem;
+                            exportObjects.GhiChuCT = listCongTac[0].ghiChu;
+
+                            IncreaseIndex(listFieldsDefault, row.Index, listCongTac.Count - 1);
+                            for (int i = 1; i < listCongTac.Count; i++)
+                            {
+                                listFieldsDefault.Insert(row.Index + 1, new ExportObjects
+                                {
+                                    Index = row.Index + 1,
+                                    IdVienChuc = row.IdVienChuc,
+                                    MaVienChuc = row.MaVienChuc,
+                                    Ho = row.Ho,
+                                    Ten = row.Ten,
+                                    GioiTinh = row.GioiTinh,
+                                    DonVi = listCongTac[i].DonVi.tenDonVi,
+                                    TrangThai = row.TrangThai,
+                                    LoaiChucVu = listCongTac[i].ChucVu.LoaiChucVu.tenLoaiChucVu,
+                                    ChucVu = listCongTac[i].ChucVu.tenChucVu,
+                                    HeSoChucVu = listCongTac[i].ChucVu.heSoChucVu,
+                                    LoaiDonVi = listCongTac[i].DonVi.LoaiDonVi.tenLoaiDonVi,
+                                    DiaDiemCT = listCongTac[i].DonVi.diaDiem,
+                                    DiaChi = listCongTac[i].DonVi.diaChi,
+                                    SoDienThoaiDonVi = listCongTac[i].DonVi.sDT,
+                                    ToChuyenMon = listCongTac[i].ToChuyenMon.tenToChuyenMon,
+                                    PhanLoaiCongTac = listCongTac[i].phanLoaiCongTac,
+                                    CheckPhanLoaiCongTac = unitOfWorks.ChucVuDonViVienChucRepository.HardCheckPhanLoaiCongTacToGrid(listCongTac[i].checkPhanLoaiCongTac),
+                                    NgayBatDauCT = listCongTac[i].ngayBatDau,
+                                    NgayKetThucCT = listCongTac[i].ngayKetThuc,
+                                    LoaiThayDoi = unitOfWorks.ChucVuDonViVienChucRepository.HardLoaiThayDoiToGrid(listCongTac[i].loaiThayDoi),
+                                    KiemNhiem = unitOfWorks.ChucVuDonViVienChucRepository.HardKiemNhiemToGrid(listCongTac[i].kiemNhiem),
+                                    LinkVanBanDinhKemCT = listCongTac[i].linkVanBanDinhKem,
+                                    GhiChuCT = listCongTac[i].ghiChu
+                                });
+                            }
+                        }
+                        if (listCongTac.Count == 1)
+                        {
+                            exportObjects.LoaiChucVu = listCongTac[0].ChucVu.LoaiChucVu.tenLoaiChucVu;
+                            exportObjects.ChucVu = listCongTac[0].ChucVu.tenChucVu;
+                            exportObjects.HeSoChucVu = listCongTac[0].ChucVu.heSoChucVu;
+                            exportObjects.LoaiDonVi = listCongTac[0].DonVi.LoaiDonVi.tenLoaiDonVi;
+                            exportObjects.DonVi = listCongTac[0].DonVi.tenDonVi;
+                            exportObjects.DiaDiemCT = listCongTac[0].DonVi.diaDiem;
+                            exportObjects.DiaChi = listCongTac[0].DonVi.diaChi;
+                            exportObjects.SoDienThoaiDonVi = listCongTac[0].DonVi.sDT;
+                            exportObjects.ToChuyenMon = listCongTac[0].ToChuyenMon.tenToChuyenMon;
+                            exportObjects.PhanLoaiCongTac = listCongTac[0].phanLoaiCongTac;
+                            exportObjects.CheckPhanLoaiCongTac = unitOfWorks.ChucVuDonViVienChucRepository.HardCheckPhanLoaiCongTacToGrid(listCongTac[0].checkPhanLoaiCongTac);
+                            exportObjects.NgayBatDauCT = listCongTac[0].ngayBatDau;
+                            exportObjects.NgayKetThucCT = listCongTac[0].ngayKetThuc;
+                            exportObjects.LoaiThayDoi = unitOfWorks.ChucVuDonViVienChucRepository.HardLoaiThayDoiToGrid(listCongTac[0].loaiThayDoi);
+                            exportObjects.KiemNhiem = unitOfWorks.ChucVuDonViVienChucRepository.HardKiemNhiemToGrid(listCongTac[0].kiemNhiem);
+                            exportObjects.LinkVanBanDinhKemCT = listCongTac[0].linkVanBanDinhKem;
+                            exportObjects.GhiChuCT = listCongTac[0].ghiChu;
+                        }
+                    }
+                }
+                tempIdVienChuc = -1;
+            }
+        }
+
+        private void ExportNganhHoc(List<ExportObjects> listFieldsDefault, DateTime? dtTimeline, DateTime? dtFromDuration, DateTime? dtToDuration, UnitOfWorks unitOfWorks, int tempIdVienChuc)
+        {
+            if (dtTimeline != null)
+            {
+                foreach (var row in listFieldsDefault.ToList())
+                {
+                    ExportObjects exportObjects = listFieldsDefault.Where(x => x.IdVienChuc == row.IdVienChuc && x.Index == row.Index).FirstOrDefault();
+                    List<NganhVienChuc> listNganhHoc = unitOfWorks.NganhVienChucRepository.GetListNganhHocByIdVienChucAndTimelineForExportFull(row.IdVienChuc, dtTimeline);
+                    if (row.IdVienChuc != tempIdVienChuc)
+                    {
+                        tempIdVienChuc = row.IdVienChuc;
+                        if (listNganhHoc.Count > 1)
+                        {
+                            exportObjects.LoaiNganhNH = listNganhHoc[0].LoaiNganh.tenLoaiNganh;
+                            exportObjects.NganhDaoTaoNH = listNganhHoc[0].NganhDaoTao.tenNganhDaoTao;
+                            exportObjects.ChuyenNganhNH = listNganhHoc[0].ChuyenNganh.tenChuyenNganh;
+                            exportObjects.LoaiHocHamHocViNH = listNganhHoc[0].HocHamHocViVienChuc.LoaiHocHamHocVi.tenLoaiHocHamHocVi;
+                            exportObjects.TenHocHamHocViNH = listNganhHoc[0].HocHamHocViVienChuc.tenHocHamHocVi;
+                            exportObjects.CoSoDaoTaoNH = listNganhHoc[0].HocHamHocViVienChuc.coSoDaoTao;
+                            exportObjects.NgonNguDaoTaoNH = listNganhHoc[0].HocHamHocViVienChuc.ngonNguDaoTao;
+                            exportObjects.HinhThucDaoTaoNH = listNganhHoc[0].HocHamHocViVienChuc.hinhThucDaoTao;
+                            exportObjects.NuocCapBangNH = listNganhHoc[0].HocHamHocViVienChuc.nuocCapBang;
+                            exportObjects.NgayCapBangNH = listNganhHoc[0].HocHamHocViVienChuc.ngayCapBang;
+                            exportObjects.LinkVanBanDinhKemHHHV_NH = listNganhHoc[0].HocHamHocViVienChuc.linkVanBanDinhKem;
+                            exportObjects.PhanLoaiNH = unitOfWorks.NganhVienChucRepository.HardCodePhanLoaiToGrid(listNganhHoc[0].phanLoai);
+                            exportObjects.LinkVanBanDinhKemNH = listNganhHoc[0].linkVanBanDinhKem;
+
+                            IncreaseIndex(listFieldsDefault, row.Index, listNganhHoc.Count - 1); // tru phan tu 0, con lai bn phan tu thi cong len bay nhieu
+                            for (int i = 1; i < listNganhHoc.Count; i++)
+                            {
+                                listFieldsDefault.Insert(row.Index + 1, new ExportObjects
+                                {
+                                    Index = row.Index + 1,
+                                    IdVienChuc = row.IdVienChuc,
+                                    MaVienChuc = row.MaVienChuc,
+                                    Ho = row.Ho,
+                                    Ten = row.Ten,
+                                    GioiTinh = row.GioiTinh,
+                                    DonVi = row.DonVi,
+                                    TrangThai = row.TrangThai,
+                                    LoaiNganhNH = listNganhHoc[i].LoaiNganh.tenLoaiNganh,
+                                    NganhDaoTaoNH = listNganhHoc[i].NganhDaoTao.tenNganhDaoTao,
+                                    ChuyenNganhNH = listNganhHoc[i].ChuyenNganh.tenChuyenNganh,
+                                    LoaiHocHamHocViNH = listNganhHoc[i].HocHamHocViVienChuc.LoaiHocHamHocVi.tenLoaiHocHamHocVi,
+                                    TenHocHamHocViNH = listNganhHoc[i].HocHamHocViVienChuc.tenHocHamHocVi,
+                                    CoSoDaoTaoNH = listNganhHoc[i].HocHamHocViVienChuc.coSoDaoTao,
+                                    NgonNguDaoTaoNH = listNganhHoc[i].HocHamHocViVienChuc.ngonNguDaoTao,
+                                    HinhThucDaoTaoNH = listNganhHoc[i].HocHamHocViVienChuc.hinhThucDaoTao,
+                                    NuocCapBangNH = listNganhHoc[i].HocHamHocViVienChuc.nuocCapBang,
+                                    NgayCapBangNH = listNganhHoc[i].HocHamHocViVienChuc.ngayCapBang,
+                                    LinkVanBanDinhKemHHHV_NH = listNganhHoc[i].HocHamHocViVienChuc.linkVanBanDinhKem,
+                                    PhanLoaiNH = unitOfWorks.NganhVienChucRepository.HardCodePhanLoaiToGrid(listNganhHoc[i].phanLoai),
+                                    LinkVanBanDinhKemNH = listNganhHoc[i].linkVanBanDinhKem
+                                });
+                            }
+                        }
+                        if (listNganhHoc.Count == 1)
+                        {
+                            exportObjects.LoaiNganhNH = listNganhHoc[0].LoaiNganh.tenLoaiNganh;
+                            exportObjects.NganhDaoTaoNH = listNganhHoc[0].NganhDaoTao.tenNganhDaoTao;
+                            exportObjects.ChuyenNganhNH = listNganhHoc[0].ChuyenNganh.tenChuyenNganh;
+                            exportObjects.LoaiHocHamHocViNH = listNganhHoc[0].HocHamHocViVienChuc.LoaiHocHamHocVi.tenLoaiHocHamHocVi;
+                            exportObjects.TenHocHamHocViNH = listNganhHoc[0].HocHamHocViVienChuc.tenHocHamHocVi;
+                            exportObjects.CoSoDaoTaoNH = listNganhHoc[0].HocHamHocViVienChuc.coSoDaoTao;
+                            exportObjects.NgonNguDaoTaoNH = listNganhHoc[0].HocHamHocViVienChuc.ngonNguDaoTao;
+                            exportObjects.HinhThucDaoTaoNH = listNganhHoc[0].HocHamHocViVienChuc.hinhThucDaoTao;
+                            exportObjects.NuocCapBangNH = listNganhHoc[0].HocHamHocViVienChuc.nuocCapBang;
+                            exportObjects.NgayCapBangNH = listNganhHoc[0].HocHamHocViVienChuc.ngayCapBang;
+                            exportObjects.LinkVanBanDinhKemHHHV_NH = listNganhHoc[0].HocHamHocViVienChuc.linkVanBanDinhKem;
+                            exportObjects.PhanLoaiNH = unitOfWorks.NganhVienChucRepository.HardCodePhanLoaiToGrid(listNganhHoc[0].phanLoai);
+                            exportObjects.LinkVanBanDinhKemNH = listNganhHoc[0].linkVanBanDinhKem;
+                        }
+                    }
+                }
+                tempIdVienChuc = -1;
+            }
+            else
+            {
+                foreach (var row in listFieldsDefault.ToList())
+                {
+                    ExportObjects exportObjects = listFieldsDefault.Where(x => x.IdVienChuc == row.IdVienChuc && x.Index == row.Index).FirstOrDefault();
+                    List<NganhVienChuc> listNganhHoc = unitOfWorks.NganhVienChucRepository.GetListNganhHocByIdVienChucAndDurationForExportFull(row.IdVienChuc, dtFromDuration, dtToDuration);
+                    if (row.IdVienChuc != tempIdVienChuc)
+                    {
+                        tempIdVienChuc = row.IdVienChuc;
+                        if (listNganhHoc.Count > 1)
+                        {
+                            exportObjects.LoaiNganhNH = listNganhHoc[0].LoaiNganh.tenLoaiNganh;
+                            exportObjects.NganhDaoTaoNH = listNganhHoc[0].NganhDaoTao.tenNganhDaoTao;
+                            exportObjects.ChuyenNganhNH = listNganhHoc[0].ChuyenNganh.tenChuyenNganh;
+                            exportObjects.LoaiHocHamHocViNH = listNganhHoc[0].HocHamHocViVienChuc.LoaiHocHamHocVi.tenLoaiHocHamHocVi;
+                            exportObjects.TenHocHamHocViNH = listNganhHoc[0].HocHamHocViVienChuc.tenHocHamHocVi;
+                            exportObjects.CoSoDaoTaoNH = listNganhHoc[0].HocHamHocViVienChuc.coSoDaoTao;
+                            exportObjects.NgonNguDaoTaoNH = listNganhHoc[0].HocHamHocViVienChuc.ngonNguDaoTao;
+                            exportObjects.HinhThucDaoTaoNH = listNganhHoc[0].HocHamHocViVienChuc.hinhThucDaoTao;
+                            exportObjects.NuocCapBangNH = listNganhHoc[0].HocHamHocViVienChuc.nuocCapBang;
+                            exportObjects.NgayCapBangNH = listNganhHoc[0].HocHamHocViVienChuc.ngayCapBang;
+                            exportObjects.LinkVanBanDinhKemHHHV_NH = listNganhHoc[0].HocHamHocViVienChuc.linkVanBanDinhKem;
+                            exportObjects.PhanLoaiNH = unitOfWorks.NganhVienChucRepository.HardCodePhanLoaiToGrid(listNganhHoc[0].phanLoai);
+                            exportObjects.LinkVanBanDinhKemNH = listNganhHoc[0].linkVanBanDinhKem;
+
+                            IncreaseIndex(listFieldsDefault, row.Index, listNganhHoc.Count - 1); // tru phan tu 0, con lai bn phan tu thi cong len bay nhieu
+                            for (int i = 1; i < listNganhHoc.Count; i++)
+                            {
+                                listFieldsDefault.Insert(row.Index + 1, new ExportObjects
+                                {
+                                    Index = row.Index + 1,
+                                    IdVienChuc = row.IdVienChuc,
+                                    MaVienChuc = row.MaVienChuc,
+                                    Ho = row.Ho,
+                                    Ten = row.Ten,
+                                    GioiTinh = row.GioiTinh,
+                                    DonVi = row.DonVi,
+                                    TrangThai = row.TrangThai,
+                                    LoaiNganhNH = listNganhHoc[i].LoaiNganh.tenLoaiNganh,
+                                    NganhDaoTaoNH = listNganhHoc[i].NganhDaoTao.tenNganhDaoTao,
+                                    ChuyenNganhNH = listNganhHoc[i].ChuyenNganh.tenChuyenNganh,
+                                    LoaiHocHamHocViNH = listNganhHoc[i].HocHamHocViVienChuc.LoaiHocHamHocVi.tenLoaiHocHamHocVi,
+                                    TenHocHamHocViNH = listNganhHoc[i].HocHamHocViVienChuc.tenHocHamHocVi,
+                                    CoSoDaoTaoNH = listNganhHoc[i].HocHamHocViVienChuc.coSoDaoTao,
+                                    NgonNguDaoTaoNH = listNganhHoc[i].HocHamHocViVienChuc.ngonNguDaoTao,
+                                    HinhThucDaoTaoNH = listNganhHoc[i].HocHamHocViVienChuc.hinhThucDaoTao,
+                                    NuocCapBangNH = listNganhHoc[i].HocHamHocViVienChuc.nuocCapBang,
+                                    NgayCapBangNH = listNganhHoc[i].HocHamHocViVienChuc.ngayCapBang,
+                                    LinkVanBanDinhKemHHHV_NH = listNganhHoc[i].HocHamHocViVienChuc.linkVanBanDinhKem,
+                                    PhanLoaiNH = unitOfWorks.NganhVienChucRepository.HardCodePhanLoaiToGrid(listNganhHoc[i].phanLoai),
+                                    LinkVanBanDinhKemNH = listNganhHoc[i].linkVanBanDinhKem
+                                });
+                            }
+                        }
+                        if (listNganhHoc.Count == 1)
+                        {
+                            exportObjects.LoaiNganhNH = listNganhHoc[0].LoaiNganh.tenLoaiNganh;
+                            exportObjects.NganhDaoTaoNH = listNganhHoc[0].NganhDaoTao.tenNganhDaoTao;
+                            exportObjects.ChuyenNganhNH = listNganhHoc[0].ChuyenNganh.tenChuyenNganh;
+                            exportObjects.LoaiHocHamHocViNH = listNganhHoc[0].HocHamHocViVienChuc.LoaiHocHamHocVi.tenLoaiHocHamHocVi;
+                            exportObjects.TenHocHamHocViNH = listNganhHoc[0].HocHamHocViVienChuc.tenHocHamHocVi;
+                            exportObjects.CoSoDaoTaoNH = listNganhHoc[0].HocHamHocViVienChuc.coSoDaoTao;
+                            exportObjects.NgonNguDaoTaoNH = listNganhHoc[0].HocHamHocViVienChuc.ngonNguDaoTao;
+                            exportObjects.HinhThucDaoTaoNH = listNganhHoc[0].HocHamHocViVienChuc.hinhThucDaoTao;
+                            exportObjects.NuocCapBangNH = listNganhHoc[0].HocHamHocViVienChuc.nuocCapBang;
+                            exportObjects.NgayCapBangNH = listNganhHoc[0].HocHamHocViVienChuc.ngayCapBang;
+                            exportObjects.LinkVanBanDinhKemHHHV_NH = listNganhHoc[0].HocHamHocViVienChuc.linkVanBanDinhKem;
+                            exportObjects.PhanLoaiNH = unitOfWorks.NganhVienChucRepository.HardCodePhanLoaiToGrid(listNganhHoc[0].phanLoai);
+                            exportObjects.LinkVanBanDinhKemNH = listNganhHoc[0].linkVanBanDinhKem;
+                        }
+                    }
+                }
+                tempIdVienChuc = -1;
+            }
+        }
+
+        private void ExportQuaTrinhLuong(List<ExportObjects> listFieldsDefault, DateTime? dtTimeline, DateTime? dtFromDuration, DateTime? dtToDuration, UnitOfWorks unitOfWorks, int tempIdVienChuc)
+        {
+            if (dtTimeline != null)
+            {
+                foreach (var row in listFieldsDefault.ToList())
+                {
+                    ExportObjects exportObjects = listFieldsDefault.Where(x => x.IdVienChuc == row.IdVienChuc && x.Index == row.Index).FirstOrDefault();
+                    List<QuaTrinhLuong> listQuaTrinhLuong = unitOfWorks.QuaTrinhLuongRepository.GetListQuaTrinhLuongByIdVienChucAndTimelineForExportFull(row.IdVienChuc, dtTimeline);
+                    if (row.IdVienChuc != tempIdVienChuc)
+                    {
+                        tempIdVienChuc = row.IdVienChuc;
+                        if (listQuaTrinhLuong.Count > 1)
+                        {
+                            exportObjects.MaNgach = listQuaTrinhLuong[0].Bac.Ngach.maNgach;
+                            exportObjects.TenNgach = listQuaTrinhLuong[0].Bac.Ngach.tenNgach;
+                            exportObjects.HeSoVuotKhungBaNamDau = listQuaTrinhLuong[0].Bac.Ngach.heSoVuotKhungBaNamDau;
+                            exportObjects.HeSoVuotKhungTrenBaNam = listQuaTrinhLuong[0].Bac.Ngach.heSoVuotKhungTrenBaNam;
+                            exportObjects.ThoiHanNangBac = listQuaTrinhLuong[0].Bac.Ngach.thoiHanNangBac;
+                            exportObjects.Bac = listQuaTrinhLuong[0].Bac.bac1;
+                            exportObjects.HeSoBac = listQuaTrinhLuong[0].Bac.heSoBac;
+                            exportObjects.NgayBatDauQTL = listQuaTrinhLuong[0].ngayBatDau;
+                            exportObjects.NgayLenLuong = listQuaTrinhLuong[0].ngayLenLuong;
+                            exportObjects.LinkVanBanDinhKemQTL = listQuaTrinhLuong[0].linkVanBanDinhKem;
+
+                            IncreaseIndex(listFieldsDefault, row.Index, listQuaTrinhLuong.Count - 1);
+                            for (int i = 1; i < listQuaTrinhLuong.Count; i++)
+                            {
+                                listFieldsDefault.Insert(row.Index + 1, new ExportObjects
+                                {
+                                    Index = row.Index + 1,
+                                    IdVienChuc = row.IdVienChuc,
+                                    MaVienChuc = row.MaVienChuc,
+                                    Ho = row.Ho,
+                                    Ten = row.Ten,
+                                    GioiTinh = row.GioiTinh,
+                                    DonVi = row.DonVi,
+                                    TrangThai = row.TrangThai,
+                                    MaNgach = listQuaTrinhLuong[i].Bac.Ngach.maNgach,
+                                    TenNgach = listQuaTrinhLuong[i].Bac.Ngach.tenNgach,
+                                    HeSoVuotKhungBaNamDau = listQuaTrinhLuong[i].Bac.Ngach.heSoVuotKhungBaNamDau,
+                                    HeSoVuotKhungTrenBaNam = listQuaTrinhLuong[i].Bac.Ngach.heSoVuotKhungTrenBaNam,
+                                    ThoiHanNangBac = listQuaTrinhLuong[i].Bac.Ngach.thoiHanNangBac,
+                                    Bac = listQuaTrinhLuong[i].Bac.bac1,
+                                    HeSoBac = listQuaTrinhLuong[i].Bac.heSoBac,
+                                    NgayBatDauQTL = listQuaTrinhLuong[i].ngayBatDau,
+                                    NgayLenLuong = listQuaTrinhLuong[i].ngayLenLuong,
+                                    LinkVanBanDinhKemQTL = listQuaTrinhLuong[i].linkVanBanDinhKem
+                                });
+                            }
+                        }
+                        if (listQuaTrinhLuong.Count == 1)
+                        {
+                            exportObjects.MaNgach = listQuaTrinhLuong[0].Bac.Ngach.maNgach;
+                            exportObjects.TenNgach = listQuaTrinhLuong[0].Bac.Ngach.tenNgach;
+                            exportObjects.HeSoVuotKhungBaNamDau = listQuaTrinhLuong[0].Bac.Ngach.heSoVuotKhungBaNamDau;
+                            exportObjects.HeSoVuotKhungTrenBaNam = listQuaTrinhLuong[0].Bac.Ngach.heSoVuotKhungTrenBaNam;
+                            exportObjects.ThoiHanNangBac = listQuaTrinhLuong[0].Bac.Ngach.thoiHanNangBac;
+                            exportObjects.Bac = listQuaTrinhLuong[0].Bac.bac1;
+                            exportObjects.HeSoBac = listQuaTrinhLuong[0].Bac.heSoBac;
+                            exportObjects.NgayBatDauQTL = listQuaTrinhLuong[0].ngayBatDau;
+                            exportObjects.NgayLenLuong = listQuaTrinhLuong[0].ngayLenLuong;
+                            exportObjects.LinkVanBanDinhKemQTL = listQuaTrinhLuong[0].linkVanBanDinhKem;
+                        }
+                    }
+                }
+                tempIdVienChuc = -1;
+            }
+            else
+            {
+                foreach (var row in listFieldsDefault.ToList())
+                {
+                    ExportObjects exportObjects = listFieldsDefault.Where(x => x.IdVienChuc == row.IdVienChuc && x.Index == row.Index).FirstOrDefault();
+                    List<QuaTrinhLuong> listQuaTrinhLuong = unitOfWorks.QuaTrinhLuongRepository.GetListQuaTrinhLuongByIdVienChucAndDurationForExportFull(row.IdVienChuc, dtFromDuration, dtToDuration);
+                    if (row.IdVienChuc != tempIdVienChuc)
+                    {
+                        tempIdVienChuc = row.IdVienChuc;
+                        if (listQuaTrinhLuong.Count > 1)
+                        {
+                            exportObjects.MaNgach = listQuaTrinhLuong[0].Bac.Ngach.maNgach;
+                            exportObjects.TenNgach = listQuaTrinhLuong[0].Bac.Ngach.tenNgach;
+                            exportObjects.HeSoVuotKhungBaNamDau = listQuaTrinhLuong[0].Bac.Ngach.heSoVuotKhungBaNamDau;
+                            exportObjects.HeSoVuotKhungTrenBaNam = listQuaTrinhLuong[0].Bac.Ngach.heSoVuotKhungTrenBaNam;
+                            exportObjects.ThoiHanNangBac = listQuaTrinhLuong[0].Bac.Ngach.thoiHanNangBac;
+                            exportObjects.Bac = listQuaTrinhLuong[0].Bac.bac1;
+                            exportObjects.HeSoBac = listQuaTrinhLuong[0].Bac.heSoBac;
+                            exportObjects.NgayBatDauQTL = listQuaTrinhLuong[0].ngayBatDau;
+                            exportObjects.NgayLenLuong = listQuaTrinhLuong[0].ngayLenLuong;
+                            exportObjects.LinkVanBanDinhKemQTL = listQuaTrinhLuong[0].linkVanBanDinhKem;
+
+                            IncreaseIndex(listFieldsDefault, row.Index, listQuaTrinhLuong.Count - 1);
+                            for (int i = 1; i < listQuaTrinhLuong.Count; i++)
+                            {
+                                listFieldsDefault.Insert(row.Index + 1, new ExportObjects
+                                {
+                                    Index = row.Index + 1,
+                                    IdVienChuc = row.IdVienChuc,
+                                    MaVienChuc = row.MaVienChuc,
+                                    Ho = row.Ho,
+                                    Ten = row.Ten,
+                                    GioiTinh = row.GioiTinh,
+                                    DonVi = row.DonVi,
+                                    TrangThai = row.TrangThai,
+                                    MaNgach = listQuaTrinhLuong[i].Bac.Ngach.maNgach,
+                                    TenNgach = listQuaTrinhLuong[i].Bac.Ngach.tenNgach,
+                                    HeSoVuotKhungBaNamDau = listQuaTrinhLuong[i].Bac.Ngach.heSoVuotKhungBaNamDau,
+                                    HeSoVuotKhungTrenBaNam = listQuaTrinhLuong[i].Bac.Ngach.heSoVuotKhungTrenBaNam,
+                                    ThoiHanNangBac = listQuaTrinhLuong[i].Bac.Ngach.thoiHanNangBac,
+                                    Bac = listQuaTrinhLuong[i].Bac.bac1,
+                                    HeSoBac = listQuaTrinhLuong[i].Bac.heSoBac,
+                                    NgayBatDauQTL = listQuaTrinhLuong[i].ngayBatDau,
+                                    NgayLenLuong = listQuaTrinhLuong[i].ngayLenLuong,
+                                    LinkVanBanDinhKemQTL = listQuaTrinhLuong[i].linkVanBanDinhKem
+                                });
+                            }
+                        }
+                        if (listQuaTrinhLuong.Count == 1)
+                        {
+                            exportObjects.MaNgach = listQuaTrinhLuong[0].Bac.Ngach.maNgach;
+                            exportObjects.TenNgach = listQuaTrinhLuong[0].Bac.Ngach.tenNgach;
+                            exportObjects.HeSoVuotKhungBaNamDau = listQuaTrinhLuong[0].Bac.Ngach.heSoVuotKhungBaNamDau;
+                            exportObjects.HeSoVuotKhungTrenBaNam = listQuaTrinhLuong[0].Bac.Ngach.heSoVuotKhungTrenBaNam;
+                            exportObjects.ThoiHanNangBac = listQuaTrinhLuong[0].Bac.Ngach.thoiHanNangBac;
+                            exportObjects.Bac = listQuaTrinhLuong[0].Bac.bac1;
+                            exportObjects.HeSoBac = listQuaTrinhLuong[0].Bac.heSoBac;
+                            exportObjects.NgayBatDauQTL = listQuaTrinhLuong[0].ngayBatDau;
+                            exportObjects.NgayLenLuong = listQuaTrinhLuong[0].ngayLenLuong;
+                            exportObjects.LinkVanBanDinhKemQTL = listQuaTrinhLuong[0].linkVanBanDinhKem;
+                        }
+                    }
+                }
+                tempIdVienChuc = -1;
+            }
+        }
+
+        private void ExportHopDong(List<ExportObjects> listFieldsDefault, DateTime? dtTimeline, DateTime? dtFromDuration, DateTime? dtToDuration, UnitOfWorks unitOfWorks, int tempIdVienChuc)
+        {
+            if (dtTimeline != null)
+            {
+                foreach (var row in listFieldsDefault.ToList())
+                {
+                    ExportObjects exportObjects = listFieldsDefault.Where(x => x.IdVienChuc == row.IdVienChuc && x.Index == row.Index).FirstOrDefault();
+                    List<HopDongVienChuc> listHopDongVienChuc = unitOfWorks.HopDongVienChucRepository.GetListHopDongByIdVienChucAndTimelineForExportFull(row.IdVienChuc, dtTimeline);
+                    if (row.IdVienChuc != tempIdVienChuc)
+                    {
+                        tempIdVienChuc = row.IdVienChuc;
+                        if (listHopDongVienChuc.Count > 1)
+                        {
+                            exportObjects.MaHopDong = listHopDongVienChuc[0].LoaiHopDong.maLoaiHopDong;
+                            exportObjects.TenHopDong = listHopDongVienChuc[0].LoaiHopDong.tenLoaiHopDong;
+                            exportObjects.NgayBatDauHD = listHopDongVienChuc[0].ngayBatDau;
+                            exportObjects.NgayKetThucHD = listHopDongVienChuc[0].ngayKetThuc;
+                            exportObjects.MoTaHD = listHopDongVienChuc[0].moTa;
+                            exportObjects.LinkVanBanDinhKemHD = listHopDongVienChuc[0].linkVanBanDinhKem;
+
+                            IncreaseIndex(listFieldsDefault, row.Index, listHopDongVienChuc.Count - 1);
+                            for (int i = 1; i < listHopDongVienChuc.Count; i++)
+                            {
+                                listFieldsDefault.Insert(row.Index + 1, new ExportObjects
+                                {
+                                    Index = row.Index + 1,
+                                    IdVienChuc = row.IdVienChuc,
+                                    MaVienChuc = row.MaVienChuc,
+                                    Ho = row.Ho,
+                                    Ten = row.Ten,
+                                    GioiTinh = row.GioiTinh,
+                                    DonVi = row.DonVi,
+                                    TrangThai = row.TrangThai,
+                                    MaHopDong = listHopDongVienChuc[i].LoaiHopDong.maLoaiHopDong,
+                                    TenHopDong = listHopDongVienChuc[i].LoaiHopDong.tenLoaiHopDong,
+                                    NgayBatDauHD = listHopDongVienChuc[i].ngayBatDau,
+                                    NgayKetThucHD = listHopDongVienChuc[i].ngayKetThuc,
+                                    MoTaHD = listHopDongVienChuc[i].moTa,
+                                    LinkVanBanDinhKemHD = listHopDongVienChuc[i].linkVanBanDinhKem
+                                });
+                            }
+                        }
+                        if (listHopDongVienChuc.Count == 1)
+                        {
+                            exportObjects.MaHopDong = listHopDongVienChuc[0].LoaiHopDong.maLoaiHopDong;
+                            exportObjects.TenHopDong = listHopDongVienChuc[0].LoaiHopDong.tenLoaiHopDong;
+                            exportObjects.NgayBatDauHD = listHopDongVienChuc[0].ngayBatDau;
+                            exportObjects.NgayKetThucHD = listHopDongVienChuc[0].ngayKetThuc;
+                            exportObjects.MoTaHD = listHopDongVienChuc[0].moTa;
+                            exportObjects.LinkVanBanDinhKemHD = listHopDongVienChuc[0].linkVanBanDinhKem;
+                        }
+                    }
+                }
+                tempIdVienChuc = -1;
+            }
+            else
+            {
+                foreach (var row in listFieldsDefault.ToList())
+                {
+                    ExportObjects exportObjects = listFieldsDefault.Where(x => x.IdVienChuc == row.IdVienChuc && x.Index == row.Index).FirstOrDefault();
+                    List<HopDongVienChuc> listHopDongVienChuc = unitOfWorks.HopDongVienChucRepository.GetListHopDongByIdVienChucAndDurationForExportFull(row.IdVienChuc, dtFromDuration, dtToDuration);
+                    if (row.IdVienChuc != tempIdVienChuc)
+                    {
+                        tempIdVienChuc = row.IdVienChuc;
+                        if (listHopDongVienChuc.Count > 1)
+                        {
+                            exportObjects.MaHopDong = listHopDongVienChuc[0].LoaiHopDong.maLoaiHopDong;
+                            exportObjects.TenHopDong = listHopDongVienChuc[0].LoaiHopDong.tenLoaiHopDong;
+                            exportObjects.NgayBatDauHD = listHopDongVienChuc[0].ngayBatDau;
+                            exportObjects.NgayKetThucHD = listHopDongVienChuc[0].ngayKetThuc;
+                            exportObjects.MoTaHD = listHopDongVienChuc[0].moTa;
+                            exportObjects.LinkVanBanDinhKemHD = listHopDongVienChuc[0].linkVanBanDinhKem;
+
+                            IncreaseIndex(listFieldsDefault, row.Index, listHopDongVienChuc.Count - 1);
+                            for (int i = 1; i < listHopDongVienChuc.Count; i++)
+                            {
+                                listFieldsDefault.Insert(row.Index + 1, new ExportObjects
+                                {
+                                    Index = row.Index + 1,
+                                    IdVienChuc = row.IdVienChuc,
+                                    MaVienChuc = row.MaVienChuc,
+                                    Ho = row.Ho,
+                                    Ten = row.Ten,
+                                    GioiTinh = row.GioiTinh,
+                                    DonVi = row.DonVi,
+                                    TrangThai = row.TrangThai,
+                                    MaHopDong = listHopDongVienChuc[i].LoaiHopDong.maLoaiHopDong,
+                                    TenHopDong = listHopDongVienChuc[i].LoaiHopDong.tenLoaiHopDong,
+                                    NgayBatDauHD = listHopDongVienChuc[i].ngayBatDau,
+                                    NgayKetThucHD = listHopDongVienChuc[i].ngayKetThuc,
+                                    MoTaHD = listHopDongVienChuc[i].moTa,
+                                    LinkVanBanDinhKemHD = listHopDongVienChuc[i].linkVanBanDinhKem
+                                });
+                            }
+                        }
+                        if (listHopDongVienChuc.Count == 1)
+                        {
+                            exportObjects.MaHopDong = listHopDongVienChuc[0].LoaiHopDong.maLoaiHopDong;
+                            exportObjects.TenHopDong = listHopDongVienChuc[0].LoaiHopDong.tenLoaiHopDong;
+                            exportObjects.NgayBatDauHD = listHopDongVienChuc[0].ngayBatDau;
+                            exportObjects.NgayKetThucHD = listHopDongVienChuc[0].ngayKetThuc;
+                            exportObjects.MoTaHD = listHopDongVienChuc[0].moTa;
+                            exportObjects.LinkVanBanDinhKemHD = listHopDongVienChuc[0].linkVanBanDinhKem;
+                        }
+                    }
+                }
+                tempIdVienChuc = -1;
+            }
+        }
+
+        private void ExportChungChi(List<ExportObjects> listFieldsDefault, DateTime? dtTimeline, DateTime? dtFromDuration, DateTime? dtToDuration, UnitOfWorks unitOfWorks, int tempIdVienChuc)
+        {
+            if (dtTimeline != null)
+            {
+                foreach (var row in listFieldsDefault.ToList())
+                {
+                    ExportObjects exportObjects = listFieldsDefault.Where(x => x.IdVienChuc == row.IdVienChuc && x.Index == row.Index).FirstOrDefault();
+                    List<ChungChiVienChuc> listChungChi = unitOfWorks.ChungChiVienChucRepository.GetListChungChiByIdVienChucAndTimelineForExportFull(row.IdVienChuc, dtTimeline);
+                    if (row.IdVienChuc != tempIdVienChuc)
+                    {
+                        tempIdVienChuc = row.IdVienChuc;
+                        if (listChungChi.Count > 1)
+                        {
+                            exportObjects.LoaiChungChi = listChungChi[0].LoaiChungChi.tenLoaiChungChi;
+                            exportObjects.ChungChi = listChungChi[0].tenChungChi;
+                            exportObjects.CapDoChungChi = listChungChi[0].capDoChungChi;
+                            exportObjects.NgayCapChungChi = listChungChi[0].ngayCapChungChi;
+                            exportObjects.CoSoDaoTaoCC = listChungChi[0].coSoDaoTao;
+
+                            IncreaseIndex(listFieldsDefault, row.Index, listChungChi.Count - 1);
+                            for (int i = 1; i < listChungChi.Count; i++)
+                            {
+                                if (listChungChi[i].capDoChungChi != null)
+                                {
+                                    listFieldsDefault.Insert(row.Index + 1, new ExportObjects
+                                    {
+                                        Index = row.Index + 1,
+                                        IdVienChuc = row.IdVienChuc,
+                                        MaVienChuc = row.MaVienChuc,
+                                        Ho = row.Ho,
+                                        Ten = row.Ten,
+                                        GioiTinh = row.GioiTinh,
+                                        DonVi = row.DonVi,
+                                        TrangThai = row.TrangThai,
+                                        LoaiChungChi = listChungChi[i].LoaiChungChi.tenLoaiChungChi,
+                                        ChungChi = listChungChi[i].tenChungChi,
+                                        CapDoChungChi = listChungChi[i].capDoChungChi,
+                                        NgayCapChungChi = listChungChi[i].ngayCapChungChi,
+                                        CoSoDaoTaoCC = listChungChi[i].coSoDaoTao
+                                    });
+                                }
+                                else
+                                {
+                                    listFieldsDefault.Insert(row.Index + 1, new ExportObjects
+                                    {
+                                        Index = row.Index + 1,
+                                        IdVienChuc = row.IdVienChuc,
+                                        MaVienChuc = row.MaVienChuc,
+                                        Ho = row.Ho,
+                                        Ten = row.Ten,
+                                        GioiTinh = row.GioiTinh,
+                                        DonVi = row.DonVi,
+                                        TrangThai = row.TrangThai,
+                                        LoaiChungChi = listChungChi[i].LoaiChungChi.tenLoaiChungChi,
+                                        ChungChi = listChungChi[i].tenChungChi,
+                                        CapDoChungChi = listChungChi[i].capDoChungChi,
+                                        NgayCapChungChi = listChungChi[i].ngayCapChungChi,
+                                        CoSoDaoTaoCC = listChungChi[i].coSoDaoTao
+                                    });
+                                }
+                            }
+                        }
+                        if (listChungChi.Count == 1)
+                        {
+                            exportObjects.LoaiChungChi = listChungChi[0].LoaiChungChi.tenLoaiChungChi;
+                            exportObjects.ChungChi = listChungChi[0].tenChungChi;
+                            exportObjects.CapDoChungChi = listChungChi[0].capDoChungChi;
+                            exportObjects.NgayCapChungChi = listChungChi[0].ngayCapChungChi;
+                            exportObjects.CoSoDaoTaoCC = listChungChi[0].coSoDaoTao;
+                        }
+                    }
+                }
+                tempIdVienChuc = -1;
+            }
+            else
+            {
+                foreach (var row in listFieldsDefault.ToList())
+                {
+                    ExportObjects exportObjects = listFieldsDefault.Where(x => x.IdVienChuc == row.IdVienChuc && x.Index == row.Index).FirstOrDefault();
+                    List<ChungChiVienChuc> listChungChi = unitOfWorks.ChungChiVienChucRepository.GetListChungChiByIdVienChucAndDurationForExportFull(row.IdVienChuc, dtFromDuration, dtToDuration);
+                    if (row.IdVienChuc != tempIdVienChuc)
+                    {
+                        tempIdVienChuc = row.IdVienChuc;
+                        if (listChungChi.Count > 1)
+                        {
+                            exportObjects.LoaiChungChi = listChungChi[0].LoaiChungChi.tenLoaiChungChi;
+                            exportObjects.ChungChi = listChungChi[0].tenChungChi;
+                            exportObjects.CapDoChungChi = listChungChi[0].capDoChungChi;
+                            exportObjects.NgayCapChungChi = listChungChi[0].ngayCapChungChi;
+                            exportObjects.CoSoDaoTaoCC = listChungChi[0].coSoDaoTao;
+
+                            IncreaseIndex(listFieldsDefault, row.Index, listChungChi.Count - 1);
+                            for (int i = 1; i < listChungChi.Count; i++)
+                            {
+                                if (listChungChi[i].capDoChungChi != null)
+                                {
+                                    listFieldsDefault.Insert(row.Index + 1, new ExportObjects
+                                    {
+                                        Index = row.Index + 1,
+                                        IdVienChuc = row.IdVienChuc,
+                                        MaVienChuc = row.MaVienChuc,
+                                        Ho = row.Ho,
+                                        Ten = row.Ten,
+                                        GioiTinh = row.GioiTinh,
+                                        DonVi = row.DonVi,
+                                        TrangThai = row.TrangThai,
+                                        LoaiChungChi = listChungChi[i].LoaiChungChi.tenLoaiChungChi,
+                                        ChungChi = listChungChi[i].tenChungChi,
+                                        CapDoChungChi = listChungChi[i].capDoChungChi,
+                                        NgayCapChungChi = listChungChi[i].ngayCapChungChi,
+                                        CoSoDaoTaoCC = listChungChi[i].coSoDaoTao
+                                    });
+                                }
+                                else
+                                {
+                                    listFieldsDefault.Insert(row.Index + 1, new ExportObjects
+                                    {
+                                        Index = row.Index + 1,
+                                        IdVienChuc = row.IdVienChuc,
+                                        MaVienChuc = row.MaVienChuc,
+                                        Ho = row.Ho,
+                                        Ten = row.Ten,
+                                        GioiTinh = row.GioiTinh,
+                                        DonVi = row.DonVi,
+                                        TrangThai = row.TrangThai,
+                                        LoaiChungChi = listChungChi[i].LoaiChungChi.tenLoaiChungChi,
+                                        ChungChi = listChungChi[i].tenChungChi,
+                                        CapDoChungChi = listChungChi[i].capDoChungChi,
+                                        NgayCapChungChi = listChungChi[i].ngayCapChungChi,
+                                        CoSoDaoTaoCC = listChungChi[i].coSoDaoTao
+                                    });
+                                }
+                            }
+                        }
+                        if (listChungChi.Count == 1)
+                        {
+                            exportObjects.LoaiChungChi = listChungChi[0].LoaiChungChi.tenLoaiChungChi;
+                            exportObjects.ChungChi = listChungChi[0].tenChungChi;
+                            exportObjects.CapDoChungChi = listChungChi[0].capDoChungChi;
+                            exportObjects.NgayCapChungChi = listChungChi[0].ngayCapChungChi;
+                            exportObjects.CoSoDaoTaoCC = listChungChi[0].coSoDaoTao;
+                        }
+                    }
+                }
+                tempIdVienChuc = -1;
+            }
+        }
+
+        private void ExportDangHocNangCao(List<ExportObjects> listFieldsDefault, DateTime? dtTimeline, DateTime? dtFromDuration, DateTime? dtToDuration, UnitOfWorks unitOfWorks, int tempIdVienChuc)
+        {
+            if (dtTimeline != null)
+            {
+                foreach (var row in listFieldsDefault.ToList())
+                {
+                    ExportObjects exportObjects = listFieldsDefault.Where(x => x.IdVienChuc == row.IdVienChuc && x.Index == row.Index).FirstOrDefault();
+                    List<DangHocNangCao> listDangHocNangCao = unitOfWorks.DangHocNangCaoRepository.GetListDangHocNangCaoByIdVienChucAndTimelineForExportFull(row.IdVienChuc, dtTimeline);
+                    if (row.IdVienChuc != tempIdVienChuc)
+                    {
+                        tempIdVienChuc = row.IdVienChuc;
+                        if (listDangHocNangCao.Count > 1)
+                        {
+                            exportObjects.LoaiHocHamHocViDHNC = unitOfWorks.DangHocNangCaoRepository.HardCodeLoaiHocHamHocViToGrid(listDangHocNangCao[0].LoaiHocHamHocVi.tenLoaiHocHamHocVi);
+                            exportObjects.SoQuyetDinh = listDangHocNangCao[0].soQuyetDinh;
+                            exportObjects.LinkAnhQuyetDinh = listDangHocNangCao[0].linkAnhQuyetDinh;
+                            exportObjects.TenHocHamHocViDHNC = listDangHocNangCao[0].tenHocHamHocVi;
+                            exportObjects.CoSoDaoTaoDHNC = listDangHocNangCao[0].coSoDaoTao;
+                            exportObjects.NgonNguDaoTaoDHNC = listDangHocNangCao[0].ngonNguDaoTao;
+                            exportObjects.HinhThucDaoTaoDHNC = listDangHocNangCao[0].hinhThucDaoTao;
+                            exportObjects.NuocCapBangDHNC = listDangHocNangCao[0].nuocCapBang;
+                            exportObjects.NgayBatDauTT = listDangHocNangCao[0].ngayBatDau;
+                            exportObjects.NgayKetThucTT = listDangHocNangCao[0].ngayKetThuc;
+                            exportObjects.Loai = unitOfWorks.DangHocNangCaoRepository.HardCodeLoaiToGrid(listDangHocNangCao[0].loai);
+
+                            IncreaseIndex(listFieldsDefault, row.Index, listDangHocNangCao.Count - 1);
+                            for (int i = 1; i < listDangHocNangCao.Count; i++)
+                            {
+                                listFieldsDefault.Insert(row.Index + 1, new ExportObjects
+                                {
+                                    Index = row.Index + 1,
+                                    IdVienChuc = row.IdVienChuc,
+                                    MaVienChuc = row.MaVienChuc,
+                                    Ho = row.Ho,
+                                    Ten = row.Ten,
+                                    GioiTinh = row.GioiTinh,
+                                    DonVi = row.DonVi,
+                                    TrangThai = row.TrangThai,
+                                    LoaiHocHamHocViDHNC = unitOfWorks.DangHocNangCaoRepository.HardCodeLoaiHocHamHocViToGrid(listDangHocNangCao[i].LoaiHocHamHocVi.tenLoaiHocHamHocVi),
+                                    SoQuyetDinh = listDangHocNangCao[i].soQuyetDinh,
+                                    LinkAnhQuyetDinh = listDangHocNangCao[i].linkAnhQuyetDinh,
+                                    TenHocHamHocViDHNC = listDangHocNangCao[i].tenHocHamHocVi,
+                                    CoSoDaoTaoDHNC = listDangHocNangCao[i].coSoDaoTao,
+                                    NgonNguDaoTaoDHNC = listDangHocNangCao[i].ngonNguDaoTao,
+                                    HinhThucDaoTaoDHNC = listDangHocNangCao[i].hinhThucDaoTao,
+                                    NuocCapBangDHNC = listDangHocNangCao[i].nuocCapBang,
+                                    NgayBatDauTT = listDangHocNangCao[i].ngayBatDau,
+                                    NgayKetThucTT = listDangHocNangCao[i].ngayKetThuc,
+                                    Loai = unitOfWorks.DangHocNangCaoRepository.HardCodeLoaiToGrid(listDangHocNangCao[i].loai)
+                                });
+                            }
+                        }
+                        if (listDangHocNangCao.Count == 1)
+                        {
+                            exportObjects.LoaiHocHamHocViDHNC = unitOfWorks.DangHocNangCaoRepository.HardCodeLoaiHocHamHocViToGrid(listDangHocNangCao[0].LoaiHocHamHocVi.tenLoaiHocHamHocVi);
+                            exportObjects.SoQuyetDinh = listDangHocNangCao[0].soQuyetDinh;
+                            exportObjects.LinkAnhQuyetDinh = listDangHocNangCao[0].linkAnhQuyetDinh;
+                            exportObjects.TenHocHamHocViDHNC = listDangHocNangCao[0].tenHocHamHocVi;
+                            exportObjects.CoSoDaoTaoDHNC = listDangHocNangCao[0].coSoDaoTao;
+                            exportObjects.NgonNguDaoTaoDHNC = listDangHocNangCao[0].ngonNguDaoTao;
+                            exportObjects.HinhThucDaoTaoDHNC = listDangHocNangCao[0].hinhThucDaoTao;
+                            exportObjects.NuocCapBangDHNC = listDangHocNangCao[0].nuocCapBang;
+                            exportObjects.NgayBatDauTT = listDangHocNangCao[0].ngayBatDau;
+                            exportObjects.NgayKetThucTT = listDangHocNangCao[0].ngayKetThuc;
+                            exportObjects.Loai = unitOfWorks.DangHocNangCaoRepository.HardCodeLoaiToGrid(listDangHocNangCao[0].loai);
+                        }
+                    }
+                }
+                tempIdVienChuc = -1;
+            }
+            else
+            {
+                foreach (var row in listFieldsDefault.ToList())
+                {
+                    ExportObjects exportObjects = listFieldsDefault.Where(x => x.IdVienChuc == row.IdVienChuc && x.Index == row.Index).FirstOrDefault();
+                    List<DangHocNangCao> listDangHocNangCao = unitOfWorks.DangHocNangCaoRepository.GetListDangHocNangCaoByIdVienChucAndDurationForExportFull(row.IdVienChuc, dtFromDuration, dtToDuration);
+                    if (row.IdVienChuc != tempIdVienChuc)
+                    {
+                        tempIdVienChuc = row.IdVienChuc;
+                        if (listDangHocNangCao.Count > 1)
+                        {
+                            exportObjects.LoaiHocHamHocViDHNC = unitOfWorks.DangHocNangCaoRepository.HardCodeLoaiHocHamHocViToGrid(listDangHocNangCao[0].LoaiHocHamHocVi.tenLoaiHocHamHocVi);
+                            exportObjects.SoQuyetDinh = listDangHocNangCao[0].soQuyetDinh;
+                            exportObjects.LinkAnhQuyetDinh = listDangHocNangCao[0].linkAnhQuyetDinh;
+                            exportObjects.TenHocHamHocViDHNC = listDangHocNangCao[0].tenHocHamHocVi;
+                            exportObjects.CoSoDaoTaoDHNC = listDangHocNangCao[0].coSoDaoTao;
+                            exportObjects.NgonNguDaoTaoDHNC = listDangHocNangCao[0].ngonNguDaoTao;
+                            exportObjects.HinhThucDaoTaoDHNC = listDangHocNangCao[0].hinhThucDaoTao;
+                            exportObjects.NuocCapBangDHNC = listDangHocNangCao[0].nuocCapBang;
+                            exportObjects.NgayBatDauTT = listDangHocNangCao[0].ngayBatDau;
+                            exportObjects.NgayKetThucTT = listDangHocNangCao[0].ngayKetThuc;
+                            exportObjects.Loai = unitOfWorks.DangHocNangCaoRepository.HardCodeLoaiToGrid(listDangHocNangCao[0].loai);
+
+                            IncreaseIndex(listFieldsDefault, row.Index, listDangHocNangCao.Count - 1);
+                            for (int i = 1; i < listDangHocNangCao.Count; i++)
+                            {
+                                listFieldsDefault.Insert(row.Index + 1, new ExportObjects
+                                {
+                                    Index = row.Index + 1,
+                                    IdVienChuc = row.IdVienChuc,
+                                    MaVienChuc = row.MaVienChuc,
+                                    Ho = row.Ho,
+                                    Ten = row.Ten,
+                                    GioiTinh = row.GioiTinh,
+                                    DonVi = row.DonVi,
+                                    TrangThai = row.TrangThai,
+                                    LoaiHocHamHocViDHNC = unitOfWorks.DangHocNangCaoRepository.HardCodeLoaiHocHamHocViToGrid(listDangHocNangCao[i].LoaiHocHamHocVi.tenLoaiHocHamHocVi),
+                                    SoQuyetDinh = listDangHocNangCao[i].soQuyetDinh,
+                                    LinkAnhQuyetDinh = listDangHocNangCao[i].linkAnhQuyetDinh,
+                                    TenHocHamHocViDHNC = listDangHocNangCao[i].tenHocHamHocVi,
+                                    CoSoDaoTaoDHNC = listDangHocNangCao[i].coSoDaoTao,
+                                    NgonNguDaoTaoDHNC = listDangHocNangCao[i].ngonNguDaoTao,
+                                    HinhThucDaoTaoDHNC = listDangHocNangCao[i].hinhThucDaoTao,
+                                    NuocCapBangDHNC = listDangHocNangCao[i].nuocCapBang,
+                                    NgayBatDauTT = listDangHocNangCao[i].ngayBatDau,
+                                    NgayKetThucTT = listDangHocNangCao[i].ngayKetThuc,
+                                    Loai = unitOfWorks.DangHocNangCaoRepository.HardCodeLoaiToGrid(listDangHocNangCao[i].loai)
+                                });
+                            }
+                        }
+                        if (listDangHocNangCao.Count == 1)
+                        {
+                            exportObjects.LoaiHocHamHocViDHNC = unitOfWorks.DangHocNangCaoRepository.HardCodeLoaiHocHamHocViToGrid(listDangHocNangCao[0].LoaiHocHamHocVi.tenLoaiHocHamHocVi);
+                            exportObjects.SoQuyetDinh = listDangHocNangCao[0].soQuyetDinh;
+                            exportObjects.LinkAnhQuyetDinh = listDangHocNangCao[0].linkAnhQuyetDinh;
+                            exportObjects.TenHocHamHocViDHNC = listDangHocNangCao[0].tenHocHamHocVi;
+                            exportObjects.CoSoDaoTaoDHNC = listDangHocNangCao[0].coSoDaoTao;
+                            exportObjects.NgonNguDaoTaoDHNC = listDangHocNangCao[0].ngonNguDaoTao;
+                            exportObjects.HinhThucDaoTaoDHNC = listDangHocNangCao[0].hinhThucDaoTao;
+                            exportObjects.NuocCapBangDHNC = listDangHocNangCao[0].nuocCapBang;
+                            exportObjects.NgayBatDauTT = listDangHocNangCao[0].ngayBatDau;
+                            exportObjects.NgayKetThucTT = listDangHocNangCao[0].ngayKetThuc;
+                            exportObjects.Loai = unitOfWorks.DangHocNangCaoRepository.HardCodeLoaiToGrid(listDangHocNangCao[0].loai);
+                        }
+                    }
+                }
+                tempIdVienChuc = -1;
+            }
+        }
+
+        private void ExportThongTinCaNhan(List<ExportObjects> listFieldsDefault, UnitOfWorks unitOfWorks)
+        {
+            foreach (var row in listFieldsDefault)
+            {
+                VienChuc vienChuc = unitOfWorks.VienChucRepository.GetVienChucByIdVienChuc(row.IdVienChuc);
+                if (vienChuc != null)
+                {
+                    ExportObjects exportObjects = listFieldsDefault.Where(x => x.IdVienChuc == row.IdVienChuc).FirstOrDefault();
+                    exportObjects.SoDienThoai = vienChuc.sDT;
+                    exportObjects.NgaySinh = vienChuc.ngaySinh;
+                    exportObjects.NoiSinh = vienChuc.noiSinh;
+                    exportObjects.QueQuan = vienChuc.queQuan;
+                    exportObjects.DanToc = vienChuc.DanToc.tenDanToc;
+                    exportObjects.TonGiao = vienChuc.TonGiao.tenTonGiao;
+                    exportObjects.HoKhauThuongTru = vienChuc.hoKhauThuongTru;
+                    exportObjects.NoiOHienNay = vienChuc.noiOHienNay;
+                    exportObjects.LaDangVien = unitOfWorks.VienChucRepository.ReturnLaDangVienToGrid(vienChuc.laDangVien);
+                    exportObjects.NgayVaoDang = vienChuc.ngayVaoDang;
+                    exportObjects.NgayThamGiaCongTac = vienChuc.ngayThamGiaCongTac;
+                    exportObjects.NgayVaoNganh = vienChuc.ngayVaoNganh;
+                    exportObjects.NgayVeTruong = vienChuc.ngayVeTruong;
+                    exportObjects.VanHoa = vienChuc.vanHoa;
+                    exportObjects.GhiChu = vienChuc.ghiChu;
+                }
+            }
         }
     }
 }

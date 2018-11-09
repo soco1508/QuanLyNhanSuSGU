@@ -112,9 +112,13 @@ namespace Model.Repository
             List<VienChuc> listVienChuc = _db.VienChucs.ToList();
             foreach(var item in listVienChuc)
             {
+                if(item.idVienChuc == 122)
+                {
+
+                }
                 List<ChucVuDonViVienChuc> listChucVuDonViVienChucToAdd = new List<ChucVuDonViVienChuc>();
                 List<ChucVuDonViVienChuc> listChucVuDonViVienChuc = _db.ChucVuDonViVienChucs.Where(x => x.idVienChuc == item.idVienChuc).ToList();
-                if (listChucVuDonViVienChuc.Count == 0)
+                if (listChucVuDonViVienChuc.Count == 0) // chua co qua trinh cong tac
                 {
                     listGridViewMainData.Add(new GridViewMainData
                     {
@@ -181,7 +185,7 @@ namespace Model.Repository
                     }
                     else
                     {
-                        var chucVuDonViVienChuc = listChucVuDonViVienChuc.OrderByDescending(x => x.ChucVu.heSoChucVu).FirstOrDefault();
+                        var chucVuDonViVienChuc = listChucVuDonViVienChuc.OrderByDescending(x => x.ChucVu.heSoChucVu).Where(x => x.idDonVi != 1).FirstOrDefault();
                         listGridViewMainData.Add(new GridViewMainData
                         {
                             MaVienChuc = item.maVienChuc,
@@ -213,7 +217,7 @@ namespace Model.Repository
         {
             var listHocHamHocVi = _db.HocHamHocViVienChucs.Where(x => x.idVienChuc == idvienchuc).ToList();
             if (listHocHamHocVi.Count > 0)
-                return listHocHamHocVi.OrderByDescending(x => x.bacHocHamHocVi).Select(y => y.LoaiHocHamHocVi.tenLoaiHocHamHocVi).FirstOrDefault();
+                return listHocHamHocVi.OrderByDescending(x => x.LoaiHocHamHocVi.phanCap).Select(y => y.LoaiHocHamHocVi.tenLoaiHocHamHocVi).FirstOrDefault();
             return string.Empty;
         }
     }

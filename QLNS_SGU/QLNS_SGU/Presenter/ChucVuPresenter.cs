@@ -96,11 +96,11 @@ namespace QLNS_SGU.Presenter
             if (idRowFocused == 0)
             {
                 string chucvu = _view.GVChucVu.GetFocusedRowCellDisplayText("tenChucVu").ToString();
-                //double hesochucvu = Convert.ToDouble(_view.GVChucVu.GetFocusedRowCellDisplayText("heSoChucVu"));
+                double hesochucvu = Convert.ToDouble(_view.GVChucVu.GetFocusedRowCellDisplayText("heSoChucVu"));
                 int idloaichucvu = Convert.ToInt32(_view.GVChucVu.GetRowCellValue(row_handle, "idLoaiChucVu"));
                 if (chucvu != string.Empty && idloaichucvu > 0)
                 {
-                    unitOfWorks.ChucVuRepository.Create(chucvu, /*hesochucvu,*/ idloaichucvu);
+                    unitOfWorks.ChucVuRepository.Create(chucvu, hesochucvu, idloaichucvu);
                     LoadDataToGrid();
                     XtraMessageBox.Show("Lưu dữ liệu thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     _view.GVChucVu.MoveLast();
@@ -120,11 +120,11 @@ namespace QLNS_SGU.Presenter
             {
                 int id = Convert.ToInt32(_view.GVChucVu.GetRowCellValue(row_handle, "idChucVu"));
                 string chucvu = _view.GVChucVu.GetFocusedRowCellDisplayText("tenChucVu").ToString();
-                //double hesochucvu = Convert.ToDouble(_view.GVChucVu.GetFocusedRowCellDisplayText("heSoChucVu"));
+                double hesochucvu = Convert.ToDouble(_view.GVChucVu.GetFocusedRowCellDisplayText("heSoChucVu"));
                 int idloaichucvu = Convert.ToInt32(_view.GVChucVu.GetRowCellValue(row_handle, "idLoaiChucVu"));
                 if (chucvu != string.Empty)
                 {
-                    unitOfWorks.ChucVuRepository.Update(id, chucvu, /*hesoChucVu,*/ idloaichucvu);
+                    unitOfWorks.ChucVuRepository.Update(id, chucvu, hesochucvu, idloaichucvu);
                     XtraMessageBox.Show("Lưu dữ liệu thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else

@@ -10,6 +10,7 @@ using DevExpress.XtraSplashScreen;
 using System.IO;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Grid;
+using Model.Helper;
 
 namespace QLNS_SGU.Presenter
 {
@@ -84,15 +85,12 @@ namespace QLNS_SGU.Presenter
                         DateTime currentDate = DateTime.Now.Date;
                         DateTime ngayKetThuc = trangThaiVienChuc.ngayKetThuc.Value.Date;
                         if (ngayKetThuc >= currentDate || trangThaiVienChuc.ngayKetThuc == null)
-                        {
                             _view.LinkLBTrangThaiHienTai.Text = trangThaiVienChuc.TrangThai.tenTrangThai;
-                        }
                         if (ngayKetThuc < currentDate)
-                        {
                             _view.LinkLBTrangThaiHienTai.Text = "Đang làm";
-                        }
                     }
-                    else _view.LinkLBTrangThaiHienTai.Text = "Đang làm";
+                    else
+                        _view.LinkLBTrangThaiHienTai.Text = "Đang làm";
                 }                
             }
             
@@ -175,10 +173,9 @@ namespace QLNS_SGU.Presenter
             List<QuaTrinhCongTacForView> listQuaTrinhCongTac = unitOfWorks.ChucVuDonViVienChucRepository.GetListQuaTrinhCongTacForEdit(mavienchuc);
             _view.GCTabPageQuaTrinhCongTac.DataSource = listQuaTrinhCongTac;
             if (_view.GVTabPageQuaTrinhCongTac.RowCount > 0)
-            {
                 checkEmptyRowQTCTGrid = true;
-            }
-            else checkEmptyRowQTCTGrid = false;
+            else
+                checkEmptyRowQTCTGrid = false;
         }
         private void LoadCbxDataQTCT()
         {
@@ -263,9 +260,9 @@ namespace QLNS_SGU.Presenter
                 kiemNhiem = unitOfWorks.ChucVuDonViVienChucRepository.HardKiemNhiemToDatabase(kiemnhiem),
                 loaiThayDoi = unitOfWorks.ChucVuDonViVienChucRepository.HardLoaiThayDoiToDatabase(loaithaydoi),
                 linkVanBanDinhKem = _view.TXTLinkVanBanDinhKem.Text,
-                ngayBatDau = unitOfWorks.HopDongVienChucRepository.ReturnDateTimeToDatabase(_view.DTNgayBatDau.Text),
-                ngayKetThuc = unitOfWorks.HopDongVienChucRepository.ReturnDateTimeToDatabase(_view.DTNgayKetThuc.Text),
-                phanLoaiCongTac = _view.TXTPhanLoaiCongTac.Text                
+                ngayBatDau = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(_view.DTNgayBatDau.Text),
+                ngayKetThuc = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(_view.DTNgayKetThuc.Text),
+                phanLoaiCongTac = _view.TXTPhanLoaiCongTac.Text               
             });
             unitOfWorks.Save();
             LoadGridTabPageQuaTrinhCongTac(_view.TXTMaVienChuc.Text);
@@ -318,12 +315,12 @@ namespace QLNS_SGU.Presenter
             }
             if (ngayBatDauQuaTrinhCongTacChanged)
             {
-                chucVuDonViVienChuc.ngayBatDau = unitOfWorks.HopDongVienChucRepository.ReturnDateTimeToDatabase(_view.DTNgayBatDau.Text);
+                chucVuDonViVienChuc.ngayBatDau = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(_view.DTNgayBatDau.Text);
                 ngayBatDauQuaTrinhCongTacChanged = false;
             }
             if (ngayKetThucQuaTrinhCongTacChanged)
             {
-                chucVuDonViVienChuc.ngayKetThuc = unitOfWorks.HopDongVienChucRepository.ReturnDateTimeToDatabase(_view.DTNgayKetThuc.Text);
+                chucVuDonViVienChuc.ngayKetThuc = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(_view.DTNgayKetThuc.Text);
                 ngayKetThucQuaTrinhCongTacChanged = false;
             }
             if (linkVanBanDinhKemQuaTrinhCongTacChanged)
@@ -453,9 +450,7 @@ namespace QLNS_SGU.Presenter
                         _view.DTNgayBatDau.ErrorIconAlignment = ErrorIconAlignment.MiddleRight;
                     }
                     if (_view.CBXChucVu.Text != string.Empty && _view.DTNgayBatDau.Text != string.Empty)
-                    {
                         InsertDataQTCT();
-                    }
                 }
                 else if (_view.TXTMaVienChuc.Text == string.Empty && maVienChucFromTabPageThongTinCaNhan != string.Empty)
                 {
@@ -471,11 +466,10 @@ namespace QLNS_SGU.Presenter
                         _view.DTNgayBatDau.ErrorIconAlignment = ErrorIconAlignment.MiddleRight;
                     }
                     if (_view.CBXChucVu.Text != string.Empty && _view.DTNgayBatDau.Text != string.Empty)
-                    {
                         InsertDataQTCT();
-                    }
                 }
-                else XtraMessageBox.Show("Vui lòng thêm thông tin viên chức trước.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else
+                    XtraMessageBox.Show("Vui lòng thêm thông tin viên chức trước.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
@@ -483,9 +477,7 @@ namespace QLNS_SGU.Presenter
                 if (row_handle >= 0)
                 {
                     if (_view.DTNgayBatDau.Text != string.Empty)
-                    {
                         UpdateDataQTCT();
-                    }
                     else
                     {
                         _view.DTNgayBatDau.ErrorText = "Vui lòng chọn ngày bắt đầu.";
@@ -638,11 +630,11 @@ namespace QLNS_SGU.Presenter
             UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             List<LoaiHopDong> listLoaiHopDong = unitOfWorks.LoaiHopDongRepository.GetListLoaiHopDong().ToList();
             _view.CBXLoaiHopDong.Properties.DataSource = listLoaiHopDong;
-            _view.CBXLoaiHopDong.Properties.DisplayMember = "tenLoaiHopDong";
+            _view.CBXLoaiHopDong.Properties.DisplayMember = "maLoaiHopDong";
             _view.CBXLoaiHopDong.Properties.ValueMember = "idLoaiHopDong";
             _view.CBXLoaiHopDong.Properties.DropDownRows = listLoaiHopDong.Count;
             _view.CBXLoaiHopDong.Properties.Columns.Add(new DevExpress.XtraEditors.Controls.LookUpColumnInfo("idLoaiHopDong", string.Empty));
-            _view.CBXLoaiHopDong.Properties.Columns.Add(new DevExpress.XtraEditors.Controls.LookUpColumnInfo("tenLoaiHopDong", string.Empty));
+            _view.CBXLoaiHopDong.Properties.Columns.Add(new DevExpress.XtraEditors.Controls.LookUpColumnInfo("maLoaiHopDong", string.Empty));
             _view.CBXLoaiHopDong.Properties.Columns[0].Visible = false;
         }
         private void InsertDataHD()
@@ -653,8 +645,8 @@ namespace QLNS_SGU.Presenter
             {
                 idVienChuc = unitOfWorks.VienChucRepository.GetIdVienChuc(mavienchuc),
                 idLoaiHopDong = Convert.ToInt32(_view.CBXLoaiHopDong.EditValue),
-                ngayBatDau = unitOfWorks.HopDongVienChucRepository.ReturnDateTimeToDatabase(_view.DTNgayBatDauHD.Text),
-                ngayKetThuc = unitOfWorks.HopDongVienChucRepository.ReturnDateTimeToDatabase(_view.DTNgayKetThucHD.Text),
+                ngayBatDau = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(_view.DTNgayBatDauHD.Text),
+                ngayKetThuc = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(_view.DTNgayKetThucHD.Text),
                 moTa = _view.TXTGhiChuHD.Text,
                 linkVanBanDinhKem = _view.TXTLinkVanBanDinhKemHD.Text
             });
@@ -668,8 +660,8 @@ namespace QLNS_SGU.Presenter
         {
             UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             int idhopdongvienchuc = Convert.ToInt32(_view.GVTabPageHopDong.GetFocusedRowCellDisplayText("Id"));
-            DateTime? ngaybatdau = unitOfWorks.HopDongVienChucRepository.ReturnDateTimeToDatabase(_view.DTNgayBatDauHD.Text);
-            DateTime? ngayketthuc = unitOfWorks.HopDongVienChucRepository.ReturnDateTimeToDatabase(_view.DTNgayKetThucHD.Text);
+            DateTime? ngaybatdau = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(_view.DTNgayBatDauHD.Text);
+            DateTime? ngayketthuc = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(_view.DTNgayKetThucHD.Text);
             HopDongVienChuc hopDongVienChuc = unitOfWorks.HopDongVienChucRepository.GetObjectById(idhopdongvienchuc);
             if (loaiHopDongChanged)
             {

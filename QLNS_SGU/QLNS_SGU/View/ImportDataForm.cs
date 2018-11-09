@@ -64,13 +64,15 @@ namespace QLNS_SGU.View
             navBarDangHocNangCao.LinkPressed += (sender, e) => presenter.OpenTabLinhVucDangHocNangCao();
             navBarChungChi.LinkPressed += (sender, e) => presenter.OpenTabChungChi();
             //Thong tin ca nhan
+            btnImportDanToc.Click += (s, e) => presenter.ImportDanToc();
+            btnImportTonGiao.Click += (s, e) => presenter.ImportTonGiao();
             btnImportVienChuc.Click += (sender, e) => presenter.ImportVienChuc();
-            //btnImportTrangThai.Click += (sender, e) => presenter.ImportTrangThai();
+            btnImportTrangThai.Click += (sender, e) => presenter.ImportTrangThai();
             btnImportTrangThaiVienChuc.Click += (sender, e) => presenter.ImportTrangThaiVienChuc();
             //Qua trinh cong tac
-            //btnImportLoaiChucVu.Click += (sender, e) => presenter.ImportLoaiChucVu();
+            btnImportLoaiChucVu.Click += (sender, e) => presenter.ImportLoaiChucVu();
             btnImportChucVu.Click += (sender, e) => presenter.ImportChucVu();
-            //btnImportLoaiDonVi.Click += (sender, e) => presenter.ImportLoaiDonVi();
+            btnImportLoaiDonVi.Click += (sender, e) => presenter.ImportLoaiDonVi();
             btnImportDonVi.Click += (sender, e) => presenter.ImportDonVi();
             btnImportToChuyenMon.Click += (sender, e) => presenter.ImportToChuyenMon();
             btnImportChucVuDonViVienChuc.Click += (sender, e) => presenter.ImportChucVuDonViVienChuc();
@@ -85,7 +87,7 @@ namespace QLNS_SGU.View
             btnImportNganhDaoTao.Click += (sender, e) => presenter.ImportNganhDaoTao();
             btnImportChuyenNganh.Click += (sender, e) => presenter.ImportChuyenNganh();
             btnImportNganhVienChuc.Click += (sender, e) => presenter.ImportNganhVienChuc();
-            //btnImportLoaiHocHamHocVi.Click += (sender, e) => presenter.ImportLoaiHocHamHocVi();
+            btnImportLoaiHocHamHocVi.Click += (sender, e) => presenter.ImportLoaiHocHamHocVi();
             btnImportHocHamHocViVienChuc.Click += (sender, e) => presenter.ImportHocHamHocViVienChuc();
             btnImportDangHocNangCao.Click += (sender, e) => presenter.ImportDangHocNangCao();
             btnImportLoaiChungChi.Click += (sender, e) => presenter.ImportLoaiChungChi();

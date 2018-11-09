@@ -14,6 +14,8 @@ using DevExpress.Utils;
 using Model.ObjectModels;
 using System.IO;
 using System.ComponentModel;
+using DevExpress.XtraGrid;
+using System.Threading;
 
 namespace QLNS_SGU.Presenter
 {
@@ -52,6 +54,7 @@ namespace QLNS_SGU.Presenter
         void RowIndicator(object sender, RowIndicatorCustomDrawEventArgs e);
         void LoadForm(object sender, EventArgs e);
         void ClosingForm(object sender, FormClosingEventArgs e);
+        //void RowCellStyle(object sender, RowCellStyleEventArgs e);
     }
     public class MainPresenter : IMainPresenter
     {
@@ -63,16 +66,53 @@ namespace QLNS_SGU.Presenter
         string filename = "d:\\layoutmainform.xml";
         private static MainForm _view;
         public MainPresenter(MainForm view) => _view = view;
-        public object UI => _view;  
+        public object UI => _view;       
+        public void Initialize()
+        {
+            _view.Attach(this);
+            _view.GVMain.IndicatorWidth = 50;
+            _view.LayoutControl.AllowCustomization = false;
+            _view.LayoutControl.Hide();
+            SplashScreenManager.ShowForm(_view, typeof(WaitForm1), true, true, false, 0);
+            LoadDataToMainGrid();
+            SplashScreenManager.CloseForm(false);
+            //MessageThread();
+        }
+        //private void MessageThread()
+        //{
+        //    Thread thread = new Thread(() =>
+        //    {
+        //        while (true)
+        //        {
+        //            Thread.Sleep(5000);
+        //        }
+        //    });
+        //    thread.IsBackground = true;
+        //    thread.Start();
+        //}
+        //public void RowCellStyle(object sender, RowCellStyleEventArgs e) // prepare for function: tô màu những người nâng lương trước hạn
+        //{
+        //    GridView gridView = sender as GridView;
+        //    if (e.RowHandle > 0)
+        //    {
+        //        string donvi = gridView.GetRowCellDisplayText(e.RowHandle, gridView.Columns["DonVi"]);
+        //        if (donvi == "Phòng Đào Tạo")
+        //        {
+        //            e.Appearance.BackColor = Color.GreenYellow;
+        //            gridView.SetRowCellValue(e.RowHandle, gridView.Columns["Color"], Color.GreenYellow.Name);
+        //        }
+        //    }
+        //}
+
         public static void MoveRowManaging(string mavienchuc)
         {
             int rowIndex = -1;
             for (int i = 0; i < _view.GVMain.RowCount; i++)
             {
-                if(_view.GVMain.GetRowCellDisplayText(i, _view.GVMain.Columns["MaVienChuc"]) == mavienchuc)
+                if (_view.GVMain.GetRowCellDisplayText(i, _view.GVMain.Columns["MaVienChuc"]) == mavienchuc)
                 {
                     rowIndex = i;
-					break;
+                    break;
                 }
             }
             _view.GVMain.FocusedRowHandle = rowIndex;
@@ -85,12 +125,12 @@ namespace QLNS_SGU.Presenter
             {
                 ShowQuaTrinhCongTac(rowFocus);
                 SetValueLbChucVuAndLbDonVi(rowFocus);
-            }            
+            }
             _view.GVMain.FocusedRowHandle = rowFocus;
         }
         public static void RefreshRightViewQuaTrinhLuong()
         {
-            if(_view.LCIQuaTrinhLuong.IsHidden == false)
+            if (_view.LCIQuaTrinhLuong.IsHidden == false)
             {
                 int rowFocus = Convert.ToInt32(_view.TXTRowIndex.Text);
                 ShowQuaTrinhLuong(rowFocus);
@@ -105,16 +145,7 @@ namespace QLNS_SGU.Presenter
                 ShowTrangThai(rowFocus);
             }
         }
-        public void Initialize()
-        {
-            _view.Attach(this);
-            _view.GVMain.IndicatorWidth = 50;
-            _view.LayoutControl.AllowCustomization = false;
-            _view.LayoutControl.Hide();
-            SplashScreenManager.ShowForm(_view, typeof(WaitForm1), true, true, false, 0);
-            LoadDataToMainGrid();
-            SplashScreenManager.CloseForm(false);
-        }
+
         public void LoadForm(object sender, EventArgs e)
         {
             _view.GCMain.ForceInitialize();
@@ -138,7 +169,10 @@ namespace QLNS_SGU.Presenter
             int rowFocus = Convert.ToInt32(_view.TXTRowIndex.Text);
             string mavienchuc = _view.GVMain.GetRowCellValue(rowFocus, "MaVienChuc").ToString();
             string hopdong = unitOfWorks.HopDongVienChucRepository.GetLoaiHopDongVienChucForLbHopDong(mavienchuc);
-            _view.LBHopDong.Text = "Hợp đồng " + hopdong + "   ";
+            if (hopdong != string.Empty)
+                _view.LBHopDong.Text = "Hợp đồng " + hopdong + "   ";
+            else
+                _view.LBHopDong.Text = "Chưa có hợp đồng";
         }
         private static void SetValueLbChucVuAndLbDonVi(int rowFocus)
         {

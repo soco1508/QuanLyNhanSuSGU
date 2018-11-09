@@ -3,6 +3,7 @@ using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraSplashScreen;
 using Model;
 using Model.Entities;
+using Model.Helper;
 using Model.ObjectModels;
 using QLNS_SGU.View;
 using System;
@@ -77,8 +78,8 @@ namespace QLNS_SGU.Presenter
             {
                 idVienChuc = unitOfWorks.VienChucRepository.GetIdVienChuc(mavienchuc),
                 heSoPhuCap = Convert.ToDouble(_view.TXTHeSoPhuCap.Text),
-                ngayBatDau = unitOfWorks.HopDongVienChucRepository.ReturnDateTimeToDatabase(_view.DTNgayBatDau.Text),
-                ngayNangPhuCap = unitOfWorks.HopDongVienChucRepository.ReturnDateTimeToDatabase(_view.DTNgayNangPhuCap.Text),
+                ngayBatDau = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(_view.DTNgayBatDau.Text),
+                ngayNangPhuCap = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(_view.DTNgayNangPhuCap.Text),
                 linkVanBanDinhKem = _view.TXTLinkVanBanDinhKem.Text
             });
             unitOfWorks.Save();
@@ -90,8 +91,8 @@ namespace QLNS_SGU.Presenter
         {
             UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             int idquatrinhphucap = Convert.ToInt32(_view.GVPhuCapThamNienNhaGiao.GetFocusedRowCellDisplayText("idQuaTrinhPhuCap"));
-            DateTime? ngaybatdau = unitOfWorks.HopDongVienChucRepository.ReturnDateTimeToDatabase(_view.DTNgayBatDau.Text);
-            DateTime? ngaynangphucap = unitOfWorks.HopDongVienChucRepository.ReturnDateTimeToDatabase(_view.DTNgayNangPhuCap.Text);
+            DateTime? ngaybatdau = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(_view.DTNgayBatDau.Text);
+            DateTime? ngaynangphucap = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(_view.DTNgayNangPhuCap.Text);
             QuaTrinhPhuCapThamNienNhaGiao quaTrinhPhuCap = unitOfWorks.QuaTrinhPhuCapThamNienNhaGiaoRepository.GetObjectById(idquatrinhphucap);
             if (heSoPhuCapChanged)
             {

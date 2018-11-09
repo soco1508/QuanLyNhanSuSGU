@@ -53,14 +53,14 @@ namespace QLNS_SGU.Presenter
         {
             SplashScreenManager.ShowForm(_view, typeof(WaitForm1), true, true, false, 0);
             UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
-            BindingList<Bac> listBac = new BindingList<Bac>(unitOfWorks.BacRepository.GetListBac());
+            BindingList<Bac> listBac = new BindingList<Bac>(unitOfWorks.BacRepository.GetListT());
             _view.GCBac.DataSource = listBac;
             RepositoryItemLookUpEdit mylookup = new RepositoryItemLookUpEdit();            
             mylookup.ValueMember = "idNgach";
             mylookup.DisplayMember = "maNgach";
-            mylookup.DataSource = unitOfWorks.NgachRepository.GetListNgach();
+            mylookup.DataSource = unitOfWorks.NgachRepository.GetListT();
             mylookup.BestFitMode = BestFitMode.BestFitResizePopup;
-            mylookup.DropDownRows = unitOfWorks.NgachRepository.GetListNgach().Count;
+            mylookup.DropDownRows = unitOfWorks.NgachRepository.GetListT().Count;
             mylookup.SearchMode = SearchMode.AutoFilter;
             mylookup.ShowHeader = false;
             mylookup.ShowFooter = false;
@@ -101,17 +101,27 @@ namespace QLNS_SGU.Presenter
             UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             int rowFocus = _view.GVBac.FocusedRowHandle;
             int idRowFocused = Convert.ToInt32(_view.GVBac.GetRowCellValue(rowFocus, "idBac"));
-            if (idRowFocused == 0)
+            if (idRowFocused == 0) //add
             {
                 int bac = Convert.ToInt32(_view.GVBac.GetFocusedRowCellDisplayText("bac1"));
                 double hesobac = Convert.ToDouble(_view.GVBac.GetFocusedRowCellDisplayText("heSoBac"));
                 int idngach = Convert.ToInt32(_view.GVBac.GetRowCellValue(rowFocus, "idNgach"));
                 if (bac > 0 && idngach > 0)
                 {
-                    unitOfWorks.BacRepository.Create(bac, hesobac, idngach);
-                    LoadDataToGrid();
-                    XtraMessageBox.Show("Lưu dữ liệu thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    _view.GVBac.MoveLast();
+                    Bac objBac = new Bac
+                    {
+                        bac1 = bac, heSoBac = hesobac, idNgach = idngach
+                    };
+                    
+                    if (unitOfWorks.BacRepository.Insert(objBac) > 0)
+                    {
+                        unitOfWorks.Save();
+                        LoadDataToGrid();
+                        XtraMessageBox.Show("Thêm dữ liệu thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        _view.GVBac.MoveLast();
+                    }
+                    else
+                        XtraMessageBox.Show("Thêm dữ liệu không thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else if (bac == 0 && idngach > 0)
                 {
@@ -124,16 +134,25 @@ namespace QLNS_SGU.Presenter
                     XtraMessageBox.Show("Bạn chưa chọn Ngạch.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            else
+            else //update
             {
                 int id = Convert.ToInt32(_view.GVBac.GetRowCellValue(rowFocus, "idBac"));
-                int bac = Convert.ToInt32(_view.GVBac.GetFocusedRowCellDisplayText("tenBac"));
+                int bac = Convert.ToInt32(_view.GVBac.GetFocusedRowCellDisplayText("bac1"));
                 double hesobac = Convert.ToDouble(_view.GVBac.GetFocusedRowCellDisplayText("heSoBac"));
                 int idngach = Convert.ToInt32(_view.GVBac.GetRowCellValue(rowFocus, "idNgach"));
                 if (bac > 0)
                 {
-                    unitOfWorks.BacRepository.Update(id, bac, hesobac,  idngach);
-                    XtraMessageBox.Show("Lưu dữ liệu thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Bac objBac = unitOfWorks.BacRepository.GetById(id);
+                    if(objBac != null)
+                    {
+                        objBac.bac1 = bac;
+                        objBac.heSoBac = hesobac;
+                        objBac.idNgach = idngach;
+                        unitOfWorks.Save();
+                        XtraMessageBox.Show("Sửa dữ liệu thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                        XtraMessageBox.Show("Sửa dữ liệu không thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
@@ -156,9 +175,16 @@ namespace QLNS_SGU.Presenter
                     DialogResult dialogResult = XtraMessageBox.Show("Bạn có chắc chắn muốn xóa?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                     if (dialogResult == DialogResult.Yes)
                     {
-                        unitOfWorks.BacRepository.DeleteById(id);
-                        unitOfWorks.Save();
-                        _view.GVBac.DeleteRow(row_handle);
+                        Bac objBac = unitOfWorks.BacRepository.GetById(id);
+                        if(objBac != null)
+                        {
+                            unitOfWorks.BacRepository.Delete(objBac);
+                            unitOfWorks.Save();                            
+                            _view.GVBac.DeleteRow(row_handle);
+                            XtraMessageBox.Show("Xóa dữ liệu thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                            XtraMessageBox.Show("Xóa dữ liệu không thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
                 else XtraMessageBox.Show("Vui lòng chọn dòng cần xóa.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);

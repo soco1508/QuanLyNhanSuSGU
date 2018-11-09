@@ -51,7 +51,6 @@ namespace Model.Entities
             ToChuyenMon = chucVuDonViVienChuc.ToChuyenMon;
             VienChuc = chucVuDonViVienChuc.VienChuc;
         }
-
         public ChucVuDonViVienChuc() { }
     }
 }

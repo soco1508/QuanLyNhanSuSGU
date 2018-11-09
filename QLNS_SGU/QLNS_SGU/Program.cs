@@ -20,12 +20,12 @@ namespace QLNS_SGU
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             DevExpress.UserSkins.BonusSkins.Register();
-            //var presenter = new LoginPresenter(new LoginForm());
-            //presenter.Initialize();
-            //Application.Run((Form)presenter.UI);
-            var a = new ContainerPresenter(new ContainerForm());
-            a.Initialize("DONG");
-            Application.Run((Form)a.UI);
+            var presenter = new LoginPresenter(new LoginForm());
+            presenter.Initialize();
+            Application.Run((Form)presenter.UI);
+            //var a = new ContainerPresenter(new ContainerForm());
+            //a.Initialize("DONG");
+            //Application.Run((Form)a.UI);
         }
     }
 }

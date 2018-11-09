@@ -2,8 +2,10 @@
 using Model.ObjectModels;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Model.Repository
@@ -95,41 +97,7 @@ namespace Model.Repository
         public List<VienChuc> GetListVienChuc()
         {
             return _db.VienChucs.ToList();
-        }
-
-        public DateTime? ParseDatetimeMatchDatetimeDatabase(string date)
-        {
-            if(date != string.Empty)
-            {
-                if (date.Contains("."))
-                {
-                    string[] arrDate = date.Split('.');
-                    if(arrDate.Length == 3)
-                    {
-                        if (arrDate[0].Length == 1)
-                            arrDate[0] = "0" + arrDate[0];
-                        if (arrDate[1].Length == 1)
-                            arrDate[1] = "0" + arrDate[1];
-                        return DateTime.ParseExact(arrDate[0] + "/" + arrDate[1] + "/" + arrDate[2], "dd/MM/yyyy", null);
-                    }
-                    if (arrDate.Length == 2)
-                    {
-                        if (arrDate[0].Length == 1)
-                            arrDate[0] = "0" + arrDate[0];
-                        return Convert.ToDateTime("01/" + arrDate[0] + "/" + arrDate[1]);
-                    }                        
-                }
-                else
-                {
-                    bool isNumeric = int.TryParse(date, out int n);
-                    if (isNumeric && n > 1900 && n < 3000)
-                        return Convert.ToDateTime("01/01/" + n);
-                    else
-                        return null;
-                }
-            }            
-            return null;
-        }
+        }       
 
         public void DeleteById(int idvienchuc)
         {
@@ -161,10 +129,10 @@ namespace Model.Repository
             return list.ToList();
         }
 
-        public VienChuc GetVienChucByMaVienChuc(string mavienchuc)
-        {
-            return _db.VienChucs.Where(x => x.maVienChuc == mavienchuc).FirstOrDefault();
-        }
+        //public VienChuc GetVienChucByMaVienChuc(string mavienchuc)
+        //{
+        //    return _db.VienChucs.Where(x => x.maVienChuc == mavienchuc).FirstOrDefault();
+        //}
 
         public bool? ReturnGenderToDatabaseFromImport(string gioitinh)
         {
@@ -197,8 +165,11 @@ namespace Model.Repository
                     ChucVuDonViVienChuc chucVuDonViVienChuc = chucVuDonViVienChucRepository.GetCongTacByIdVienChucAndDuration(item.idVienChuc, dtFromDuration, dtToDuration);
                     TrangThaiVienChuc trangThaiVienChuc = trangThaiVienChucRepository.GetTrangThaiByIdVienChucAndDuration(item.idVienChuc, dtFromDuration, dtToDuration);
                     string trangthai = string.Empty;
+                    string donvi = string.Empty;
                     if (trangThaiVienChuc != null)
                         trangthai = trangThaiVienChuc.TrangThai.tenTrangThai;
+                    if (chucVuDonViVienChuc != null)
+                        donvi = chucVuDonViVienChuc.DonVi.tenDonVi;
                     listExportObjects.Add(new ExportObjects
                     {
                         IdVienChuc = item.idVienChuc,
@@ -207,7 +178,7 @@ namespace Model.Repository
                         Ten = item.ten,
                         GioiTinh = ReturnGenderToGrid(item.gioiTinh),
                         Index = count,
-                        DonVi = chucVuDonViVienChuc.DonVi.tenDonVi,
+                        DonVi = donvi,
                         TrangThai = trangthai
                     });
                     count++;
@@ -243,11 +214,14 @@ namespace Model.Repository
                 List<ChucVuDonViVienChuc> listChucVuDonViVienChuc = chucVuDonViVienChucRepository.GetListCongTacByIdVienChuc(item.idVienChuc);
                 if(listChucVuDonViVienChuc.Count > 0)
                 {
-                    ChucVuDonViVienChuc chucVuDonViVienChuc = listChucVuDonViVienChuc.OrderByDescending(x => x.idChucVuDonViVienChuc).FirstOrDefault();
+                    ChucVuDonViVienChuc chucVuDonViVienChuc = chucVuDonViVienChucRepository.GetCongTacByIdVienChucAndTimeline(item.idVienChuc, dtTimeline);
                     TrangThaiVienChuc trangThaiVienChuc = trangThaiVienChucRepository.GetTrangThaiByIdVienChucAndTimeline(item.idVienChuc, dtTimeline);
                     string trangthai = string.Empty;
+                    string donvi = string.Empty;
                     if (trangThaiVienChuc != null)
                         trangthai = trangThaiVienChuc.TrangThai.tenTrangThai;
+                    if (chucVuDonViVienChuc != null)
+                        donvi = chucVuDonViVienChuc.DonVi.tenDonVi;
                     listExportObjects.Add(new ExportObjects
                     {
                         IdVienChuc = item.idVienChuc,
@@ -256,7 +230,7 @@ namespace Model.Repository
                         Ten = item.ten,
                         GioiTinh = ReturnGenderToGrid(item.gioiTinh),
                         Index = count,
-                        DonVi = chucVuDonViVienChuc.DonVi.tenDonVi,
+                        DonVi = donvi,
                         TrangThai = trangthai
                     });
                     count++;
@@ -279,13 +253,13 @@ namespace Model.Repository
             return listExportObjects;
         }
 
-        public bool CheckExist(string mavienchuc)
-        {
-            Dictionary<string, string> listMaVienChuc = _db.VienChucs.Select(y => y.maVienChuc).ToDictionary(x => x, x => x);
-            if (listMaVienChuc.ContainsKey(mavienchuc))
-                return true;
-            return false;
-        }
+        //public bool CheckExist(string mavienchuc)
+        //{
+        //    Dictionary<string, string> listMaVienChuc = _db.VienChucs.Select(y => y.maVienChuc).ToDictionary(x => x, x => x);
+        //    if (listMaVienChuc.ContainsKey(mavienchuc))
+        //        return true;
+        //    return false;
+        //}
 
         public string ReturnLaDangVienToGrid(bool? laDangVien)
         {
