@@ -18,6 +18,7 @@ namespace QLNS_SGU.View
 {
     public interface ITabPageChuyenMon : IView<ITabPageChuyenMonPresenter>
     {
+        FolderBrowserDialog FolderBrowserDialog { get; set; }
         XtraTabControl XtraTabControl { get; set; }
         SaveFileDialog SaveFileDialog { get; set; }
         OpenFileDialog OpenFileDialog { get; set; }
@@ -85,6 +86,7 @@ namespace QLNS_SGU.View
             InitializeComponent();
         }
         #region Controls
+        public FolderBrowserDialog FolderBrowserDialog { get => folderBrowserDialog1; set => folderBrowserDialog1 = value; }
         public XtraTabControl XtraTabControl { get => xtraTabControl1; set => xtraTabControl1 = value; }
         public SaveFileDialog SaveFileDialog { get => saveFileDialog1; set => saveFileDialog1 = value; }
         public OpenFileDialog OpenFileDialog { get => openFileDialog1; set => openFileDialog1 = value; }
@@ -156,6 +158,7 @@ namespace QLNS_SGU.View
             btnSaveHHHV.Click += (s, e) => presenter.SaveHHHV();
             btnDeleteHHHV.Click += (s, e) => presenter.DeleteHHHV();
             btnExportExcelHHHV.Click += (s, e) => presenter.ExportExcelHHHV();
+            btnUploadLocalHHHV.Click += (s, e) => presenter.UploadFileToLocalHHHV();
             btnUploadHHHV.Click += (s, e) => presenter.UploadFileToGoogleDriveHHHV();
             btnDownloadHHHV.Click += (s, e) => presenter.DownloadFileToDeviceHHHV();
             cbxLoaiHocHamHocViHHHV.EditValueChanged += new EventHandler(presenter.LoaiHocHamHocViHHHVChanged);
@@ -177,6 +180,7 @@ namespace QLNS_SGU.View
             btnSaveDHNC.Click += (s, e) => presenter.SaveDHNC();
             btnDeleteDHNC.Click += (s, e) => presenter.DeleteDHNC();
             btnExportExcelDHNC.Click += (s, e) => presenter.ExportExcelDHNC();
+            btnUploadLocalDHNC.Click += (s, e) => presenter.UploadFileToLocalDHNC();
             btnUploadDHNC.Click += (s, e) => presenter.UploadFileToGoogleDriveDHNC();
             btnDownloadDHNC.Click += (s, e) => presenter.DownloadFileToDeviceDHNC();
             txtSoQuyetDinh.TextChanged += new EventHandler(presenter.SoQuyetDinhChanged);
@@ -198,6 +202,7 @@ namespace QLNS_SGU.View
             btnSaveN.Click += (s, e) => presenter.SaveN();
             btnDeleteN.Click += (s, e) => presenter.DeleteN();
             btnExportExcelN.Click += (s, e) => presenter.ExportExcelN();
+            btnUploadLocalN.Click += (s, e) => presenter.UploadFileToLocalN();
             btnUploadN.Click += (s, e) => presenter.UploadFileToGoogleDriveN();
             btnDownloadN.Click += (s, e) => presenter.DownloadFileToDeviceN();
             cbxLoaiNganhN.EditValueChanged += new EventHandler(presenter.LoaiNganhNChanged);
@@ -217,6 +222,7 @@ namespace QLNS_SGU.View
             btnSaveCC.Click += (s, e) => presenter.SaveCC();
             btnDeleteCC.Click += (s, e) => presenter.DeleteCC();
             btnExportExcelCC.Click += (s, e) => presenter.ExportExcelCC();
+            btnUploadLocalCC.Click += (s, e) => presenter.UploadFileToLocalCC();
             btnUploadCC.Click += (s, e) => presenter.UploadFileToGoogleDriveCC();
             btnDownloadCC.Click += (s, e) => presenter.DownloadFileToDeviceCC();
             cbxLoaiChungChi.EditValueChanged += new EventHandler(presenter.LoaiChungChiChanged);

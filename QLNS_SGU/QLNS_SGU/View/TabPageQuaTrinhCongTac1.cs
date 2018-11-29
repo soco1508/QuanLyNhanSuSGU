@@ -23,12 +23,13 @@ namespace QLNS_SGU.View
         XtraTabControl XtraTabControl { get; set; }
         OpenFileDialog OpenFileDialog { get; set; }
         SaveFileDialog SaveFileDialog { get; set; }
+        FolderBrowserDialog FolderBrowserDialog { get; set; }
         //QTCT
         SimpleButton BTNExportExcelQTCT { get; set; }
         GridControl GCTabPageQuaTrinhCongTac { get; set; }
         GridView GVTabPageQuaTrinhCongTac { get; set; }
         TextEdit TXTMaVienChuc { get; set; }
-        TextEdit TXTLinkVanBanDinhKem { get; set; }
+        TextEdit TXTLinkVanBanDinhKemQTCT { get; set; }
         TextEdit TXTHeSoChucVu { get; set; }
         LookUpEdit CBXChucVu { get; set; }
         LookUpEdit CBXDonVi { get; set; }
@@ -60,12 +61,13 @@ namespace QLNS_SGU.View
         public XtraTabControl XtraTabControl { get => xtraTabControl1; set => xtraTabControl1 = value; }
         public OpenFileDialog OpenFileDialog { get => openFileDialog1; set => openFileDialog1 = value; }
         public SaveFileDialog SaveFileDialog { get => saveFileDialog1; set => saveFileDialog1 = value; }
+        public FolderBrowserDialog FolderBrowserDialog { get => folderBrowserDialog1; set => folderBrowserDialog1 = value; }
         //QTCT
         public SimpleButton BTNExportExcelQTCT { get => btnExportExcelQTCT; set => btnExportExcelQTCT = value; }
         public GridControl GCTabPageQuaTrinhCongTac { get => gcTabPageQuaTrinhCongTac; set => gcTabPageQuaTrinhCongTac = value; }
         public GridView GVTabPageQuaTrinhCongTac { get => gvTabPageQuaTrinhCongTac; set => gvTabPageQuaTrinhCongTac = value; }
         public TextEdit TXTMaVienChuc { get => txtMaVienChuc; set => txtMaVienChuc = value; }
-        public TextEdit TXTLinkVanBanDinhKem { get => txtLinkVanBanDinhKem; set => txtLinkVanBanDinhKem = value; }
+        public TextEdit TXTLinkVanBanDinhKemQTCT { get => txtLinkVanBanDinhKemQTCT; set => txtLinkVanBanDinhKemQTCT = value; }
         public TextEdit TXTHeSoChucVu { get => txtHeSoChucVu; set => txtHeSoChucVu = value; }
         public LookUpEdit CBXChucVu { get => cbxChucVu; set => cbxChucVu = value; }
         public LookUpEdit CBXDonVi { get => cbxDonVi; set => cbxDonVi = value; }
@@ -92,6 +94,7 @@ namespace QLNS_SGU.View
             Load += (s, e) => presenter.LoadForm();
             //QTCT           
             gvTabPageQuaTrinhCongTac.Click += (s, e) => presenter.ClickRowAndShowInfoQTCT();
+            btnUploadLocalQTCT.Click += (s, e) => presenter.UploadFileToLocalQTCT();
             btnUploadQTCT.Click += (s, e) => presenter.UploadFileToGoogleDriveQTCT();
             btnDownloadQTCT.Click += (s, e) => presenter.DownloadFileToDeviceQTCT();
             btnEditQTCT.Click += (s, e) => presenter.SaveQTCT();
@@ -108,11 +111,12 @@ namespace QLNS_SGU.View
             cbxLoaiThayDoi.EditValueChanged += new EventHandler(presenter.LoaiThayDoiChanged);
             cbxCheckPhanLoaiCongTac.EditValueChanged += new EventHandler(presenter.PhanLoaiChanged);
             cbxKiemNhiem.EditValueChanged += new EventHandler(presenter.KiemNhiemChanged);
-            txtLinkVanBanDinhKem.TextChanged += new EventHandler(presenter.LinkVanBanDinhKemQuaTrinhCongTacChanged);           
+            txtLinkVanBanDinhKemQTCT.TextChanged += new EventHandler(presenter.LinkVanBanDinhKemQuaTrinhCongTacChanged);           
             gvTabPageQuaTrinhCongTac.CustomDrawRowIndicator += new RowIndicatorCustomDrawEventHandler(presenter.RowIndicatorQTCT);
             linklbTrangThaiHienTai.Click += (s, e) => presenter.ShowTrangThaiHienTai();
             //HD
             gvHopDong.Click += (s, e) => presenter.ClickRowAndShowInfoHD();
+            btnUploadLocalHD.Click += (s, e) => presenter.UploadFileToLocalHD();
             btnUploadHD.Click += (s, e) => presenter.UploadFileToGoogleDriveHD();
             btnDownloadHD.Click += (s, e) => presenter.DownloadFileToDeviceHD();
             btnEditHD.Click += (s, e) => presenter.SaveHD();

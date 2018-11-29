@@ -63,6 +63,7 @@
             this.txtLinkVanBanDinhKem = new DevExpress.XtraEditors.TextEdit();
             this.btnUpload = new DevExpress.XtraEditors.SimpleButton();
             this.btnDownload = new DevExpress.XtraEditors.SimpleButton();
+            this.btnUploadLocal = new DevExpress.XtraEditors.SimpleButton();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem6 = new DevExpress.XtraLayout.EmptySpaceItem();
@@ -78,7 +79,10 @@
             this.emptySpaceItem7 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.item2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMaVienChuc.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl2)).BeginInit();
@@ -112,6 +116,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.item2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             this.SuspendLayout();
             // 
             // barManager1
@@ -295,6 +300,7 @@
             this.layoutControl2.Controls.Add(this.txtLinkVanBanDinhKem);
             this.layoutControl2.Controls.Add(this.btnUpload);
             this.layoutControl2.Controls.Add(this.btnDownload);
+            this.layoutControl2.Controls.Add(this.btnUploadLocal);
             this.layoutControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl2.Location = new System.Drawing.Point(0, 23);
             this.layoutControl2.Name = "layoutControl2";
@@ -532,6 +538,29 @@
             this.btnDownload.TabIndex = 25;
             this.btnDownload.Text = "Tải xuống";
             // 
+            // btnUploadLocal
+            // 
+            this.btnUploadLocal.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
+            this.btnUploadLocal.Appearance.Font = new System.Drawing.Font("Tahoma", 8.75F);
+            this.btnUploadLocal.Appearance.Options.UseBackColor = true;
+            this.btnUploadLocal.Appearance.Options.UseFont = true;
+            this.btnUploadLocal.AppearanceHovered.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(223)))), ((int)(((byte)(134)))));
+            this.btnUploadLocal.AppearanceHovered.Font = new System.Drawing.Font("Tahoma", 8.75F);
+            this.btnUploadLocal.AppearanceHovered.ForeColor = System.Drawing.Color.Black;
+            this.btnUploadLocal.AppearanceHovered.Options.UseBackColor = true;
+            this.btnUploadLocal.AppearanceHovered.Options.UseFont = true;
+            this.btnUploadLocal.AppearanceHovered.Options.UseForeColor = true;
+            this.btnUploadLocal.AppearancePressed.ForeColor = System.Drawing.Color.Black;
+            this.btnUploadLocal.AppearancePressed.Options.UseForeColor = true;
+            this.btnUploadLocal.ImageOptions.Image = global::QLNS_SGU.Properties.Resources.hardrive_min;
+            this.btnUploadLocal.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
+            this.btnUploadLocal.Location = new System.Drawing.Point(849, 83);
+            this.btnUploadLocal.Name = "btnUploadLocal";
+            this.btnUploadLocal.Size = new System.Drawing.Size(69, 22);
+            this.btnUploadLocal.StyleController = this.layoutControl2;
+            this.btnUploadLocal.TabIndex = 26;
+            this.btnUploadLocal.Text = "Tải lên";
+            // 
             // layoutControlGroup2
             // 
             this.layoutControlGroup2.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
@@ -646,7 +675,8 @@
             this.item1,
             this.emptySpaceItem7,
             this.item2,
-            this.layoutControlItem5});
+            this.layoutControlItem5,
+            this.layoutControlItem2});
             this.layoutControlGroup1.Location = new System.Drawing.Point(578, 35);
             this.layoutControlGroup1.Name = "layoutControlGroup1";
             this.layoutControlGroup1.Size = new System.Drawing.Size(502, 74);
@@ -668,7 +698,7 @@
             this.emptySpaceItem7.CustomizationFormText = "emptySpaceItem7";
             this.emptySpaceItem7.Location = new System.Drawing.Point(0, 24);
             this.emptySpaceItem7.Name = "emptySpaceItem7";
-            this.emptySpaceItem7.Size = new System.Drawing.Size(320, 26);
+            this.emptySpaceItem7.Size = new System.Drawing.Size(247, 26);
             this.emptySpaceItem7.TextSize = new System.Drawing.Size(0, 0);
             // 
             // item2
@@ -690,6 +720,19 @@
             this.layoutControlItem5.Size = new System.Drawing.Size(89, 26);
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem5.TextVisible = false;
+            // 
+            // layoutControlItem2
+            // 
+            this.layoutControlItem2.Control = this.btnUploadLocal;
+            this.layoutControlItem2.Location = new System.Drawing.Point(247, 24);
+            this.layoutControlItem2.Name = "layoutControlItem2";
+            this.layoutControlItem2.Size = new System.Drawing.Size(73, 26);
+            this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem2.TextVisible = false;
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // TabPageDanhGiaVienChuc
             // 
@@ -749,6 +792,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.item2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -805,5 +849,9 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
+        private DevExpress.XtraEditors.SimpleButton btnUploadLocal;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }

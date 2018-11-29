@@ -1,6 +1,4 @@
 D:\Project\QLNS_SGU\QLNS_SGU\bin\Release\QLNS_SGU.exe.config
-D:\Project\QLNS_SGU\QLNS_SGU\bin\Release\QLNS_SGU.exe.manifest
-D:\Project\QLNS_SGU\QLNS_SGU\bin\Release\QLNS_SGU.application
 D:\Project\QLNS_SGU\QLNS_SGU\bin\Release\QLNS_SGU.exe
 D:\Project\QLNS_SGU\QLNS_SGU\bin\Release\QLNS_SGU.pdb
 D:\Project\QLNS_SGU\QLNS_SGU\bin\Release\DevExpress.BonusSkins.v17.1.dll
@@ -272,8 +270,6 @@ D:\Project\QLNS_SGU\QLNS_SGU\obj\Release\QLNS_SGU.View.WaitForm1.resources
 D:\Project\QLNS_SGU\QLNS_SGU\obj\Release\QLNS_SGU.csproj.GenerateResource.cache
 D:\Project\QLNS_SGU\QLNS_SGU\obj\Release\QLNS_SGU.exe.licenses
 D:\Project\QLNS_SGU\QLNS_SGU\obj\Release\QLNS_SGU.csproj.CoreCompileInputs.cache
-D:\Project\QLNS_SGU\QLNS_SGU\obj\Release\QLNS_SGU.exe.manifest
-D:\Project\QLNS_SGU\QLNS_SGU\obj\Release\QLNS_SGU.application
 D:\Project\QLNS_SGU\QLNS_SGU\obj\Release\QLNS_SGU.csproj.CopyComplete
 D:\Project\QLNS_SGU\QLNS_SGU\obj\Release\QLNS_SGU.exe
 D:\Project\QLNS_SGU\QLNS_SGU\obj\Release\QLNS_SGU.pdb

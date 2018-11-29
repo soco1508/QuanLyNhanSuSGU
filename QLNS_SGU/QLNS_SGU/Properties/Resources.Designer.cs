@@ -153,6 +153,16 @@ namespace QLNS_SGU.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap hardrive_min {
+            get {
+                object obj = ResourceManager.GetObject("hardrive-min", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap hochamhocvi {
             get {
                 object obj = ResourceManager.GetObject("hochamhocvi", resourceCulture);

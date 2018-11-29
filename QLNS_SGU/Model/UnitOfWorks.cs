@@ -45,12 +45,25 @@ namespace Model
         private QuaTrinhGianDoanBaoHiemXaHoiRepository _quaTrinhGianDoanBaoHiemXaHoiRepository;
         private QuaTrinhDanhGiaVienChucRepository _quaTrinhDanhGiaVienChucRepository;
         private DanhMucThoiGianRepository _danhMucThoiGianRepository;
-        private MucDoDanhGiaRepository _mucDoDanhGiaRepository;       
+        private MucDoDanhGiaRepository _mucDoDanhGiaRepository;
+        private HardDriveFileRepository _hardDriveFileRepository;
 
         private QLNSSGU_1Entities _db;
         public UnitOfWorks(QLNSSGU_1Entities db)
         {
             _db = db;
+        }
+
+        public HardDriveFileRepository HardDriveFileRepository
+        {
+            get
+            {
+                if (_hardDriveFileRepository == null)
+                {
+                    _hardDriveFileRepository = new HardDriveFileRepository(_db);
+                }
+                return _hardDriveFileRepository;
+            }
         }
 
         public MucDoDanhGiaRepository MucDoDanhGiaRepository

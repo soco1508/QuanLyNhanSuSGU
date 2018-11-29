@@ -35,8 +35,8 @@ D:\Project\QLNS_SGU\Model\bin\Debug\Microsoft.WindowsAPICodePack.Shell.xml
 D:\Project\QLNS_SGU\Model\bin\Debug\Microsoft.WindowsAPICodePack.ShellExtensions.pdb
 D:\Project\QLNS_SGU\Model\bin\Debug\Microsoft.WindowsAPICodePack.ShellExtensions.xml
 D:\Project\QLNS_SGU\Model\bin\Debug\Newtonsoft.Json.xml
-D:\Project\QLNS_SGU\Model\obj\Debug\Model.csprojAssemblyReference.cache
 D:\Project\QLNS_SGU\Model\obj\Debug\Model.csproj.CoreCompileInputs.cache
 D:\Project\QLNS_SGU\Model\obj\Debug\Model.csproj.CopyComplete
 D:\Project\QLNS_SGU\Model\obj\Debug\Model.dll
 D:\Project\QLNS_SGU\Model\obj\Debug\Model.pdb
+D:\Project\QLNS_SGU\Model\obj\Debug\Model.csprojAssemblyReference.cache

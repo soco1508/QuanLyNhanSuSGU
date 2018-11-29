@@ -78,6 +78,9 @@
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.btnUploadLocal = new DevExpress.XtraEditors.SimpleButton();
+            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             ((System.ComponentModel.ISupportInitialize)(this.txtMaVienChuc.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl2)).BeginInit();
@@ -110,6 +113,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             this.SuspendLayout();
             // 
             // txtMaVienChuc
@@ -292,6 +296,7 @@
             this.layoutControl2.Controls.Add(this.dtNgayNangPhuCap);
             this.layoutControl2.Controls.Add(this.txtLinkVanBanDinhKem);
             this.layoutControl2.Controls.Add(this.txtHeSoPhuCap);
+            this.layoutControl2.Controls.Add(this.btnUploadLocal);
             this.layoutControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl2.Location = new System.Drawing.Point(0, 23);
             this.layoutControl2.Name = "layoutControl2";
@@ -318,6 +323,7 @@
             this.btnDownload.Location = new System.Drawing.Point(994, 58);
             this.btnDownload.Name = "btnDownload";
             this.btnDownload.Size = new System.Drawing.Size(82, 22);
+            this.btnDownload.StyleController = this.layoutControl2;
             this.btnDownload.TabIndex = 24;
             this.btnDownload.Text = "Tải xuống";
             // 
@@ -340,12 +346,13 @@
             this.btnUpload.Location = new System.Drawing.Point(926, 58);
             this.btnUpload.Name = "btnUpload";
             this.btnUpload.Size = new System.Drawing.Size(64, 22);
+            this.btnUpload.StyleController = this.layoutControl2;
             this.btnUpload.TabIndex = 23;
             this.btnUpload.Text = "Tải lên";
             // 
             // gcPhuCapThamNienNhaGiao
             // 
-            this.gcPhuCapThamNienNhaGiao.Location = new System.Drawing.Point(12, 126);
+            this.gcPhuCapThamNienNhaGiao.Location = new System.Drawing.Point(12, 136);
             this.gcPhuCapThamNienNhaGiao.MainView = this.gvPhuCapThamNienNhaGiao;
             this.gcPhuCapThamNienNhaGiao.Name = "gcPhuCapThamNienNhaGiao";
             this.gcPhuCapThamNienNhaGiao.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
@@ -354,7 +361,7 @@
             this.repositoryItemMemoEdit7,
             this.repositoryItemMemoEdit5,
             this.repositoryItemMemoEdit9});
-            this.gcPhuCapThamNienNhaGiao.Size = new System.Drawing.Size(1076, 339);
+            this.gcPhuCapThamNienNhaGiao.Size = new System.Drawing.Size(1076, 329);
             this.gcPhuCapThamNienNhaGiao.TabIndex = 15;
             this.gcPhuCapThamNienNhaGiao.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvPhuCapThamNienNhaGiao});
@@ -460,6 +467,7 @@
             this.dtNgayBatDau.Properties.Mask.EditMask = "dd/MM/yyyy";
             this.dtNgayBatDau.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.dtNgayBatDau.Size = new System.Drawing.Size(416, 20);
+            this.dtNgayBatDau.StyleController = this.layoutControl2;
             this.dtNgayBatDau.TabIndex = 7;
             // 
             // dtNgayNangPhuCap
@@ -474,6 +482,7 @@
             this.dtNgayNangPhuCap.Properties.Mask.EditMask = "dd/MM/yyyy";
             this.dtNgayNangPhuCap.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.dtNgayNangPhuCap.Size = new System.Drawing.Size(416, 20);
+            this.dtNgayNangPhuCap.StyleController = this.layoutControl2;
             this.dtNgayNangPhuCap.TabIndex = 9;
             // 
             // txtLinkVanBanDinhKem
@@ -482,6 +491,7 @@
             this.txtLinkVanBanDinhKem.Name = "txtLinkVanBanDinhKem";
             this.txtLinkVanBanDinhKem.Properties.ReadOnly = true;
             this.txtLinkVanBanDinhKem.Size = new System.Drawing.Size(338, 20);
+            this.txtLinkVanBanDinhKem.StyleController = this.layoutControl2;
             this.txtLinkVanBanDinhKem.TabIndex = 14;
             // 
             // txtHeSoPhuCap
@@ -499,6 +509,7 @@
             this.txtHeSoPhuCap.Properties.Mask.EditMask = "n3";
             this.txtHeSoPhuCap.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.txtHeSoPhuCap.Size = new System.Drawing.Size(416, 20);
+            this.txtHeSoPhuCap.StyleController = this.layoutControl2;
             this.txtHeSoPhuCap.TabIndex = 8;
             // 
             // layoutControlGroup2
@@ -524,7 +535,7 @@
             // emptySpaceItem4
             // 
             this.emptySpaceItem4.AllowHotTrack = false;
-            this.emptySpaceItem4.Location = new System.Drawing.Point(0, 94);
+            this.emptySpaceItem4.Location = new System.Drawing.Point(0, 104);
             this.emptySpaceItem4.MaxSize = new System.Drawing.Size(0, 20);
             this.emptySpaceItem4.MinSize = new System.Drawing.Size(10, 20);
             this.emptySpaceItem4.Name = "emptySpaceItem5";
@@ -537,15 +548,15 @@
             this.emptySpaceItem6.AllowHotTrack = false;
             this.emptySpaceItem6.Location = new System.Drawing.Point(524, 10);
             this.emptySpaceItem6.Name = "emptySpaceItem2";
-            this.emptySpaceItem6.Size = new System.Drawing.Size(78, 84);
+            this.emptySpaceItem6.Size = new System.Drawing.Size(78, 94);
             this.emptySpaceItem6.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem20
             // 
             this.layoutControlItem20.Control = this.gcPhuCapThamNienNhaGiao;
-            this.layoutControlItem20.Location = new System.Drawing.Point(0, 114);
+            this.layoutControlItem20.Location = new System.Drawing.Point(0, 124);
             this.layoutControlItem20.Name = "layoutControlItem1";
-            this.layoutControlItem20.Size = new System.Drawing.Size(1080, 343);
+            this.layoutControlItem20.Size = new System.Drawing.Size(1080, 333);
             this.layoutControlItem20.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem20.TextVisible = false;
             // 
@@ -595,7 +606,7 @@
             this.emptySpaceItem1.AllowHotTrack = false;
             this.emptySpaceItem1.Location = new System.Drawing.Point(602, 84);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(478, 10);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(478, 20);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlGroup1
@@ -604,7 +615,8 @@
             this.layoutControlItem21,
             this.emptySpaceItem7,
             this.layoutControlItem2,
-            this.layoutControlItem3});
+            this.layoutControlItem3,
+            this.layoutControlItem1});
             this.layoutControlGroup1.Location = new System.Drawing.Point(602, 10);
             this.layoutControlGroup1.Name = "layoutControlGroup1";
             this.layoutControlGroup1.Size = new System.Drawing.Size(478, 74);
@@ -624,7 +636,7 @@
             this.emptySpaceItem7.AllowHotTrack = false;
             this.emptySpaceItem7.Location = new System.Drawing.Point(0, 24);
             this.emptySpaceItem7.Name = "emptySpaceItem7";
-            this.emptySpaceItem7.Size = new System.Drawing.Size(300, 26);
+            this.emptySpaceItem7.Size = new System.Drawing.Size(226, 26);
             this.emptySpaceItem7.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem2
@@ -650,12 +662,44 @@
             this.emptySpaceItem2.AllowHotTrack = false;
             this.emptySpaceItem2.Location = new System.Drawing.Point(0, 82);
             this.emptySpaceItem2.Name = "item0";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(524, 12);
+            this.emptySpaceItem2.Size = new System.Drawing.Size(524, 22);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // btnUploadLocal
+            // 
+            this.btnUploadLocal.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
+            this.btnUploadLocal.Appearance.Font = new System.Drawing.Font("Tahoma", 8.75F);
+            this.btnUploadLocal.Appearance.Options.UseBackColor = true;
+            this.btnUploadLocal.Appearance.Options.UseFont = true;
+            this.btnUploadLocal.AppearanceHovered.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(223)))), ((int)(((byte)(134)))));
+            this.btnUploadLocal.AppearanceHovered.Font = new System.Drawing.Font("Tahoma", 8.75F);
+            this.btnUploadLocal.AppearanceHovered.ForeColor = System.Drawing.Color.Black;
+            this.btnUploadLocal.AppearanceHovered.Options.UseBackColor = true;
+            this.btnUploadLocal.AppearanceHovered.Options.UseFont = true;
+            this.btnUploadLocal.AppearanceHovered.Options.UseForeColor = true;
+            this.btnUploadLocal.AppearancePressed.ForeColor = System.Drawing.Color.Black;
+            this.btnUploadLocal.AppearancePressed.Options.UseForeColor = true;
+            this.btnUploadLocal.ImageOptions.Image = global::QLNS_SGU.Properties.Resources.hardrive_min;
+            this.btnUploadLocal.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
+            this.btnUploadLocal.Location = new System.Drawing.Point(852, 58);
+            this.btnUploadLocal.Name = "btnUploadLocal";
+            this.btnUploadLocal.Size = new System.Drawing.Size(70, 22);
+            this.btnUploadLocal.StyleController = this.layoutControl2;
+            this.btnUploadLocal.TabIndex = 25;
+            this.btnUploadLocal.Text = "Tải lên";
+            // 
+            // layoutControlItem1
+            // 
+            this.layoutControlItem1.Control = this.btnUploadLocal;
+            this.layoutControlItem1.Location = new System.Drawing.Point(226, 24);
+            this.layoutControlItem1.Name = "layoutControlItem1";
+            this.layoutControlItem1.Size = new System.Drawing.Size(74, 26);
+            this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem1.TextVisible = false;
             // 
             // TabPagePhuCapThamNienNhaGiao
             // 
@@ -714,6 +758,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -768,5 +813,8 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private DevExpress.XtraEditors.SpinEdit txtHeSoPhuCap;
+        private DevExpress.XtraEditors.SimpleButton btnUploadLocal;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
     }
 }

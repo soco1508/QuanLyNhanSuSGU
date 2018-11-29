@@ -45,5 +45,10 @@ namespace Model.Repository
             var a = _db.QuaTrinhDanhGiaVienChucs.Where(x => x.idQuaTrinhDanhGiaVienChuc == id).FirstOrDefault();
             _db.QuaTrinhDanhGiaVienChucs.Remove(a);
         }
+
+        public List<string> GetListLinkVanBanDinhKem(string maVienChucForGetListLinkVanBanDinhKem)
+        {
+            return _db.QuaTrinhDanhGiaVienChucs.Where(x => x.VienChuc.maVienChuc == maVienChucForGetListLinkVanBanDinhKem).Select(y => y.linkVanBanDinhKem).ToList();
+        }
     }
 }

@@ -557,7 +557,7 @@ namespace QLNS_SGU.Presenter
             Form f = (Form)createAndEditPersonInfoPresenter.UI;
             f.Height = Screen.PrimaryScreen.WorkingArea.Height;
             f.StartPosition = FormStartPosition.CenterScreen;
-            f.Show();
+            f.ShowDialog();
         }
 
         public void OpenEditFormHasId()
@@ -638,7 +638,7 @@ namespace QLNS_SGU.Presenter
             Form f = (Form)createAndEditPersonInfoPresenter.UI;
             f.Height = Screen.PrimaryScreen.WorkingArea.Height;
             f.StartPosition = FormStartPosition.CenterScreen;
-            f.Show();    
+            f.ShowDialog();    
         }
 
         public void RightClickQuaTrinhCongTacGrid(object sender, MouseEventArgs e)

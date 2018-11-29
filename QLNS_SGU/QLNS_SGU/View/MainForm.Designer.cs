@@ -128,6 +128,8 @@
             this.layoutViewField_layoutViewColumn5 = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
             this.layoutViewColumn6 = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
             this.layoutViewField_layoutViewColumn6 = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
+            this.layoutViewColumn23 = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
+            this.layoutViewField_layoutViewColumn23 = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
             this.layoutViewColumn7 = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
             this.layoutViewField_layoutViewColumn7 = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
             this.layoutViewColumn8 = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
@@ -159,6 +161,8 @@
             this.layoutViewField_layoutViewColumn19 = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
             this.layoutViewColumn20 = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
             this.layoutViewField_layoutViewColumn20 = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
+            this.layoutViewColumn22 = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
+            this.layoutViewField_layoutViewColumn22 = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
             this.layoutViewColumn21 = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
             this.repositoryItemMemoEdit8 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             this.layoutViewField_layoutViewColumn21 = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
@@ -233,10 +237,6 @@
             this.popupMenuGVHocHamHocVi = new DevExpress.XtraBars.PopupMenu(this.components);
             this.popupMenuGVChungChi = new DevExpress.XtraBars.PopupMenu(this.components);
             this.popupMenuGVTrangThai = new DevExpress.XtraBars.PopupMenu(this.components);
-            this.layoutViewColumn22 = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
-            this.layoutViewField_layoutViewColumn22 = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
-            this.layoutViewColumn23 = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
-            this.layoutViewField_layoutViewColumn23 = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -274,6 +274,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_layoutViewColumn4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_layoutViewColumn5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_layoutViewColumn6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_layoutViewColumn23)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_layoutViewColumn7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_layoutViewColumn8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_layoutViewColumn9)).BeginInit();
@@ -291,6 +292,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_layoutViewColumn18)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_layoutViewColumn19)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_layoutViewColumn20)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_layoutViewColumn22)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_layoutViewColumn21)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewCard1)).BeginInit();
@@ -350,8 +352,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.popupMenuGVHocHamHocVi)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenuGVChungChi)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenuGVTrangThai)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_layoutViewColumn22)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_layoutViewColumn23)).BeginInit();
             this.SuspendLayout();
             // 
             // barManager1
@@ -549,6 +549,7 @@
             this.gridColumn30});
             this.gvTrangThai.GridControl = this.gcTrangThai;
             this.gvTrangThai.Name = "gvTrangThai";
+            this.gvTrangThai.OptionsBehavior.Editable = false;
             this.gvTrangThai.OptionsView.ColumnAutoWidth = false;
             this.gvTrangThai.OptionsView.RowAutoHeight = true;
             this.gvTrangThai.OptionsView.ShowGroupPanel = false;
@@ -1318,6 +1319,21 @@
             this.layoutViewField_layoutViewColumn6.Size = new System.Drawing.Size(157, 24);
             this.layoutViewField_layoutViewColumn6.TextSize = new System.Drawing.Size(140, 13);
             // 
+            // layoutViewColumn23
+            // 
+            this.layoutViewColumn23.Caption = "Số chứng minh nhân dân";
+            this.layoutViewColumn23.FieldName = "soCMND";
+            this.layoutViewColumn23.LayoutViewField = this.layoutViewField_layoutViewColumn23;
+            this.layoutViewColumn23.Name = "layoutViewColumn23";
+            // 
+            // layoutViewField_layoutViewColumn23
+            // 
+            this.layoutViewField_layoutViewColumn23.EditorPreferredWidth = 10;
+            this.layoutViewField_layoutViewColumn23.Location = new System.Drawing.Point(0, 510);
+            this.layoutViewField_layoutViewColumn23.Name = "layoutViewField_layoutViewColumn23";
+            this.layoutViewField_layoutViewColumn23.Size = new System.Drawing.Size(157, 20);
+            this.layoutViewField_layoutViewColumn23.TextSize = new System.Drawing.Size(140, 13);
+            // 
             // layoutViewColumn7
             // 
             this.layoutViewColumn7.Caption = "Nơi sinh";
@@ -1552,6 +1568,23 @@
             this.layoutViewField_layoutViewColumn20.Name = "layoutViewField_layoutViewColumn20";
             this.layoutViewField_layoutViewColumn20.Size = new System.Drawing.Size(157, 24);
             this.layoutViewField_layoutViewColumn20.TextSize = new System.Drawing.Size(140, 13);
+            // 
+            // layoutViewColumn22
+            // 
+            this.layoutViewColumn22.AppearanceCell.Options.UseTextOptions = true;
+            this.layoutViewColumn22.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+            this.layoutViewColumn22.Caption = "Giờ chuẩn";
+            this.layoutViewColumn22.FieldName = "gioChuan";
+            this.layoutViewColumn22.LayoutViewField = this.layoutViewField_layoutViewColumn22;
+            this.layoutViewColumn22.Name = "layoutViewColumn22";
+            // 
+            // layoutViewField_layoutViewColumn22
+            // 
+            this.layoutViewField_layoutViewColumn22.EditorPreferredWidth = 10;
+            this.layoutViewField_layoutViewColumn22.Location = new System.Drawing.Point(0, 490);
+            this.layoutViewField_layoutViewColumn22.Name = "layoutViewField_layoutViewColumn22";
+            this.layoutViewField_layoutViewColumn22.Size = new System.Drawing.Size(157, 20);
+            this.layoutViewField_layoutViewColumn22.TextSize = new System.Drawing.Size(140, 13);
             // 
             // layoutViewColumn21
             // 
@@ -2384,38 +2417,6 @@
             this.popupMenuGVTrangThai.Manager = this.barManager1;
             this.popupMenuGVTrangThai.Name = "popupMenuGVTrangThai";
             // 
-            // layoutViewColumn22
-            // 
-            this.layoutViewColumn22.AppearanceCell.Options.UseTextOptions = true;
-            this.layoutViewColumn22.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
-            this.layoutViewColumn22.Caption = "Giờ chuẩn";
-            this.layoutViewColumn22.FieldName = "gioChuan";
-            this.layoutViewColumn22.LayoutViewField = this.layoutViewField_layoutViewColumn22;
-            this.layoutViewColumn22.Name = "layoutViewColumn22";
-            // 
-            // layoutViewField_layoutViewColumn22
-            // 
-            this.layoutViewField_layoutViewColumn22.EditorPreferredWidth = 10;
-            this.layoutViewField_layoutViewColumn22.Location = new System.Drawing.Point(0, 490);
-            this.layoutViewField_layoutViewColumn22.Name = "layoutViewField_layoutViewColumn22";
-            this.layoutViewField_layoutViewColumn22.Size = new System.Drawing.Size(157, 20);
-            this.layoutViewField_layoutViewColumn22.TextSize = new System.Drawing.Size(140, 13);
-            // 
-            // layoutViewColumn23
-            // 
-            this.layoutViewColumn23.Caption = "Số chứng minh nhân dân";
-            this.layoutViewColumn23.FieldName = "soCMND";
-            this.layoutViewColumn23.LayoutViewField = this.layoutViewField_layoutViewColumn23;
-            this.layoutViewColumn23.Name = "layoutViewColumn23";
-            // 
-            // layoutViewField_layoutViewColumn23
-            // 
-            this.layoutViewField_layoutViewColumn23.EditorPreferredWidth = 10;
-            this.layoutViewField_layoutViewColumn23.Location = new System.Drawing.Point(0, 510);
-            this.layoutViewField_layoutViewColumn23.Name = "layoutViewField_layoutViewColumn23";
-            this.layoutViewField_layoutViewColumn23.Size = new System.Drawing.Size(157, 20);
-            this.layoutViewField_layoutViewColumn23.TextSize = new System.Drawing.Size(140, 13);
-            // 
             // MainForm
             // 
             this.Appearance.Options.UseTextOptions = true;
@@ -2475,6 +2476,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_layoutViewColumn4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_layoutViewColumn5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_layoutViewColumn6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_layoutViewColumn23)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_layoutViewColumn7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_layoutViewColumn8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_layoutViewColumn9)).EndInit();
@@ -2492,6 +2494,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_layoutViewColumn18)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_layoutViewColumn19)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_layoutViewColumn20)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_layoutViewColumn22)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_layoutViewColumn21)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewCard1)).EndInit();
@@ -2551,8 +2554,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.popupMenuGVHocHamHocVi)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenuGVChungChi)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenuGVTrangThai)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_layoutViewColumn22)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_layoutViewColumn23)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

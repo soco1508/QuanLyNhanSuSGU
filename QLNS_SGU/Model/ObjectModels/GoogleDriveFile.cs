@@ -18,11 +18,11 @@ namespace Model.ObjectModels
         public GoogleDriveFile()
         {
             TT = -1;
-            ID = "";
-            Name = "";
+            ID = string.Empty;
+            Name = string.Empty;
             Size = -1;
             Version = -1;
-            CreatedTime = Convert.ToDateTime("01/01/1900");
+            CreatedTime = null;
         }
     }
 }

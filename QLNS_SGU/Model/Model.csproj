@@ -20,6 +20,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -214,6 +216,7 @@
     <Compile Include="ObjectModels\DangHocNangCaoForExport.cs" />
     <Compile Include="ObjectModels\DangHocNangCaoForView.cs" />
     <Compile Include="ObjectModels\ExportObjects.cs" />
+    <Compile Include="ObjectModels\HardDriveFile.cs" />
     <Compile Include="ObjectModels\HocHamHocViForTabPageChuyenMon.cs" />
     <Compile Include="ObjectModels\GoogleDriveFile.cs" />
     <Compile Include="ObjectModels\GridViewMainData.cs" />
@@ -235,6 +238,7 @@
     <Compile Include="Repository\DanhMucThoiGianRepository.cs" />
     <Compile Include="Repository\DanTocRepository.cs" />
     <Compile Include="Repository\GridViewMainDataRepository.cs" />
+    <Compile Include="Repository\HardDriveFileRepository.cs" />
     <Compile Include="Repository\HocHamHocViVienChucRepository.cs" />
     <Compile Include="Repository\ChucVuDonViVienChucRepository.cs" />
     <Compile Include="Repository\ChucVuRepository.cs" />

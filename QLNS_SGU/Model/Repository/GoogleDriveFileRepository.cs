@@ -72,7 +72,7 @@ namespace Model.Repository
         //Google.Apis.Drive.v3.Data.File file = new Google.Apis.Drive.v3.Data.File();
         public string GetIdDriveFile(string mavienchuc, string code)
         {
-            string id = "";
+            string id = string.Empty;
             DriveService service = GetService(); 
             FilesResource.ListRequest FileListRequest = service.Files.List();
             FileListRequest.Q = "name contains '" + mavienchuc + "' and name contains '" + code + "' and trashed = false";
@@ -120,6 +120,19 @@ namespace Model.Repository
                 return fileList;
         }
 
+        public string DoUpLoadAndReturnIdFile(string generateCode, string filename, string mavienchuc, FileInfo replaceOldFileName)
+        {
+            string[] split_filename = filename.Split('.');
+            string new_filename = split_filename[0] + "-" + mavienchuc + "-" + generateCode + "." + split_filename[1];
+            FileInfo replaceNewFileName = new FileInfo(filename);
+            replaceNewFileName.MoveTo(new_filename);
+            UploadFile(new_filename);
+            replaceOldFileName = new FileInfo(new_filename); //doi lai filename cu~
+            replaceOldFileName.MoveTo(filename);
+            string id = GetIdDriveFile(mavienchuc, generateCode);
+            return id;
+        }
+
         public void UploadFile(string filename)
         {
             DriveService driveService = GetService();
@@ -135,6 +148,55 @@ namespace Model.Repository
 
         [DllImport("wininet.dll")]
         private extern static bool InternetGetConnectedState(out int description, int reservedValue);
+
+        /// <summary>
+        /// string <=> message, int <=> enum MessageBoxIcon (Example: MessageBoxIcon.Error = 16)
+        /// </summary>
+        /// <param name="linkvanbandinhkem"></param>
+        /// <returns></returns>
+        public Tuple<string, int> DoDownLoadAndReturnMessage(string linkvanbandinhkem)
+        {
+            if (linkvanbandinhkem != string.Empty)
+            {
+                if (linkvanbandinhkem.Contains("="))
+                {
+                    string[] arr_linkvanbandinhkem = linkvanbandinhkem.Split('=');
+                    string idvanbandinhkem = arr_linkvanbandinhkem[1];
+                    if (InternetAvailable())
+                    {
+                        try
+                        {
+                            DownloadFile(idvanbandinhkem);
+                            return Tuple.Create("Tải xuống thành công.", 64);
+                        }
+                        catch
+                        {
+                            return Tuple.Create("Tải xuống thất bại. Vui lòng kiểm tra lại đường truyền hoặc làm mới dữ liệu.", 16);
+                        }
+                    }
+                    else
+                        return Tuple.Create("Tải xuống thất bại. Vui lòng kiểm tra lại đường truyền hoặc làm mới dữ liệu.", 16);
+                }
+                else
+                {
+                    try
+                    {
+                        string[] arrNameFileRemovedCode = RemoveCodeInFileName(linkvanbandinhkem).Split('\\');
+                        string nameFile = arrNameFileRemovedCode[arrNameFileRemovedCode.Length - 1];
+                        string filePath = KnownFolders.Downloads.Path + "\\" + nameFile;
+                        File.Copy(linkvanbandinhkem, filePath);
+                        return Tuple.Create("Tải xuống thành công.", 64);
+                    }
+                    catch
+                    {
+                        return Tuple.Create("Tải xuống thất bại. Vui lòng kiểm tra lại đường dẫn.", 16);
+                    }
+                    
+                }
+            }
+            else
+                return Tuple.Create("Không có văn bản đính kèm.", 16);
+        }
 
         public void DownloadFile(string fileId)
         {
@@ -172,7 +234,7 @@ namespace Model.Repository
 
         private string RemoveCodeInFileName(string fileName)
         {
-            string newFileName = "";
+            string newFileName = string.Empty;
             string[] arrFileName = fileName.Split('-');
             arrFileName = arrFileName.Where(x => x != arrFileName[arrFileName.Length - 1] && x != arrFileName[arrFileName.Length - 2]).ToArray();
             for (int i = 0; i < arrFileName.Length; i++)

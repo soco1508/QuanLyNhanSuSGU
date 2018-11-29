@@ -22,11 +22,13 @@ namespace Model.Repository
     }
     public class Repository<T> : IRepository<T> where T : class
     {
+        protected DbSet<VienChuc> _DbSetVienChuc;
         protected DbSet<T> _DbSet;
         protected QLNSSGU_1Entities _db;
 
         public Repository(QLNSSGU_1Entities db)
         {
+            _DbSetVienChuc = db.Set<VienChuc>();
             _DbSet = db.Set<T>();
             _db = db;
         }

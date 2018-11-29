@@ -40,6 +40,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -68,13 +70,19 @@
     <ManifestKeyFile>QLNS_SGU_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <GenerateManifests>true</GenerateManifests>
+    <GenerateManifests>false</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
     <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Accessibility" />
@@ -498,6 +506,7 @@
     <EmbeddedResource Include="View\WaitForm1.resx">
       <DependentUpon>WaitForm1.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="app.manifest" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -554,6 +563,7 @@
     <None Include="Resources\about.png" />
     <None Include="Resources\logout.png" />
     <None Include="Resources\exit.png" />
+    <None Include="Resources\hardrive-min.jpg" />
     <Content Include="users.ico" />
   </ItemGroup>
   <ItemGroup />

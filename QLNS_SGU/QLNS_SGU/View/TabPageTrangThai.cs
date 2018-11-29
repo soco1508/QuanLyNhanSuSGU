@@ -17,6 +17,7 @@ namespace QLNS_SGU.View
 {
     public interface ITabPageTrangThai : IView<ITabPageTrangThaiPresenter>
     {
+        FolderBrowserDialog FolderBrowserDialog { get; set; }
         OpenFileDialog OpenFileDialog { get; set; }
         SaveFileDialog SaveFileDialog { get; set; }
         SimpleButton BTNExportExcel { get; set; }
@@ -37,6 +38,7 @@ namespace QLNS_SGU.View
             InitializeComponent();
         }
         #region Controls
+        public FolderBrowserDialog FolderBrowserDialog { get => folderBrowserDialog1; set => folderBrowserDialog1 = value; }
         public OpenFileDialog OpenFileDialog { get => openFileDialog1; set => openFileDialog1 = value; }
         public SaveFileDialog SaveFileDialog { get => saveFileDialog1; set => saveFileDialog1 = value; }
         public SimpleButton BTNExportExcel { get => btnExportExcel; set => btnExportExcel = value; }
@@ -54,6 +56,7 @@ namespace QLNS_SGU.View
         {
             Load += (s, e) => presenter.LoadForm();
             gvTrangThai.Click += (s, e) => presenter.ClickRowAndShowInfo();
+            btnUploadLocal.Click += (s, e) => presenter.UploadFileToLocal();
             btnUpload.Click += (s, e) => presenter.UploadFileToGoogleDrive();
             btnDownload.Click += (s, e) => presenter.DownloadFileToDevice();
             btnSave.Click += (s, e) => presenter.Save();

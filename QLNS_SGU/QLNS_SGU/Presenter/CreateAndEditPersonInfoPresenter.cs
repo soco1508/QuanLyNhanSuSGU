@@ -5,6 +5,11 @@ using DevExpress.XtraSplashScreen;
 using System.Diagnostics;
 using System.Configuration.Install;
 using DevExpress.XtraTabbedMdi;
+using System.IO;
+using System.Collections.Generic;
+using Model;
+using Model.Entities;
+using System.Linq;
 
 namespace QLNS_SGU.Presenter
 {
@@ -16,6 +21,7 @@ namespace QLNS_SGU.Presenter
     }
     public class CreateAndEditPersonInfoPresenter : ICreateAndEditPersonInfoPresenter
     {
+        UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
         private static CreateAndEditPersonInfoForm _view;
         private string _maVienChucInMainForm = string.Empty;
         private int _tabOrderInRightViewMainForm = -1;
@@ -115,41 +121,55 @@ namespace QLNS_SGU.Presenter
 
         public void FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (TabPageQuaTrinhCongTacPresenter.idFileUploadQTCT != string.Empty)
+            if (TabPageQuaTrinhCongTacPresenter.idFileUploadQTCT != string.Empty && TabPageQuaTrinhCongTacPresenter.maVienChucForGetListLinkVanBanDinhKemQTCT != string.Empty)
             {
-                TabPageQuaTrinhCongTacPresenter.RemoveFileIfNotSaveQTCT(TabPageQuaTrinhCongTacPresenter.idFileUploadQTCT);
+                List<string> listLinkVanBanDinhKem = unitOfWorks.ChucVuDonViVienChucRepository.GetListLinkVanBanDinhKem(TabPageQuaTrinhCongTacPresenter.maVienChucForGetListLinkVanBanDinhKemQTCT);
+                RemoveFileIfNotSave(TabPageQuaTrinhCongTacPresenter.idFileUploadQTCT, listLinkVanBanDinhKem);
             }
-            if (TabPageQuaTrinhCongTacPresenter.idFileUploadHD != string.Empty)
+            if (TabPageQuaTrinhCongTacPresenter.idFileUploadHD != string.Empty && TabPageQuaTrinhCongTacPresenter.maVienChucForGetListLinkVanBanDinhKemHD != string.Empty)
             {
-                TabPageQuaTrinhCongTacPresenter.RemoveFileIfNotSaveHD(TabPageQuaTrinhCongTacPresenter.idFileUploadHD);
+                List<string> listLinkVanBanDinhKem = unitOfWorks.HopDongVienChucRepository.GetListLinkVanBanDinhKem(TabPageQuaTrinhCongTacPresenter.maVienChucForGetListLinkVanBanDinhKemHD);
+                RemoveFileIfNotSave(TabPageQuaTrinhCongTacPresenter.idFileUploadHD, listLinkVanBanDinhKem);
             }
-            if (TabPageQuaTrinhLuongPresenter.idFileUpload != string.Empty)
+            if (TabPageQuaTrinhLuongPresenter.idFileUpload != string.Empty && TabPageQuaTrinhLuongPresenter.maVienChucForGetListLinkVanBanDinhKem != string.Empty)
             {
-                TabPageQuaTrinhLuongPresenter.RemoveFileIfNotSave(TabPageQuaTrinhLuongPresenter.idFileUpload);
+                List<string> listLinkVanBanDinhKem = unitOfWorks.QuaTrinhLuongRepository.GetListLinkVanBanDinhKem(TabPageQuaTrinhLuongPresenter.maVienChucForGetListLinkVanBanDinhKem);
+                RemoveFileIfNotSave(TabPageQuaTrinhLuongPresenter.idFileUpload, listLinkVanBanDinhKem);
             }
-            if (TabPageChuyenMonPresenter.idFileUploadHHHV != string.Empty)
+            if (TabPageChuyenMonPresenter.idFileUploadHHHV != string.Empty && TabPageChuyenMonPresenter.maVienChucForGetListLinkVanBanDinhKemHHHV != string.Empty)
             {
-                TabPageChuyenMonPresenter.RemoveFileIfNotSaveHHHV(TabPageChuyenMonPresenter.idFileUploadHHHV);
+                List<string> listLinkVanBanDinhKem = unitOfWorks.HocHamHocViVienChucRepository.GetListLinkVanBanDinhKem(TabPageChuyenMonPresenter.maVienChucForGetListLinkVanBanDinhKemHHHV);
+                RemoveFileIfNotSave(TabPageChuyenMonPresenter.idFileUploadHHHV, listLinkVanBanDinhKem);
             }
-            if (TabPageChuyenMonPresenter.idFileUploadCC != string.Empty)
+            if (TabPageChuyenMonPresenter.idFileUploadCC != string.Empty && TabPageChuyenMonPresenter.maVienChucForGetListLinkVanBanDinhKemCC != string.Empty)
             {
-                TabPageChuyenMonPresenter.RemoveFileIfNotSaveCC(TabPageChuyenMonPresenter.idFileUploadCC);
+                List<string> listLinkVanBanDinhKem = unitOfWorks.ChungChiVienChucRepository.GetListLinkVanBanDinhKem(TabPageChuyenMonPresenter.maVienChucForGetListLinkVanBanDinhKemCC);
+                RemoveFileIfNotSave(TabPageChuyenMonPresenter.idFileUploadCC, listLinkVanBanDinhKem);
             }
-            if(TabPageChuyenMonPresenter.idFileUploadN != string.Empty)
+            if(TabPageChuyenMonPresenter.idFileUploadN != string.Empty && TabPageChuyenMonPresenter.maVienChucForGetListLinkVanBanDinhKemN != string.Empty)
             {
-                TabPageChuyenMonPresenter.RemoveFileIfNotSaveN(TabPageChuyenMonPresenter.idFileUploadN);
+                List<string> listLinkVanBanDinhKem = unitOfWorks.NganhVienChucRepository.GetListLinkVanBanDinhKem(TabPageChuyenMonPresenter.maVienChucForGetListLinkVanBanDinhKemN);
+                RemoveFileIfNotSave(TabPageChuyenMonPresenter.idFileUploadN, listLinkVanBanDinhKem);
             }
-            if(TabPageChuyenMonPresenter.idFileUploadDHNC != string.Empty)
+            if(TabPageChuyenMonPresenter.idFileUploadDHNC != string.Empty && TabPageChuyenMonPresenter.maVienChucForGetListLinkAnhQuyetDinh != string.Empty)
             {
-                TabPageChuyenMonPresenter.RemoveFileIfNotSaveDHNC(TabPageChuyenMonPresenter.idFileUploadDHNC);
+                List<string> listLinkAnhQuyetDinh = unitOfWorks.DangHocNangCaoRepository.GetListLinkAnhQuyetDinh(TabPageChuyenMonPresenter.maVienChucForGetListLinkAnhQuyetDinh);
+                RemoveFileIfNotSave(TabPageChuyenMonPresenter.idFileUploadDHNC, listLinkAnhQuyetDinh);
             }
-            if(TabPageTrangThaiPresenter.idFileUpload != string.Empty)
+            if(TabPageTrangThaiPresenter.idFileUpload != string.Empty && TabPageTrangThaiPresenter.maVienChucForGetListLinkVanBanDinhKem != string.Empty)
             {
-                TabPageTrangThaiPresenter.RemoveFileIfNotSave(TabPageTrangThaiPresenter.idFileUpload);
+                List<string> listLinkVanBanDinhKem = unitOfWorks.TrangThaiVienChucRepository.GetListLinkVanBanDinhKem(TabPageTrangThaiPresenter.maVienChucForGetListLinkVanBanDinhKem);
+                RemoveFileIfNotSave(TabPageTrangThaiPresenter.idFileUpload, listLinkVanBanDinhKem);
             }            
-            if(TabPagePhuCapThamNienNhaGiaoPresenter.idFileUpload != string.Empty)
+            if(TabPagePhuCapThamNienNhaGiaoPresenter.idFileUpload != string.Empty && TabPagePhuCapThamNienNhaGiaoPresenter.maVienChucForGetListLinkVanBanDinhKem != string.Empty)
             {
-                TabPagePhuCapThamNienNhaGiaoPresenter.RemoveFileIfNotSave(TabPagePhuCapThamNienNhaGiaoPresenter.idFileUpload);
+                List<string> listLinkVanBanDinhKem = unitOfWorks.QuaTrinhPhuCapThamNienNhaGiaoRepository.GetListLinkVanBanDinhKem(TabPagePhuCapThamNienNhaGiaoPresenter.maVienChucForGetListLinkVanBanDinhKem);
+                RemoveFileIfNotSave(TabPagePhuCapThamNienNhaGiaoPresenter.idFileUpload, listLinkVanBanDinhKem);
+            }
+            if (TabPageDanhGiaVienChucPresenter.idFileUpload != string.Empty && TabPageDanhGiaVienChucPresenter.maVienChucForGetListLinkVanBanDinhKem != string.Empty)
+            {
+                List<string> listLinkVanBanDinhKem = unitOfWorks.QuaTrinhDanhGiaVienChucRepository.GetListLinkVanBanDinhKem(TabPageDanhGiaVienChucPresenter.maVienChucForGetListLinkVanBanDinhKem);
+                RemoveFileIfNotSave(TabPageDanhGiaVienChucPresenter.idFileUpload, listLinkVanBanDinhKem);
             }
         }
 
@@ -157,6 +177,23 @@ namespace QLNS_SGU.Presenter
         {
             _view.Update();
             string name = _view.XtraTabbedMdiManager.SelectedPage.MdiChild.Name;
+        }
+
+        private void RemoveFileIfNotSave(string id, List<string> listLinkVanBanDinhKem)
+        {
+            if (listLinkVanBanDinhKem.Any())
+            {
+                if (id.Contains(':') && id.Contains('\\') && id.Contains('.'))
+                {
+                    if (!listLinkVanBanDinhKem.Any(x => x == id))
+                        File.Delete(id);
+                }
+                else
+                {
+                    if (!listLinkVanBanDinhKem.Any(x => x == "https://drive.google.com/open?id=" + id + ""))
+                        unitOfWorks.GoogleDriveFileRepository.DeleteFile(id);
+                }
+            }
         }
     }
 }
