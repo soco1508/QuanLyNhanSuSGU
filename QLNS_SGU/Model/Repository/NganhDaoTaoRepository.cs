@@ -43,15 +43,15 @@ namespace Model.Repository
             return b;
         }
 
-        public void Create(string nganhdaotao, int idloainganh)
+        public void Create(int idnganhdaotao, string nganhdaotao, int idloainganh)
         {
-            _db.NganhDaoTaos.Add(new NganhDaoTao { tenNganhDaoTao = nganhdaotao, idLoaiNganh = idloainganh });
+            _db.NganhDaoTaos.Add(new NganhDaoTao { idNganhDaoTao = idnganhdaotao, tenNganhDaoTao = nganhdaotao, idLoaiNganh = idloainganh });
             _db.SaveChanges();
         }
 
         public void Update(int id, string nganhdaotao, int idloainganh)
         {
-            NganhDaoTao nganhDaoTao = _db.NganhDaoTaos.Where(x => x.idNganhDaoTao == id).First();
+            NganhDaoTao nganhDaoTao = _db.NganhDaoTaos.Where(x => x.idNganhDaoTao == id).FirstOrDefault();
             nganhDaoTao.tenNganhDaoTao = nganhdaotao;
             nganhDaoTao.idLoaiNganh = idloainganh;
             _db.SaveChanges();

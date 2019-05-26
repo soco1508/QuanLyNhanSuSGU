@@ -39,7 +39,7 @@ namespace Model.Repository
             int idvienchuc = _db.VienChucs.Where(x => x.maVienChuc == mavienchuc).Select(y => y.idVienChuc).FirstOrDefault();
             List<TrangThaiVienChuc> listTrangThaiVienChuc = _db.TrangThaiVienChucs.Where(x => x.idVienChuc == idvienchuc).ToList();
             List<TrangThaiForView> listTrangThaiForView = new List<TrangThaiForView>();
-            for(int i = listTrangThaiVienChuc.Count - 1; i >= 0; i--)
+            for (int i = listTrangThaiVienChuc.Count - 1; i >= 0; i--)
             {
                 listTrangThaiForView.Add(new TrangThaiForView
                 {
@@ -53,6 +53,36 @@ namespace Model.Repository
                 });
             }
             return listTrangThaiForView;
+
+            //var store = _db.Database.SqlQuery<TrangThaiForView>("GetListTrangThai");
+            //foreach(TrangThaiForView trangThaiForView in store)
+            //{
+            //    yield return new TrangThaiForView
+            //    {
+            //        Id = trangThaiForView.Id,
+            //        TrangThai = trangThaiForView.TrangThai,
+            //        MoTa = trangThaiForView.MoTa,
+            //        DiaDiem = trangThaiForView.DiaDiem,
+            //        NgayBatDau = trangThaiForView.NgayBatDau,
+            //        NgayKetThuc = trangThaiForView.NgayKetThuc,
+            //        LinkVanBanDinhKem = trangThaiForView.LinkVanBanDinhKem
+            //    };
+            //}
+
+            //var a = _db.GetListTrangThai();
+            //foreach (var b in a)
+            //{
+            //    yield return new TrangThaiForView
+            //    {
+            //        Id = b.idTrangThaiVienChuc,
+            //        TrangThai = b.tenTrangThai,
+            //        MoTa = b.moTa,
+            //        DiaDiem = b.diaDiem,
+            //        NgayBatDau = b.ngayBatDau,
+            //        NgayKetThuc = b.ngayKetThuc,
+            //        LinkVanBanDinhKem = b.linkVanBanDinhKem
+            //    };
+            //}
         }
 
         public TrangThaiVienChuc GetTrangThaiHienTai(string mavienchuc)

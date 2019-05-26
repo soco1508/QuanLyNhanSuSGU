@@ -62,9 +62,10 @@ namespace QLNS_SGU.Presenter
             _view.GVTabPageTrangThai.IndicatorWidth = 50;
         }
         private void LoadGridTabPageTrangThai(string mavienchuc)
-        {            
+        {
             List<TrangThaiForView> listTrangThai = unitOfWorks.TrangThaiVienChucRepository.GetListTrangThaiVienChuc(mavienchuc);
             _view.GCTabPageTrangThai.DataSource = listTrangThai;
+            //_view.GCTabPageTrangThai.DataSource = unitOfWorks.TrangThaiVienChucRepository.GetListTrangThaiVienChuc(mavienchuc).GetEnumerator();
         }
         private void LoadCbxData()
         {

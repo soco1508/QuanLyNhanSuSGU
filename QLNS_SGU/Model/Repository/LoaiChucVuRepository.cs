@@ -23,19 +23,6 @@ namespace Model.Repository
             return _db.LoaiChucVus.ToList();
         }
 
-        public void Update(int id, string loaichucvu)
-        {
-            LoaiChucVu loaiChucVu = _db.LoaiChucVus.Where(x => x.idLoaiChucVu == id).First();
-            loaiChucVu.tenLoaiChucVu = loaichucvu;
-            _db.SaveChanges();
-        }
-
-        public void Create(string loaichucvu)
-        {
-            _db.LoaiChucVus.Add(new LoaiChucVu { tenLoaiChucVu = loaichucvu });
-            _db.SaveChanges();
-        }
-
         public void DeleteById(int id)
         {
             LoaiChucVu loaichucvu = _db.LoaiChucVus.Where(x => x.idLoaiChucVu == id).First();

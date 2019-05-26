@@ -57,6 +57,7 @@ namespace QLNS_SGU.Presenter
         {
             _view.Attach(this);
             _view.TXTMaVienChuc.Text = mavienchuc;
+            
         }
 
         private void LoadCbxData()

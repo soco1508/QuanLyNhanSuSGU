@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using Model;
 using Model.Entities;
 using System.Linq;
+using DevExpress.XtraEditors;
 
 namespace QLNS_SGU.Presenter
 {
@@ -37,7 +38,7 @@ namespace QLNS_SGU.Presenter
         {
             _view.Attach(this);
             _maVienChucInMainForm = maVienChucInMainForm;
-            _tabOrderInRightViewMainForm = tabOrderInRightViewMainForm;      
+            _tabOrderInRightViewMainForm = tabOrderInRightViewMainForm;
         }
         public void LoadForm()
         {
@@ -117,6 +118,21 @@ namespace QLNS_SGU.Presenter
             f.Dock = DockStyle.Fill;
             f.WindowState = FormWindowState.Maximized;
             f.Show();
+            if(LoginPresenter.ROLE > 0)
+                GetSelfAndChildrenRecursive(f).OfType<SimpleButton>()
+                    .Where(x => x.Text != "Xuất Excel" && x.Text != "Tải xuống").ToList()
+                    .ForEach(x => x.Enabled = false);
+        }
+
+        private IEnumerable<Control> GetSelfAndChildrenRecursive(Control parent)
+        {
+            List<Control> controls = new List<Control>();
+
+            foreach (Control child in parent.Controls)
+                controls.AddRange(GetSelfAndChildrenRecursive(child));
+
+            controls.Add(parent);
+            return controls;
         }
 
         public void FormClosing(object sender, FormClosingEventArgs e)
@@ -194,6 +210,6 @@ namespace QLNS_SGU.Presenter
                         unitOfWorks.GoogleDriveFileRepository.DeleteFile(id);
                 }
             }
-        }
+        }        
     }
 }

@@ -49,10 +49,7 @@ namespace Model
         private HardDriveFileRepository _hardDriveFileRepository;
 
         private QLNSSGU_1Entities _db;
-        public UnitOfWorks(QLNSSGU_1Entities db)
-        {
-            _db = db;
-        }
+        public UnitOfWorks(QLNSSGU_1Entities db) => _db = db;
 
         public HardDriveFileRepository HardDriveFileRepository
         {
@@ -486,7 +483,7 @@ namespace Model
             }
         }
 
-        public void Save()
+        public bool Save()
         {
             if (_db != null)
             {
@@ -494,17 +491,19 @@ namespace Model
                 {
                     try
                     {
-                        int rows = _db.SaveChanges();
+                        _db.SaveChanges();                        
                         dbTrans.Commit();
+                        return true;
                     }
                     catch (Exception ex)
                     {
                         //Debug.WriteLine(ex);
                         dbTrans.Rollback();
+                        return false;
                     }
                 }
             }
-            else return;
+            else return false;
         }
     }
 }

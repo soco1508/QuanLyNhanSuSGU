@@ -26,14 +26,14 @@ namespace Model.Repository
 
         public void Update(int id, string loainganh)
         {
-            LoaiNganh loaiNganh = _db.LoaiNganhs.Where(x => x.idLoaiNganh == id).First();
+            LoaiNganh loaiNganh = _db.LoaiNganhs.Where(x => x.idLoaiNganh == id).FirstOrDefault();
             loaiNganh.tenLoaiNganh = loainganh;
             _db.SaveChanges();
         }
 
-        public void Create(string loainganh)
+        public void Create(int id, string loainganh)
         {
-            _db.LoaiNganhs.Add(new LoaiNganh { tenLoaiNganh = loainganh });
+            _db.LoaiNganhs.Add(new LoaiNganh { idLoaiNganh = id, tenLoaiNganh = loainganh });
             _db.SaveChanges();
         }
 

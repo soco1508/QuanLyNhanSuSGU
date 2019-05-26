@@ -138,7 +138,8 @@ namespace QLNS_SGU.Presenter
                 string loaichucvu = _view.GVLoaiChucVu.GetFocusedRowCellDisplayText("tenLoaiChucVu").ToString();
                 if (loaichucvu != string.Empty)
                 {
-                    unitOfWorks.LoaiChucVuRepository.Create(loaichucvu);
+                    unitOfWorks.LoaiChucVuRepository.Insert(new LoaiChucVu { tenLoaiChucVu = loaichucvu });
+                    unitOfWorks.Save();
                     LoadDataToGrid();
                     XtraMessageBox.Show("Lưu dữ liệu thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     _view.GVLoaiChucVu.MoveLast();
@@ -155,7 +156,9 @@ namespace QLNS_SGU.Presenter
                 string loaichucvu = _view.GVLoaiChucVu.GetFocusedRowCellDisplayText("tenLoaiChucVu").ToString();
                 if (loaichucvu != string.Empty)
                 {
-                    unitOfWorks.LoaiChucVuRepository.Update(id, loaichucvu);
+                    LoaiChucVu loaiChucVu = unitOfWorks.LoaiChucVuRepository.GetById(id);
+                    loaiChucVu.tenLoaiChucVu = loaichucvu;
+                    unitOfWorks.Save();
                     XtraMessageBox.Show("Lưu dữ liệu thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else

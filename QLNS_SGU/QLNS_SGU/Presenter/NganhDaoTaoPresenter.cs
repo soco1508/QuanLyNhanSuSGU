@@ -32,6 +32,7 @@ namespace QLNS_SGU.Presenter
     {
         private NganhDaoTaoForm _view;
         private bool checkNewRowExist = true;
+        UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
         public object UI => _view;
         public NganhDaoTaoPresenter(NganhDaoTaoForm view) => _view = view;
         public void Initialize()
@@ -45,19 +46,32 @@ namespace QLNS_SGU.Presenter
         {
             _view.GVNganhDaoTao.CloseEditor();
             _view.GVNganhDaoTao.UpdateCurrentRow();
-            UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             int row_handle = _view.GVNganhDaoTao.FocusedRowHandle;
             int idRowFocused = Convert.ToInt32(_view.GVNganhDaoTao.GetFocusedRowCellDisplayText("idNganhDaoTao"));
-            if (idRowFocused == 0)
+            if (!unitOfWorks.NganhDaoTaoRepository.CheckExistById(idRowFocused))
             {
+                string idnganhdaotao = _view.GVNganhDaoTao.GetFocusedRowCellDisplayText("idNganhDaoTao").ToString();
+                int id = -1;
+                if (!string.IsNullOrEmpty(idnganhdaotao))
+                {
+                    id = Convert.ToInt32(idnganhdaotao);
+                }
+                else
+                    XtraMessageBox.Show("Bạn chưa nhập Mã ngành đào tạo.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                 string nganhdaotao = _view.GVNganhDaoTao.GetFocusedRowCellDisplayText("tenNganhDaoTao").ToString();
                 int idloainganh = Convert.ToInt32(_view.GVNganhDaoTao.GetRowCellValue(row_handle, "idLoaiNganh"));
                 if (nganhdaotao != string.Empty && idloainganh > 0)
                 {
-                    unitOfWorks.NganhDaoTaoRepository.Create(nganhdaotao, idloainganh);
-                    LoadDataToGrid();
-                    XtraMessageBox.Show("Lưu dữ liệu thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    _view.GVNganhDaoTao.MoveLast();
+                    if (!unitOfWorks.NganhDaoTaoRepository.CheckExistById(id))
+                    {
+                        unitOfWorks.NganhDaoTaoRepository.Create(id, nganhdaotao, idloainganh);
+                        LoadDataToGrid();
+                        XtraMessageBox.Show("Lưu dữ liệu thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        _view.GVNganhDaoTao.MoveLast();
+                    }
+                    else
+                        XtraMessageBox.Show("Mã ngành đào tạo đã tồn tại. Vui lòng nhập mã khác.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else if(nganhdaotao == string.Empty && idloainganh > 0)
                 {
@@ -92,7 +106,6 @@ namespace QLNS_SGU.Presenter
         private void LoadDataToGrid()
         {
             SplashScreenManager.ShowForm(_view, typeof(WaitForm1), true, true, false, 0);
-            UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             BindingList<NganhDaoTao> listNganhDaoTao = new BindingList<NganhDaoTao>(unitOfWorks.NganhDaoTaoRepository.GetListNganhDaoTao());            
             _view.GCNganhDaoTao.DataSource = listNganhDaoTao;
             RepositoryItemLookUpEdit mylookup = new RepositoryItemLookUpEdit();
@@ -112,28 +125,46 @@ namespace QLNS_SGU.Presenter
             mylookup.Columns[2].Visible = false;
             mylookup.Columns[3].Visible = false;
             mylookup.Columns[4].Visible = false;
-            SplashScreenManager.CloseForm(false);
-            
+            SplashScreenManager.CloseForm(false);            
         }
 
         public void MouseDoubleClick(object sender, MouseEventArgs e)
         {
             GridHitInfo hinfo = _view.GVNganhDaoTao.CalcHitInfo(e.Location);
-            if (hinfo.Column == _view.GVNganhDaoTao.Columns[1])
+            int idRowFocused = Convert.ToInt32(_view.GVNganhDaoTao.GetFocusedRowCellDisplayText("idNganhDaoTao"));
+            if (!unitOfWorks.LoaiNganhRepository.CheckExistById(idRowFocused))
             {
-                _view.GVNganhDaoTao.Columns[1].OptionsColumn.AllowEdit = true;
-                _view.GVNganhDaoTao.ShowEditor();
+                if (hinfo.Column == _view.GVNganhDaoTao.Columns[0])
+                {
+                    _view.GVNganhDaoTao.Columns[0].OptionsColumn.AllowEdit = true;
+                    _view.GVNganhDaoTao.ShowEditor();
+                }
+                if (hinfo.Column == _view.GVNganhDaoTao.Columns[1])
+                {
+                    _view.GVNganhDaoTao.Columns[1].OptionsColumn.AllowEdit = true;
+                    _view.GVNganhDaoTao.ShowEditor();
+                }
+            }
+            if (unitOfWorks.LoaiNganhRepository.CheckExistById(idRowFocused))
+            {
+                if (hinfo.Column == _view.GVNganhDaoTao.Columns[1])
+                {
+                    _view.GVNganhDaoTao.Columns[1].OptionsColumn.AllowEdit = true;
+                    _view.GVNganhDaoTao.ShowEditor();
+                }
             }
         }
 
         public void HiddenEditor(object sender, EventArgs e)
         {
+            _view.GVNganhDaoTao.Columns[0].OptionsColumn.AllowEdit = false;
             _view.GVNganhDaoTao.Columns[1].OptionsColumn.AllowEdit = false;
         }
 
         public void InitNewRow(object sender, InitNewRowEventArgs e)
         {
             GridView gridView = sender as GridView;
+            gridView.SetRowCellValue(e.RowHandle, gridView.Columns[0], 0);
             gridView.SetRowCellValue(e.RowHandle, gridView.Columns[1], string.Empty);
         }
 
@@ -157,27 +188,21 @@ namespace QLNS_SGU.Presenter
 
         public void DeleteRow()
         {
-            try
+            int row_handle = _view.GVNganhDaoTao.FocusedRowHandle;
+            if (row_handle >= 0)
             {
-                UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
-                int row_handle = _view.GVNganhDaoTao.FocusedRowHandle;
-                if(row_handle >= 0)
+                int id = Convert.ToInt32(_view.GVNganhDaoTao.GetFocusedRowCellDisplayText("idNganhDaoTao"));
+                DialogResult dialogResult = XtraMessageBox.Show("Bạn có chắc chắn muốn xóa?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (dialogResult == DialogResult.Yes)
                 {
-                    int id = Convert.ToInt32(_view.GVNganhDaoTao.GetFocusedRowCellDisplayText("idNganhDaoTao"));
-                    DialogResult dialogResult = XtraMessageBox.Show("Bạn có chắc chắn muốn xóa?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                    if (dialogResult == DialogResult.Yes)
-                    {
-                        unitOfWorks.NganhDaoTaoRepository.DeleteById(id);
-                        unitOfWorks.Save();
+                    unitOfWorks.NganhDaoTaoRepository.DeleteById(id);
+                    if (unitOfWorks.Save())
                         _view.GVNganhDaoTao.DeleteRow(row_handle);
-                    }
+                    else
+                        XtraMessageBox.Show("Không thể xóa. Ngành Đào Tạo này đang được sử dụng.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                else XtraMessageBox.Show("Vui lòng chọn dòng cần xóa.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);                
             }
-            catch
-            {
-                XtraMessageBox.Show("Không thể xóa. Ngành Đào Tạo này đang được sử dụng.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            else XtraMessageBox.Show("Vui lòng chọn dòng cần xóa.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         public void ExportExcel()

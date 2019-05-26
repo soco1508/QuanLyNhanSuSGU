@@ -16,14 +16,12 @@ namespace Model.Repository
         public bool CheckLogin(string taikhoan, string matkhau)
         {
             int check = _db.QuanTriViens.Where(x => x.taikhoan == taikhoan && x.matkhau == matkhau).Select(y => y.id).SingleOrDefault();
-            if(check == 0)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
+            return check > 0 ? true : false;
+        }
+
+        public int? GetRoleByUsername(string taikhoan)
+        {
+            return _db.QuanTriViens.Where(x => x.taikhoan == taikhoan).Select(y => y.phanQuyen).FirstOrDefault();
         }
     }
 }

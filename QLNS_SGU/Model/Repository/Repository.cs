@@ -22,6 +22,7 @@ namespace Model.Repository
     }
     public class Repository<T> : IRepository<T> where T : class
     {
+        public static string operate = string.Empty;
         protected DbSet<VienChuc> _DbSetVienChuc;
         protected DbSet<T> _DbSet;
         protected QLNSSGU_1Entities _db;
@@ -38,12 +39,14 @@ namespace Model.Repository
         public int Insert(T entity)
         {
             _DbSet.Add(entity);
+            operate = "insert";
             return 1;
         }
 
         public void Delete(T entity)
         {
             _DbSet.Remove(entity);
+            operate = "delete";
         }
 
         public IQueryable<T> SearchFor(Expression<Func<T, bool>> predicate)
@@ -82,6 +85,58 @@ namespace Model.Repository
                 return 1;
             return 0;
         }
+
+        //private static Dictionary<string, string> buildLog(string actor = null, string message = "")
+        //{
+        //    Dictionary<string, string> re = new Dictionary<string, string>();
+        //    try
+        //    {
+        //        if (actor != null)
+        //        {
+        //            re.Add("actor", actor);
+        //        }
+        //        else
+        //        {
+        //            re.Add("actor", "unknown");
+        //        }
+
+        //        if (operate != string.Empty)
+        //        {
+        //            re.Add("action", operate);
+        //        }
+        //        else
+        //        {
+        //            re.Add("action", "unknown");
+        //        }
+        //        re.Add("message", message);
+        //        return re;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        //Debug.WriteLine(ex);
+        //        re.Add("State: ", "ERROR");
+        //        return re;
+        //    }
+        //}
+        ///// <summary>
+        ///// Auto commit
+        ///// </summary>
+        ///// <param name="message"></param>
+        //public static void write(String message = "")
+        //{
+        //    try
+        //    {
+        //        LogHeThong tmp = new LogHeThong();
+        //        tmp.onBeforeAdded();
+        //        tmp.mota = StringHelper.toJSON(buildLog("execute", message));
+        //        tmp.add();
+        //        DBInstance.commit();
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Debug.WriteLine(e);
+        //    }
+        //}
         #endregion
     }
 }

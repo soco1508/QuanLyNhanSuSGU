@@ -23,6 +23,7 @@ namespace QLNS_SGU.Presenter
     }
     public class LoginPresenter : ILoginPresenter
     {
+        public static int? ROLE { get; private set; } = -1;
         private LoginForm _view;
 
         public LoginPresenter(LoginForm view) => _view = view;
@@ -75,6 +76,7 @@ namespace QLNS_SGU.Presenter
                     switch (check)
                     {
                         case true:
+                            ROLE = unitOfWorks.QuanTriVienRepository.GetRoleByUsername(taikhoan);
                             RememberPassword(taikhoan, matkhau);
                             _view.SplashScreenManager.CloseWaitForm();
                             _view.Hide();
@@ -138,7 +140,7 @@ namespace QLNS_SGU.Presenter
                 connection.Open();
                 return true;
             }
-            catch (SqlException)
+            catch (SqlException ex)
             {
                 return false;
             }

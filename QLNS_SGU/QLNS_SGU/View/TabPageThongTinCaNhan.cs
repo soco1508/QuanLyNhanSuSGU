@@ -35,6 +35,8 @@ namespace QLNS_SGU.View
         DateEdit DTNgayVaoDang { get; set; }
         TextEdit TXTVanHoa { get; set; }
         LookUpEdit CBXQuanLyNhaNuoc { get; set; }
+        TextEdit TXTEmail { get; set; }
+        SpinEdit TXTGioChuan { get; set; }
         TextEdit TXTSoCMND { get; set; }
         MemoEdit TXTGhiChu { get; set; }        
     }
@@ -75,8 +77,8 @@ namespace QLNS_SGU.View
         {
             Load += (s, e) => presenter.LoadForm();
             //btnAddNew.ItemClick += (s, e) => presenter.AddNew();
-            btnSave.ItemClick += (s, e) => presenter.Save();
-            btnSaveAndClose.ItemClick += (s, e) => presenter.SaveAndClose();
+            btnSave.Click += (s, e) => presenter.Save();
+            btnSaveAndClose.Click += (s, e) => presenter.SaveAndClose();
             radGioiTinh.SelectedIndexChanged += new EventHandler(presenter.GioiTinhChanged);
             txtHo.TextChanged += new EventHandler(presenter.HoChanged);
             txtTen.TextChanged += new EventHandler(presenter.TenChanged);
@@ -97,6 +99,8 @@ namespace QLNS_SGU.View
             txtSoCMND.TextChanged += new EventHandler(presenter.SoCMNDChanged);
             txtGhiChu.TextChanged += new EventHandler(presenter.GhiChuChanged);
             picVienChuc.ImageChanged += new EventHandler(presenter.PicChanged);
+            txtEmail.TextChanged += new EventHandler(presenter.EmailChanged);
+            txtGioChuan.EditValueChanged += new EventHandler(presenter.GioChuanChanged);            
         }
     }
 }
