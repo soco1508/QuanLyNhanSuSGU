@@ -107,92 +107,120 @@ namespace Model.Repository
             //}
             List<GridViewMainData> listGridViewMainData = new List<GridViewMainData>();
             List<VienChuc> listVienChuc = _db.VienChucs.ToList();
-            foreach (var item in listVienChuc)
+            try
             {
-                List<ChucVuDonViVienChuc> listChucVuDonViVienChucToAdd = new List<ChucVuDonViVienChuc>();
-                List<ChucVuDonViVienChuc> listChucVuDonViVienChuc = await _db.ChucVuDonViVienChucs.Where(x => x.idVienChuc == item.idVienChuc).ToListAsync();
-                if (listChucVuDonViVienChuc.Count == 0) // chua co qua trinh cong tac
+                foreach (var item in listVienChuc)
                 {
-                    listGridViewMainData.Add(new GridViewMainData
+                    List<ChucVuDonViVienChuc> listChucVuDonViVienChucToAdd = new List<ChucVuDonViVienChuc>();
+                    List<ChucVuDonViVienChuc> listChucVuDonViVienChuc = await _db.ChucVuDonViVienChucs.Where(x => x.idVienChuc == item.idVienChuc).ToListAsync();
+                    if (listChucVuDonViVienChuc.Count == 0) // chua co qua trinh cong tac
                     {
-                        MaVienChuc = item.maVienChuc,
-                        Ho = item.ho,
-                        Ten = item.ten,
-                        GioiTinh = CheckGioiTinh(item.gioiTinh),
-                        NgaySinh = item.ngaySinh,
-                        ChucVu = string.Empty,
-                        DonVi = string.Empty,
-                        TrinhDo = GetMaxLoaiHocHamHocVi(item.idVienChuc),
-                        HeSo = 0
-                    });
-                }
-                if (listChucVuDonViVienChuc.Count == 1)
-                {
-                    listGridViewMainData.Add(new GridViewMainData
-                    {
-                        MaVienChuc = item.maVienChuc,
-                        Ho = item.ho,
-                        Ten = item.ten,
-                        GioiTinh = CheckGioiTinh(item.gioiTinh),
-                        NgaySinh = item.ngaySinh,
-                        ChucVu = listChucVuDonViVienChuc[0].ChucVu.tenChucVu,
-                        DonVi = listChucVuDonViVienChuc[0].DonVi.tenDonVi,
-                        TrinhDo = GetMaxLoaiHocHamHocVi(item.idVienChuc),
-                        HeSo = listChucVuDonViVienChuc[0].ChucVu.heSoChucVu
-                    });
-                }
-                if (listChucVuDonViVienChuc.Count > 1)
-                {
-                    for (int i = 0; i < listChucVuDonViVienChuc.Count; i++)
-                    {
-                        if (listChucVuDonViVienChuc[i].ngayKetThuc != null)
+                        try
                         {
-                            if (listChucVuDonViVienChuc[i].ngayBatDau <= DateTime.Now && listChucVuDonViVienChuc[i].ngayKetThuc >= DateTime.Now)
+                            listGridViewMainData.Add(new GridViewMainData
                             {
-                                listChucVuDonViVienChucToAdd.Add(listChucVuDonViVienChuc[i]);
-                            }
+                                MaVienChuc = item.maVienChuc,
+                                Ho = item.ho,
+                                Ten = item.ten,
+                                GioiTinh = CheckGioiTinh(item.gioiTinh),
+                                NgaySinh = item.ngaySinh,
+                                ChucVu = string.Empty,
+                                DonVi = string.Empty,
+                                TrinhDo = GetMaxLoaiHocHamHocVi(item.idVienChuc),
+                                HeSo = 0
+                            });
                         }
-                        else
+                        catch (Exception ex)
                         {
-                            if (listChucVuDonViVienChuc[i].ngayBatDau <= DateTime.Now)
-                            {
-                                listChucVuDonViVienChucToAdd.Add(listChucVuDonViVienChuc[i]);
-                            }
+                            string s = ex.Message;
                         }
                     }
-                    if (listChucVuDonViVienChucToAdd.Count > 0)
+                    if (listChucVuDonViVienChuc.Count == 1)
                     {
-                        var chucVuDonViVienChuc = listChucVuDonViVienChucToAdd.OrderByDescending(x => x.ChucVu.heSoChucVu).FirstOrDefault();
-                        listGridViewMainData.Add(new GridViewMainData
+                        try
                         {
-                            MaVienChuc = item.maVienChuc,
-                            Ho = item.ho,
-                            Ten = item.ten,
-                            GioiTinh = CheckGioiTinh(item.gioiTinh),
-                            NgaySinh = item.ngaySinh,
-                            ChucVu = chucVuDonViVienChuc.ChucVu.tenChucVu,
-                            DonVi = chucVuDonViVienChuc.DonVi.tenDonVi,
-                            TrinhDo = GetMaxLoaiHocHamHocVi(item.idVienChuc),
-                            HeSo = chucVuDonViVienChuc.ChucVu.heSoChucVu
-                        });
+                            listGridViewMainData.Add(new GridViewMainData
+                            {
+                                MaVienChuc = item.maVienChuc,
+                                Ho = item.ho,
+                                Ten = item.ten,
+                                GioiTinh = CheckGioiTinh(item.gioiTinh),
+                                NgaySinh = item.ngaySinh,
+                                ChucVu = listChucVuDonViVienChuc[0].ChucVu.tenChucVu,
+                                DonVi = listChucVuDonViVienChuc[0].DonVi.tenDonVi,
+                                TrinhDo = GetMaxLoaiHocHamHocVi(item.idVienChuc),
+                                HeSo = listChucVuDonViVienChuc[0].ChucVu.heSoChucVu
+                            });
+                        }
+                        catch (Exception ex)
+                        {
+                            string s = ex.Message;
+                        }
                     }
-                    else
+                    if (listChucVuDonViVienChuc.Count > 1)
                     {
-                        var chucVuDonViVienChuc = listChucVuDonViVienChuc.OrderByDescending(x => x.ChucVu.heSoChucVu).Where(x => x.idDonVi != 1).FirstOrDefault();
-                        listGridViewMainData.Add(new GridViewMainData
+                        try
                         {
-                            MaVienChuc = item.maVienChuc,
-                            Ho = item.ho,
-                            Ten = item.ten,
-                            GioiTinh = CheckGioiTinh(item.gioiTinh),
-                            NgaySinh = item.ngaySinh,
-                            ChucVu = chucVuDonViVienChuc.ChucVu.tenChucVu,
-                            DonVi = chucVuDonViVienChuc.DonVi.tenDonVi,
-                            TrinhDo = GetMaxLoaiHocHamHocVi(item.idVienChuc),
-                            HeSo = chucVuDonViVienChuc.ChucVu.heSoChucVu
-                        });
+                            for (int i = 0; i < listChucVuDonViVienChuc.Count; i++)
+                            {
+                                if (listChucVuDonViVienChuc[i].ngayKetThuc != null)
+                                {
+                                    if (listChucVuDonViVienChuc[i].ngayBatDau <= DateTime.Now && listChucVuDonViVienChuc[i].ngayKetThuc >= DateTime.Now)
+                                    {
+                                        listChucVuDonViVienChucToAdd.Add(listChucVuDonViVienChuc[i]);
+                                    }
+                                }
+                                else
+                                {
+                                    if (listChucVuDonViVienChuc[i].ngayBatDau <= DateTime.Now)
+                                    {
+                                        listChucVuDonViVienChucToAdd.Add(listChucVuDonViVienChuc[i]);
+                                    }
+                                }
+                            }
+                            if (listChucVuDonViVienChucToAdd.Count > 0)
+                            {
+                                var chucVuDonViVienChuc = listChucVuDonViVienChucToAdd.OrderByDescending(x => x.ChucVu.heSoChucVu).FirstOrDefault();
+                                listGridViewMainData.Add(new GridViewMainData
+                                {
+                                    MaVienChuc = item.maVienChuc,
+                                    Ho = item.ho,
+                                    Ten = item.ten,
+                                    GioiTinh = CheckGioiTinh(item.gioiTinh),
+                                    NgaySinh = item.ngaySinh,
+                                    ChucVu = chucVuDonViVienChuc.ChucVu.tenChucVu,
+                                    DonVi = chucVuDonViVienChuc.DonVi.tenDonVi,
+                                    TrinhDo = GetMaxLoaiHocHamHocVi(item.idVienChuc),
+                                    HeSo = chucVuDonViVienChuc.ChucVu.heSoChucVu
+                                });
+                            }
+                            else
+                            {
+                                var chucVuDonViVienChuc = listChucVuDonViVienChuc.OrderByDescending(x => x.ChucVu.heSoChucVu).Where(x => x.idDonVi != 1).FirstOrDefault();
+                                listGridViewMainData.Add(new GridViewMainData
+                                {
+                                    MaVienChuc = item.maVienChuc,
+                                    Ho = item.ho,
+                                    Ten = item.ten,
+                                    GioiTinh = CheckGioiTinh(item.gioiTinh),
+                                    NgaySinh = item.ngaySinh,
+                                    ChucVu = chucVuDonViVienChuc.ChucVu.tenChucVu,
+                                    DonVi = chucVuDonViVienChuc.DonVi.tenDonVi,
+                                    TrinhDo = GetMaxLoaiHocHamHocVi(item.idVienChuc),
+                                    HeSo = chucVuDonViVienChuc.ChucVu.heSoChucVu
+                                });
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            string s = ex.Message;
+                        }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                string s = ex.Message;
             }
             return listGridViewMainData;
         }
@@ -201,9 +229,9 @@ namespace Model.Repository
         {
             if (t == true)
             {
-                return "Nam";
+                return "Nữ";
             }
-            return "Nữ";
+            return "Nam";
         }
 
         private string GetMaxLoaiHocHamHocVi(int idvienchuc)

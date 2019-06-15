@@ -548,3 +548,520 @@ E:\Project\QLNS_SGU\QLNS_SGU\obj\Debug\QLNS_SGU.csproj.CoreCompileInputs.cache
 E:\Project\QLNS_SGU\QLNS_SGU\obj\Debug\QLNS_SGU.csproj.CopyComplete
 E:\Project\QLNS_SGU\QLNS_SGU\obj\Debug\QLNS_SGU.exe
 E:\Project\QLNS_SGU\QLNS_SGU\obj\Debug\QLNS_SGU.pdb
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\QLNS_SGU.exe.config
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\QLNS_SGU.exe
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\QLNS_SGU.pdb
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\EntityFramework.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\LinqToExcel.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\Model.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\Remotion.Data.Linq.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\Remotion.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\Remotion.Interfaces.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\Google.Apis.Drive.v3.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\Google.Apis.Auth.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\Google.Apis.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\Google.Apis.Core.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\Microsoft.WindowsAPICodePack.Shell.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.Xpo.v17.1.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.Diagram.v17.1.Core.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.XtraDiagram.v17.1.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.Pdf.v17.1.Core.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.Snap.v17.1.Core.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.Pdf.v17.1.Drawing.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.Charts.v17.1.Core.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\System.Net.Http.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\Microsoft.WindowsAPICodePack.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\Model.pdb
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\Model.dll.config
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.Data.v17.1.xml
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.DataAccess.v17.1.xml
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.DataAccess.v17.1.UI.xml
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.Docs.v17.1.xml
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.Office.v17.1.Core.xml
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.PivotGrid.v17.1.Core.xml
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.Printing.v17.1.Core.xml
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.RichEdit.v17.1.Core.xml
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.Sparkline.v17.1.Core.xml
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.SpellChecker.v17.1.Core.xml
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.Spreadsheet.v17.1.Core.xml
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.Utils.v17.1.xml
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.Utils.v17.1.UI.xml
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.XtraBars.v17.1.xml
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.XtraCharts.v17.1.xml
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.XtraCharts.v17.1.Wizard.xml
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.XtraEditors.v17.1.xml
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.XtraGauges.v17.1.Core.xml
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.XtraGrid.v17.1.xml
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.XtraLayout.v17.1.xml
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.XtraNavBar.v17.1.xml
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.XtraPivotGrid.v17.1.xml
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.XtraPrinting.v17.1.xml
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.XtraReports.v17.1.xml
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.XtraReports.v17.1.Extensions.xml
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.XtraRichEdit.v17.1.xml
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.XtraSpellChecker.v17.1.xml
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.XtraTreeList.v17.1.xml
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.XtraVerticalGrid.v17.1.xml
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\EntityFramework.xml
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\LinqToExcel.xml
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\Google.Apis.Drive.v3.pdb
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\Google.Apis.Drive.v3.xml
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\Google.Apis.Auth.pdb
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\Google.Apis.Auth.xml
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\Google.Apis.pdb
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\Google.Apis.xml
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\Google.Apis.Core.pdb
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\Google.Apis.Core.xml
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\Microsoft.WindowsAPICodePack.Shell.pdb
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\Microsoft.WindowsAPICodePack.Shell.xml
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.Xpo.v17.1.xml
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.Diagram.v17.1.Core.xml
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.XtraDiagram.v17.1.xml
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.Pdf.v17.1.Core.xml
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.Snap.v17.1.Core.xml
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.Pdf.v17.1.Drawing.xml
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\Microsoft.WindowsAPICodePack.pdb
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\Microsoft.WindowsAPICodePack.xml
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\de\DevExpress.Data.v17.1.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\es\DevExpress.Data.v17.1.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\ja\DevExpress.Data.v17.1.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\ru\DevExpress.Data.v17.1.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\de\DevExpress.DataAccess.v17.1.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\es\DevExpress.DataAccess.v17.1.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\ja\DevExpress.DataAccess.v17.1.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\ru\DevExpress.DataAccess.v17.1.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\de\DevExpress.DataAccess.v17.1.UI.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\es\DevExpress.DataAccess.v17.1.UI.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\ja\DevExpress.DataAccess.v17.1.UI.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\ru\DevExpress.DataAccess.v17.1.UI.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\de\DevExpress.Office.v17.1.Core.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\es\DevExpress.Office.v17.1.Core.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\ja\DevExpress.Office.v17.1.Core.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\ru\DevExpress.Office.v17.1.Core.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\de\DevExpress.PivotGrid.v17.1.Core.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\es\DevExpress.PivotGrid.v17.1.Core.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\ja\DevExpress.PivotGrid.v17.1.Core.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\ru\DevExpress.PivotGrid.v17.1.Core.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\de\DevExpress.Printing.v17.1.Core.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\es\DevExpress.Printing.v17.1.Core.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\ja\DevExpress.Printing.v17.1.Core.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\ru\DevExpress.Printing.v17.1.Core.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\de\DevExpress.RichEdit.v17.1.Core.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\es\DevExpress.RichEdit.v17.1.Core.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\ja\DevExpress.RichEdit.v17.1.Core.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\ru\DevExpress.RichEdit.v17.1.Core.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\de\DevExpress.Sparkline.v17.1.Core.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\es\DevExpress.Sparkline.v17.1.Core.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\ja\DevExpress.Sparkline.v17.1.Core.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\ru\DevExpress.Sparkline.v17.1.Core.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\de\DevExpress.Spreadsheet.v17.1.Core.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\es\DevExpress.Spreadsheet.v17.1.Core.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\ja\DevExpress.Spreadsheet.v17.1.Core.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\ru\DevExpress.Spreadsheet.v17.1.Core.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\de\DevExpress.Utils.v17.1.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\es\DevExpress.Utils.v17.1.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\ja\DevExpress.Utils.v17.1.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\ru\DevExpress.Utils.v17.1.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\de\DevExpress.Utils.v17.1.UI.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\es\DevExpress.Utils.v17.1.UI.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\ja\DevExpress.Utils.v17.1.UI.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\ru\DevExpress.Utils.v17.1.UI.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\de\DevExpress.XtraBars.v17.1.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\es\DevExpress.XtraBars.v17.1.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\ja\DevExpress.XtraBars.v17.1.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\ru\DevExpress.XtraBars.v17.1.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\de\DevExpress.XtraCharts.v17.1.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\es\DevExpress.XtraCharts.v17.1.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\ja\DevExpress.XtraCharts.v17.1.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\ru\DevExpress.XtraCharts.v17.1.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\de\DevExpress.XtraCharts.v17.1.Wizard.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\es\DevExpress.XtraCharts.v17.1.Wizard.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\ja\DevExpress.XtraCharts.v17.1.Wizard.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\ru\DevExpress.XtraCharts.v17.1.Wizard.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\de\DevExpress.XtraEditors.v17.1.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\es\DevExpress.XtraEditors.v17.1.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\ja\DevExpress.XtraEditors.v17.1.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\ru\DevExpress.XtraEditors.v17.1.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\de\DevExpress.XtraGauges.v17.1.Core.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\es\DevExpress.XtraGauges.v17.1.Core.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\ja\DevExpress.XtraGauges.v17.1.Core.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\ru\DevExpress.XtraGauges.v17.1.Core.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\de\DevExpress.XtraGrid.v17.1.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\es\DevExpress.XtraGrid.v17.1.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\ja\DevExpress.XtraGrid.v17.1.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\ru\DevExpress.XtraGrid.v17.1.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\de\DevExpress.XtraLayout.v17.1.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\es\DevExpress.XtraLayout.v17.1.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\ja\DevExpress.XtraLayout.v17.1.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\ru\DevExpress.XtraLayout.v17.1.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\de\DevExpress.XtraNavBar.v17.1.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\es\DevExpress.XtraNavBar.v17.1.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\ja\DevExpress.XtraNavBar.v17.1.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\ru\DevExpress.XtraNavBar.v17.1.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\de\DevExpress.XtraPivotGrid.v17.1.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\es\DevExpress.XtraPivotGrid.v17.1.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\ja\DevExpress.XtraPivotGrid.v17.1.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\ru\DevExpress.XtraPivotGrid.v17.1.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\de\DevExpress.XtraPrinting.v17.1.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\es\DevExpress.XtraPrinting.v17.1.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\ja\DevExpress.XtraPrinting.v17.1.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\ru\DevExpress.XtraPrinting.v17.1.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\de\DevExpress.XtraReports.v17.1.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\es\DevExpress.XtraReports.v17.1.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\ja\DevExpress.XtraReports.v17.1.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\ru\DevExpress.XtraReports.v17.1.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\de\DevExpress.XtraReports.v17.1.Extensions.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\es\DevExpress.XtraReports.v17.1.Extensions.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\ja\DevExpress.XtraReports.v17.1.Extensions.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\ru\DevExpress.XtraReports.v17.1.Extensions.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\de\DevExpress.XtraRichEdit.v17.1.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\es\DevExpress.XtraRichEdit.v17.1.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\ja\DevExpress.XtraRichEdit.v17.1.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\ru\DevExpress.XtraRichEdit.v17.1.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\de\DevExpress.XtraSpellChecker.v17.1.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\es\DevExpress.XtraSpellChecker.v17.1.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\ja\DevExpress.XtraSpellChecker.v17.1.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\ru\DevExpress.XtraSpellChecker.v17.1.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\de\DevExpress.XtraTreeList.v17.1.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\es\DevExpress.XtraTreeList.v17.1.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\ja\DevExpress.XtraTreeList.v17.1.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\ru\DevExpress.XtraTreeList.v17.1.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\de\DevExpress.XtraVerticalGrid.v17.1.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\es\DevExpress.XtraVerticalGrid.v17.1.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\ja\DevExpress.XtraVerticalGrid.v17.1.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\ru\DevExpress.XtraVerticalGrid.v17.1.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\de\DevExpress.Xpo.v17.1.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\es\DevExpress.Xpo.v17.1.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\ja\DevExpress.Xpo.v17.1.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\ru\DevExpress.Xpo.v17.1.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\de\DevExpress.Diagram.v17.1.Core.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\es\DevExpress.Diagram.v17.1.Core.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\ja\DevExpress.Diagram.v17.1.Core.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\ru\DevExpress.Diagram.v17.1.Core.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\de\DevExpress.Pdf.v17.1.Core.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\es\DevExpress.Pdf.v17.1.Core.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\ja\DevExpress.Pdf.v17.1.Core.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\ru\DevExpress.Pdf.v17.1.Core.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\de\DevExpress.Snap.v17.1.Core.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\es\DevExpress.Snap.v17.1.Core.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\ja\DevExpress.Snap.v17.1.Core.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\bin\Debug\ru\DevExpress.Snap.v17.1.Core.resources.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.csprojAssemblyReference.cache
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.Properties.Resources.resources
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.View.BacForm.resources
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.View.ChucVuForm.resources
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.View.ChuyenNganhForm.resources
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.View.ContainerForm.resources
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.View.CreateAndEditPersonInfoForm.resources
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.View.DonViForm.resources
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.View.ExportDataMultiDomainForm.resources
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.View.ExportDataOneDomainForm.resources
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.View.ImportDataForm.resources
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.View.LoaiChucVuForm.resources
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.View.LoaiChungChiForm.resources
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.View.LoaiDonViForm.resources
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.View.LoaiHocHamHocViForm.resources
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.View.LoaiHopDongForm.resources
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.View.LoginForm.resources
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.View.MainForm.resources
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.View.LoaiNganhForm.resources
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.View.NgachForm.resources
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.View.NganhDaoTaoForm.resources
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.View.StoreImageForm.resources
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.View.TabPageBaoHiemXaHoi.resources
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.View.TabPageChuyenMon.resources
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.View.TabPageDanhGiaVienChuc.resources
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.View.TabPagePhuCapThamNienNhaGiao.resources
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.View.TabPageQuaTrinhCongTac1.resources
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.View.TabPageQuaTrinhLuong.resources
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.View.TabPageThongTinCaNhan.resources
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.View.TabPageTrangThai.resources
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.View.ToChuyenMonForm.resources
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.View.TrangThaiForm.resources
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.View.TrangThaiHienTaiForm.resources
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.View.WaitForm1.resources
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.csproj.GenerateResource.cache
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.exe.licenses
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.csproj.CoreCompileInputs.cache
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.csproj.CopyComplete
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.exe
+C:\Users\Nghia Tran\Desktop\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.pdb
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\QLNS_SGU.exe.config
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\QLNS_SGU.exe
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\QLNS_SGU.pdb
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.BonusSkins.v17.1.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.CodeParser.v17.1.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.Data.v17.1.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.DataAccess.v17.1.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.DataAccess.v17.1.UI.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.Docs.v17.1.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.Images.v17.1.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.Office.v17.1.Core.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.PivotGrid.v17.1.Core.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.Printing.v17.1.Core.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.RichEdit.v17.1.Core.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.Sparkline.v17.1.Core.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.SpellChecker.v17.1.Core.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.Spreadsheet.v17.1.Core.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.Utils.v17.1.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.Utils.v17.1.UI.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.XtraBars.v17.1.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.XtraCharts.v17.1.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.XtraCharts.v17.1.Extensions.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.XtraCharts.v17.1.Wizard.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.XtraEditors.v17.1.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.XtraGauges.v17.1.Core.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.XtraGrid.v17.1.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.XtraLayout.v17.1.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.XtraNavBar.v17.1.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.XtraPivotGrid.v17.1.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.XtraPrinting.v17.1.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.XtraReports.v17.1.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.XtraReports.v17.1.Extensions.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.XtraRichEdit.v17.1.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.XtraSpellChecker.v17.1.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.XtraTreeList.v17.1.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.XtraVerticalGrid.v17.1.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\EntityFramework.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\EntityFramework.SqlServer.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\LinqToExcel.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\Model.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\Remotion.Data.Linq.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\Remotion.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\Remotion.Interfaces.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\Google.Apis.Drive.v3.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\Google.Apis.Auth.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\Google.Apis.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\Google.Apis.Core.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\Microsoft.WindowsAPICodePack.Shell.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.Xpo.v17.1.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.Diagram.v17.1.Core.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.XtraDiagram.v17.1.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.Pdf.v17.1.Core.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.Snap.v17.1.Core.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.Pdf.v17.1.Drawing.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.Charts.v17.1.Core.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\System.Net.Http.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\Newtonsoft.Json.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\Microsoft.WindowsAPICodePack.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\Model.pdb
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\Model.dll.config
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.Data.v17.1.xml
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.DataAccess.v17.1.xml
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.DataAccess.v17.1.UI.xml
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.Docs.v17.1.xml
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.Office.v17.1.Core.xml
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.PivotGrid.v17.1.Core.xml
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.Printing.v17.1.Core.xml
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.RichEdit.v17.1.Core.xml
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.Sparkline.v17.1.Core.xml
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.SpellChecker.v17.1.Core.xml
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.Spreadsheet.v17.1.Core.xml
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.Utils.v17.1.xml
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.Utils.v17.1.UI.xml
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.XtraBars.v17.1.xml
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.XtraCharts.v17.1.xml
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.XtraCharts.v17.1.Wizard.xml
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.XtraEditors.v17.1.xml
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.XtraGauges.v17.1.Core.xml
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.XtraGrid.v17.1.xml
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.XtraLayout.v17.1.xml
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.XtraNavBar.v17.1.xml
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.XtraPivotGrid.v17.1.xml
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.XtraPrinting.v17.1.xml
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.XtraReports.v17.1.xml
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.XtraReports.v17.1.Extensions.xml
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.XtraRichEdit.v17.1.xml
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.XtraSpellChecker.v17.1.xml
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.XtraTreeList.v17.1.xml
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.XtraVerticalGrid.v17.1.xml
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\EntityFramework.xml
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\EntityFramework.SqlServer.xml
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\LinqToExcel.xml
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\Google.Apis.Drive.v3.pdb
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\Google.Apis.Drive.v3.xml
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\Google.Apis.Auth.pdb
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\Google.Apis.Auth.xml
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\Google.Apis.pdb
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\Google.Apis.xml
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\Google.Apis.Core.pdb
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\Google.Apis.Core.xml
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\Microsoft.WindowsAPICodePack.Shell.pdb
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\Microsoft.WindowsAPICodePack.Shell.xml
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.Xpo.v17.1.xml
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.Diagram.v17.1.Core.xml
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.XtraDiagram.v17.1.xml
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.Pdf.v17.1.Core.xml
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.Snap.v17.1.Core.xml
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\DevExpress.Pdf.v17.1.Drawing.xml
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\Newtonsoft.Json.xml
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\Microsoft.WindowsAPICodePack.pdb
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\Microsoft.WindowsAPICodePack.xml
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\de\DevExpress.Data.v17.1.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\es\DevExpress.Data.v17.1.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\ja\DevExpress.Data.v17.1.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\ru\DevExpress.Data.v17.1.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\de\DevExpress.DataAccess.v17.1.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\es\DevExpress.DataAccess.v17.1.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\ja\DevExpress.DataAccess.v17.1.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\ru\DevExpress.DataAccess.v17.1.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\de\DevExpress.DataAccess.v17.1.UI.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\es\DevExpress.DataAccess.v17.1.UI.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\ja\DevExpress.DataAccess.v17.1.UI.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\ru\DevExpress.DataAccess.v17.1.UI.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\de\DevExpress.Office.v17.1.Core.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\es\DevExpress.Office.v17.1.Core.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\ja\DevExpress.Office.v17.1.Core.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\ru\DevExpress.Office.v17.1.Core.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\de\DevExpress.PivotGrid.v17.1.Core.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\es\DevExpress.PivotGrid.v17.1.Core.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\ja\DevExpress.PivotGrid.v17.1.Core.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\ru\DevExpress.PivotGrid.v17.1.Core.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\de\DevExpress.Printing.v17.1.Core.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\es\DevExpress.Printing.v17.1.Core.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\ja\DevExpress.Printing.v17.1.Core.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\ru\DevExpress.Printing.v17.1.Core.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\de\DevExpress.RichEdit.v17.1.Core.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\es\DevExpress.RichEdit.v17.1.Core.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\ja\DevExpress.RichEdit.v17.1.Core.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\ru\DevExpress.RichEdit.v17.1.Core.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\de\DevExpress.Sparkline.v17.1.Core.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\es\DevExpress.Sparkline.v17.1.Core.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\ja\DevExpress.Sparkline.v17.1.Core.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\ru\DevExpress.Sparkline.v17.1.Core.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\de\DevExpress.Spreadsheet.v17.1.Core.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\es\DevExpress.Spreadsheet.v17.1.Core.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\ja\DevExpress.Spreadsheet.v17.1.Core.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\ru\DevExpress.Spreadsheet.v17.1.Core.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\de\DevExpress.Utils.v17.1.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\es\DevExpress.Utils.v17.1.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\ja\DevExpress.Utils.v17.1.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\ru\DevExpress.Utils.v17.1.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\de\DevExpress.Utils.v17.1.UI.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\es\DevExpress.Utils.v17.1.UI.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\ja\DevExpress.Utils.v17.1.UI.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\ru\DevExpress.Utils.v17.1.UI.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\de\DevExpress.XtraBars.v17.1.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\es\DevExpress.XtraBars.v17.1.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\ja\DevExpress.XtraBars.v17.1.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\ru\DevExpress.XtraBars.v17.1.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\de\DevExpress.XtraCharts.v17.1.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\es\DevExpress.XtraCharts.v17.1.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\ja\DevExpress.XtraCharts.v17.1.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\ru\DevExpress.XtraCharts.v17.1.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\de\DevExpress.XtraCharts.v17.1.Wizard.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\es\DevExpress.XtraCharts.v17.1.Wizard.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\ja\DevExpress.XtraCharts.v17.1.Wizard.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\ru\DevExpress.XtraCharts.v17.1.Wizard.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\de\DevExpress.XtraEditors.v17.1.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\es\DevExpress.XtraEditors.v17.1.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\ja\DevExpress.XtraEditors.v17.1.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\ru\DevExpress.XtraEditors.v17.1.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\de\DevExpress.XtraGauges.v17.1.Core.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\es\DevExpress.XtraGauges.v17.1.Core.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\ja\DevExpress.XtraGauges.v17.1.Core.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\ru\DevExpress.XtraGauges.v17.1.Core.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\de\DevExpress.XtraGrid.v17.1.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\es\DevExpress.XtraGrid.v17.1.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\ja\DevExpress.XtraGrid.v17.1.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\ru\DevExpress.XtraGrid.v17.1.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\de\DevExpress.XtraLayout.v17.1.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\es\DevExpress.XtraLayout.v17.1.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\ja\DevExpress.XtraLayout.v17.1.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\ru\DevExpress.XtraLayout.v17.1.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\de\DevExpress.XtraNavBar.v17.1.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\es\DevExpress.XtraNavBar.v17.1.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\ja\DevExpress.XtraNavBar.v17.1.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\ru\DevExpress.XtraNavBar.v17.1.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\de\DevExpress.XtraPivotGrid.v17.1.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\es\DevExpress.XtraPivotGrid.v17.1.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\ja\DevExpress.XtraPivotGrid.v17.1.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\ru\DevExpress.XtraPivotGrid.v17.1.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\de\DevExpress.XtraPrinting.v17.1.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\es\DevExpress.XtraPrinting.v17.1.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\ja\DevExpress.XtraPrinting.v17.1.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\ru\DevExpress.XtraPrinting.v17.1.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\de\DevExpress.XtraReports.v17.1.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\es\DevExpress.XtraReports.v17.1.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\ja\DevExpress.XtraReports.v17.1.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\ru\DevExpress.XtraReports.v17.1.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\de\DevExpress.XtraReports.v17.1.Extensions.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\es\DevExpress.XtraReports.v17.1.Extensions.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\ja\DevExpress.XtraReports.v17.1.Extensions.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\ru\DevExpress.XtraReports.v17.1.Extensions.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\de\DevExpress.XtraRichEdit.v17.1.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\es\DevExpress.XtraRichEdit.v17.1.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\ja\DevExpress.XtraRichEdit.v17.1.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\ru\DevExpress.XtraRichEdit.v17.1.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\de\DevExpress.XtraSpellChecker.v17.1.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\es\DevExpress.XtraSpellChecker.v17.1.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\ja\DevExpress.XtraSpellChecker.v17.1.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\ru\DevExpress.XtraSpellChecker.v17.1.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\de\DevExpress.XtraTreeList.v17.1.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\es\DevExpress.XtraTreeList.v17.1.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\ja\DevExpress.XtraTreeList.v17.1.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\ru\DevExpress.XtraTreeList.v17.1.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\de\DevExpress.XtraVerticalGrid.v17.1.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\es\DevExpress.XtraVerticalGrid.v17.1.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\ja\DevExpress.XtraVerticalGrid.v17.1.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\ru\DevExpress.XtraVerticalGrid.v17.1.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\de\DevExpress.Xpo.v17.1.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\es\DevExpress.Xpo.v17.1.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\ja\DevExpress.Xpo.v17.1.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\ru\DevExpress.Xpo.v17.1.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\de\DevExpress.Diagram.v17.1.Core.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\es\DevExpress.Diagram.v17.1.Core.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\ja\DevExpress.Diagram.v17.1.Core.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\ru\DevExpress.Diagram.v17.1.Core.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\de\DevExpress.Pdf.v17.1.Core.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\es\DevExpress.Pdf.v17.1.Core.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\ja\DevExpress.Pdf.v17.1.Core.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\ru\DevExpress.Pdf.v17.1.Core.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\de\DevExpress.Snap.v17.1.Core.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\es\DevExpress.Snap.v17.1.Core.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\ja\DevExpress.Snap.v17.1.Core.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\bin\Debug\ru\DevExpress.Snap.v17.1.Core.resources.dll
+E:\Project\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.csprojAssemblyReference.cache
+E:\Project\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.Properties.Resources.resources
+E:\Project\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.View.BacForm.resources
+E:\Project\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.View.ChucVuForm.resources
+E:\Project\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.View.ChuyenNganhForm.resources
+E:\Project\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.View.ContainerForm.resources
+E:\Project\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.View.CreateAndEditPersonInfoForm.resources
+E:\Project\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.View.DonViForm.resources
+E:\Project\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.View.ExportDataMultiDomainForm.resources
+E:\Project\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.View.ExportDataOneDomainForm.resources
+E:\Project\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.View.ImportDataForm.resources
+E:\Project\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.View.LoaiChucVuForm.resources
+E:\Project\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.View.LoaiChungChiForm.resources
+E:\Project\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.View.LoaiDonViForm.resources
+E:\Project\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.View.LoaiHocHamHocViForm.resources
+E:\Project\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.View.LoaiHopDongForm.resources
+E:\Project\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.View.LoginForm.resources
+E:\Project\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.View.MainForm.resources
+E:\Project\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.View.LoaiNganhForm.resources
+E:\Project\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.View.NgachForm.resources
+E:\Project\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.View.NganhDaoTaoForm.resources
+E:\Project\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.View.StoreImageForm.resources
+E:\Project\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.View.TabPageBaoHiemXaHoi.resources
+E:\Project\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.View.TabPageChuyenMon.resources
+E:\Project\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.View.TabPageDanhGiaVienChuc.resources
+E:\Project\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.View.TabPagePhuCapThamNienNhaGiao.resources
+E:\Project\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.View.TabPageQuaTrinhCongTac1.resources
+E:\Project\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.View.TabPageQuaTrinhLuong.resources
+E:\Project\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.View.TabPageThongTinCaNhan.resources
+E:\Project\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.View.TabPageTrangThai.resources
+E:\Project\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.View.ToChuyenMonForm.resources
+E:\Project\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.View.TrangThaiForm.resources
+E:\Project\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.View.TrangThaiHienTaiForm.resources
+E:\Project\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.View.WaitForm1.resources
+E:\Project\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.csproj.GenerateResource.cache
+E:\Project\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.exe.licenses
+E:\Project\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.csproj.CoreCompileInputs.cache
+E:\Project\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.csproj.CopyComplete
+E:\Project\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.exe
+E:\Project\QLNSv2\QLNS_SGU\obj\Debug\QLNS_SGU.pdb

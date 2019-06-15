@@ -20,7 +20,7 @@ namespace Model.Repository
             int idvienchuc = vienChucRepository.GetIdVienChuc(mavienchuc);
             TrangThaiVienChuc trangThaiVienChuc = new TrangThaiVienChuc();
             trangThaiVienChuc.idVienChuc = idvienchuc;
-            trangThaiVienChuc.idTrangThai = _db.TrangThais.Where(x => x.tenTrangThai == "Đang làm").Select(y => y.idTrangThai).FirstOrDefault();
+            trangThaiVienChuc.idTrangThai = _db.TrangThais.Where(x => x.tenTrangThai == "Đang làm việc").Select(y => y.idTrangThai).FirstOrDefault();
             _db.TrangThaiVienChucs.Add(trangThaiVienChuc);
         }
 

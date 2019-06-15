@@ -82,3 +82,87 @@ E:\Project\QLNS_SGU\Model\obj\Debug\Model.csproj.CopyComplete
 E:\Project\QLNS_SGU\Model\obj\Debug\Model.dll
 E:\Project\QLNS_SGU\Model\obj\Debug\Model.pdb
 E:\Project\QLNS_SGU\Model\obj\Debug\Model.csprojAssemblyReference.cache
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Debug\Model.dll.config
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Debug\Model.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Debug\Model.pdb
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Debug\EntityFramework.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Debug\Google.Apis.Auth.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Debug\Google.Apis.Auth.PlatformServices.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Debug\Google.Apis.Core.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Debug\Google.Apis.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Debug\Google.Apis.Drive.v3.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Debug\Google.Apis.PlatformServices.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Debug\Microsoft.WindowsAPICodePack.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Debug\Microsoft.WindowsAPICodePack.Shell.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Debug\Microsoft.WindowsAPICodePack.ShellExtensions.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Debug\System.Net.Http.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Debug\System.Security.Cryptography.Algorithms.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Debug\System.Security.Cryptography.Encoding.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Debug\System.Security.Cryptography.Primitives.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Debug\System.Security.Cryptography.X509Certificates.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Debug\EntityFramework.xml
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Debug\Google.Apis.pdb
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Debug\Google.Apis.xml
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Debug\Google.Apis.Auth.pdb
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Debug\Google.Apis.Auth.xml
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Debug\Google.Apis.Core.pdb
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Debug\Google.Apis.Core.xml
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Debug\Google.Apis.Drive.v3.pdb
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Debug\Google.Apis.Drive.v3.xml
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Debug\Microsoft.WindowsAPICodePack.pdb
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Debug\Microsoft.WindowsAPICodePack.xml
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Debug\Microsoft.WindowsAPICodePack.Shell.pdb
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Debug\Microsoft.WindowsAPICodePack.Shell.xml
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Debug\Microsoft.WindowsAPICodePack.ShellExtensions.pdb
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Debug\Microsoft.WindowsAPICodePack.ShellExtensions.xml
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\obj\Debug\Model.csprojAssemblyReference.cache
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\obj\Debug\Model.csproj.CoreCompileInputs.cache
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\obj\Debug\Model.csproj.CopyComplete
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\obj\Debug\Model.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\obj\Debug\Model.pdb
+E:\Project\QLNSv2\Model\bin\Debug\Model.dll.config
+E:\Project\QLNSv2\Model\bin\Debug\Model.dll
+E:\Project\QLNSv2\Model\bin\Debug\Model.pdb
+E:\Project\QLNSv2\Model\bin\Debug\EntityFramework.dll
+E:\Project\QLNSv2\Model\bin\Debug\EntityFramework.SqlServer.dll
+E:\Project\QLNSv2\Model\bin\Debug\Google.Apis.Auth.dll
+E:\Project\QLNSv2\Model\bin\Debug\Google.Apis.Auth.PlatformServices.dll
+E:\Project\QLNSv2\Model\bin\Debug\Google.Apis.Core.dll
+E:\Project\QLNSv2\Model\bin\Debug\Google.Apis.dll
+E:\Project\QLNSv2\Model\bin\Debug\Google.Apis.Drive.v3.dll
+E:\Project\QLNSv2\Model\bin\Debug\Google.Apis.PlatformServices.dll
+E:\Project\QLNSv2\Model\bin\Debug\Microsoft.WindowsAPICodePack.dll
+E:\Project\QLNSv2\Model\bin\Debug\Microsoft.WindowsAPICodePack.Shell.dll
+E:\Project\QLNSv2\Model\bin\Debug\Microsoft.WindowsAPICodePack.ShellExtensions.dll
+E:\Project\QLNSv2\Model\bin\Debug\Newtonsoft.Json.dll
+E:\Project\QLNSv2\Model\bin\Debug\System.Net.Http.dll
+E:\Project\QLNSv2\Model\bin\Debug\System.Security.Cryptography.Algorithms.dll
+E:\Project\QLNSv2\Model\bin\Debug\System.Security.Cryptography.Encoding.dll
+E:\Project\QLNSv2\Model\bin\Debug\System.Security.Cryptography.Primitives.dll
+E:\Project\QLNSv2\Model\bin\Debug\System.Security.Cryptography.X509Certificates.dll
+E:\Project\QLNSv2\Model\bin\Debug\EntityFramework.xml
+E:\Project\QLNSv2\Model\bin\Debug\EntityFramework.SqlServer.xml
+E:\Project\QLNSv2\Model\bin\Debug\Google.Apis.pdb
+E:\Project\QLNSv2\Model\bin\Debug\Google.Apis.xml
+E:\Project\QLNSv2\Model\bin\Debug\Google.Apis.Auth.pdb
+E:\Project\QLNSv2\Model\bin\Debug\Google.Apis.Auth.xml
+E:\Project\QLNSv2\Model\bin\Debug\Google.Apis.Core.pdb
+E:\Project\QLNSv2\Model\bin\Debug\Google.Apis.Core.xml
+E:\Project\QLNSv2\Model\bin\Debug\Google.Apis.Drive.v3.pdb
+E:\Project\QLNSv2\Model\bin\Debug\Google.Apis.Drive.v3.xml
+E:\Project\QLNSv2\Model\bin\Debug\Microsoft.WindowsAPICodePack.pdb
+E:\Project\QLNSv2\Model\bin\Debug\Microsoft.WindowsAPICodePack.xml
+E:\Project\QLNSv2\Model\bin\Debug\Microsoft.WindowsAPICodePack.Shell.pdb
+E:\Project\QLNSv2\Model\bin\Debug\Microsoft.WindowsAPICodePack.Shell.xml
+E:\Project\QLNSv2\Model\bin\Debug\Microsoft.WindowsAPICodePack.ShellExtensions.pdb
+E:\Project\QLNSv2\Model\bin\Debug\Microsoft.WindowsAPICodePack.ShellExtensions.xml
+E:\Project\QLNSv2\Model\bin\Debug\Newtonsoft.Json.xml
+E:\Project\QLNSv2\Model\obj\Debug\Model.csprojAssemblyReference.cache
+E:\Project\QLNSv2\Model\obj\Debug\Model.csproj.CoreCompileInputs.cache
+E:\Project\QLNSv2\Model\obj\Debug\Model.csproj.CopyComplete
+E:\Project\QLNSv2\Model\obj\Debug\Model.dll
+E:\Project\QLNSv2\Model\obj\Debug\Model.pdb

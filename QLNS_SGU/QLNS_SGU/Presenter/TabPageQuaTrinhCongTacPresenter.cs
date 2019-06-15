@@ -168,15 +168,15 @@ namespace QLNS_SGU.Presenter
             _view.CBXDonVi.Properties.Columns.Add(new DevExpress.XtraEditors.Controls.LookUpColumnInfo("idDonVi", string.Empty));
             _view.CBXDonVi.Properties.Columns.Add(new DevExpress.XtraEditors.Controls.LookUpColumnInfo("tenDonVi", string.Empty));
             _view.CBXDonVi.Properties.Columns[0].Visible = false;
-            List<ToChuyenMon> listToChuyenMon = unitOfWorks.ToChuyenMonRepository.GetListToChuyenMon().ToList();
-            _view.CBXToChuyenMon.Properties.DataSource = listToChuyenMon;
-            _view.CBXToChuyenMon.Properties.DisplayMember = "tenToChuyenMon";
-            _view.CBXToChuyenMon.Properties.ValueMember = "idToChuyenMon";
-            _view.CBXToChuyenMon.Properties.DropDownRows = listToChuyenMon.Count;
+            //List<ToChuyenMon> listToChuyenMon = unitOfWorks.ToChuyenMonRepository.GetListToChuyenMon().ToList();
+            //_view.CBXToChuyenMon.Properties.DataSource = listToChuyenMon;
+            //_view.CBXToChuyenMon.Properties.DisplayMember = "tenToChuyenMon";
+            //_view.CBXToChuyenMon.Properties.ValueMember = "idToChuyenMon";
+            //_view.CBXToChuyenMon.Properties.DropDownRows = listToChuyenMon.Count;
             _view.CBXToChuyenMon.Properties.Columns.Add(new DevExpress.XtraEditors.Controls.LookUpColumnInfo("idToChuyenMon", string.Empty));
             _view.CBXToChuyenMon.Properties.Columns.Add(new DevExpress.XtraEditors.Controls.LookUpColumnInfo("tenToChuyenMon", string.Empty));
             _view.CBXToChuyenMon.Properties.Columns[0].Visible = false;
-            _view.CBXToChuyenMon.EditValue = unitOfWorks.ToChuyenMonRepository.GetIdToChuyenMon(string.Empty, string.Empty);
+            //_view.CBXToChuyenMon.EditValue = unitOfWorks.ToChuyenMonRepository.GetIdToChuyenMon(string.Empty, string.Empty);
 
             List<string> listPhanLoaiCongTac = unitOfWorks.ChucVuDonViVienChucRepository.GetListPhanLoaiCongTac();
             AutoCompleteStringCollection phanLoaiCongTacSource = new AutoCompleteStringCollection();
@@ -225,7 +225,7 @@ namespace QLNS_SGU.Presenter
                 idVienChuc = unitOfWorks.VienChucRepository.GetIdVienChuc(mavienchuc),
                 idChucVu = Convert.ToInt32(_view.CBXChucVu.EditValue),
                 idDonVi = Convert.ToInt32(_view.CBXDonVi.EditValue),
-                idToChuyenMon = Convert.ToInt32(_view.CBXToChuyenMon.EditValue),
+                idToChuyenMon = _view.CBXToChuyenMon.Text != "" ? Convert.ToInt32(_view.CBXToChuyenMon.EditValue) : -1,
                 checkPhanLoaiCongTac = unitOfWorks.ChucVuDonViVienChucRepository.HardCheckPhanLoaiCongTacToDatabase(checkphanloaicongtac),
                 kiemNhiem = unitOfWorks.ChucVuDonViVienChucRepository.HardKiemNhiemToDatabase(kiemnhiem),
                 loaiThayDoi = unitOfWorks.ChucVuDonViVienChucRepository.HardLoaiThayDoiToDatabase(loaithaydoi),
@@ -531,7 +531,7 @@ namespace QLNS_SGU.Presenter
             _view.CBXToChuyenMon.Properties.DisplayMember = "tenToChuyenMon";
             _view.CBXToChuyenMon.Properties.ValueMember = "idToChuyenMon";
             _view.CBXToChuyenMon.Properties.DropDownRows = listToChuyenMon.Count;
-            _view.CBXToChuyenMon.Properties.Columns[0].Visible = false;
+            //_view.CBXToChuyenMon.Properties.Columns[0].Visible = false;
         }
 
         public void ToChuyenMonChanged(object sender, EventArgs e)

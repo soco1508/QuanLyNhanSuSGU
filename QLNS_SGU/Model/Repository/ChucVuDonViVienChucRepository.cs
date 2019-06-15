@@ -33,8 +33,8 @@ namespace Model.Repository
                 {
                     Id = listChucVuDonViVienChuc[i].idChucVuDonViVienChuc,
                     ChucVu = listChucVuDonViVienChuc[i].ChucVu.tenChucVu,
-                    DonVi = listChucVuDonViVienChuc[i].DonVi.tenDonVi,
-                    ToChuyenMon = listChucVuDonViVienChuc[i].ToChuyenMon.tenToChuyenMon,                    
+                    DonVi = listChucVuDonViVienChuc[i].DonVi != null ? listChucVuDonViVienChuc[i].DonVi.tenDonVi : string.Empty,
+                    ToChuyenMon = listChucVuDonViVienChuc[i].ToChuyenMon != null ? listChucVuDonViVienChuc[i].ToChuyenMon.tenToChuyenMon : string.Empty,                    
                     NgayBatDau = listChucVuDonViVienChuc[i].ngayBatDau,
                     NgayKetThuc = listChucVuDonViVienChuc[i].ngayKetThuc,
                     PhanLoaiCongTac = listChucVuDonViVienChuc[i].phanLoaiCongTac,
@@ -59,8 +59,8 @@ namespace Model.Repository
                 {
                     Id = listChucVuDonViVienChuc[i].idChucVuDonViVienChuc,
                     ChucVu = listChucVuDonViVienChuc[i].ChucVu.tenChucVu,
-                    DonVi = listChucVuDonViVienChuc[i].DonVi.tenDonVi,
-                    ToChuyenMon = listChucVuDonViVienChuc[i].ToChuyenMon.tenToChuyenMon,
+                    DonVi = listChucVuDonViVienChuc[i].DonVi != null ? listChucVuDonViVienChuc[i].DonVi.tenDonVi : string.Empty,
+                    ToChuyenMon = listChucVuDonViVienChuc[i].ToChuyenMon != null ? listChucVuDonViVienChuc[i].ToChuyenMon.tenToChuyenMon : string.Empty,
                     NgayBatDau = listChucVuDonViVienChuc[i].ngayBatDau,
                     NgayKetThuc = listChucVuDonViVienChuc[i].ngayKetThuc,
                     PhanLoaiCongTac = listChucVuDonViVienChuc[i].phanLoaiCongTac,

@@ -40,3 +40,45 @@ D:\Project\QLNS_SGU\Model\obj\Release\Model.csproj.CoreCompileInputs.cache
 D:\Project\QLNS_SGU\Model\obj\Release\Model.csproj.CopyComplete
 D:\Project\QLNS_SGU\Model\obj\Release\Model.dll
 D:\Project\QLNS_SGU\Model\obj\Release\Model.pdb
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Release\Model.dll.config
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Release\Model.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Release\Model.pdb
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Release\EntityFramework.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Release\Google.Apis.Auth.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Release\Google.Apis.Auth.PlatformServices.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Release\Google.Apis.Core.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Release\Google.Apis.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Release\Google.Apis.Drive.v3.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Release\Google.Apis.PlatformServices.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Release\Microsoft.WindowsAPICodePack.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Release\Microsoft.WindowsAPICodePack.Shell.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Release\Microsoft.WindowsAPICodePack.ShellExtensions.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Release\Newtonsoft.Json.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Release\System.Net.Http.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Release\System.Security.Cryptography.Algorithms.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Release\System.Security.Cryptography.Encoding.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Release\System.Security.Cryptography.Primitives.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Release\System.Security.Cryptography.X509Certificates.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Release\EntityFramework.xml
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Release\Google.Apis.pdb
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Release\Google.Apis.xml
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Release\Google.Apis.Auth.pdb
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Release\Google.Apis.Auth.xml
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Release\Google.Apis.Core.pdb
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Release\Google.Apis.Core.xml
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Release\Google.Apis.Drive.v3.pdb
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Release\Google.Apis.Drive.v3.xml
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Release\Microsoft.WindowsAPICodePack.pdb
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Release\Microsoft.WindowsAPICodePack.xml
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Release\Microsoft.WindowsAPICodePack.Shell.pdb
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Release\Microsoft.WindowsAPICodePack.Shell.xml
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Release\Microsoft.WindowsAPICodePack.ShellExtensions.pdb
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Release\Microsoft.WindowsAPICodePack.ShellExtensions.xml
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\bin\Release\Newtonsoft.Json.xml
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\obj\Release\Model.csprojAssemblyReference.cache
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\obj\Release\Model.csproj.CoreCompileInputs.cache
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\obj\Release\Model.csproj.CopyComplete
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\obj\Release\Model.dll
+C:\Users\Nghia Tran\Desktop\QLNSv2\Model\obj\Release\Model.pdb
