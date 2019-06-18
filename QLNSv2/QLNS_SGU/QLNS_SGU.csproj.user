@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PublishUrlHistory>\\192.168.14.101\Users\Dong\Desktop\Publish-QLNS\|\\192.168.14.112\Users\Dong\Desktop\Publish-QLNS\|\\192.168.14.1\Users\Dong\Desktop\Publish-QLNS\|\\192.168.14.109\Users\Dong\Desktop\Publish-QLNS\|\\192.168.1.102\Users\Dong\Desktop\Publish-QLNS\</PublishUrlHistory>
+    <InstallUrlHistory>http://localhost/QLNS_SGU/|http://localhost/UpdateApp/|http://localhost/Autoupdate/|http://localhost/|\\192.168.1.102\Users\Dong\Desktop\QLNS\</InstallUrlHistory>
+    <SupportUrlHistory />
+    <UpdateUrlHistory>http://localhost/QLNS_SGU/|http://localhost/Autoupdate/</UpdateUrlHistory>
+    <BootstrapperUrlHistory />
+    <ErrorReportUrlHistory />
+    <FallbackCulture>en-US</FallbackCulture>
+    <VerifyUploadedFiles>false</VerifyUploadedFiles>
+  </PropertyGroup>
+  <PropertyGroup>
+    <EnableSecurityDebugging>false</EnableSecurityDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <StartArguments>-d</StartArguments>
+  </PropertyGroup>
+</Project>
