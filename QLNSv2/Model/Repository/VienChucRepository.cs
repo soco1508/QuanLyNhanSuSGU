@@ -153,6 +153,7 @@ namespace Model.Repository
             List<ExportObjects> listExportObjects = new List<ExportObjects>();
             ChucVuDonViVienChucRepository chucVuDonViVienChucRepository = new ChucVuDonViVienChucRepository(_db);
             TrangThaiVienChucRepository trangThaiVienChucRepository = new TrangThaiVienChucRepository(_db);
+            GridViewMainDataRepository gvMainData = new GridViewMainDataRepository(_db);
             var listVienChuc = from v in _db.VienChucs
                                select new { v.idVienChuc, v.maVienChuc, v.ho, v.ten, v.gioiTinh };
             int count = 0;
@@ -176,7 +177,7 @@ namespace Model.Repository
                         MaVienChuc = item.maVienChuc,
                         Ho = item.ho,
                         Ten = item.ten,
-                        GioiTinh = ReturnGenderToGrid(item.gioiTinh),
+                        GioiTinh = gvMainData.CheckGioiTinh(item.gioiTinh),
                         Index = count,
                         DonVi = donvi,
                         TrangThai = trangthai
@@ -206,6 +207,7 @@ namespace Model.Repository
             List<ExportObjects> listExportObjects = new List<ExportObjects>();
             ChucVuDonViVienChucRepository chucVuDonViVienChucRepository = new ChucVuDonViVienChucRepository(_db);
             TrangThaiVienChucRepository trangThaiVienChucRepository = new TrangThaiVienChucRepository(_db);
+            GridViewMainDataRepository gridViewMainData = new GridViewMainDataRepository(_db);
             var listVienChuc = from v in _db.VienChucs
                                select new { v.idVienChuc, v.maVienChuc, v.ho, v.ten, v.gioiTinh };
             int count = 0;
@@ -228,7 +230,7 @@ namespace Model.Repository
                         MaVienChuc = item.maVienChuc,
                         Ho = item.ho,
                         Ten = item.ten,
-                        GioiTinh = ReturnGenderToGrid(item.gioiTinh),
+                        GioiTinh = gridViewMainData.CheckGioiTinh(item.gioiTinh),
                         Index = count,
                         DonVi = donvi,
                         TrangThai = trangthai

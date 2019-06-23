@@ -66,6 +66,7 @@ namespace QLNS_SGU.Presenter
             _view.Attach(this);
             _view.TXTMaVienChuc.Text = mavienchuc;
             _view.GVTabPageQuaTrinhLuong.IndicatorWidth = 50;
+            LoadForm();
         }
         private void LoadGridTabPageQuaTrinhLuong(string mavienchuc)
         {            
@@ -383,7 +384,7 @@ namespace QLNS_SGU.Presenter
                 XtraMessageBox.Show(tuple.Item1, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-        public void LoadForm()
+        private void LoadForm()
         {
             LoadCbxData();
             string mavienchuc = _view.TXTMaVienChuc.Text;

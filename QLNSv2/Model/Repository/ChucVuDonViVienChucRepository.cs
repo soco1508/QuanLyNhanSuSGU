@@ -342,5 +342,16 @@ namespace Model.Repository
         {
             return _db.ChucVuDonViVienChucs.Where(x => x.VienChuc.maVienChuc == maVienChucForGetListLinkVanBanDinhKemQTCT).Select(y => y.linkVanBanDinhKem).ToList();
         }
+
+        public bool IsAnyRowsQTCT(string mavienchuc)
+        {
+            var query = (from p in _db.ChucVuDonViVienChucs
+                         join v in _db.VienChucs on p.idVienChuc equals v.idVienChuc
+                         where v.maVienChuc == mavienchuc
+                         select p.idChucVuDonViVienChuc).ToList();
+            if (query.Count > 0)
+                return true;
+            return false;
+        }
     }
 }

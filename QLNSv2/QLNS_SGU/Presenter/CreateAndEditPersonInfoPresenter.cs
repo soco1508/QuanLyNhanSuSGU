@@ -33,12 +33,20 @@ namespace QLNS_SGU.Presenter
         public static void CloseForm()
         {
             _view.Close();
+            _view.Dispose();
         }
         public void Initialize(string maVienChucInMainForm, int tabOrderInRightViewMainForm)
         {
             _view.Attach(this);
             _maVienChucInMainForm = maVienChucInMainForm;
-            _tabOrderInRightViewMainForm = tabOrderInRightViewMainForm;
+            _tabOrderInRightViewMainForm = tabOrderInRightViewMainForm;            
+            //Kiem tra xem co QTCT ko
+            if (unitOfWorks.ChucVuDonViVienChucRepository.IsAnyRowsQTCT(maVienChucInMainForm))
+            {
+                //Kiem tra xem co trang thai dang lam viec hay ko
+                if (!unitOfWorks.TrangThaiVienChucRepository.CheckExistsWorkingStatus(maVienChucInMainForm))
+                    TabPageTrangThaiPresenter.InsertFirstRowDefault(maVienChucInMainForm);
+            }
         }
         public void LoadForm()
         {
@@ -187,6 +195,7 @@ namespace QLNS_SGU.Presenter
                 List<string> listLinkVanBanDinhKem = unitOfWorks.QuaTrinhDanhGiaVienChucRepository.GetListLinkVanBanDinhKem(TabPageDanhGiaVienChucPresenter.maVienChucForGetListLinkVanBanDinhKem);
                 RemoveFileIfNotSave(TabPageDanhGiaVienChucPresenter.idFileUpload, listLinkVanBanDinhKem);
             }
+            _view.Dispose();
         }
 
         public void MouseDown(object sender, MouseEventArgs e)

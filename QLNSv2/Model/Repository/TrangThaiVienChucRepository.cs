@@ -34,6 +34,16 @@ namespace Model.Repository
             return false;
         }
 
+        public bool CheckExistsWorkingStatus(string mavienchuc)
+        {
+            VienChucRepository vienChucRepository = new VienChucRepository(_db);
+            int idvienchuc = vienChucRepository.GetIdVienChuc(mavienchuc);
+            int idTrangThaiVienChuc = _db.TrangThaiVienChucs.Where(x => x.idVienChuc == idvienchuc && x.TrangThai.tenTrangThai == "Đang làm việc").Select(y => y.idTrangThaiVienChuc).FirstOrDefault();
+            if (idTrangThaiVienChuc > 0)
+                return true;
+            return false;
+        }
+
         public List<TrangThaiForView> GetListTrangThaiVienChuc(string mavienchuc)
         {
             int idvienchuc = _db.VienChucs.Where(x => x.maVienChuc == mavienchuc).Select(y => y.idVienChuc).FirstOrDefault();

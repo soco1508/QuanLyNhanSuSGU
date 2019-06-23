@@ -58,7 +58,7 @@ namespace QLNS_SGU.Presenter
     public class TabPageQuaTrinhCongTacPresenter : ITabPageQuaTrinhCongTacPresenter
     {
         UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
-        public static bool checkEmptyRowQTCTGrid = false;
+        //public static bool checkEmptyRowQTCTGrid = false;
         public static string maVienChucFromTabPageThongTinCaNhan = string.Empty;
         public int rowFocusFromCreateAndEditPersonalInfoForm = -1;
         private TabPageQuaTrinhCongTac1 _view;
@@ -77,8 +77,7 @@ namespace QLNS_SGU.Presenter
         {
             string mavienchuc = _view.TXTMaVienChuc.Text;
             if(mavienchuc != string.Empty)
-            {
-                
+            {                
                 bool check = unitOfWorks.TrangThaiVienChucRepository.CheckExistsAnyRow(mavienchuc);
                 if (check)
                 {
@@ -145,10 +144,10 @@ namespace QLNS_SGU.Presenter
         {            
             List<QuaTrinhCongTacForView> listQuaTrinhCongTac = unitOfWorks.ChucVuDonViVienChucRepository.GetListQuaTrinhCongTacForEdit(mavienchuc);
             _view.GCTabPageQuaTrinhCongTac.DataSource = listQuaTrinhCongTac;
-            if (_view.GVTabPageQuaTrinhCongTac.RowCount > 0)
-                checkEmptyRowQTCTGrid = true;
-            else
-                checkEmptyRowQTCTGrid = false;
+            //if (_view.GVTabPageQuaTrinhCongTac.RowCount > 0)
+            //    checkEmptyRowQTCTGrid = true;
+            //else
+            //    checkEmptyRowQTCTGrid = false;
         }
         private void LoadCbxDataQTCT()
         {            

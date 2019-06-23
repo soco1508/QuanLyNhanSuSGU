@@ -33,7 +33,7 @@ namespace QLNS_SGU.Presenter
             _view.Attach(this);
             _view.GVCustom.IndicatorWidth = 50;
             _view.RADDomain.SelectedIndex = 0;
-            _view.GVCustom.OptionsView.AllowCellMerge = true;
+            //_view.GVCustom.OptionsView.AllowCellMerge = true;
         }
 
         public void RowIndicator(object sender, RowIndicatorCustomDrawEventArgs e)
@@ -500,11 +500,11 @@ namespace QLNS_SGU.Presenter
                             exportObjects.ChucVu = listCongTac[0].ChucVu.tenChucVu;
                             exportObjects.HeSoChucVu = listCongTac[0].ChucVu.heSoChucVu;
                             exportObjects.LoaiDonVi = listCongTac[0].DonVi.LoaiDonVi.tenLoaiDonVi;
-                            exportObjects.DonVi = listCongTac[0].DonVi.tenDonVi;
+                            exportObjects.DonVi = listCongTac[0].DonVi != null ? listCongTac[0].DonVi.tenDonVi : string.Empty;
                             exportObjects.DiaDiemCT = listCongTac[0].DonVi.diaDiem;
                             exportObjects.DiaChi = listCongTac[0].DonVi.diaChi;
                             exportObjects.SoDienThoaiDonVi = listCongTac[0].DonVi.sDT;
-                            exportObjects.ToChuyenMon = listCongTac[0].ToChuyenMon.tenToChuyenMon;
+                            exportObjects.ToChuyenMon = listCongTac[0].ToChuyenMon != null ? listCongTac[0].ToChuyenMon.tenToChuyenMon : string.Empty;
                             exportObjects.PhanLoaiCongTac = listCongTac[0].phanLoaiCongTac;
                             exportObjects.CheckPhanLoaiCongTac = unitOfWorks.ChucVuDonViVienChucRepository.HardCheckPhanLoaiCongTacToGrid(listCongTac[0].checkPhanLoaiCongTac);
                             exportObjects.NgayBatDauCT = listCongTac[0].ngayBatDau;
@@ -525,7 +525,7 @@ namespace QLNS_SGU.Presenter
                                     Ho = row.Ho,
                                     Ten = row.Ten,
                                     GioiTinh = row.GioiTinh,
-                                    DonVi = listCongTac[i].DonVi.tenDonVi,
+                                    DonVi = listCongTac[i].DonVi != null ? listCongTac[i].DonVi.tenDonVi : string.Empty,
                                     TrangThai = row.TrangThai,
                                     LoaiChucVu = listCongTac[i].ChucVu.LoaiChucVu.tenLoaiChucVu,
                                     ChucVu = listCongTac[i].ChucVu.tenChucVu,
@@ -534,7 +534,7 @@ namespace QLNS_SGU.Presenter
                                     DiaDiemCT = listCongTac[i].DonVi.diaDiem,
                                     DiaChi = listCongTac[i].DonVi.diaChi,
                                     SoDienThoaiDonVi = listCongTac[i].DonVi.sDT,
-                                    ToChuyenMon = listCongTac[i].ToChuyenMon.tenToChuyenMon,
+                                    ToChuyenMon = listCongTac[i].ToChuyenMon != null ? listCongTac[i].ToChuyenMon.tenToChuyenMon : string.Empty,
                                     PhanLoaiCongTac = listCongTac[i].phanLoaiCongTac,
                                     CheckPhanLoaiCongTac = unitOfWorks.ChucVuDonViVienChucRepository.HardCheckPhanLoaiCongTacToGrid(listCongTac[i].checkPhanLoaiCongTac),
                                     NgayBatDauCT = listCongTac[i].ngayBatDau,
@@ -556,7 +556,7 @@ namespace QLNS_SGU.Presenter
                             exportObjects.DiaDiemCT = listCongTac[0].DonVi.diaDiem;
                             exportObjects.DiaChi = listCongTac[0].DonVi.diaChi;
                             exportObjects.SoDienThoaiDonVi = listCongTac[0].DonVi.sDT;
-                            exportObjects.ToChuyenMon = listCongTac[0].ToChuyenMon.tenToChuyenMon;
+                            exportObjects.ToChuyenMon = listCongTac[0].ToChuyenMon != null ? listCongTac[0].ToChuyenMon.tenToChuyenMon : string.Empty;
                             exportObjects.PhanLoaiCongTac = listCongTac[0].phanLoaiCongTac;
                             exportObjects.CheckPhanLoaiCongTac = unitOfWorks.ChucVuDonViVienChucRepository.HardCheckPhanLoaiCongTacToGrid(listCongTac[0].checkPhanLoaiCongTac);
                             exportObjects.NgayBatDauCT = listCongTac[0].ngayBatDau;
@@ -585,11 +585,11 @@ namespace QLNS_SGU.Presenter
                             exportObjects.ChucVu = listCongTac[0].ChucVu.tenChucVu;
                             exportObjects.HeSoChucVu = listCongTac[0].ChucVu.heSoChucVu;
                             exportObjects.LoaiDonVi = listCongTac[0].DonVi.LoaiDonVi.tenLoaiDonVi;
-                            exportObjects.DonVi = listCongTac[0].DonVi.tenDonVi;
+                            exportObjects.DonVi = listCongTac[0].DonVi != null ? listCongTac[0].DonVi.tenDonVi : string.Empty;
                             exportObjects.DiaDiemCT = listCongTac[0].DonVi.diaDiem;
                             exportObjects.DiaChi = listCongTac[0].DonVi.diaChi;
                             exportObjects.SoDienThoaiDonVi = listCongTac[0].DonVi.sDT;
-                            exportObjects.ToChuyenMon = listCongTac[0].ToChuyenMon.tenToChuyenMon;
+                            exportObjects.ToChuyenMon = listCongTac[0].ToChuyenMon != null ? listCongTac[0].ToChuyenMon.tenToChuyenMon : string.Empty;
                             exportObjects.PhanLoaiCongTac = listCongTac[0].phanLoaiCongTac;
                             exportObjects.CheckPhanLoaiCongTac = unitOfWorks.ChucVuDonViVienChucRepository.HardCheckPhanLoaiCongTacToGrid(listCongTac[0].checkPhanLoaiCongTac);
                             exportObjects.NgayBatDauCT = listCongTac[0].ngayBatDau;
@@ -610,7 +610,7 @@ namespace QLNS_SGU.Presenter
                                     Ho = row.Ho,
                                     Ten = row.Ten,
                                     GioiTinh = row.GioiTinh,
-                                    DonVi = listCongTac[i].DonVi.tenDonVi,
+                                    DonVi = listCongTac[i].DonVi != null ? listCongTac[i].DonVi.tenDonVi : string.Empty,
                                     TrangThai = row.TrangThai,
                                     LoaiChucVu = listCongTac[i].ChucVu.LoaiChucVu.tenLoaiChucVu,
                                     ChucVu = listCongTac[i].ChucVu.tenChucVu,
@@ -619,7 +619,7 @@ namespace QLNS_SGU.Presenter
                                     DiaDiemCT = listCongTac[i].DonVi.diaDiem,
                                     DiaChi = listCongTac[i].DonVi.diaChi,
                                     SoDienThoaiDonVi = listCongTac[i].DonVi.sDT,
-                                    ToChuyenMon = listCongTac[i].ToChuyenMon.tenToChuyenMon,
+                                    ToChuyenMon = listCongTac[i].ToChuyenMon != null ? listCongTac[i].ToChuyenMon.tenToChuyenMon : string.Empty,
                                     PhanLoaiCongTac = listCongTac[i].phanLoaiCongTac,
                                     CheckPhanLoaiCongTac = unitOfWorks.ChucVuDonViVienChucRepository.HardCheckPhanLoaiCongTacToGrid(listCongTac[i].checkPhanLoaiCongTac),
                                     NgayBatDauCT = listCongTac[i].ngayBatDau,
@@ -637,11 +637,11 @@ namespace QLNS_SGU.Presenter
                             exportObjects.ChucVu = listCongTac[0].ChucVu.tenChucVu;
                             exportObjects.HeSoChucVu = listCongTac[0].ChucVu.heSoChucVu;
                             exportObjects.LoaiDonVi = listCongTac[0].DonVi.LoaiDonVi.tenLoaiDonVi;
-                            exportObjects.DonVi = listCongTac[0].DonVi.tenDonVi;
+                            exportObjects.DonVi = listCongTac[0].DonVi != null ? listCongTac[0].DonVi.tenDonVi : string.Empty;
                             exportObjects.DiaDiemCT = listCongTac[0].DonVi.diaDiem;
                             exportObjects.DiaChi = listCongTac[0].DonVi.diaChi;
                             exportObjects.SoDienThoaiDonVi = listCongTac[0].DonVi.sDT;
-                            exportObjects.ToChuyenMon = listCongTac[0].ToChuyenMon.tenToChuyenMon;
+                            exportObjects.ToChuyenMon = listCongTac[0].ToChuyenMon != null ? listCongTac[0].ToChuyenMon.tenToChuyenMon : string.Empty;
                             exportObjects.PhanLoaiCongTac = listCongTac[0].phanLoaiCongTac;
                             exportObjects.CheckPhanLoaiCongTac = unitOfWorks.ChucVuDonViVienChucRepository.HardCheckPhanLoaiCongTacToGrid(listCongTac[0].checkPhanLoaiCongTac);
                             exportObjects.NgayBatDauCT = listCongTac[0].ngayBatDau;

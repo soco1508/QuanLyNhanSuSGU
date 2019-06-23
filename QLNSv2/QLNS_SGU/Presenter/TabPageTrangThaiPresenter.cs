@@ -150,18 +150,18 @@ namespace QLNS_SGU.Presenter
             MainPresenter.RefreshRightViewTrangThai();
         }
 
-        private void InsertFirstRowDefault(string mavienchuc)
+        public static void InsertFirstRowDefault(string mavienchuc)
         {
-            unitOfWorks.TrangThaiVienChucRepository.InsertFirstRowDefault(mavienchuc);
+            UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             try
-            {
-                unitOfWorks.Save();
+            {                
+                unitOfWorks.TrangThaiVienChucRepository.InsertFirstRowDefault(mavienchuc);
+                unitOfWorks.Save(); 
             }
             catch (Exception)
             {
                 XtraMessageBox.Show("Vui lòng nhập dữ liệu trạng thái.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
         }
 
         public void Add() => SetDefaultValueControl();
@@ -349,11 +349,11 @@ namespace QLNS_SGU.Presenter
             if (mavienchuc != string.Empty)
             {
                 LoadGridTabPageTrangThai(mavienchuc);
-                if(_view.GVTabPageTrangThai.RowCount == 0)
-                {
-                    if (TabPageQuaTrinhCongTacPresenter.checkEmptyRowQTCTGrid)
-                        InsertFirstRowDefault(mavienchuc);
-                }
+                //if(_view.GVTabPageTrangThai.RowCount == 0)
+                //{
+                //    if (TabPageQuaTrinhCongTacPresenter.checkEmptyRowQTCTGrid)
+                //        InsertFirstRowDefault(mavienchuc);
+                //}
                 if(rowFocusFromCreateAndEditPersonalInfoForm >= 0)
                 {
                     _view.GVTabPageTrangThai.FocusedRowHandle = rowFocusFromCreateAndEditPersonalInfoForm;

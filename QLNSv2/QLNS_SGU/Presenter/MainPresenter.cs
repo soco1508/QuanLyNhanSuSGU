@@ -217,26 +217,26 @@ namespace QLNS_SGU.Presenter
             }
             catch { }
         }
-        public static void LoadGridHocHamHocViAtRightViewInMainForm()
+        public static void LoadGridHocHamHocViAtRightViewInMainForm(int _rowForcus = -1)
         {
-            int rowFocus = Convert.ToInt32(_view.TXTRowIndex.Text);
+            int rowFocus = _rowForcus == -1 ? Convert.ToInt32(_view.TXTRowIndex.Text) : _rowForcus;
             string mavienchuc = _view.GVMain.GetRowCellValue(rowFocus, "MaVienChuc").ToString();
             List<HocHamHocViGridAtRightViewInMainForm> listHocHamHocVi = unitOfWorks.HocHamHocViVienChucRepository.GetListHocHamHocViGridAtRightViewInMainForm(mavienchuc);
             _view.GCHocHamHocVi.DataSource = listHocHamHocVi;
         }
-        public static void LoadGridChungChi()
+        public static void LoadGridChungChi(int _rowForcus = -1)
         {
-            int rowFocus = Convert.ToInt32(_view.TXTRowIndex.Text);
+            int rowFocus = _rowForcus == -1 ? Convert.ToInt32(_view.TXTRowIndex.Text) : _rowForcus;
             string mavienchuc = _view.GVMain.GetRowCellValue(rowFocus, "MaVienChuc").ToString();
             List<ChungChiForView> listChungChiForView = unitOfWorks.ChungChiVienChucRepository.GetListChungChiVienChuc(mavienchuc);
             _view.GCChungChi.DataSource = listChungChiForView;
         }
-        private void ShowChuyenMon()
+        private void ShowChuyenMon(int rowFocus)
         {
             try
             {
-                LoadGridHocHamHocViAtRightViewInMainForm();
-                LoadGridChungChi();
+                LoadGridHocHamHocViAtRightViewInMainForm(rowFocus);
+                LoadGridChungChi(rowFocus);
             }
             catch { }
         }
@@ -322,7 +322,7 @@ namespace QLNS_SGU.Presenter
                 ShowThongTinCaNhan(rowFocus);
                 ShowQuaTrinhCongTac(rowFocus);
                 ShowQuaTrinhLuong(rowFocus);
-                ShowChuyenMon();
+                ShowChuyenMon(rowFocus);
                 ShowTrangThai(rowFocus);
                 _view.TXTRowIndex.Text = rowFocus.ToString();
             }           
@@ -341,7 +341,7 @@ namespace QLNS_SGU.Presenter
                         ShowThongTinCaNhan(temp_rowFocus);
                         ShowQuaTrinhCongTac(temp_rowFocus);
                         ShowQuaTrinhLuong(temp_rowFocus);
-                        ShowChuyenMon();
+                        ShowChuyenMon(temp_rowFocus);
                         ShowTrangThai(temp_rowFocus);
                         _view.TXTRowIndex.Text = temp_rowFocus.ToString();
                         break;
@@ -351,7 +351,7 @@ namespace QLNS_SGU.Presenter
                         ShowThongTinCaNhan(temp_rowFocus1);
                         ShowQuaTrinhCongTac(temp_rowFocus1);
                         ShowQuaTrinhLuong(temp_rowFocus1);
-                        ShowChuyenMon();
+                        ShowChuyenMon(temp_rowFocus1);
                         ShowTrangThai(temp_rowFocus1);
                         _view.TXTRowIndex.Text = temp_rowFocus1.ToString();
                         break;
@@ -438,7 +438,8 @@ namespace QLNS_SGU.Presenter
             _view.LBQuaTrinhLuong.AppearanceItemCaption.ForeColor = Color.DimGray;
             _view.LBChuyenMon.AppearanceItemCaption.ForeColor = Color.RoyalBlue;
             _view.LBTrangThai.AppearanceItemCaption.ForeColor = Color.DimGray;
-            ShowChuyenMon();
+            int rowFocus = Convert.ToInt32(_view.TXTRowIndex.Text);
+            ShowChuyenMon(rowFocus);
             SplashScreenManager.CloseForm();           
         }
 

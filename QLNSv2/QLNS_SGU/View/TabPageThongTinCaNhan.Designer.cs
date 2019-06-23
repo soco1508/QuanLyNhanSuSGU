@@ -1002,7 +1002,7 @@
             this.btnSave.AppearancePressed.ForeColor = System.Drawing.Color.Black;
             this.btnSave.AppearancePressed.Options.UseForeColor = true;
             this.btnSave.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.btnSave.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
+            this.btnSave.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.ImageOptions.Image")));
             this.btnSave.Location = new System.Drawing.Point(12, 0);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(49, 22);
@@ -1024,7 +1024,7 @@
             this.btnSaveAndClose.AppearancePressed.ForeColor = System.Drawing.Color.Black;
             this.btnSaveAndClose.AppearancePressed.Options.UseForeColor = true;
             this.btnSaveAndClose.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.btnSaveAndClose.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton2.ImageOptions.Image")));
+            this.btnSaveAndClose.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSaveAndClose.ImageOptions.Image")));
             this.btnSaveAndClose.Location = new System.Drawing.Point(67, 0);
             this.btnSaveAndClose.Name = "btnSaveAndClose";
             this.btnSaveAndClose.Size = new System.Drawing.Size(111, 22);
@@ -1127,6 +1127,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem20)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         #endregion

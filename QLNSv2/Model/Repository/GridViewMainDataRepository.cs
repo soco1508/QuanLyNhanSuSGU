@@ -225,7 +225,7 @@ namespace Model.Repository
             return listGridViewMainData;
         }
 
-        private string CheckGioiTinh(bool? t)
+        public string CheckGioiTinh(bool? t)
         {
             if (t == true)
                 return "Nữ";
