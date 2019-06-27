@@ -186,14 +186,19 @@ namespace QLNS_SGU.Presenter
             catch { }
         }
         private void ShowThongTinCaNhan(int rowFocus)
-        {            
+        {
+            List<ThongTinCaNhan> list = new List<ThongTinCaNhan>();
             try
             {
                 string mavienchuc = _view.GVMain.GetRowCellValue(rowFocus, "MaVienChuc").ToString();
-                ThongTinCaNhan thongTinCaNhan = unitOfWorks.ThongTinCaNhanRepository.GetThongTinCaNhan(mavienchuc);
-                List<ThongTinCaNhan> list = new List<ThongTinCaNhan>();
-                list.Add(thongTinCaNhan);
-                _view.GCThongTinCaNhan.DataSource = list;
+                if (mavienchuc != string.Empty)
+                {
+                    ThongTinCaNhan thongTinCaNhan = unitOfWorks.ThongTinCaNhanRepository.GetThongTinCaNhan(mavienchuc);                    
+                    list.Add(thongTinCaNhan);
+                    _view.GCThongTinCaNhan.DataSource = list;
+                }
+                else
+                    _view.GCThongTinCaNhan.DataSource = list;
             }
             catch { }          
         }

@@ -375,7 +375,7 @@ namespace QLNS_SGU.Presenter
                         SplashScreenManager.Default.SetWaitFormDescription("0.0%");
 
                         var rows = from a in excelfile.Worksheet(sheetName).AsEnumerable()
-                                   where a["mavienchuc"] != string.Empty
+                                   where a["mavienchuc"].ToString().Trim() != string.Empty
                                    select a;
                         int line = 0;
                         int lines = rows.Count();

@@ -362,6 +362,7 @@
             this.picVienChuc.Size = new System.Drawing.Size(159, 193);
             this.picVienChuc.StyleController = this.layoutControl1;
             this.picVienChuc.TabIndex = 25;
+            this.picVienChuc.ToolTip = "Nhấn chuột trái để xoay ảnh";
             // 
             // txtMaVienChuc
             // 

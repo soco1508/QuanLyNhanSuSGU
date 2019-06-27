@@ -13,6 +13,8 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Diagnostics;
 using Model.Helper;
+using System.Drawing;
+using System.Drawing.Imaging;
 
 namespace QLNS_SGU.Presenter
 {
@@ -44,6 +46,7 @@ namespace QLNS_SGU.Presenter
         void NgayTuyenDungChinhThucChanged(object sender, EventArgs e);
         void EmailChanged(object sender, EventArgs e);
         void GioChuanChanged(object sender, EventArgs e);
+        void RotateByLeftMouseClick(object sender, MouseEventArgs e);
     }
     public class TabPageThongTinCaNhanPresenter : ITabPageThongTinCaNhanPresenter
     {
@@ -123,9 +126,13 @@ namespace QLNS_SGU.Presenter
             }
             else
             {
-                FileStream fs = new FileStream(filename, FileMode.Open, FileAccess.Read);
-                BinaryReader br = new BinaryReader(fs);
-                img = br.ReadBytes((int)fs.Length);
+                Image image = _view.PICVienChuc.Image.Clone() as Image;
+                MemoryStream stream = new MemoryStream();
+                image.Save(stream, ImageFormat.Jpeg);
+                img = stream.ToArray();
+                //FileStream fs = new FileStream(filename, FileMode.Open, FileAccess.Read);
+                //BinaryReader br = new BinaryReader(fs);
+                //img = br.ReadBytes((int)fs.Length);
                 return img;
             }
         }
@@ -577,6 +584,17 @@ namespace QLNS_SGU.Presenter
         public void GioChuanChanged(object sender, EventArgs e)
         {
             gioChuanChanged = true;
+        }
+
+        public void RotateByLeftMouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left && _view.PICVienChuc.Image != null)
+            {
+                Image image = _view.PICVienChuc.Image.Clone() as Image;
+                image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                _view.PICVienChuc.Image.Dispose();
+                _view.PICVienChuc.Image = image;
+            }
         }
     }
 }

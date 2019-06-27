@@ -100,7 +100,8 @@ namespace QLNS_SGU.View
             txtGhiChu.TextChanged += new EventHandler(presenter.GhiChuChanged);
             picVienChuc.ImageChanged += new EventHandler(presenter.PicChanged);
             txtEmail.TextChanged += new EventHandler(presenter.EmailChanged);
-            txtGioChuan.EditValueChanged += new EventHandler(presenter.GioChuanChanged);            
+            txtGioChuan.EditValueChanged += new EventHandler(presenter.GioChuanChanged);
+            picVienChuc.MouseClick += new MouseEventHandler(presenter.RotateByLeftMouseClick);
         }
     }
 }
