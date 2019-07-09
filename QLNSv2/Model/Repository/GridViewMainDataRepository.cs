@@ -127,7 +127,8 @@ namespace Model.Repository
                                 ChucVu = string.Empty,
                                 DonVi = string.Empty,
                                 TrinhDo = GetMaxLoaiHocHamHocVi(item.idVienChuc),
-                                HeSo = 0
+                                HeSo = 0,
+                                NgachVC = string.Empty
                             });
                         }
                         catch (Exception ex)
@@ -149,7 +150,8 @@ namespace Model.Repository
                                 ChucVu = listChucVuDonViVienChuc[0].ChucVu != null ? listChucVuDonViVienChuc[0].ChucVu.tenChucVu : string.Empty,
                                 DonVi = listChucVuDonViVienChuc[0].DonVi != null ? listChucVuDonViVienChuc[0].DonVi.tenDonVi : string.Empty,
                                 TrinhDo = GetMaxLoaiHocHamHocVi(item.idVienChuc),
-                                HeSo = listChucVuDonViVienChuc[0].ChucVu.heSoChucVu
+                                HeSo = listChucVuDonViVienChuc[0].ChucVu.heSoChucVu,
+                                NgachVC = listChucVuDonViVienChuc[0].phanLoaiCongTac
                             });
                         }
                         catch (Exception ex)
@@ -191,7 +193,8 @@ namespace Model.Repository
                                     ChucVu = chucVuDonViVienChuc.ChucVu != null ? chucVuDonViVienChuc.ChucVu.tenChucVu : string.Empty,
                                     DonVi = chucVuDonViVienChuc.DonVi != null ? chucVuDonViVienChuc.DonVi.tenDonVi : string.Empty,
                                     TrinhDo = GetMaxLoaiHocHamHocVi(item.idVienChuc),
-                                    HeSo = chucVuDonViVienChuc.ChucVu.heSoChucVu
+                                    HeSo = chucVuDonViVienChuc.ChucVu.heSoChucVu,
+                                    NgachVC = chucVuDonViVienChuc.phanLoaiCongTac
                                 });
                             }
                             else
@@ -207,7 +210,8 @@ namespace Model.Repository
                                     ChucVu = chucVuDonViVienChuc.ChucVu != null ? chucVuDonViVienChuc.ChucVu.tenChucVu : string.Empty,
                                     DonVi = chucVuDonViVienChuc.DonVi != null ? chucVuDonViVienChuc.DonVi.tenDonVi : string.Empty,
                                     TrinhDo = GetMaxLoaiHocHamHocVi(item.idVienChuc),
-                                    HeSo = chucVuDonViVienChuc.ChucVu.heSoChucVu
+                                    HeSo = chucVuDonViVienChuc.ChucVu.heSoChucVu,
+                                    NgachVC = chucVuDonViVienChuc.phanLoaiCongTac
                                 });
                             }
                         }

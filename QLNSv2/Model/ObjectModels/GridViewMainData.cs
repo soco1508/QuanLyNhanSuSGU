@@ -19,7 +19,8 @@ namespace Model.ObjectModels
         public string DonVi { get; set; }
         public string TrinhDo { get; set; }
         public double? HeSo { get; set; }
-        public string Color { get; set; }
+        //public string Color { get; set; }
+        public string NgachVC { get; set; }
 
         public GridViewMainData()
         {
@@ -33,7 +34,8 @@ namespace Model.ObjectModels
             DonVi = string.Empty;
             TrinhDo = string.Empty;
             HeSo = -1;
-            Color = string.Empty;
+            //Color = string.Empty;
+            NgachVC = string.Empty;
         }
     }
 }

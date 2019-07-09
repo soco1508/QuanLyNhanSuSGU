@@ -226,7 +226,7 @@
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn46 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn47 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemMemoEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             this.txtRowIndex = new DevExpress.XtraEditors.TextEdit();
             this.popupMenuGVMain = new DevExpress.XtraBars.PopupMenu(this.components);
@@ -2210,7 +2210,7 @@
             this.gridColumn7,
             this.gridColumn8,
             this.gridColumn9,
-            this.gridColumn46});
+            this.gridColumn47});
             this.gvMain.GridControl = this.gcMain;
             this.gvMain.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Count, "gridColumn4", null, " ( Có {0} người )")});
@@ -2345,13 +2345,14 @@
             this.gridColumn9.VisibleIndex = 7;
             this.gridColumn9.Width = 300;
             // 
-            // gridColumn46
+            // gridColumn47
             // 
-            this.gridColumn46.Caption = "Color";
-            this.gridColumn46.FieldName = "Color";
-            this.gridColumn46.Name = "gridColumn46";
-            this.gridColumn46.Visible = true;
-            this.gridColumn46.VisibleIndex = 8;
+            this.gridColumn47.Caption = "Phân loại công tác";
+            this.gridColumn47.FieldName = "NgachVC";
+            this.gridColumn47.Name = "gridColumn47";
+            this.gridColumn47.Visible = true;
+            this.gridColumn47.VisibleIndex = 8;
+            this.gridColumn47.Width = 300;
             // 
             // repositoryItemMemoEdit1
             // 
@@ -2763,10 +2764,10 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn18;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn35;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn19;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn46;
         private DevExpress.XtraGrid.Columns.LayoutViewColumn layoutViewColumn22;
         private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_layoutViewColumn22;
         private DevExpress.XtraGrid.Columns.LayoutViewColumn layoutViewColumn23;
         private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_layoutViewColumn23;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn47;
     }
 }
