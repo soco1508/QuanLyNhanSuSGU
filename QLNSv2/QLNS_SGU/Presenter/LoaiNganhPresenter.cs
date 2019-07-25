@@ -36,8 +36,7 @@ namespace QLNS_SGU.Presenter
     public class LoaiNganhPresenter : ILoaiNganhPresenter
     {
         private LoaiNganhForm _view;
-        private bool checkNewRowExist = true;
-        UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
+        private bool checkNewRowExist = true;        
         public object UI => _view;
         public LoaiNganhPresenter(LoaiNganhForm view) => _view = view;
 
@@ -50,6 +49,7 @@ namespace QLNS_SGU.Presenter
 
         private void LoadDataToGrid()
         {
+            UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             SplashScreenManager.ShowForm(_view, typeof(WaitForm1), true, true, false, 0);
             BindingList<LoaiNganh> listLoaiNganh = new BindingList<LoaiNganh>(unitOfWorks.LoaiNganhRepository.GetListLoaiNganh());
             _view.GCLoaiNganh.DataSource = listLoaiNganh;
@@ -75,6 +75,7 @@ namespace QLNS_SGU.Presenter
 
         public void MouseDoubleClick(object sender, MouseEventArgs e)
         {
+            UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             GridHitInfo hinfo = _view.GVLoaiNganh.CalcHitInfo(e.Location);
             int idRowFocused = Convert.ToInt32(_view.GVLoaiNganh.GetFocusedRowCellDisplayText("idLoaiNganh"));
             if (!unitOfWorks.LoaiNganhRepository.CheckExistById(idRowFocused))
@@ -118,6 +119,7 @@ namespace QLNS_SGU.Presenter
 
         public void SaveData()
         {
+            UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             _view.GVLoaiNganh.CloseEditor();
             _view.GVLoaiNganh.UpdateCurrentRow();            
             int row_handle = _view.GVLoaiNganh.FocusedRowHandle;
@@ -178,6 +180,7 @@ namespace QLNS_SGU.Presenter
 
         public void DeleteRow()
         {
+            UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             int row_handle = _view.GVLoaiNganh.FocusedRowHandle;
             if (row_handle >= 0)
             {

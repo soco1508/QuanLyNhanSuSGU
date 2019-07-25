@@ -42,7 +42,6 @@ namespace QLNS_SGU.Presenter
     }
     public class TabPageQuaTrinhLuongPresenter : ITabPageQuaTrinhLuongPresenter
     {
-        UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
         public static string idFileUpload = string.Empty;
         public static string maVienChucFromTabPageThongTinCaNhan = string.Empty;
         public static string maVienChucForGetListLinkVanBanDinhKem = string.Empty;
@@ -69,12 +68,14 @@ namespace QLNS_SGU.Presenter
             LoadForm();
         }
         private void LoadGridTabPageQuaTrinhLuong(string mavienchuc)
-        {            
+        {
+            UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             List<QuaTrinhLuongForView> listQuaTrinhLuong = unitOfWorks.QuaTrinhLuongRepository.GetListQuaTrinhLuong(mavienchuc);
             _view.GCTabPageQuaTrinhLuong.DataSource = listQuaTrinhLuong;
         }
         private void LoadCbxData()
         {
+            UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             _view.CBXMaNgach.Properties.DataSource = null;
             _view.CBXMaNgach.Properties.Columns.Clear();
             
@@ -114,6 +115,7 @@ namespace QLNS_SGU.Presenter
         }
         private void InsertData()
         {
+            UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             string mavienchuc = _view.TXTMaVienChuc.Text;            
             int idngach = Convert.ToInt32(_view.CBXMaNgach.EditValue);
             int bac = Convert.ToInt32(_view.CBXBac.EditValue);
@@ -136,7 +138,7 @@ namespace QLNS_SGU.Presenter
         }
         private void UpdateData()
         {
-            
+            UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             int idquatrinhluong = Convert.ToInt32(_view.GVTabPageQuaTrinhLuong.GetFocusedRowCellDisplayText("Id"));
             DateTime? ngaybatdau = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(_view.DTNgayBatDau.Text);
             DateTime? ngaylenluong = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(_view.DTNgayLenLuong.Text);
@@ -241,9 +243,9 @@ namespace QLNS_SGU.Presenter
 
         public void Delete()
         {
+            UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             try
-            {
-                
+            {                
                 int row_handle = _view.GVTabPageQuaTrinhLuong.FocusedRowHandle;
                 if(row_handle >= 0)
                 {
@@ -268,6 +270,7 @@ namespace QLNS_SGU.Presenter
 
         public void ClickRowAndShowInfo()
         {
+            UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             checkAddNew = false;
             
             int row_handle = _view.GVTabPageQuaTrinhLuong.FocusedRowHandle;
@@ -295,6 +298,7 @@ namespace QLNS_SGU.Presenter
         {
             if (_view.GVTabPageQuaTrinhLuong.FocusedRowHandle >= 0)
             {
+                UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
                 string mavienchuc = _view.TXTMaVienChuc.Text;
                 _view.FolderBrowserDialog.SelectedPath = string.Empty;
                 _view.OpenFileDialog.FileName = string.Empty;
@@ -338,6 +342,7 @@ namespace QLNS_SGU.Presenter
                 _view.OpenFileDialog.Filter = "Pdf Files|*.pdf";
                 if (_view.OpenFileDialog.ShowDialog() == DialogResult.Cancel) return;
 
+                UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
                 FileInfo replaceOldFileName = null;
                 string filename = string.Empty;
                 if (unitOfWorks.GoogleDriveFileRepository.InternetAvailable())
@@ -372,6 +377,7 @@ namespace QLNS_SGU.Presenter
 
         public void DownloadFileToDevice()
         {
+            UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             SplashScreenManager.ShowForm(_createAndEditPersonInfoForm, typeof(WaitForm1), true, true, false);
             SplashScreenManager.Default.SetWaitFormCaption("Vui lòng chờ");
             SplashScreenManager.Default.SetWaitFormDescription("Đang tải tập tin xuống thiết bị....");
@@ -411,7 +417,8 @@ namespace QLNS_SGU.Presenter
         public void MaNgachChanged(object sender, EventArgs e)
         {
             maNgachOrTenNgachOrBacChanged = true;
-            
+
+            UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             int idngach = Convert.ToInt32(_view.CBXMaNgach.EditValue);
             _view.TXTTenNgach.Text = unitOfWorks.NgachRepository.GetTenNgachByIdNgach(idngach);
         }
@@ -419,7 +426,8 @@ namespace QLNS_SGU.Presenter
         public void TenNgachChanged(object sender, EventArgs e)
         {
             maNgachOrTenNgachOrBacChanged = true;
-            
+
+            UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             List<string> listTenNgach = unitOfWorks.NgachRepository.GetListTenNgach();
             string tenngach = _view.TXTTenNgach.Text;
             if(tenngach != string.Empty)
@@ -453,7 +461,8 @@ namespace QLNS_SGU.Presenter
         public void BacChanged(object sender, EventArgs e)
         {
             maNgachOrTenNgachOrBacChanged = true;
-            
+
+            UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             string bac = _view.CBXBac.Text;
             string mangach = _view.CBXMaNgach.Text;
             if (bac != string.Empty && mangach != string.Empty)

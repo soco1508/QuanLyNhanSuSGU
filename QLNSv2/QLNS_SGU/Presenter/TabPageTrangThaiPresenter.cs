@@ -38,7 +38,6 @@ namespace QLNS_SGU.Presenter
     }
     public class TabPageTrangThaiPresenter : ITabPageTrangThaiPresenter
     {
-        UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
         public static string idFileUpload = string.Empty;
         public static string maVienChucForGetListLinkVanBanDinhKem = string.Empty;
         public static string maVienChucFromTabPageThongTinCaNhan = string.Empty;
@@ -63,12 +62,14 @@ namespace QLNS_SGU.Presenter
         }
         private void LoadGridTabPageTrangThai(string mavienchuc)
         {
+            UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             List<TrangThaiForView> listTrangThai = unitOfWorks.TrangThaiVienChucRepository.GetListTrangThaiVienChuc(mavienchuc);
             _view.GCTabPageTrangThai.DataSource = listTrangThai;
             //_view.GCTabPageTrangThai.DataSource = unitOfWorks.TrangThaiVienChucRepository.GetListTrangThaiVienChuc(mavienchuc).GetEnumerator();
         }
         private void LoadCbxData()
         {
+            UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             List<TrangThai> listTrangThai = unitOfWorks.TrangThaiRepository.GetListTrangThai().ToList();
             _view.CBXTrangThai.Properties.DataSource = listTrangThai;
             _view.CBXTrangThai.Properties.DisplayMember = "tenTrangThai";
@@ -91,6 +92,7 @@ namespace QLNS_SGU.Presenter
         }
         private void InsertData()
         {
+            UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             string mavienchuc = _view.TXTMaVienChuc.Text;
             unitOfWorks.TrangThaiVienChucRepository.Insert(new TrangThaiVienChuc
             {
@@ -110,6 +112,7 @@ namespace QLNS_SGU.Presenter
         }
         private void UpdateData()
         {
+            UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             int idtrangthaivienchuc = Convert.ToInt32(_view.GVTabPageTrangThai.GetFocusedRowCellDisplayText("Id"));
             DateTime? ngaybatdau = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(_view.DTNgayBatDau.Text);
             DateTime? ngayketthuc = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(_view.DTNgayKetThuc.Text);
@@ -168,6 +171,7 @@ namespace QLNS_SGU.Presenter
 
         public void ClickRowAndShowInfo()
         {
+            UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             checkAddNew = false;
             int row_handle = _view.GVTabPageTrangThai.FocusedRowHandle;
             if (row_handle >= 0)
@@ -187,6 +191,7 @@ namespace QLNS_SGU.Presenter
 
         public void Delete()
         {
+            UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             try
             {
                 int row_handle = _view.GVTabPageTrangThai.FocusedRowHandle;
@@ -251,6 +256,7 @@ namespace QLNS_SGU.Presenter
 
         public void UploadFileToLocal()
         {
+            UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             if (_view.GVTabPageTrangThai.FocusedRowHandle >= 0)
             {
                 string mavienchuc = _view.TXTMaVienChuc.Text;
@@ -296,6 +302,7 @@ namespace QLNS_SGU.Presenter
                 _view.OpenFileDialog.Filter = "Pdf Files|*.pdf";
                 if (_view.OpenFileDialog.ShowDialog() == DialogResult.Cancel) return;
 
+                UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
                 FileInfo replaceOldFileName = null;
                 string filename = string.Empty;
                 if (unitOfWorks.GoogleDriveFileRepository.InternetAvailable())
@@ -330,6 +337,7 @@ namespace QLNS_SGU.Presenter
 
         public void DownloadFileToDevice()
         {
+            UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             SplashScreenManager.ShowForm(_createAndEditPersonInfoForm, typeof(WaitForm1), true, true, false);
             SplashScreenManager.Default.SetWaitFormCaption("Vui lòng chờ");
             SplashScreenManager.Default.SetWaitFormDescription("Đang tải tập tin xuống thiết bị....");

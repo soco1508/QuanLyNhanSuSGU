@@ -320,6 +320,7 @@ namespace QLNS_SGU.Presenter
             }
             unitOfWorks.Save();
             MainPresenter.LoadDataToMainGrid();
+            MainPresenter.RefreshRightViewThongTinCaNhan();
             MainPresenter.MoveRowManaging(mavienchuc);
             XtraMessageBox.Show("Cập nhật dữ liệu thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }

@@ -35,8 +35,7 @@ namespace QLNS_SGU.Presenter
         void RowIndicator(object sender, RowIndicatorCustomDrawEventArgs e);        
     }
     public class TabPagePhuCapThamNienNhaGiaoPresenter : ITabPagePhuCapThamNienNhaGiaoPresenter
-    {
-        UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
+    {        
         public static string idFileUpload = string.Empty;
         public static string maVienChucForGetListLinkVanBanDinhKem = string.Empty;
         public static string maVienChucFromTabPageThongTinCaNhan = string.Empty;
@@ -59,7 +58,8 @@ namespace QLNS_SGU.Presenter
         }
 
         private void LoadGridTabPageQuaTrinhPhuCapThamNienNhaGiao(string mavienchuc)
-        {            
+        {
+            UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             List<QuaTrinhPhuCapThamNienNhaGiao> list = unitOfWorks.QuaTrinhPhuCapThamNienNhaGiaoRepository.GetListQuaTrinhPhuCap(mavienchuc);
             _view.GCPhuCapThamNienNhaGiao.DataSource = list;
         }
@@ -73,6 +73,7 @@ namespace QLNS_SGU.Presenter
         }
         private void InsertData()
         {
+            UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             string mavienchuc = _view.TXTMaVienChuc.Text;            
             unitOfWorks.QuaTrinhPhuCapThamNienNhaGiaoRepository.Insert(new QuaTrinhPhuCapThamNienNhaGiao
             {
@@ -88,7 +89,8 @@ namespace QLNS_SGU.Presenter
             SetDefaultValueControl();
         }
         private void UpdateData()
-        {            
+        {
+            UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             int idquatrinhphucap = Convert.ToInt32(_view.GVPhuCapThamNienNhaGiao.GetFocusedRowCellDisplayText("idQuaTrinhPhuCap"));
             DateTime? ngaybatdau = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(_view.DTNgayBatDau.Text);
             DateTime? ngaynangphucap = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(_view.DTNgayNangPhuCap.Text);
@@ -127,6 +129,7 @@ namespace QLNS_SGU.Presenter
 
         public void ClickRowAndShowInfo()
         {
+            UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             checkAddNew = false;            
             int row_handle = _view.GVPhuCapThamNienNhaGiao.FocusedRowHandle;
             if (row_handle >= 0)
@@ -144,6 +147,7 @@ namespace QLNS_SGU.Presenter
         {
             if (_view.GVPhuCapThamNienNhaGiao.FocusedRowHandle >= 0)
             {
+                UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
                 string mavienchuc = _view.TXTMaVienChuc.Text;
                 _view.FolderBrowserDialog.SelectedPath = string.Empty;
                 _view.OpenFileDialog.FileName = string.Empty;
@@ -182,6 +186,7 @@ namespace QLNS_SGU.Presenter
         {
             if (_view.GVPhuCapThamNienNhaGiao.FocusedRowHandle >= 0)
             {
+                UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
                 string mavienchuc = _view.TXTMaVienChuc.Text;
                 _view.OpenFileDialog.FileName = string.Empty;
                 _view.OpenFileDialog.Filter = "Pdf Files|*.pdf";
@@ -221,6 +226,7 @@ namespace QLNS_SGU.Presenter
 
         public void DownloadFileToDevice()
         {
+            UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             SplashScreenManager.ShowForm(_createAndEditPersonInfoForm, typeof(WaitForm1), true, true, false);
             SplashScreenManager.Default.SetWaitFormCaption("Vui lòng chờ");
             SplashScreenManager.Default.SetWaitFormDescription("Đang tải tập tin xuống thiết bị....");
@@ -262,6 +268,7 @@ namespace QLNS_SGU.Presenter
 
         public void Delete()
         {
+            UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             try
             {                
                 int row_handle = _view.GVPhuCapThamNienNhaGiao.FocusedRowHandle;

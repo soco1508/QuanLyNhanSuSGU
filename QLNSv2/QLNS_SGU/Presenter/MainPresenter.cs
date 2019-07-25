@@ -56,7 +56,6 @@ namespace QLNS_SGU.Presenter
     }
     public class MainPresenter : IMainPresenter
     {
-        private static UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
         private bool clickGVQuaTrinhCongTac = false;
         private bool clickGVQuaTrinhLuong = false;
         private bool clickGVHocHamHocVi = false;
@@ -93,6 +92,14 @@ namespace QLNS_SGU.Presenter
                 }
             }
             _view.GVMain.FocusedRowHandle = rowIndex;
+        }
+        public static void RefreshRightViewThongTinCaNhan()
+        {
+            if (_view.LCIThongTinCaNhan.IsHidden == false)
+            {
+                int rowFocus = Convert.ToInt32(_view.TXTRowIndex.Text);
+                ShowThongTinCaNhan(rowFocus);
+            }
         }
         public static void RefreshMainGridAndRightViewQuaTrinhCongTac()
         {
@@ -134,13 +141,13 @@ namespace QLNS_SGU.Presenter
             Application.Exit();
         }
         public static void LoadDataToMainGrid()
-        {            
-            //BindingList<GridViewMainData> listGridViewMainData = new BindingList<GridViewMainData>(unitOfWorks.GridViewDataRepository.LoadDataToMainGrid());            
-            //_view.GCMain.DataSource = unitOfWorks.GridViewDataRepository.LoadDataToMainGrid().GetEnumerator()/*datasource.Values*/;
+        {
+            UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             _view.GCMain.DataSource = unitOfWorks.GridViewDataRepository.LoadDataToMainGrid();
         }       
         public static void SetValueLbHopDong()
         {
+            UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             int rowFocus = Convert.ToInt32(_view.TXTRowIndex.Text);
             string mavienchuc = _view.GVMain.GetRowCellValue(rowFocus, "MaVienChuc").ToString();
             string hopdong = unitOfWorks.HopDongVienChucRepository.GetLoaiHopDongVienChucForLbHopDong(mavienchuc);
@@ -164,6 +171,7 @@ namespace QLNS_SGU.Presenter
         }
         private void ChangeInfoAtRightLayout(int rowFocus)
         {
+            UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             try
             {
                 string mavienchuc = _view.GVMain.GetRowCellValue(rowFocus, "MaVienChuc").ToString();
@@ -185,8 +193,9 @@ namespace QLNS_SGU.Presenter
             }
             catch { }
         }
-        private void ShowThongTinCaNhan(int rowFocus)
+        private static void ShowThongTinCaNhan(int rowFocus)
         {
+            UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             List<ThongTinCaNhan> list = new List<ThongTinCaNhan>();
             try
             {
@@ -204,6 +213,7 @@ namespace QLNS_SGU.Presenter
         }
         private static void ShowQuaTrinhCongTac(int rowFocus)
         {
+            UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             try
             {
                 string mavienchuc = _view.GVMain.GetRowCellValue(rowFocus, "MaVienChuc").ToString();
@@ -214,6 +224,7 @@ namespace QLNS_SGU.Presenter
         }
         private static void ShowQuaTrinhLuong(int rowFocus)
         {
+            UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             try
             {
                 string mavienchuc = _view.GVMain.GetRowCellValue(rowFocus, "MaVienChuc").ToString();
@@ -224,6 +235,7 @@ namespace QLNS_SGU.Presenter
         }
         public static void LoadGridHocHamHocViAtRightViewInMainForm(int _rowForcus = -1)
         {
+            UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             int rowFocus = _rowForcus == -1 ? Convert.ToInt32(_view.TXTRowIndex.Text) : _rowForcus;
             string mavienchuc = _view.GVMain.GetRowCellValue(rowFocus, "MaVienChuc").ToString();
             List<HocHamHocViGridAtRightViewInMainForm> listHocHamHocVi = unitOfWorks.HocHamHocViVienChucRepository.GetListHocHamHocViGridAtRightViewInMainForm(mavienchuc);
@@ -231,6 +243,7 @@ namespace QLNS_SGU.Presenter
         }
         public static void LoadGridChungChi(int _rowForcus = -1)
         {
+            UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             int rowFocus = _rowForcus == -1 ? Convert.ToInt32(_view.TXTRowIndex.Text) : _rowForcus;
             string mavienchuc = _view.GVMain.GetRowCellValue(rowFocus, "MaVienChuc").ToString();
             List<ChungChiForView> listChungChiForView = unitOfWorks.ChungChiVienChucRepository.GetListChungChiVienChuc(mavienchuc);
@@ -247,6 +260,7 @@ namespace QLNS_SGU.Presenter
         }
         private static void ShowTrangThai(int rowFocus)
         {
+            UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             try
             {
                 string mavienchuc = _view.GVMain.GetRowCellValue(rowFocus, "MaVienChuc").ToString();
@@ -258,7 +272,8 @@ namespace QLNS_SGU.Presenter
         }
         private void Download(string linkvanbandinhkem)
         {
-            if(linkvanbandinhkem != "")
+            UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
+            if (linkvanbandinhkem != "")
             {
                 string[] arr_linkvanbandinhkem = linkvanbandinhkem.Split('=');
                 string idvanbandinhkem = arr_linkvanbandinhkem[1];
@@ -296,6 +311,7 @@ namespace QLNS_SGU.Presenter
 
         public void OpenStoreImage()
         {
+            UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             int rowFocus = Convert.ToInt32(_view.TXTRowIndex.Text);
             string mavienchuc = _view.GVMain.GetRowCellValue(rowFocus, "MaVienChuc").ToString();
             var storeImagePresenter = new StoreImagePresenter(new StoreImageForm());

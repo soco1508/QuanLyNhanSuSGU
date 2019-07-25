@@ -36,7 +36,6 @@ namespace QLNS_SGU.Presenter
     }
     public class TabPageDanhGiaVienChucPresenter : ITabPageDanhGiaVienChucPresenter
     {
-        UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
         private TabPageDanhGiaVienChuc _view;
         private bool checkAddNew = true;
         private bool khoangThoiGianChanged = false;
@@ -62,31 +61,47 @@ namespace QLNS_SGU.Presenter
 
         private void LoadCbxData()
         {
-            UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
+            try
+            {
+                UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
 
-            List<DanhMucThoiGian> listDanhMucThoiGian = unitOfWorks.DanhMucThoiGianRepository.GetListDanhMucThoiGian();
-            _view.CBXKhoangThoiGian.Properties.DataSource = listDanhMucThoiGian;
-            _view.CBXKhoangThoiGian.Properties.DisplayMember = "tenDanhMucThoiGian";
-            _view.CBXKhoangThoiGian.Properties.ValueMember = "idDanhMucThoiGian";
-            _view.CBXKhoangThoiGian.Properties.DropDownRows = listDanhMucThoiGian.Count;
-            _view.CBXKhoangThoiGian.Properties.Columns.Add(new DevExpress.XtraEditors.Controls.LookUpColumnInfo("idDanhMucThoiGian", string.Empty));
-            _view.CBXKhoangThoiGian.Properties.Columns.Add(new DevExpress.XtraEditors.Controls.LookUpColumnInfo("tenDanhMucThoiGian", string.Empty));
-            _view.CBXKhoangThoiGian.Properties.Columns[0].Visible = false;
+                List<DanhMucThoiGian> listDanhMucThoiGian = unitOfWorks.DanhMucThoiGianRepository.GetListDanhMucThoiGian();
+                _view.CBXKhoangThoiGian.Properties.DataSource = listDanhMucThoiGian;
+                _view.CBXKhoangThoiGian.Properties.DisplayMember = "tenDanhMucThoiGian";
+                _view.CBXKhoangThoiGian.Properties.ValueMember = "idDanhMucThoiGian";
+                _view.CBXKhoangThoiGian.Properties.DropDownRows = listDanhMucThoiGian.Count;
+                _view.CBXKhoangThoiGian.Properties.Columns.Add(new DevExpress.XtraEditors.Controls.LookUpColumnInfo("idDanhMucThoiGian", string.Empty));
+                _view.CBXKhoangThoiGian.Properties.Columns.Add(new DevExpress.XtraEditors.Controls.LookUpColumnInfo("tenDanhMucThoiGian", string.Empty));
+                _view.CBXKhoangThoiGian.Properties.Columns[0].Visible = false;
 
-            List<MucDoDanhGia> listMucDoDanhGia = unitOfWorks.MucDoDanhGiaRepository.GetListMucDoDanhGia();
-            _view.CBXMucDoDanhGia.Properties.DataSource = listMucDoDanhGia;
-            _view.CBXMucDoDanhGia.Properties.DisplayMember = "tenMucDoDanhGia";
-            _view.CBXMucDoDanhGia.Properties.ValueMember = "idMucDoDanhGia";
-            _view.CBXMucDoDanhGia.Properties.DropDownRows = listMucDoDanhGia.Count;
-            _view.CBXMucDoDanhGia.Properties.Columns.Add(new DevExpress.XtraEditors.Controls.LookUpColumnInfo("idMucDoDanhGia", string.Empty));
-            _view.CBXMucDoDanhGia.Properties.Columns.Add(new DevExpress.XtraEditors.Controls.LookUpColumnInfo("tenMucDoDanhGia", string.Empty));
-            _view.CBXMucDoDanhGia.Properties.Columns[0].Visible = false;
+                List<MucDoDanhGia> listMucDoDanhGia = unitOfWorks.MucDoDanhGiaRepository.GetListMucDoDanhGia();
+                _view.CBXMucDoDanhGia.Properties.DataSource = listMucDoDanhGia;
+                _view.CBXMucDoDanhGia.Properties.DisplayMember = "tenMucDoDanhGia";
+                _view.CBXMucDoDanhGia.Properties.ValueMember = "idMucDoDanhGia";
+                _view.CBXMucDoDanhGia.Properties.DropDownRows = listMucDoDanhGia.Count;
+                _view.CBXMucDoDanhGia.Properties.Columns.Add(new DevExpress.XtraEditors.Controls.LookUpColumnInfo("idMucDoDanhGia", string.Empty));
+                _view.CBXMucDoDanhGia.Properties.Columns.Add(new DevExpress.XtraEditors.Controls.LookUpColumnInfo("tenMucDoDanhGia", string.Empty));
+                _view.CBXMucDoDanhGia.Properties.Columns[0].Visible = false;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
         private void LoadGridTabPageDanhGiaVienChuc(string mavienchuc)
         {
-            UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
-            List<QuaTrinhDanhGiaVienChucForView> list = unitOfWorks.QuaTrinhDanhGiaVienChucRepository.GetListQuaTrinhDanhGia(mavienchuc);
-            _view.GCDanhGiaVienChuc.DataSource = list;
+            try
+            {
+                UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
+                List<QuaTrinhDanhGiaVienChucForView> list = unitOfWorks.QuaTrinhDanhGiaVienChucRepository.GetListQuaTrinhDanhGia(mavienchuc);
+                _view.GCDanhGiaVienChuc.DataSource = list;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
         private void SetDefaultValueControl()
         {
@@ -98,59 +113,83 @@ namespace QLNS_SGU.Presenter
         }
         private void InsertData()
         {
-            string mavienchuc = _view.TXTMaVienChuc.Text;
-            UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
-            unitOfWorks.QuaTrinhDanhGiaVienChucRepository.Insert(new QuaTrinhDanhGiaVienChuc
+            try
             {
-                idVienChuc = unitOfWorks.VienChucRepository.GetIdVienChuc(mavienchuc),
-                idDanhMucThoiGian = Convert.ToInt32(_view.CBXKhoangThoiGian.EditValue),
-                ngayBatDau = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(_view.DTNgayBatDau.Text),
-                ngayKetThuc = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(_view.DTNgayKetThuc.Text),
-                idMucDoDanhGia = Convert.ToInt32(_view.CBXMucDoDanhGia.EditValue)
-            });
-            unitOfWorks.Save();
-            LoadGridTabPageDanhGiaVienChuc(_view.TXTMaVienChuc.Text);
-            XtraMessageBox.Show("Thêm dữ liệu thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            SetDefaultValueControl();
+                string mavienchuc = _view.TXTMaVienChuc.Text;
+                UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
+                unitOfWorks.QuaTrinhDanhGiaVienChucRepository.Insert(new QuaTrinhDanhGiaVienChuc
+                {
+                    idVienChuc = unitOfWorks.VienChucRepository.GetIdVienChuc(mavienchuc),
+                    idDanhMucThoiGian = Convert.ToInt32(_view.CBXKhoangThoiGian.EditValue),
+                    ngayBatDau = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(_view.DTNgayBatDau.Text),
+                    ngayKetThuc = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(_view.DTNgayKetThuc.Text),
+                    idMucDoDanhGia = Convert.ToInt32(_view.CBXMucDoDanhGia.EditValue)
+                });
+                unitOfWorks.Save();
+                LoadGridTabPageDanhGiaVienChuc(_view.TXTMaVienChuc.Text);
+                XtraMessageBox.Show("Thêm dữ liệu thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                SetDefaultValueControl();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
         private void UpdateData()
         {
             UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
-            int id = Convert.ToInt32(_view.GVDanhGiaVienChuc.GetFocusedRowCellDisplayText("Id"));
-            DateTime? ngaybatdau = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(_view.DTNgayBatDau.Text);
-            DateTime? ngayketthuc = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(_view.DTNgayKetThuc.Text);
-            QuaTrinhDanhGiaVienChuc quaTrinhDanhGia = unitOfWorks.QuaTrinhDanhGiaVienChucRepository.GetObjectById(id);
-            if (khoangThoiGianChanged)
+            try
             {
-                quaTrinhDanhGia.idDanhMucThoiGian = Convert.ToInt32(_view.CBXKhoangThoiGian.EditValue);
-                khoangThoiGianChanged = false;
+                int id = Convert.ToInt32(_view.GVDanhGiaVienChuc.GetFocusedRowCellDisplayText("Id"));
+                DateTime? ngaybatdau = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(_view.DTNgayBatDau.Text);
+                DateTime? ngayketthuc = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(_view.DTNgayKetThuc.Text);
+                QuaTrinhDanhGiaVienChuc quaTrinhDanhGia = unitOfWorks.QuaTrinhDanhGiaVienChucRepository.GetObjectById(id);
+                if (khoangThoiGianChanged)
+                {
+                    quaTrinhDanhGia.idDanhMucThoiGian = Convert.ToInt32(_view.CBXKhoangThoiGian.EditValue);
+                    khoangThoiGianChanged = false;
+                }
+                if (ngayBatDauChanged)
+                {
+                    quaTrinhDanhGia.ngayBatDau = ngaybatdau;
+                    ngayBatDauChanged = false;
+                }
+                if (ngayKetThucChanged)
+                {
+                    quaTrinhDanhGia.ngayKetThuc = ngayketthuc;
+                    ngayKetThucChanged = false;
+                }
+                if (mucDoDanhGiaChanged)
+                {
+                    quaTrinhDanhGia.idMucDoDanhGia = Convert.ToInt32(_view.CBXMucDoDanhGia.EditValue);
+                    mucDoDanhGiaChanged = false;
+                }
+                unitOfWorks.Save();
+                LoadGridTabPageDanhGiaVienChuc(_view.TXTMaVienChuc.Text);
+                XtraMessageBox.Show("Sửa dữ liệu thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            if (ngayBatDauChanged)
+            catch (Exception ex)
             {
-                quaTrinhDanhGia.ngayBatDau = ngaybatdau;
-                ngayBatDauChanged = false;
+
+                throw ex;
             }
-            if (ngayKetThucChanged)
-            {
-                quaTrinhDanhGia.ngayKetThuc = ngayketthuc;
-                ngayKetThucChanged = false;
-            }
-            if (mucDoDanhGiaChanged)
-            {
-                quaTrinhDanhGia.idMucDoDanhGia = Convert.ToInt32(_view.CBXMucDoDanhGia.EditValue);
-                mucDoDanhGiaChanged = false;
-            }
-            unitOfWorks.Save();
-            LoadGridTabPageDanhGiaVienChuc(_view.TXTMaVienChuc.Text);
-            XtraMessageBox.Show("Sửa dữ liệu thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         public void LoadForm()
         {
-            LoadCbxData();
-            string mavienchuc = _view.TXTMaVienChuc.Text;
-            if (mavienchuc != string.Empty)
-                LoadGridTabPageDanhGiaVienChuc(mavienchuc);
+            try
+            {
+                LoadCbxData();
+                string mavienchuc = _view.TXTMaVienChuc.Text;
+                if (mavienchuc != string.Empty)
+                    LoadGridTabPageDanhGiaVienChuc(mavienchuc);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public void KhoangThoiGianChanged(object sender, EventArgs e)
@@ -177,38 +216,54 @@ namespace QLNS_SGU.Presenter
         {
             checkAddNew = false;
             UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
-            int row_handle = _view.GVDanhGiaVienChuc.FocusedRowHandle;
-            if (row_handle >= 0)
+            try
             {
-                string khoangthoigian = _view.GVDanhGiaVienChuc.GetFocusedRowCellDisplayText("KhoangThoiGian").ToString();
-                string mucdodanhgia = _view.GVDanhGiaVienChuc.GetFocusedRowCellDisplayText("MucDoDanhGia").ToString();
-                _view.CBXKhoangThoiGian.EditValue = unitOfWorks.DanhMucThoiGianRepository.GetIdByName(khoangthoigian);
-                _view.CBXMucDoDanhGia.EditValue = unitOfWorks.MucDoDanhGiaRepository.GetIdByName(mucdodanhgia);
-                _view.DTNgayBatDau.EditValue = unitOfWorks.HopDongVienChucRepository.ReturnNullIfDateTimeNullToView(_view.GVDanhGiaVienChuc.GetFocusedRowCellDisplayText("NgayBatDau"));
-                _view.DTNgayKetThuc.EditValue = unitOfWorks.HopDongVienChucRepository.ReturnNullIfDateTimeNullToView(_view.GVDanhGiaVienChuc.GetFocusedRowCellDisplayText("NgayKetThuc"));
+                int row_handle = _view.GVDanhGiaVienChuc.FocusedRowHandle;
+                if (row_handle >= 0)
+                {
+                    string khoangthoigian = _view.GVDanhGiaVienChuc.GetFocusedRowCellDisplayText("KhoangThoiGian").ToString();
+                    string mucdodanhgia = _view.GVDanhGiaVienChuc.GetFocusedRowCellDisplayText("MucDoDanhGia").ToString();
+                    _view.CBXKhoangThoiGian.EditValue = unitOfWorks.DanhMucThoiGianRepository.GetIdByName(khoangthoigian);
+                    _view.CBXMucDoDanhGia.EditValue = unitOfWorks.MucDoDanhGiaRepository.GetIdByName(mucdodanhgia);
+                    _view.DTNgayBatDau.EditValue = unitOfWorks.HopDongVienChucRepository.ReturnNullIfDateTimeNullToView(_view.GVDanhGiaVienChuc.GetFocusedRowCellDisplayText("NgayBatDau"));
+                    _view.DTNgayKetThuc.EditValue = unitOfWorks.HopDongVienChucRepository.ReturnNullIfDateTimeNullToView(_view.GVDanhGiaVienChuc.GetFocusedRowCellDisplayText("NgayKetThuc"));
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
             }
         }
 
         public void Save()
         {
-            if (checkAddNew)
+            try
             {
-                if (_view.TXTMaVienChuc.Text != string.Empty && maVienChucFromTabPageThongTinCaNhan == string.Empty)
+                if (checkAddNew)
                 {
-                    InsertData();
+                    if (_view.TXTMaVienChuc.Text != string.Empty && maVienChucFromTabPageThongTinCaNhan == string.Empty)
+                    {
+                        InsertData();
+                    }
+                    else if (_view.TXTMaVienChuc.Text == string.Empty && maVienChucFromTabPageThongTinCaNhan != string.Empty)
+                    {
+                        _view.TXTMaVienChuc.Text = maVienChucFromTabPageThongTinCaNhan;
+                        InsertData();
+                    }
+                    else XtraMessageBox.Show("Vui lòng thêm thông tin viên chức trước.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                else if (_view.TXTMaVienChuc.Text == string.Empty && maVienChucFromTabPageThongTinCaNhan != string.Empty)
+                else
                 {
-                    _view.TXTMaVienChuc.Text = maVienChucFromTabPageThongTinCaNhan;
-                    InsertData();
+                    int row_handle = _view.GVDanhGiaVienChuc.FocusedRowHandle;
+                    if (row_handle >= 0)
+                        UpdateData();
                 }
-                else XtraMessageBox.Show("Vui lòng thêm thông tin viên chức trước.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else
+            catch (Exception ex)
             {
-                int row_handle = _view.GVDanhGiaVienChuc.FocusedRowHandle;
-                if (row_handle >= 0)
-                    UpdateData();
+
+                throw ex;
             }
         }
 
@@ -244,11 +299,19 @@ namespace QLNS_SGU.Presenter
 
         public void ExportExcel()
         {
-            _view.SaveFileDialog.FileName = string.Empty;
-            _view.SaveFileDialog.Filter = "Excel files (*.xlsx)|*.xlsx";
-            if (_view.SaveFileDialog.ShowDialog() == DialogResult.Cancel) return;
-            _view.GVDanhGiaVienChuc.ExportToXlsx(_view.SaveFileDialog.FileName);
-            XtraMessageBox.Show("Xuất Excel thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            try
+            {
+                _view.SaveFileDialog.FileName = string.Empty;
+                _view.SaveFileDialog.Filter = "Excel files (*.xlsx)|*.xlsx";
+                if (_view.SaveFileDialog.ShowDialog() == DialogResult.Cancel) return;
+                _view.GVDanhGiaVienChuc.ExportToXlsx(_view.SaveFileDialog.FileName);
+                XtraMessageBox.Show("Xuất Excel thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public void RowIndicator(object sender, RowIndicatorCustomDrawEventArgs e)
@@ -268,6 +331,7 @@ namespace QLNS_SGU.Presenter
                 if (_view.OpenFileDialog.ShowDialog() == DialogResult.Cancel) return;
                 if (_view.FolderBrowserDialog.ShowDialog() == DialogResult.Cancel) return;
 
+                UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
                 FileInfo replaceOldFileName = null;
                 string filename = string.Empty;
                 try
@@ -304,6 +368,7 @@ namespace QLNS_SGU.Presenter
                 _view.OpenFileDialog.Filter = "Pdf Files|*.pdf";
                 if (_view.OpenFileDialog.ShowDialog() == DialogResult.Cancel) return;
 
+                UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
                 FileInfo replaceOldFileName = null;
                 string filename = string.Empty;
                 if (unitOfWorks.GoogleDriveFileRepository.InternetAvailable())
@@ -338,16 +403,25 @@ namespace QLNS_SGU.Presenter
 
         public void DownloadFileToDevice()
         {
-            SplashScreenManager.ShowForm(_createAndEditPersonInfoForm, typeof(WaitForm1), true, true, false);
-            SplashScreenManager.Default.SetWaitFormCaption("Vui lòng chờ");
-            SplashScreenManager.Default.SetWaitFormDescription("Đang tải tập tin xuống thiết bị....");
-            string linkvanbandinhkem = _view.TXTLinkVanBanDinhKem.Text.Trim();
-            var tuple = unitOfWorks.GoogleDriveFileRepository.DoDownLoadAndReturnMessage(linkvanbandinhkem);
-            SplashScreenManager.CloseForm();
-            if (tuple.Item2 == 64)
-                XtraMessageBox.Show(tuple.Item1, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            if (tuple.Item2 == 16)
-                XtraMessageBox.Show(tuple.Item1, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
+            try
+            {
+                SplashScreenManager.ShowForm(_createAndEditPersonInfoForm, typeof(WaitForm1), true, true, false);
+                SplashScreenManager.Default.SetWaitFormCaption("Vui lòng chờ");
+                SplashScreenManager.Default.SetWaitFormDescription("Đang tải tập tin xuống thiết bị....");
+                string linkvanbandinhkem = _view.TXTLinkVanBanDinhKem.Text.Trim();
+                var tuple = unitOfWorks.GoogleDriveFileRepository.DoDownLoadAndReturnMessage(linkvanbandinhkem);
+                SplashScreenManager.CloseForm();
+                if (tuple.Item2 == 64)
+                    XtraMessageBox.Show(tuple.Item1, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (tuple.Item2 == 16)
+                    XtraMessageBox.Show(tuple.Item1, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
     }
 }

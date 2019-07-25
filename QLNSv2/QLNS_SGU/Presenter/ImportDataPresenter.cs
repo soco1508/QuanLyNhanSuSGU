@@ -61,8 +61,7 @@ namespace QLNS_SGU.Presenter
     }
     public class ImportDataPresenter : IImportDataPresenter
     {
-        bool checkFileNameIsEmpty = true;
-        UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
+        bool checkFileNameIsEmpty = true;        
         private ImportDataForm _view;
         ExcelQueryFactory excelfile = new ExcelQueryFactory();
         string successMessage = "Nhập dữ liệu thành công.";
@@ -232,6 +231,7 @@ namespace QLNS_SGU.Presenter
         {
             if (!checkFileNameIsEmpty)
             {
+                UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
                 string sheetName = _view.CbxListSheets.EditValue.ToString();                
                 if (sheetName.Equals("VienChuc"))
                 {
@@ -297,6 +297,7 @@ namespace QLNS_SGU.Presenter
         {
             if (!checkFileNameIsEmpty)
             {
+                UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
                 string sheetName = _view.CbxListSheets.EditValue.ToString();                
                 if (sheetName.Equals("VienChuc"))
                 {
@@ -363,6 +364,7 @@ namespace QLNS_SGU.Presenter
         {
             if (!checkFileNameIsEmpty)
             {
+                UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
                 int count = 2;          //dữ liệu file excel bắt đầu từ dòng 2
                 string sheetName = _view.CbxListSheets.EditValue.ToString();                
                 string error = string.Empty;
@@ -457,6 +459,7 @@ namespace QLNS_SGU.Presenter
 
         public void ImportTrangThai()
         {
+            UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             SplashScreenManager.ShowForm(_view, typeof(WaitForm1), true, true, false, 0);
             SplashScreenManager.Default.SetWaitFormCaption("Đang import......");
             SplashScreenManager.Default.SetWaitFormDescription("0.0%");
@@ -494,6 +497,7 @@ namespace QLNS_SGU.Presenter
         {
             if (!checkFileNameIsEmpty)
             {
+                UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
                 string sheetName = _view.CbxListSheets.EditValue.ToString();
                 if (sheetName.Equals("TrangThai"))
                 {
@@ -559,6 +563,7 @@ namespace QLNS_SGU.Presenter
 
         public void ImportLoaiChucVu()
         {
+            UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             SplashScreenManager.ShowForm(_view, typeof(WaitForm1), true, true, false, 0);
             SplashScreenManager.Default.SetWaitFormCaption("Đang import......");
             SplashScreenManager.Default.SetWaitFormDescription("0.0%");
@@ -592,6 +597,7 @@ namespace QLNS_SGU.Presenter
         {
             if (!checkFileNameIsEmpty)
             {
+                UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
                 string sheetName = _view.CbxListSheets.EditValue.ToString();
                 if (sheetName.Equals("ChucVuDonVi"))
                 {
@@ -687,6 +693,7 @@ namespace QLNS_SGU.Presenter
 
         public void ImportLoaiDonVi()
         {
+            UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             SplashScreenManager.ShowForm(_view, typeof(WaitForm1), true, true, false, 0);
             SplashScreenManager.Default.SetWaitFormCaption("Đang import......");
 
@@ -717,6 +724,7 @@ namespace QLNS_SGU.Presenter
         {
             if (!checkFileNameIsEmpty)
             {
+                UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
                 string sheetName = _view.CbxListSheets.EditValue.ToString();
                 if (sheetName.Equals("ChucVuDonVi"))
                 {
@@ -796,6 +804,7 @@ namespace QLNS_SGU.Presenter
         {
             if (!checkFileNameIsEmpty)
             {
+                UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
                 string sheetName = _view.CbxListSheets.EditValue.ToString();
                 if (sheetName.Equals("ChucVuDonVi"))
                 {
@@ -856,6 +865,7 @@ namespace QLNS_SGU.Presenter
         {
             if (!checkFileNameIsEmpty)
             {
+                UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
                 string sheetName = _view.CbxListSheets.EditValue.ToString();
                 if (sheetName.Equals("ChucVuDonVi"))
                 {
@@ -1013,6 +1023,7 @@ namespace QLNS_SGU.Presenter
         {
             if (!checkFileNameIsEmpty)
             {
+                UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
                 string sheetName = _view.CbxListSheets.EditValue.ToString();
                 if (sheetName.Equals("QuaTrinhLuong"))
                 {
@@ -1075,6 +1086,7 @@ namespace QLNS_SGU.Presenter
         {
             if (!checkFileNameIsEmpty)
             {
+                UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
                 string sheetName = _view.CbxListSheets.EditValue.ToString();
                 if (sheetName.Equals("QuaTrinhLuong"))
                 {
@@ -1147,6 +1159,7 @@ namespace QLNS_SGU.Presenter
         {
             if (!checkFileNameIsEmpty)
             {
+                UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
                 string sheetName = _view.CbxListSheets.EditValue.ToString();
                 if (sheetName.Equals("QuaTrinhLuong"))
                 {
@@ -1216,6 +1229,7 @@ namespace QLNS_SGU.Presenter
         {
             if (!checkFileNameIsEmpty)
             {
+                UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
                 string sheetName = _view.CbxListSheets.EditValue.ToString();
                 if (sheetName.Equals("Nganh_HHHV"))
                 {
@@ -1276,6 +1290,7 @@ namespace QLNS_SGU.Presenter
         {
             if (!checkFileNameIsEmpty)
             {
+                UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
                 string sheetName = _view.CbxListSheets.EditValue.ToString();
                 if (sheetName.Equals("Nganh_HHHV"))
                 {
@@ -1350,6 +1365,7 @@ namespace QLNS_SGU.Presenter
         {
             if (!checkFileNameIsEmpty)
             {
+                UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
                 string sheetName = _view.CbxListSheets.EditValue.ToString();
                 if (sheetName.Equals("Nganh_HHHV"))
                 {
@@ -1513,6 +1529,7 @@ namespace QLNS_SGU.Presenter
 
         public void ImportLoaiHocHamHocVi()
         {
+            UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             SplashScreenManager.ShowForm(_view, typeof(WaitForm1), true, true, false, 0);
             SplashScreenManager.Default.SetWaitFormCaption("Đang import......");
             SplashScreenManager.Default.SetWaitFormDescription("0.0%");
@@ -1547,6 +1564,7 @@ namespace QLNS_SGU.Presenter
         {
             if (!checkFileNameIsEmpty)
             {
+                UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
                 string sheetName = _view.CbxListSheets.EditValue.ToString();
                 if (sheetName.Equals("Nganh_HHHV"))
                 {
@@ -1683,6 +1701,7 @@ namespace QLNS_SGU.Presenter
         {
             if (!checkFileNameIsEmpty)
             {
+                UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
                 string sheetName = _view.CbxListSheets.EditValue.ToString();
                 if (sheetName.Equals("DangHocNangCao"))
                 {
@@ -1778,6 +1797,7 @@ namespace QLNS_SGU.Presenter
         {
             if (!checkFileNameIsEmpty)
             {
+                UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
                 string sheetName = _view.CbxListSheets.EditValue.ToString();
                 if (sheetName.Equals("HopDong"))
                 {
@@ -1835,6 +1855,7 @@ namespace QLNS_SGU.Presenter
         {
             if (!checkFileNameIsEmpty)
             {
+                UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
                 string sheetName = _view.CbxListSheets.EditValue.ToString();
                 if (sheetName.Equals("HopDong"))
                 {
@@ -1897,6 +1918,7 @@ namespace QLNS_SGU.Presenter
 
         public void ImportLoaiChungChi()
         {
+            UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             SplashScreenManager.ShowForm(_view, typeof(WaitForm1), true, true, false, 0);
             SplashScreenManager.Default.SetWaitFormCaption("Đang import......");
             SplashScreenManager.Default.SetWaitFormDescription("0.0%");
@@ -1931,6 +1953,7 @@ namespace QLNS_SGU.Presenter
         {            
             if (!checkFileNameIsEmpty)
             {
+                UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
                 string sheetName = _view.CbxListSheets.EditValue.ToString();
                 if (sheetName.Equals("ChungChi"))
                 {
@@ -2017,6 +2040,7 @@ namespace QLNS_SGU.Presenter
 
         private void InsertChungChi(int idvienchuc, string loaichungchi, string tenchungchi, string capdochungchi)
         {
+            UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             if (capdochungchi.Contains(","))
             {
                 string[] arrCapDoChungChi = capdochungchi.Split(',');
