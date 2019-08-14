@@ -34,27 +34,27 @@ namespace Model.ObjectModels
         public VienChucForGrid()
         {
             idVienChuc = -1;
-            maVienChuc = "";
-            ho = "";
-            ten = "";
-            sDT = "";
-            gioiTinh = "";
+            maVienChuc = string.Empty;
+            ho = string.Empty;
+            ten = string.Empty;
+            sDT = string.Empty;
+            gioiTinh = string.Empty;
             ngaySinh = null;
-            noiSinh = "";
-            queQuan = "";
-            danToc = "";
-            tonGiao = "";
-            hoKhauThuongTru = "";
-            noiOHienNay = "";
+            noiSinh = string.Empty;
+            queQuan = string.Empty;
+            danToc = string.Empty;
+            tonGiao = string.Empty;
+            hoKhauThuongTru = string.Empty;
+            noiOHienNay = string.Empty;
             laDangVien = false;
             ngayVaoDang = null;
             ngayThamGiaCongTac = null;
             ngayVaoNganh = null;
             ngayVeTruong = null;
-            vanHoa = "";
-            quanLyNhaNuoc = "";
-            chinhTri = "";
-            ghiChu = "";
+            vanHoa = string.Empty;
+            quanLyNhaNuoc = string.Empty;
+            chinhTri = string.Empty;
+            ghiChu = string.Empty;
             anh = null;
         }        
     }

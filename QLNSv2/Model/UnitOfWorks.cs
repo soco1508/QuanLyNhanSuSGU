@@ -491,8 +491,10 @@ namespace Model
                 {
                     try
                     {
-                        _db.SaveChanges();                        
+                        _db.SaveChanges();
                         dbTrans.Commit();
+                        _db.Dispose();
+                        dbTrans.Dispose();
                         return true;
                     }
                     catch (Exception ex)
@@ -504,6 +506,6 @@ namespace Model
                 }
             }
             else return false;
-        }
+        }        
     }
 }

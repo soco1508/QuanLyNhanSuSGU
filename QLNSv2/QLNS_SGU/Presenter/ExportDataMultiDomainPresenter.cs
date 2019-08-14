@@ -249,7 +249,7 @@ namespace QLNS_SGU.Presenter
             }
             if (_view.CHKCongTac.Checked)
             {
-                foreach (var row in listFieldsDefault.ToList())
+                foreach (var row in listFieldsDefault)
                 {
                     ChucVuDonViVienChuc chucVuDonViVienChuc = unitOfWorks.ChucVuDonViVienChucRepository.GetCongTacByIdVienChucAndDuration(row.IdVienChuc, dtFromDuration, dtToDuration);
                     if (chucVuDonViVienChuc != null)
@@ -277,7 +277,7 @@ namespace QLNS_SGU.Presenter
             }
             if (_view.CHKQuaTrinhLuong.Checked)
             {
-                foreach (var row in listFieldsDefault.ToList())
+                foreach (var row in listFieldsDefault)
                 {
                     QuaTrinhLuong quaTrinhLuong = unitOfWorks.QuaTrinhLuongRepository.GetQuaTrinhLuongByIdVienChucAndDurationForExportOne(row.IdVienChuc, dtFromDuration, dtToDuration);
                     if (quaTrinhLuong != null)
@@ -298,7 +298,7 @@ namespace QLNS_SGU.Presenter
             }
             if (_view.CHKHopDong.Checked)
             {
-                foreach (var row in listFieldsDefault.ToList())
+                foreach (var row in listFieldsDefault)
                 {
                     HopDongVienChuc hopDong = unitOfWorks.HopDongVienChucRepository.GetListHopDongByIdVienChucAndDurationForExportOne(row.IdVienChuc, dtFromDuration, dtToDuration);
                     if (hopDong != null)
@@ -315,7 +315,7 @@ namespace QLNS_SGU.Presenter
             }
             if (_view.CHKTrangThai.Checked)
             {
-                foreach (var row in listFieldsDefault.ToList())
+                foreach (var row in listFieldsDefault)
                 {
                     TrangThaiVienChuc trangThai = unitOfWorks.TrangThaiVienChucRepository.GetTrangThaiByIdVienChucAndDuration(row.IdVienChuc, dtFromDuration, dtToDuration);
                     if (trangThai != null)
@@ -332,7 +332,7 @@ namespace QLNS_SGU.Presenter
             }
             if (_view.CHKNganhHoc.Checked)
             {
-                foreach (var row in listFieldsDefault.ToList())
+                foreach (var row in listFieldsDefault)
                 {
                     NganhVienChuc nganhHoc = unitOfWorks.NganhVienChucRepository.GetNganhHocByIdVienChucAndDurationForExportOne(row.IdVienChuc, dtFromDuration, dtToDuration);
                     if (nganhHoc != null)
@@ -356,7 +356,7 @@ namespace QLNS_SGU.Presenter
             }
             if (_view.CHKNganhDay.Checked)
             {
-                foreach (var row in listFieldsDefault.ToList())
+                foreach (var row in listFieldsDefault)
                 {
                     NganhVienChuc nganhDay = unitOfWorks.NganhVienChucRepository.GetNganhDayByIdVienChucAndDuration(row.IdVienChuc, dtFromDuration, dtToDuration);
                     if (nganhDay != null)
@@ -382,7 +382,7 @@ namespace QLNS_SGU.Presenter
             }
             if (_view.CHKChungChi.Checked)
             {
-                foreach (var row in listFieldsDefault.ToList())
+                foreach (var row in listFieldsDefault)
                 {
                     var ngoaiNgu = unitOfWorks.ChungChiVienChucRepository.GetChungChiNgoaiNguByIdVienChucAndDuration(row.IdVienChuc, dtFromDuration, dtToDuration);
                     var tinHoc = unitOfWorks.ChungChiVienChucRepository.GetChungChiTinHocByIdVienChucAndDuration(row.IdVienChuc, dtFromDuration, dtToDuration);
@@ -421,7 +421,7 @@ namespace QLNS_SGU.Presenter
             }
             if (_view.CHKDangHocNangCao.Checked)
             {
-                foreach (var row in listFieldsDefault.ToList())
+                foreach (var row in listFieldsDefault)
                 {
                     DangHocNangCao dangHocNangCao = unitOfWorks.DangHocNangCaoRepository.GetDangHocNangCaoByIdVienChucAndDurationForExportOne(row.IdVienChuc, dtFromDuration, dtToDuration);
                     if (dangHocNangCao != null)
@@ -497,7 +497,7 @@ namespace QLNS_SGU.Presenter
             }
             if (_view.CHKCongTac.Checked)
             {
-                foreach (var row in listFieldsDefault.ToList())
+                foreach (var row in listFieldsDefault)
                 {                   
                     ChucVuDonViVienChuc congTac = unitOfWorks.ChucVuDonViVienChucRepository.GetCongTacByIdVienChucAndTimeline(row.IdVienChuc, dtTimeline);
                     if(congTac != null)
@@ -524,7 +524,7 @@ namespace QLNS_SGU.Presenter
             }
             if (_view.CHKTrangThai.Checked)
             {
-                foreach (var row in listFieldsDefault.ToList())
+                foreach (var row in listFieldsDefault)
                 {                    
                     TrangThaiVienChuc trangThai = unitOfWorks.TrangThaiVienChucRepository.GetTrangThaiByIdVienChucAndTimeline(row.IdVienChuc, dtTimeline);
                     if(trangThai != null)
@@ -540,7 +540,7 @@ namespace QLNS_SGU.Presenter
             }
             if (_view.CHKQuaTrinhLuong.Checked)
             {
-                foreach (var row in listFieldsDefault.ToList())
+                foreach (var row in listFieldsDefault)
                 {
                     QuaTrinhLuong quaTrinhLuong = unitOfWorks.QuaTrinhLuongRepository.GetQuaTrinhLuongByIdVienChucAndTimelineForExportOne(row.IdVienChuc, dtTimeline);
                     if (quaTrinhLuong != null)
@@ -561,7 +561,7 @@ namespace QLNS_SGU.Presenter
             }
             if (_view.CHKHopDong.Checked)
             {
-                foreach (var row in listFieldsDefault.ToList())
+                foreach (var row in listFieldsDefault)
                 {
                     HopDongVienChuc hopDong = unitOfWorks.HopDongVienChucRepository.GetListHopDongByIdVienChucAndTimelineForExportOne(row.IdVienChuc, dtTimeline);
                     if (hopDong != null)
@@ -578,7 +578,7 @@ namespace QLNS_SGU.Presenter
             }
             if (_view.CHKNganhHoc.Checked)
             {
-                foreach (var row in listFieldsDefault.ToList())
+                foreach (var row in listFieldsDefault)
                 {
                     NganhVienChuc nganhHoc = unitOfWorks.NganhVienChucRepository.GetNganhHocByIdVienChucAndTimelineForExportOne(row.IdVienChuc, dtTimeline);
                     if (nganhHoc != null)
@@ -602,7 +602,7 @@ namespace QLNS_SGU.Presenter
             }
             if (_view.CHKNganhDay.Checked)
             {
-                foreach (var row in listFieldsDefault.ToList())
+                foreach (var row in listFieldsDefault)
                 {
                     NganhVienChuc nganhDay = unitOfWorks.NganhVienChucRepository.GetNganhDayByIdVienChucAndTimeline(row.IdVienChuc, dtTimeline);
                     if (nganhDay != null)
@@ -628,7 +628,7 @@ namespace QLNS_SGU.Presenter
             }
             if (_view.CHKChungChi.Checked)
             {
-                foreach (var row in listFieldsDefault.ToList())
+                foreach (var row in listFieldsDefault)
                 {
                     var ngoaiNgu = unitOfWorks.ChungChiVienChucRepository.GetChungChiNgoaiNguByIdVienChucAndTimeline(row.IdVienChuc, dtTimeline);
                     var tinHoc = unitOfWorks.ChungChiVienChucRepository.GetChungChiTinHocByIdVienChucAndTimeline(row.IdVienChuc, dtTimeline);
@@ -656,7 +656,7 @@ namespace QLNS_SGU.Presenter
             }
             if (_view.CHKDangHocNangCao.Checked)
             {
-                foreach (var row in listFieldsDefault.ToList())
+                foreach (var row in listFieldsDefault)
                 {
                     DangHocNangCao dangHocNangCao = unitOfWorks.DangHocNangCaoRepository.GetDangHocNangCaoByIdVienChucAndTimelineForExportOne(row.IdVienChuc, dtTimeline);
                     if (dangHocNangCao != null)

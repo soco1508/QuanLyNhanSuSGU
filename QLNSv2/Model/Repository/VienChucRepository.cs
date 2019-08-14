@@ -65,9 +65,9 @@ namespace Model.Repository
         {
             if(gioitinh == true)
             {
-                return 0;
+                return 1;
             }
-            return 1;
+            return 0;
         }
 
         public string ReturnGenderToGrid(bool? gioitinh)
@@ -209,34 +209,36 @@ namespace Model.Repository
             TrangThaiVienChucRepository trangThaiVienChucRepository = new TrangThaiVienChucRepository(_db);
             GridViewMainDataRepository gridViewMainData = new GridViewMainDataRepository(_db);
             var listVienChuc = from v in _db.VienChucs
+                               join c in _db.ChucVuDonViVienChucs on v.idVienChuc equals c.idVienChuc
                                select new { v.idVienChuc, v.maVienChuc, v.ho, v.ten, v.gioiTinh };
             int count = 0;
-            foreach (var item in listVienChuc.ToList())
+            foreach (var item in listVienChuc)
             {
-                List<ChucVuDonViVienChuc> listChucVuDonViVienChuc = chucVuDonViVienChucRepository.GetListCongTacByIdVienChuc(item.idVienChuc);
-                if(listChucVuDonViVienChuc.Count > 0)
+                //List<ChucVuDonViVienChuc> listChucVuDonViVienChuc = chucVuDonViVienChucRepository.GetListCongTacByIdVienChuc(item.idVienChuc);
+                //if(listChucVuDonViVienChuc.Count > 0)
+                //{
+                    
+                //}
+                ChucVuDonViVienChuc chucVuDonViVienChuc = chucVuDonViVienChucRepository.GetCongTacByIdVienChucAndTimeline(item.idVienChuc, dtTimeline);
+                TrangThaiVienChuc trangThaiVienChuc = trangThaiVienChucRepository.GetTrangThaiByIdVienChucAndTimeline(item.idVienChuc, dtTimeline);
+                string trangthai = string.Empty;
+                string donvi = string.Empty;
+                if (trangThaiVienChuc != null)
+                    trangthai = trangThaiVienChuc.TrangThai.tenTrangThai;
+                if (chucVuDonViVienChuc != null)
+                    donvi = chucVuDonViVienChuc.DonVi.tenDonVi;
+                listExportObjects.Add(new ExportObjects
                 {
-                    ChucVuDonViVienChuc chucVuDonViVienChuc = chucVuDonViVienChucRepository.GetCongTacByIdVienChucAndTimeline(item.idVienChuc, dtTimeline);
-                    TrangThaiVienChuc trangThaiVienChuc = trangThaiVienChucRepository.GetTrangThaiByIdVienChucAndTimeline(item.idVienChuc, dtTimeline);
-                    string trangthai = string.Empty;
-                    string donvi = string.Empty;
-                    if (trangThaiVienChuc != null)
-                        trangthai = trangThaiVienChuc.TrangThai.tenTrangThai;
-                    if (chucVuDonViVienChuc != null)
-                        donvi = chucVuDonViVienChuc.DonVi.tenDonVi;
-                    listExportObjects.Add(new ExportObjects
-                    {
-                        IdVienChuc = item.idVienChuc,
-                        MaVienChuc = item.maVienChuc,
-                        Ho = item.ho,
-                        Ten = item.ten,
-                        GioiTinh = gridViewMainData.CheckGioiTinh(item.gioiTinh),
-                        Index = count,
-                        DonVi = donvi,
-                        TrangThai = trangthai
-                    });
-                    count++;
-                }                
+                    IdVienChuc = item.idVienChuc,
+                    MaVienChuc = item.maVienChuc,
+                    Ho = item.ho,
+                    Ten = item.ten,
+                    GioiTinh = gridViewMainData.CheckGioiTinh(item.gioiTinh),
+                    Index = count,
+                    DonVi = donvi,
+                    TrangThai = trangthai
+                });
+                count++;
             }
             //foreach (var item in listExportObjects)
             //{

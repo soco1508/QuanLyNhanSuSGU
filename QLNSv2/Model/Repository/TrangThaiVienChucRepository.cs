@@ -131,9 +131,7 @@ namespace Model.Repository
                         listTrangThaiVienChuc.Add(row);
                 }
             }
-            if (listTrangThaiVienChuc.Count > 0)
-                return listTrangThaiVienChuc.OrderByDescending(x => x.ngayBatDau).FirstOrDefault();
-            return null;
+            return listTrangThaiVienChuc.OrderByDescending(x => x.ngayBatDau).FirstOrDefault();
         }
 
         public TrangThaiVienChuc GetTrangThaiByIdVienChucAndTimeline(int idVienChuc, DateTime dtTimeline)
@@ -145,21 +143,15 @@ namespace Model.Repository
                 if (row.ngayKetThuc != null)
                 {
                     if (row.ngayBatDau <= dtTimeline && row.ngayKetThuc >= dtTimeline)
-                    {
                         listTrangThaiVienChuc.Add(row);
-                    }
                 }
-                if (row.ngayKetThuc == null)
+                else
                 {
                     if (row.ngayBatDau <= dtTimeline)
-                    {
                         listTrangThaiVienChuc.Add(row);
-                    }
                 }
             }
-            if(listTrangThaiVienChuc.Count > 0)
-                return listTrangThaiVienChuc.OrderByDescending(x => x.ngayBatDau).FirstOrDefault();
-            return null;
+            return listTrangThaiVienChuc.OrderByDescending(x => x.ngayBatDau).FirstOrDefault();
         }
 
         public List<TrangThaiVienChuc> GetListTrangThaiByIdVienChucAndDuration(int idVienChuc, DateTime? dtFromDuration, DateTime? dtToDuration)

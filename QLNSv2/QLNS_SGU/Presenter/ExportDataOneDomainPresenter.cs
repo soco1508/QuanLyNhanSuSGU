@@ -8,6 +8,7 @@ using Model.ObjectModels;
 using QLNS_SGU.View;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -124,102 +125,82 @@ namespace QLNS_SGU.Presenter
             int tempIdVienChuc = -1;
             if (selectedDomain == 0) // Tat ca
             {
-                ExportThongTinCaNhan(listFieldsDefault, unitOfWorks);
-                ExportTrangThai(listFieldsDefault, null, dtFromDuration, dtToDuration, unitOfWorks, tempIdVienChuc);
-                ExportCongTac(listFieldsDefault, null, dtFromDuration, dtToDuration, unitOfWorks, tempIdVienChuc);
-                ExportNganhHoc(listFieldsDefault, null, dtFromDuration, dtToDuration, unitOfWorks, tempIdVienChuc);
-                ExportQuaTrinhLuong(listFieldsDefault, null, dtFromDuration, dtToDuration, unitOfWorks, tempIdVienChuc);
-                ExportHopDong(listFieldsDefault, null, dtFromDuration, dtToDuration, unitOfWorks, tempIdVienChuc);
-                ExportChungChi(listFieldsDefault, null, dtFromDuration, dtToDuration, unitOfWorks, tempIdVienChuc);
-                ExportDangHocNangCao(listFieldsDefault, null, dtFromDuration, dtToDuration, unitOfWorks, tempIdVienChuc);
+                ExportThongTinCaNhan(listFieldsDefault);
+                ExportTrangThai(listFieldsDefault, null, dtFromDuration, dtToDuration, tempIdVienChuc);
+                ExportCongTac(listFieldsDefault, null, dtFromDuration, dtToDuration, tempIdVienChuc);
+                ExportNganhHoc(listFieldsDefault, null, dtFromDuration, dtToDuration, tempIdVienChuc);
+                ExportQuaTrinhLuong(listFieldsDefault, null, dtFromDuration, dtToDuration, tempIdVienChuc);
+                ExportHopDong(listFieldsDefault, null, dtFromDuration, dtToDuration, tempIdVienChuc);
+                ExportChungChi(listFieldsDefault, null, dtFromDuration, dtToDuration, tempIdVienChuc);
+                ExportDangHocNangCao(listFieldsDefault, null, dtFromDuration, dtToDuration, tempIdVienChuc);
             }
             if (selectedDomain == 1) // trang thai
-                ExportTrangThai(listFieldsDefault, null, dtFromDuration, dtToDuration, unitOfWorks, tempIdVienChuc);
+                ExportTrangThai(listFieldsDefault, null, dtFromDuration, dtToDuration, tempIdVienChuc);
             if (selectedDomain == 2) // cong tac
-                ExportCongTac(listFieldsDefault, null, dtFromDuration, dtToDuration, unitOfWorks, tempIdVienChuc);
+                ExportCongTac(listFieldsDefault, null, dtFromDuration, dtToDuration, tempIdVienChuc);
             if (selectedDomain == 3) // nganh hoc
-                ExportNganhHoc(listFieldsDefault, null, dtFromDuration, dtToDuration, unitOfWorks, tempIdVienChuc);
+                ExportNganhHoc(listFieldsDefault, null, dtFromDuration, dtToDuration, tempIdVienChuc);
             if (selectedDomain == 4) // qua trinh luong
-                ExportQuaTrinhLuong(listFieldsDefault, null, dtFromDuration, dtToDuration, unitOfWorks, tempIdVienChuc);
+                ExportQuaTrinhLuong(listFieldsDefault, null, dtFromDuration, dtToDuration, tempIdVienChuc);
             if (selectedDomain == 5) //hop dong
-                ExportHopDong(listFieldsDefault, null, dtFromDuration, dtToDuration, unitOfWorks, tempIdVienChuc);
+                ExportHopDong(listFieldsDefault, null, dtFromDuration, dtToDuration, tempIdVienChuc);
             if (selectedDomain == 6) //chung chi
-                ExportChungChi(listFieldsDefault, null, dtFromDuration, dtToDuration, unitOfWorks, tempIdVienChuc);
+                ExportChungChi(listFieldsDefault, null, dtFromDuration, dtToDuration, tempIdVienChuc);
             if (selectedDomain == 7) // dang hoc nang cao
-                ExportDangHocNangCao(listFieldsDefault, null, dtFromDuration, dtToDuration, unitOfWorks, tempIdVienChuc);
+                ExportDangHocNangCao(listFieldsDefault, null, dtFromDuration, dtToDuration, tempIdVienChuc);
             _view.GCCustom.DataSource = null;
             _view.GCCustom.DataSource = listFieldsDefault;
             _view.GVCustom.PopulateColumns();
             _view.GVCustom.Columns[0].Visible = false;
             SplashScreenManager.CloseForm(false);
-            for (int i = 2; i < _view.GVCustom.Columns.Count; i++)
-            {
-                for (int j = 0; j < _view.GVCustom.RowCount; j++)
-                {
-                    if (_view.GVCustom.GetRowCellDisplayText(j, _view.GVCustom.Columns[i]) != string.Empty)
-                    {
-                        _view.GVCustom.Columns[i].Visible = true;
-                        break;
-                    }
-                    else _view.GVCustom.Columns[i].Visible = false;
-                }
-            }
+            HideEmptyColumns();
             SetCaptionColumn();
             //SetCellMergeColumn(selectedDomain);
         }
 
         private void GetDataTimeline(int selectedDomain)
         {
-            SplashScreenManager.ShowForm(_view, typeof(WaitForm1), true, true, false, 0);
-            UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
-            DateTime dtTimeline = _view.DTTimeline.DateTime;
+            
+            SplashScreenManager.ShowForm(_view, typeof(WaitForm1), true, true, false, 0);            
+            UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());            
+            DateTime dtTimeline = _view.DTTimeline.DateTime;            
             List<ExportObjects> listFieldsDefault = unitOfWorks.VienChucRepository.GetListFieldsDefaultByTimeline(dtTimeline);
+            
             int tempIdVienChuc = -1;
             if (selectedDomain == 0) // Tat ca
             {
-                ExportThongTinCaNhan(listFieldsDefault, unitOfWorks);
-                ExportTrangThai(listFieldsDefault, dtTimeline, null, null, unitOfWorks, tempIdVienChuc);
-                ExportCongTac(listFieldsDefault, dtTimeline, null, null, unitOfWorks, tempIdVienChuc);
-                ExportNganhHoc(listFieldsDefault, dtTimeline, null, null, unitOfWorks, tempIdVienChuc);
-                ExportQuaTrinhLuong(listFieldsDefault, dtTimeline, null, null, unitOfWorks, tempIdVienChuc);
-                ExportHopDong(listFieldsDefault, dtTimeline, null, null, unitOfWorks, tempIdVienChuc);
-                ExportChungChi(listFieldsDefault, dtTimeline, null, null, unitOfWorks, tempIdVienChuc);
-                ExportDangHocNangCao(listFieldsDefault, dtTimeline, null, null, unitOfWorks, tempIdVienChuc);
+                ExportThongTinCaNhan(listFieldsDefault);
+                ExportTrangThai(listFieldsDefault, dtTimeline, null, null, tempIdVienChuc);
+                ExportCongTac(listFieldsDefault, dtTimeline, null, null, tempIdVienChuc);
+                ExportNganhHoc(listFieldsDefault, dtTimeline, null, null, tempIdVienChuc);
+                ExportQuaTrinhLuong(listFieldsDefault, dtTimeline, null, null, tempIdVienChuc);
+                ExportHopDong(listFieldsDefault, dtTimeline, null, null, tempIdVienChuc);
+                ExportChungChi(listFieldsDefault, dtTimeline, null, null, tempIdVienChuc);
+                ExportDangHocNangCao(listFieldsDefault, dtTimeline, null, null, tempIdVienChuc);
             }
             if (selectedDomain == 1) // trang thai
-                ExportTrangThai(listFieldsDefault, dtTimeline, null, null, unitOfWorks, tempIdVienChuc);
+                ExportTrangThai(listFieldsDefault, dtTimeline, null, null, tempIdVienChuc);
             if (selectedDomain == 2) // cong tac
-                ExportCongTac(listFieldsDefault, dtTimeline, null, null, unitOfWorks, tempIdVienChuc);
+                ExportCongTac(listFieldsDefault, dtTimeline, null, null, tempIdVienChuc);
             if (selectedDomain == 3) // nganh hoc
-                ExportNganhHoc(listFieldsDefault, dtTimeline, null, null, unitOfWorks, tempIdVienChuc);
+                ExportNganhHoc(listFieldsDefault, dtTimeline, null, null, tempIdVienChuc);
             if (selectedDomain == 4) // qua trinh luong
-                ExportQuaTrinhLuong(listFieldsDefault, dtTimeline, null, null, unitOfWorks, tempIdVienChuc);
+                ExportQuaTrinhLuong(listFieldsDefault, dtTimeline, null, null, tempIdVienChuc);
             if (selectedDomain == 5) //hop dong
-                ExportHopDong(listFieldsDefault, dtTimeline, null, null, unitOfWorks, tempIdVienChuc);
+                ExportHopDong(listFieldsDefault, dtTimeline, null, null, tempIdVienChuc);
             if (selectedDomain == 6) //chung chi
-                ExportChungChi(listFieldsDefault, dtTimeline, null, null, unitOfWorks, tempIdVienChuc);
+                ExportChungChi(listFieldsDefault, dtTimeline, null, null, tempIdVienChuc);
             if (selectedDomain == 7) // dang hoc nang cao
-                ExportDangHocNangCao(listFieldsDefault, dtTimeline, null, null, unitOfWorks, tempIdVienChuc);
+                ExportDangHocNangCao(listFieldsDefault, dtTimeline, null, null, tempIdVienChuc);
             _view.GCCustom.DataSource = null;
             _view.GCCustom.DataSource = listFieldsDefault;
             _view.GVCustom.PopulateColumns();
             _view.GVCustom.Columns[0].Visible = false;
             SplashScreenManager.CloseForm(false);
-            for (int i = 2; i < _view.GVCustom.Columns.Count; i++)
-            {
-                for (int j = 0; j < _view.GVCustom.RowCount; j++)
-                {
-                    if (_view.GVCustom.GetRowCellDisplayText(j, _view.GVCustom.Columns[i]) != string.Empty)
-                    {
-                        _view.GVCustom.Columns[i].Visible = true;
-                        break;
-                    }
-                    else _view.GVCustom.Columns[i].Visible = false;
-                }
-            }
+            HideEmptyColumns();
             SetCaptionColumn();
             //SetCellMergeColumn(selectedDomain);
-        }        
+        }
 
         private void IncreaseIndex(List<ExportObjects> listFieldDefault, int index/*vi tri de filter cac item con lai*/, int count/*so phan tu con lai trong list cua moi~ vien chuc*/)
         {
@@ -378,12 +359,27 @@ namespace QLNS_SGU.Presenter
             // index to add row for export one domain
             _view.GVCustom.Columns["Index"].Visible = false;
         }
-
-        private void ExportTrangThai(List<ExportObjects> listFieldsDefault, DateTime? dtTimeline, DateTime? dtFromDuration, DateTime? dtToDuration, UnitOfWorks unitOfWorks, int tempIdVienChuc)
+        private void HideEmptyColumns()
         {
+            for (int i = 2; i < _view.GVCustom.Columns.Count; i++)
+            {
+                for (int j = 0; j < _view.GVCustom.RowCount; j++)
+                {
+                    if (_view.GVCustom.GetRowCellDisplayText(j, _view.GVCustom.Columns[i]) != string.Empty)
+                    {
+                        _view.GVCustom.Columns[i].Visible = true;
+                        break;
+                    }
+                    else _view.GVCustom.Columns[i].Visible = false;
+                }
+            }
+        }
+        private void ExportTrangThai(List<ExportObjects> listFieldsDefault, DateTime? dtTimeline, DateTime? dtFromDuration, DateTime? dtToDuration, int tempIdVienChuc)
+        {
+            UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             if(dtTimeline != null)
             {
-                foreach (var row in listFieldsDefault.ToList())
+                foreach (var row in listFieldsDefault)
                 {
                     ExportObjects exportObjects = listFieldsDefault.Where(x => x.IdVienChuc == row.IdVienChuc && x.Index == row.Index).FirstOrDefault();
                     List<TrangThaiVienChuc> listTrangThai = unitOfWorks.TrangThaiVienChucRepository.GetListTrangThaiByIdVienChucAndTimeline(row.IdVienChuc, dtTimeline);
@@ -433,7 +429,7 @@ namespace QLNS_SGU.Presenter
             }
             else
             {
-                foreach (var row in listFieldsDefault.ToList())
+                foreach (var row in listFieldsDefault)
                 {
                     ExportObjects exportObjects = listFieldsDefault.Where(x => x.IdVienChuc == row.IdVienChuc && x.Index == row.Index).FirstOrDefault();
                     List<TrangThaiVienChuc> listTrangThai = unitOfWorks.TrangThaiVienChucRepository.GetListTrangThaiByIdVienChucAndDuration(row.IdVienChuc, dtFromDuration, dtToDuration);
@@ -483,11 +479,12 @@ namespace QLNS_SGU.Presenter
             }
         }
 
-        private void ExportCongTac(List<ExportObjects> listFieldsDefault, DateTime? dtTimeline, DateTime? dtFromDuration, DateTime? dtToDuration, UnitOfWorks unitOfWorks, int tempIdVienChuc)
+        private void ExportCongTac(List<ExportObjects> listFieldsDefault, DateTime? dtTimeline, DateTime? dtFromDuration, DateTime? dtToDuration, int tempIdVienChuc)
         {
+            UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             if (dtTimeline != null)
             {
-                foreach (var row in listFieldsDefault.ToList())
+                foreach (var row in listFieldsDefault)
                 {
                     ExportObjects exportObjects = listFieldsDefault.Where(x => x.IdVienChuc == row.IdVienChuc && x.Index == row.Index).FirstOrDefault();
                     List<ChucVuDonViVienChuc> listCongTac = unitOfWorks.ChucVuDonViVienChucRepository.GetListCongTacByIdVienChucAndTimeline(row.IdVienChuc, dtTimeline);
@@ -572,7 +569,7 @@ namespace QLNS_SGU.Presenter
             }
             else
             {
-                foreach (var row in listFieldsDefault.ToList())
+                foreach (var row in listFieldsDefault)
                 {
                     ExportObjects exportObjects = listFieldsDefault.Where(x => x.IdVienChuc == row.IdVienChuc && x.Index == row.Index).FirstOrDefault();
                     List<ChucVuDonViVienChuc> listCongTac = unitOfWorks.ChucVuDonViVienChucRepository.GetListCongTacByIdVienChucAndDuration(row.IdVienChuc, dtFromDuration, dtToDuration);
@@ -657,11 +654,12 @@ namespace QLNS_SGU.Presenter
             }
         }
 
-        private void ExportNganhHoc(List<ExportObjects> listFieldsDefault, DateTime? dtTimeline, DateTime? dtFromDuration, DateTime? dtToDuration, UnitOfWorks unitOfWorks, int tempIdVienChuc)
+        private void ExportNganhHoc(List<ExportObjects> listFieldsDefault, DateTime? dtTimeline, DateTime? dtFromDuration, DateTime? dtToDuration, int tempIdVienChuc)
         {
+            UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             if (dtTimeline != null)
             {
-                foreach (var row in listFieldsDefault.ToList())
+                foreach (var row in listFieldsDefault)
                 {
                     ExportObjects exportObjects = listFieldsDefault.Where(x => x.IdVienChuc == row.IdVienChuc && x.Index == row.Index).FirstOrDefault();
                     List<NganhVienChuc> listNganhHoc = unitOfWorks.NganhVienChucRepository.GetListNganhHocByIdVienChucAndTimelineForExportFull(row.IdVienChuc, dtTimeline);
@@ -735,7 +733,7 @@ namespace QLNS_SGU.Presenter
             }
             else
             {
-                foreach (var row in listFieldsDefault.ToList())
+                foreach (var row in listFieldsDefault)
                 {
                     ExportObjects exportObjects = listFieldsDefault.Where(x => x.IdVienChuc == row.IdVienChuc && x.Index == row.Index).FirstOrDefault();
                     List<NganhVienChuc> listNganhHoc = unitOfWorks.NganhVienChucRepository.GetListNganhHocByIdVienChucAndDurationForExportFull(row.IdVienChuc, dtFromDuration, dtToDuration);
@@ -809,11 +807,12 @@ namespace QLNS_SGU.Presenter
             }
         }
 
-        private void ExportQuaTrinhLuong(List<ExportObjects> listFieldsDefault, DateTime? dtTimeline, DateTime? dtFromDuration, DateTime? dtToDuration, UnitOfWorks unitOfWorks, int tempIdVienChuc)
+        private void ExportQuaTrinhLuong(List<ExportObjects> listFieldsDefault, DateTime? dtTimeline, DateTime? dtFromDuration, DateTime? dtToDuration, int tempIdVienChuc)
         {
+            UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             if (dtTimeline != null)
             {
-                foreach (var row in listFieldsDefault.ToList())
+                foreach (var row in listFieldsDefault)
                 {
                     ExportObjects exportObjects = listFieldsDefault.Where(x => x.IdVienChuc == row.IdVienChuc && x.Index == row.Index).FirstOrDefault();
                     List<QuaTrinhLuong> listQuaTrinhLuong = unitOfWorks.QuaTrinhLuongRepository.GetListQuaTrinhLuongByIdVienChucAndTimelineForExportFull(row.IdVienChuc, dtTimeline);
@@ -878,7 +877,7 @@ namespace QLNS_SGU.Presenter
             }
             else
             {
-                foreach (var row in listFieldsDefault.ToList())
+                foreach (var row in listFieldsDefault)
                 {
                     ExportObjects exportObjects = listFieldsDefault.Where(x => x.IdVienChuc == row.IdVienChuc && x.Index == row.Index).FirstOrDefault();
                     List<QuaTrinhLuong> listQuaTrinhLuong = unitOfWorks.QuaTrinhLuongRepository.GetListQuaTrinhLuongByIdVienChucAndDurationForExportFull(row.IdVienChuc, dtFromDuration, dtToDuration);
@@ -943,11 +942,12 @@ namespace QLNS_SGU.Presenter
             }
         }
 
-        private void ExportHopDong(List<ExportObjects> listFieldsDefault, DateTime? dtTimeline, DateTime? dtFromDuration, DateTime? dtToDuration, UnitOfWorks unitOfWorks, int tempIdVienChuc)
+        private void ExportHopDong(List<ExportObjects> listFieldsDefault, DateTime? dtTimeline, DateTime? dtFromDuration, DateTime? dtToDuration, int tempIdVienChuc)
         {
+            UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             if (dtTimeline != null)
             {
-                foreach (var row in listFieldsDefault.ToList())
+                foreach (var row in listFieldsDefault)
                 {
                     ExportObjects exportObjects = listFieldsDefault.Where(x => x.IdVienChuc == row.IdVienChuc && x.Index == row.Index).FirstOrDefault();
                     List<HopDongVienChuc> listHopDongVienChuc = unitOfWorks.HopDongVienChucRepository.GetListHopDongByIdVienChucAndTimelineForExportFull(row.IdVienChuc, dtTimeline);
@@ -1000,7 +1000,7 @@ namespace QLNS_SGU.Presenter
             }
             else
             {
-                foreach (var row in listFieldsDefault.ToList())
+                foreach (var row in listFieldsDefault)
                 {
                     ExportObjects exportObjects = listFieldsDefault.Where(x => x.IdVienChuc == row.IdVienChuc && x.Index == row.Index).FirstOrDefault();
                     List<HopDongVienChuc> listHopDongVienChuc = unitOfWorks.HopDongVienChucRepository.GetListHopDongByIdVienChucAndDurationForExportFull(row.IdVienChuc, dtFromDuration, dtToDuration);
@@ -1053,11 +1053,12 @@ namespace QLNS_SGU.Presenter
             }
         }
 
-        private void ExportChungChi(List<ExportObjects> listFieldsDefault, DateTime? dtTimeline, DateTime? dtFromDuration, DateTime? dtToDuration, UnitOfWorks unitOfWorks, int tempIdVienChuc)
+        private void ExportChungChi(List<ExportObjects> listFieldsDefault, DateTime? dtTimeline, DateTime? dtFromDuration, DateTime? dtToDuration, int tempIdVienChuc)
         {
+            UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             if (dtTimeline != null)
             {
-                foreach (var row in listFieldsDefault.ToList())
+                foreach (var row in listFieldsDefault)
                 {
                     ExportObjects exportObjects = listFieldsDefault.Where(x => x.IdVienChuc == row.IdVienChuc && x.Index == row.Index).FirstOrDefault();
                     List<ChungChiVienChuc> listChungChi = unitOfWorks.ChungChiVienChucRepository.GetListChungChiByIdVienChucAndTimelineForExportFull(row.IdVienChuc, dtTimeline);
@@ -1129,7 +1130,7 @@ namespace QLNS_SGU.Presenter
             }
             else
             {
-                foreach (var row in listFieldsDefault.ToList())
+                foreach (var row in listFieldsDefault)
                 {
                     ExportObjects exportObjects = listFieldsDefault.Where(x => x.IdVienChuc == row.IdVienChuc && x.Index == row.Index).FirstOrDefault();
                     List<ChungChiVienChuc> listChungChi = unitOfWorks.ChungChiVienChucRepository.GetListChungChiByIdVienChucAndDurationForExportFull(row.IdVienChuc, dtFromDuration, dtToDuration);
@@ -1201,11 +1202,12 @@ namespace QLNS_SGU.Presenter
             }
         }
 
-        private void ExportDangHocNangCao(List<ExportObjects> listFieldsDefault, DateTime? dtTimeline, DateTime? dtFromDuration, DateTime? dtToDuration, UnitOfWorks unitOfWorks, int tempIdVienChuc)
+        private void ExportDangHocNangCao(List<ExportObjects> listFieldsDefault, DateTime? dtTimeline, DateTime? dtFromDuration, DateTime? dtToDuration, int tempIdVienChuc)
         {
+            UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             if (dtTimeline != null)
             {
-                foreach (var row in listFieldsDefault.ToList())
+                foreach (var row in listFieldsDefault)
                 {
                     ExportObjects exportObjects = listFieldsDefault.Where(x => x.IdVienChuc == row.IdVienChuc && x.Index == row.Index).FirstOrDefault();
                     List<DangHocNangCao> listDangHocNangCao = unitOfWorks.DangHocNangCaoRepository.GetListDangHocNangCaoByIdVienChucAndTimelineForExportFull(row.IdVienChuc, dtTimeline);
@@ -1273,7 +1275,7 @@ namespace QLNS_SGU.Presenter
             }
             else
             {
-                foreach (var row in listFieldsDefault.ToList())
+                foreach (var row in listFieldsDefault)
                 {
                     ExportObjects exportObjects = listFieldsDefault.Where(x => x.IdVienChuc == row.IdVienChuc && x.Index == row.Index).FirstOrDefault();
                     List<DangHocNangCao> listDangHocNangCao = unitOfWorks.DangHocNangCaoRepository.GetListDangHocNangCaoByIdVienChucAndDurationForExportFull(row.IdVienChuc, dtFromDuration, dtToDuration);
@@ -1341,8 +1343,9 @@ namespace QLNS_SGU.Presenter
             }
         }
 
-        private void ExportThongTinCaNhan(List<ExportObjects> listFieldsDefault, UnitOfWorks unitOfWorks)
+        private void ExportThongTinCaNhan(List<ExportObjects> listFieldsDefault)
         {
+            UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
             foreach (var row in listFieldsDefault)
             {
                 VienChuc vienChuc = unitOfWorks.VienChucRepository.GetVienChucByIdVienChuc(row.IdVienChuc);

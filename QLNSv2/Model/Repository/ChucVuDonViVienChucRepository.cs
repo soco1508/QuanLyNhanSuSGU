@@ -68,7 +68,7 @@ namespace Model.Repository
                     CheckPhanLoaiCongTac = HardCheckPhanLoaiCongTacToGrid(listChucVuDonViVienChuc[i].checkPhanLoaiCongTac),
                     LoaiThayDoi = HardLoaiThayDoiToGrid(listChucVuDonViVienChuc[i].loaiThayDoi),
                     KiemNhiem = HardKiemNhiemToGrid(listChucVuDonViVienChuc[i].kiemNhiem),
-                    LinkVanBanDinhKem = listChucVuDonViVienChuc[i].linkVanBanDinhKem                    
+                    LinkVanBanDinhKem = listChucVuDonViVienChuc[i].linkVanBanDinhKem
                 });
             }
             return listQuaTrinhCongTac;
@@ -122,21 +122,15 @@ namespace Model.Repository
                 if (row.ngayKetThuc != null)
                 {
                     if (row.ngayBatDau <= dtTimeline && row.ngayKetThuc >= dtTimeline)
-                    {
                         listChucVuDonViVienChuc.Add(row);
-                    }
                 }
-                if (row.ngayKetThuc == null)
+                else
                 {
                     if (row.ngayBatDau <= dtTimeline)
-                    {
                         listChucVuDonViVienChuc.Add(row);
-                    }
                 }
             }
-            if(listChucVuDonViVienChuc.Count > 0)
-                return listChucVuDonViVienChuc.OrderByDescending(x => x.ChucVu.heSoChucVu).FirstOrDefault();
-            return null;
+            return listChucVuDonViVienChuc.OrderByDescending(x => x.ChucVu.heSoChucVu).FirstOrDefault();
         }
 
         public List<ChucVuDonViVienChuc> GetListCongTacByIdVienChucAndTimeline(int idVienChuc, DateTime? dtTimeline)
@@ -148,16 +142,12 @@ namespace Model.Repository
                 if (row.ngayKetThuc != null)
                 {
                     if (row.ngayBatDau <= dtTimeline && row.ngayKetThuc >= dtTimeline)
-                    {
                         listChucVuDonViVienChuc.Add(row);
-                    }
                 }
-                if (row.ngayKetThuc == null)
+                else
                 {
                     if (row.ngayBatDau <= dtTimeline)
-                    {
                         listChucVuDonViVienChuc.Add(row);
-                    }
                 }
             }
             if(listChucVuDonViVienChuc.Count > 0)
@@ -174,16 +164,12 @@ namespace Model.Repository
                 if (row.ngayKetThuc != null)
                 {
                     if (row.ngayBatDau >= dtFromDuration && row.ngayKetThuc <= dtToDuration)
-                    {
                         listChucVuDonViVienChuc.Add(row);
-                    }
                 }
                 else
                 {
                     if (row.ngayBatDau >= dtFromDuration)
-                    {
                         listChucVuDonViVienChuc.Add(row);
-                    }
                 }
             }
             if (listChucVuDonViVienChuc.Count > 0)

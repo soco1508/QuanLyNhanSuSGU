@@ -16,7 +16,7 @@ namespace Model.Repository
         }
 
         public ThongTinCaNhan GetThongTinCaNhan(string mavienchuc)
-        {
+        {            
             var vienChuc = _db.VienChucs.Where(x => x.maVienChuc == mavienchuc).FirstOrDefault();
             var thongTinCaNhan = new ThongTinCaNhan();
             thongTinCaNhan.maTheVC = vienChuc.maVienChuc;
@@ -48,10 +48,8 @@ namespace Model.Repository
         private string ReturnGenderString(bool? t)
         {
             if(t == true)
-            {
-                return "Nam";
-            }
-            return "Nữ";
+                return "Nữ";
+            return "Nam";
         }
 
         public byte[] GetImage(string mavienchuc)

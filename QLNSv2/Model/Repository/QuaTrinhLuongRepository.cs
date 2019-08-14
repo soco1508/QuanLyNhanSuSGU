@@ -64,16 +64,12 @@ namespace Model.Repository
                 if (row.ngayLenLuong != null)
                 {
                     if (row.ngayBatDau <= dtTimeline && row.ngayLenLuong >= dtTimeline)
-                    {
                         listQuaTrinhLuong.Add(row);
-                    }
                 }
                 else
                 {
                     if (row.ngayBatDau <= dtTimeline)
-                    {
                         listQuaTrinhLuong.Add(row);
-                    }
                 }
             }
             if (listQuaTrinhLuong.Count > 0)
@@ -105,23 +101,19 @@ namespace Model.Repository
 
         public List<QuaTrinhLuong> GetListQuaTrinhLuongByIdVienChucAndDurationForExportFull(int idVienChuc, DateTime? dtFromDuration, DateTime? dtToDuration)
         {
-            List<QuaTrinhLuong> rows = _db.QuaTrinhLuongs.Where(x => x.idVienChuc == idVienChuc).ToList();
+            var rows = _db.QuaTrinhLuongs.Where(x => x.idVienChuc == idVienChuc);
             List<QuaTrinhLuong> listQuaTrinhLuong = new List<QuaTrinhLuong>();
             foreach (var row in rows)
             {
                 if (row.ngayLenLuong != null)
                 {
                     if (row.ngayBatDau >= dtFromDuration && row.ngayLenLuong <= dtToDuration)
-                    {
                         listQuaTrinhLuong.Add(row);
-                    }
-}
+                }
                 else
                 {
                     if (row.ngayBatDau >= dtFromDuration)
-                    {
                         listQuaTrinhLuong.Add(row);
-                    }
                 }
             }
             if (listQuaTrinhLuong.Count > 0)
@@ -138,16 +130,12 @@ namespace Model.Repository
                 if (row.ngayLenLuong != null)
                 {
                     if (row.ngayBatDau <= dtTimeline && row.ngayLenLuong >= dtTimeline)
-                    {
                         listQuaTrinhLuong.Add(row);
-                    }
                 }
                 else
                 {
                     if (row.ngayBatDau <= dtTimeline)
-                    {
                         listQuaTrinhLuong.Add(row);
-                    }
                 }
             }
             if(listQuaTrinhLuong.Count > 0)
