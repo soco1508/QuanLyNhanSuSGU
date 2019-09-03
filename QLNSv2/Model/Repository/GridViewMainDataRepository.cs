@@ -14,10 +14,7 @@ namespace Model.Repository
         }
 
         public List<GridViewMainData> LoadDataToMainGrid()
-        {
-            
-            Stopwatch stopwatch = new Stopwatch();
-            stopwatch.Start();
+        {            
             List<GridViewMainData> listGridViewMainData = new List<GridViewMainData>();
             var listVienChuc = from p in _db.VienChucs
                                select new
@@ -104,7 +101,7 @@ namespace Model.Repository
                             }
                             if (listChucVuDonViVienChucToAdd.Count > 0)
                             {
-                                var chucVuDonViVienChuc = listChucVuDonViVienChucToAdd.OrderByDescending(x => x.ChucVu.heSoChucVu).FirstOrDefault();
+                                var chucVuDonViVienChuc = listChucVuDonViVienChucToAdd.OrderByDescending(x => x.ChucVu.heSoChucVu).ThenByDescending(y => y.ngayBatDau).FirstOrDefault();
                                 listGridViewMainData.Add(new GridViewMainData
                                 {
                                     MaVienChuc = item.maVienChuc,
@@ -148,8 +145,6 @@ namespace Model.Repository
             {
                 string s = ex.Message;
             }
-            stopwatch.Stop();
-            double d = stopwatch.Elapsed.TotalSeconds;
             return listGridViewMainData;
         }
 
