@@ -126,7 +126,7 @@ namespace QLNS_SGU.Presenter
             if (selectedDomain == 0) // Tat ca
             {
                 ExportThongTinCaNhan(listFieldsDefault);
-                ExportTrangThai(listFieldsDefault, null, dtFromDuration, dtToDuration, tempIdVienChuc);
+                ExportTrangThai(ref listFieldsDefault, null, dtFromDuration, dtToDuration, tempIdVienChuc);
                 ExportCongTac(listFieldsDefault, null, dtFromDuration, dtToDuration, tempIdVienChuc);
                 ExportNganhHoc(listFieldsDefault, null, dtFromDuration, dtToDuration, tempIdVienChuc);
                 ExportQuaTrinhLuong(listFieldsDefault, null, dtFromDuration, dtToDuration, tempIdVienChuc);
@@ -135,7 +135,7 @@ namespace QLNS_SGU.Presenter
                 ExportDangHocNangCao(listFieldsDefault, null, dtFromDuration, dtToDuration, tempIdVienChuc);
             }
             if (selectedDomain == 1) // trang thai
-                ExportTrangThai(listFieldsDefault, null, dtFromDuration, dtToDuration, tempIdVienChuc);
+                ExportTrangThai(ref listFieldsDefault, null, dtFromDuration, dtToDuration, tempIdVienChuc);
             if (selectedDomain == 2) // cong tac
                 ExportCongTac(listFieldsDefault, null, dtFromDuration, dtToDuration, tempIdVienChuc);
             if (selectedDomain == 3) // nganh hoc
@@ -170,7 +170,7 @@ namespace QLNS_SGU.Presenter
             if (selectedDomain == 0) // Tat ca
             {
                 ExportThongTinCaNhan(listFieldsDefault);
-                ExportTrangThai(listFieldsDefault, dtTimeline, null, null, tempIdVienChuc);
+                ExportTrangThai(ref listFieldsDefault, dtTimeline, null, null, tempIdVienChuc);
                 ExportCongTac(listFieldsDefault, dtTimeline, null, null, tempIdVienChuc);
                 ExportNganhHoc(listFieldsDefault, dtTimeline, null, null, tempIdVienChuc);
                 ExportQuaTrinhLuong(listFieldsDefault, dtTimeline, null, null, tempIdVienChuc);
@@ -179,7 +179,7 @@ namespace QLNS_SGU.Presenter
                 ExportDangHocNangCao(listFieldsDefault, dtTimeline, null, null, tempIdVienChuc);
             }
             if (selectedDomain == 1) // trang thai
-                ExportTrangThai(listFieldsDefault, dtTimeline, null, null, tempIdVienChuc);
+                ExportTrangThai(ref listFieldsDefault, dtTimeline, null, null, tempIdVienChuc);
             if (selectedDomain == 2) // cong tac
                 ExportCongTac(listFieldsDefault, dtTimeline, null, null, tempIdVienChuc);
             if (selectedDomain == 3) // nganh hoc
@@ -202,6 +202,14 @@ namespace QLNS_SGU.Presenter
             //SetCellMergeColumn(selectedDomain);
         }
 
+        private void AssignListDefaultAgain(ref List<ExportObjects> lstDefault, List<ExportObjects> tempLst)
+        {
+            if (tempLst.Count > 0)
+            {
+                lstDefault.Clear();
+                lstDefault = tempLst.ToList();
+            }
+        }
         private void IncreaseIndex(List<ExportObjects> listFieldDefault, int index/*vi tri de filter cac item con lai*/, int count/*so phan tu con lai trong list cua moi~ vien chuc*/)
         {
             List<ExportObjects> listExportObjects = listFieldDefault.Where(x => x.Index > index).ToList();
@@ -374,10 +382,11 @@ namespace QLNS_SGU.Presenter
                 }
             }
         }
-        private void ExportTrangThai(List<ExportObjects> listFieldsDefault, DateTime? dtTimeline, DateTime? dtFromDuration, DateTime? dtToDuration, int tempIdVienChuc)
+        private void ExportTrangThai(ref List<ExportObjects> listFieldsDefault, DateTime? dtTimeline, DateTime? dtFromDuration, DateTime? dtToDuration, int tempIdVienChuc)
         {
             UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
-            if(dtTimeline != null)
+            List<ExportObjects> tempLst = new List<ExportObjects>();
+            if (dtTimeline != null)
             {
                 foreach (var row in listFieldsDefault)
                 {
@@ -393,13 +402,18 @@ namespace QLNS_SGU.Presenter
                             exportObjects.NgayBatDauTT = listTrangThai[0].ngayBatDau;
                             exportObjects.NgayKetThucTT = listTrangThai[0].ngayKetThuc;
                             exportObjects.LinkVanBanDinhKemTT = listTrangThai[0].linkVanBanDinhKem;
-
-                            IncreaseIndex(listFieldsDefault, row.Index, listTrangThai.Count - 1);
+                            tempLst.Add(exportObjects);
+                            //VD: row.index = 5, vao loop => tempIndex tang len 1 cho moi lan insert vao tempLst
+                            //=> neu co 2 dong thi index tuong ung trong tempLst se la 6,7
+                            //=> cap nhat lai index trong listdefault thanh 8, tuong ung cho lan duyet ke tiep
+                            //=> lan duyet tiep theo cua listDefault row.Index = 8
+                            int tempIndex = 0;
                             for (int i = 1; i < listTrangThai.Count; i++)
                             {
-                                listFieldsDefault.Insert(row.Index + 1, new ExportObjects
+                                tempIndex++;
+                                tempLst.Insert(row.Index + tempIndex, new ExportObjects
                                 {
-                                    Index = row.Index + 1,
+                                    Index = row.Index + tempIndex,
                                     IdVienChuc = row.IdVienChuc,
                                     MaVienChuc = row.MaVienChuc,
                                     Ho = row.Ho,
@@ -414,6 +428,7 @@ namespace QLNS_SGU.Presenter
                                     LinkVanBanDinhKemTT = listTrangThai[i].linkVanBanDinhKem
                                 });
                             }
+                            IncreaseIndex(listFieldsDefault, row.Index, tempIndex);
                         }
                         if (listTrangThai.Count == 1)
                         {
@@ -422,66 +437,89 @@ namespace QLNS_SGU.Presenter
                             exportObjects.NgayBatDauTT = listTrangThai[0].ngayBatDau;
                             exportObjects.NgayKetThucTT = listTrangThai[0].ngayKetThuc;
                             exportObjects.LinkVanBanDinhKemTT = listTrangThai[0].linkVanBanDinhKem;
+                            tempLst.Add(exportObjects);
                         }
+                        if (listTrangThai.Count == 0)
+                            tempLst.Add(exportObjects);
                     }
                 }
                 tempIdVienChuc = -1;
+                AssignListDefaultAgain(ref listFieldsDefault, tempLst);
             }
             else
-            {
+            {                
                 foreach (var row in listFieldsDefault)
                 {
-                    ExportObjects exportObjects = listFieldsDefault.Where(x => x.IdVienChuc == row.IdVienChuc && x.Index == row.Index).FirstOrDefault();
-                    List<TrangThaiVienChuc> listTrangThai = unitOfWorks.TrangThaiVienChucRepository.GetListTrangThaiByIdVienChucAndDuration(row.IdVienChuc, dtFromDuration, dtToDuration);
-                    if (row.IdVienChuc != tempIdVienChuc)
+                    try
                     {
-                        tempIdVienChuc = row.IdVienChuc;
-                        if (listTrangThai.Count > 1)
+                        ExportObjects exportObjects = listFieldsDefault.Where(x => x.IdVienChuc == row.IdVienChuc && x.Index == row.Index).FirstOrDefault();
+                        List<TrangThaiVienChuc> listTrangThai = unitOfWorks.TrangThaiVienChucRepository.GetListTrangThaiByIdVienChucAndDuration(row.IdVienChuc, dtFromDuration, dtToDuration);
+                        if (row.IdVienChuc != tempIdVienChuc)
                         {
-                            exportObjects.MoTaTT = listTrangThai[0].moTa;
-                            exportObjects.DiaDiemTT = listTrangThai[0].diaDiem;
-                            exportObjects.NgayBatDauTT = listTrangThai[0].ngayBatDau;
-                            exportObjects.NgayKetThucTT = listTrangThai[0].ngayKetThuc;
-                            exportObjects.LinkVanBanDinhKemTT = listTrangThai[0].linkVanBanDinhKem;
-
-                            IncreaseIndex(listFieldsDefault, row.Index, listTrangThai.Count - 1);
-                            for (int i = 1; i < listTrangThai.Count; i++)
+                            tempIdVienChuc = row.IdVienChuc;
+                            if (listTrangThai.Count > 1)
                             {
-                                listFieldsDefault.Insert(row.Index + 1, new ExportObjects
+                                exportObjects.MoTaTT = listTrangThai[0].moTa;
+                                exportObjects.DiaDiemTT = listTrangThai[0].diaDiem;
+                                exportObjects.NgayBatDauTT = listTrangThai[0].ngayBatDau;
+                                exportObjects.NgayKetThucTT = listTrangThai[0].ngayKetThuc;
+                                exportObjects.LinkVanBanDinhKemTT = listTrangThai[0].linkVanBanDinhKem;
+                                tempLst.Add(exportObjects);
+                                
+                                //VD: row.index = 5, vao loop => tempIndex tang len 1 cho moi lan insert vao tempLst
+                                //=> neu co 2 dong thi index tuong ung trong tempLst se la 6,7
+                                //=> cap nhat lai index trong listdefault thanh 8, tuong ung cho lan duyet ke tiep
+                                //=> lan duyet tiep theo cua listDefault row.Index = 8
+                                int tempIndex = 0;
+                                for (int i = 1; i < listTrangThai.Count; i++)
                                 {
-                                    Index = row.Index + 1,
-                                    IdVienChuc = row.IdVienChuc,
-                                    MaVienChuc = row.MaVienChuc,
-                                    Ho = row.Ho,
-                                    Ten = row.Ten,
-                                    GioiTinh = row.GioiTinh,
-                                    DonVi = row.DonVi,
-                                    TrangThai = listTrangThai[i].TrangThai.tenTrangThai,
-                                    MoTaTT = listTrangThai[i].moTa,
-                                    DiaDiemTT = listTrangThai[i].diaDiem,
-                                    NgayBatDauTT = listTrangThai[i].ngayBatDau,
-                                    NgayKetThucTT = listTrangThai[i].ngayKetThuc,
-                                    LinkVanBanDinhKemTT = listTrangThai[i].linkVanBanDinhKem
-                                });
+                                    tempIndex++;
+                                    tempLst.Insert(row.Index + tempIndex, new ExportObjects
+                                    {
+                                        Index = row.Index + tempIndex,
+                                        IdVienChuc = row.IdVienChuc,
+                                        MaVienChuc = row.MaVienChuc,
+                                        Ho = row.Ho,
+                                        Ten = row.Ten,
+                                        GioiTinh = row.GioiTinh,
+                                        DonVi = row.DonVi,
+                                        TrangThai = listTrangThai[i].TrangThai.tenTrangThai,
+                                        MoTaTT = listTrangThai[i].moTa,
+                                        DiaDiemTT = listTrangThai[i].diaDiem,
+                                        NgayBatDauTT = listTrangThai[i].ngayBatDau,
+                                        NgayKetThucTT = listTrangThai[i].ngayKetThuc,
+                                        LinkVanBanDinhKemTT = listTrangThai[i].linkVanBanDinhKem
+                                    });
+                                }
+                                IncreaseIndex(listFieldsDefault, row.Index, tempIndex);
                             }
+                            if (listTrangThai.Count == 1)
+                            {
+                                exportObjects.MoTaTT = listTrangThai[0].moTa;
+                                exportObjects.DiaDiemTT = listTrangThai[0].diaDiem;
+                                exportObjects.NgayBatDauTT = listTrangThai[0].ngayBatDau;
+                                exportObjects.NgayKetThucTT = listTrangThai[0].ngayKetThuc;
+                                exportObjects.LinkVanBanDinhKemTT = listTrangThai[0].linkVanBanDinhKem;
+                                tempLst.Add(exportObjects);
+                            }
+                            if (listTrangThai.Count == 0)
+                                tempLst.Add(exportObjects);
                         }
-                        if (listTrangThai.Count == 1)
-                        {
-                            exportObjects.MoTaTT = listTrangThai[0].moTa;
-                            exportObjects.DiaDiemTT = listTrangThai[0].diaDiem;
-                            exportObjects.NgayBatDauTT = listTrangThai[0].ngayBatDau;
-                            exportObjects.NgayKetThucTT = listTrangThai[0].ngayKetThuc;
-                            exportObjects.LinkVanBanDinhKemTT = listTrangThai[0].linkVanBanDinhKem;
-                        }
+                    }
+                    catch(Exception ex)
+                    {
+                        throw ex;
                     }
                 }
                 tempIdVienChuc = -1;
+                AssignListDefaultAgain(ref listFieldsDefault, tempLst);
             }
         }
 
         private void ExportCongTac(List<ExportObjects> listFieldsDefault, DateTime? dtTimeline, DateTime? dtFromDuration, DateTime? dtToDuration, int tempIdVienChuc)
         {
             UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
+            List<ExportObjects> tempLst = new List<ExportObjects>();
             if (dtTimeline != null)
             {
                 foreach (var row in listFieldsDefault)
@@ -510,13 +548,18 @@ namespace QLNS_SGU.Presenter
                             exportObjects.KiemNhiem = unitOfWorks.ChucVuDonViVienChucRepository.HardKiemNhiemToGrid(listCongTac[0].kiemNhiem);
                             exportObjects.LinkVanBanDinhKemCT = listCongTac[0].linkVanBanDinhKem;
                             exportObjects.GhiChuCT = listCongTac[0].ghiChu;
-
-                            IncreaseIndex(listFieldsDefault, row.Index, listCongTac.Count - 1);
+                            tempLst.Add(exportObjects);
+                            //VD: row.index = 5, vao loop => tempIndex tang len 1 cho moi lan insert vao tempLst
+                            //=> neu co 2 dong thi index tuong ung trong tempLst se la 6,7
+                            //=> cap nhat lai index trong listdefault thanh 8, tuong ung cho lan duyet ke tiep
+                            //=> lan duyet tiep theo cua listDefault row.Index = 8
+                            int tempIndex = 0;                            
                             for (int i = 1; i < listCongTac.Count; i++)
                             {
-                                listFieldsDefault.Insert(row.Index + 1, new ExportObjects
+                                tempIndex++;
+                                tempLst.Insert(row.Index + tempIndex, new ExportObjects
                                 {
-                                    Index = row.Index + 1,
+                                    Index = row.Index + tempIndex,
                                     IdVienChuc = row.IdVienChuc,
                                     MaVienChuc = row.MaVienChuc,
                                     Ho = row.Ho,
@@ -542,6 +585,7 @@ namespace QLNS_SGU.Presenter
                                     GhiChuCT = listCongTac[i].ghiChu
                                 });
                             }
+                            IncreaseIndex(listFieldsDefault, row.Index, tempIndex);
                         }
                         if (listCongTac.Count == 1)
                         {
@@ -562,10 +606,14 @@ namespace QLNS_SGU.Presenter
                             exportObjects.KiemNhiem = unitOfWorks.ChucVuDonViVienChucRepository.HardKiemNhiemToGrid(listCongTac[0].kiemNhiem);
                             exportObjects.LinkVanBanDinhKemCT = listCongTac[0].linkVanBanDinhKem;
                             exportObjects.GhiChuCT = listCongTac[0].ghiChu;
+                            tempLst.Add(exportObjects);
                         }
+                        if (listCongTac.Count == 0)
+                            tempLst.Add(exportObjects);
                     }
                 }
                 tempIdVienChuc = -1;
+                AssignListDefaultAgain(ref listFieldsDefault, tempLst);
             }
             else
             {
@@ -595,13 +643,18 @@ namespace QLNS_SGU.Presenter
                             exportObjects.KiemNhiem = unitOfWorks.ChucVuDonViVienChucRepository.HardKiemNhiemToGrid(listCongTac[0].kiemNhiem);
                             exportObjects.LinkVanBanDinhKemCT = listCongTac[0].linkVanBanDinhKem;
                             exportObjects.GhiChuCT = listCongTac[0].ghiChu;
-
-                            IncreaseIndex(listFieldsDefault, row.Index, listCongTac.Count - 1);
+                            tempLst.Add(exportObjects);
+                            //VD: row.index = 5, vao loop => tempIndex tang len 1 cho moi lan insert vao tempLst
+                            //=> neu co 2 dong thi index tuong ung trong tempLst se la 6,7
+                            //=> cap nhat lai index trong listdefault thanh 8, tuong ung cho lan duyet ke tiep
+                            //=> lan duyet tiep theo cua listDefault row.Index = 8
+                            int tempIndex = 0;                            
                             for (int i = 1; i < listCongTac.Count; i++)
                             {
-                                listFieldsDefault.Insert(row.Index + 1, new ExportObjects
+                                tempIndex++;
+                                tempLst.Insert(row.Index + tempIndex, new ExportObjects
                                 {
-                                    Index = row.Index + 1,
+                                    Index = row.Index + tempIndex,
                                     IdVienChuc = row.IdVienChuc,
                                     MaVienChuc = row.MaVienChuc,
                                     Ho = row.Ho,
@@ -627,6 +680,7 @@ namespace QLNS_SGU.Presenter
                                     GhiChuCT = listCongTac[i].ghiChu
                                 });
                             }
+                            IncreaseIndex(listFieldsDefault, row.Index, tempIndex);
                         }
                         if (listCongTac.Count == 1)
                         {
@@ -647,16 +701,21 @@ namespace QLNS_SGU.Presenter
                             exportObjects.KiemNhiem = unitOfWorks.ChucVuDonViVienChucRepository.HardKiemNhiemToGrid(listCongTac[0].kiemNhiem);
                             exportObjects.LinkVanBanDinhKemCT = listCongTac[0].linkVanBanDinhKem;
                             exportObjects.GhiChuCT = listCongTac[0].ghiChu;
+                            tempLst.Add(exportObjects);
                         }
+                        if (listCongTac.Count == 0)
+                            tempLst.Add(exportObjects);
                     }
                 }
                 tempIdVienChuc = -1;
+                AssignListDefaultAgain(ref listFieldsDefault, tempLst);
             }
         }
 
         private void ExportNganhHoc(List<ExportObjects> listFieldsDefault, DateTime? dtTimeline, DateTime? dtFromDuration, DateTime? dtToDuration, int tempIdVienChuc)
         {
             UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
+            List<ExportObjects> tempLst = new List<ExportObjects>();
             if (dtTimeline != null)
             {
                 foreach (var row in listFieldsDefault)
@@ -681,13 +740,18 @@ namespace QLNS_SGU.Presenter
                             exportObjects.LinkVanBanDinhKemHHHV_NH = listNganhHoc[0].HocHamHocViVienChuc.linkVanBanDinhKem;
                             exportObjects.PhanLoaiNH = unitOfWorks.NganhVienChucRepository.HardCodePhanLoaiToGrid(listNganhHoc[0].phanLoai);
                             exportObjects.LinkVanBanDinhKemNH = listNganhHoc[0].linkVanBanDinhKem;
-
-                            IncreaseIndex(listFieldsDefault, row.Index, listNganhHoc.Count - 1); // tru phan tu 0, con lai bn phan tu thi cong len bay nhieu
+                            tempLst.Add(exportObjects);
+                            //VD: row.index = 5, vao loop => tempIndex tang len 1 cho moi lan insert vao tempLst
+                            //=> neu co 2 dong thi index tuong ung trong tempLst se la 6,7
+                            //=> cap nhat lai index trong listdefault thanh 8, tuong ung cho lan duyet ke tiep
+                            //=> lan duyet tiep theo cua listDefault row.Index = 8
+                            int tempIndex = 0;
                             for (int i = 1; i < listNganhHoc.Count; i++)
                             {
-                                listFieldsDefault.Insert(row.Index + 1, new ExportObjects
+                                tempIndex++;
+                                tempLst.Insert(row.Index + tempIndex, new ExportObjects
                                 {
-                                    Index = row.Index + 1,
+                                    Index = row.Index + tempIndex,
                                     IdVienChuc = row.IdVienChuc,
                                     MaVienChuc = row.MaVienChuc,
                                     Ho = row.Ho,
@@ -710,6 +774,7 @@ namespace QLNS_SGU.Presenter
                                     LinkVanBanDinhKemNH = listNganhHoc[i].linkVanBanDinhKem
                                 });
                             }
+                            IncreaseIndex(listFieldsDefault, row.Index, tempIndex); // tru phan tu 0, con lai bn phan tu thi cong len bay nhieu
                         }
                         if (listNganhHoc.Count == 1)
                         {
@@ -726,10 +791,14 @@ namespace QLNS_SGU.Presenter
                             exportObjects.LinkVanBanDinhKemHHHV_NH = listNganhHoc[0].HocHamHocViVienChuc.linkVanBanDinhKem;
                             exportObjects.PhanLoaiNH = unitOfWorks.NganhVienChucRepository.HardCodePhanLoaiToGrid(listNganhHoc[0].phanLoai);
                             exportObjects.LinkVanBanDinhKemNH = listNganhHoc[0].linkVanBanDinhKem;
+                            tempLst.Add(exportObjects);
                         }
+                        if (listNganhHoc.Count == 0)
+                            tempLst.Add(exportObjects);
                     }
                 }
                 tempIdVienChuc = -1;
+                AssignListDefaultAgain(ref listFieldsDefault, tempLst);
             }
             else
             {
@@ -755,13 +824,18 @@ namespace QLNS_SGU.Presenter
                             exportObjects.LinkVanBanDinhKemHHHV_NH = listNganhHoc[0].HocHamHocViVienChuc.linkVanBanDinhKem;
                             exportObjects.PhanLoaiNH = unitOfWorks.NganhVienChucRepository.HardCodePhanLoaiToGrid(listNganhHoc[0].phanLoai);
                             exportObjects.LinkVanBanDinhKemNH = listNganhHoc[0].linkVanBanDinhKem;
-
-                            IncreaseIndex(listFieldsDefault, row.Index, listNganhHoc.Count - 1); // tru phan tu 0, con lai bn phan tu thi cong len bay nhieu
+                            tempLst.Add(exportObjects);
+                            //VD: row.index = 5, vao loop => tempIndex tang len 1 cho moi lan insert vao tempLst
+                            //=> neu co 2 dong thi index tuong ung trong tempLst se la 6,7
+                            //=> cap nhat lai index trong listdefault thanh 8, tuong ung cho lan duyet ke tiep
+                            //=> lan duyet tiep theo cua listDefault row.Index = 8
+                            int tempIndex = 0;
                             for (int i = 1; i < listNganhHoc.Count; i++)
                             {
-                                listFieldsDefault.Insert(row.Index + 1, new ExportObjects
+                                tempIndex++;
+                                tempLst.Insert(row.Index + tempIndex, new ExportObjects
                                 {
-                                    Index = row.Index + 1,
+                                    Index = row.Index + tempIndex,
                                     IdVienChuc = row.IdVienChuc,
                                     MaVienChuc = row.MaVienChuc,
                                     Ho = row.Ho,
@@ -784,6 +858,7 @@ namespace QLNS_SGU.Presenter
                                     LinkVanBanDinhKemNH = listNganhHoc[i].linkVanBanDinhKem
                                 });
                             }
+                            IncreaseIndex(listFieldsDefault, row.Index, tempIndex);
                         }
                         if (listNganhHoc.Count == 1)
                         {
@@ -800,16 +875,21 @@ namespace QLNS_SGU.Presenter
                             exportObjects.LinkVanBanDinhKemHHHV_NH = listNganhHoc[0].HocHamHocViVienChuc.linkVanBanDinhKem;
                             exportObjects.PhanLoaiNH = unitOfWorks.NganhVienChucRepository.HardCodePhanLoaiToGrid(listNganhHoc[0].phanLoai);
                             exportObjects.LinkVanBanDinhKemNH = listNganhHoc[0].linkVanBanDinhKem;
+                            tempLst.Add(exportObjects);
                         }
+                        if (listNganhHoc.Count == 0)
+                            tempLst.Add(exportObjects);
                     }
                 }
                 tempIdVienChuc = -1;
+                AssignListDefaultAgain(ref listFieldsDefault, tempLst);
             }
         }
 
         private void ExportQuaTrinhLuong(List<ExportObjects> listFieldsDefault, DateTime? dtTimeline, DateTime? dtFromDuration, DateTime? dtToDuration, int tempIdVienChuc)
         {
             UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
+            List<ExportObjects> tempLst = new List<ExportObjects>();
             if (dtTimeline != null)
             {
                 foreach (var row in listFieldsDefault)
@@ -831,13 +911,18 @@ namespace QLNS_SGU.Presenter
                             exportObjects.NgayBatDauQTL = listQuaTrinhLuong[0].ngayBatDau;
                             exportObjects.NgayLenLuong = listQuaTrinhLuong[0].ngayLenLuong;
                             exportObjects.LinkVanBanDinhKemQTL = listQuaTrinhLuong[0].linkVanBanDinhKem;
-
-                            IncreaseIndex(listFieldsDefault, row.Index, listQuaTrinhLuong.Count - 1);
+                            tempLst.Add(exportObjects);
+                            //VD: row.index = 5, vao loop => tempIndex tang len 1 cho moi lan insert vao tempLst
+                            //=> neu co 2 dong thi index tuong ung trong tempLst se la 6,7
+                            //=> cap nhat lai index trong listdefault thanh 8, tuong ung cho lan duyet ke tiep
+                            //=> lan duyet tiep theo cua listDefault row.Index = 8
+                            int tempIndex = 0;
                             for (int i = 1; i < listQuaTrinhLuong.Count; i++)
                             {
-                                listFieldsDefault.Insert(row.Index + 1, new ExportObjects
+                                tempIndex++;
+                                tempLst.Insert(row.Index + tempIndex, new ExportObjects
                                 {
-                                    Index = row.Index + 1,
+                                    Index = row.Index + tempIndex,
                                     IdVienChuc = row.IdVienChuc,
                                     MaVienChuc = row.MaVienChuc,
                                     Ho = row.Ho,
@@ -857,6 +942,7 @@ namespace QLNS_SGU.Presenter
                                     LinkVanBanDinhKemQTL = listQuaTrinhLuong[i].linkVanBanDinhKem
                                 });
                             }
+                            IncreaseIndex(listFieldsDefault, row.Index, tempIndex);
                         }
                         if (listQuaTrinhLuong.Count == 1)
                         {
@@ -870,10 +956,14 @@ namespace QLNS_SGU.Presenter
                             exportObjects.NgayBatDauQTL = listQuaTrinhLuong[0].ngayBatDau;
                             exportObjects.NgayLenLuong = listQuaTrinhLuong[0].ngayLenLuong;
                             exportObjects.LinkVanBanDinhKemQTL = listQuaTrinhLuong[0].linkVanBanDinhKem;
+                            tempLst.Add(exportObjects);
                         }
+                        if (listQuaTrinhLuong.Count == 0)
+                            tempLst.Add(exportObjects);
                     }
                 }
                 tempIdVienChuc = -1;
+                AssignListDefaultAgain(ref listFieldsDefault, tempLst);
             }
             else
             {
@@ -896,13 +986,18 @@ namespace QLNS_SGU.Presenter
                             exportObjects.NgayBatDauQTL = listQuaTrinhLuong[0].ngayBatDau;
                             exportObjects.NgayLenLuong = listQuaTrinhLuong[0].ngayLenLuong;
                             exportObjects.LinkVanBanDinhKemQTL = listQuaTrinhLuong[0].linkVanBanDinhKem;
-
-                            IncreaseIndex(listFieldsDefault, row.Index, listQuaTrinhLuong.Count - 1);
+                            tempLst.Add(exportObjects);
+                            //VD: row.index = 5, vao loop => tempIndex tang len 1 cho moi lan insert vao tempLst
+                            //=> neu co 2 dong thi index tuong ung trong tempLst se la 6,7
+                            //=> cap nhat lai index trong listdefault thanh 8, tuong ung cho lan duyet ke tiep
+                            //=> lan duyet tiep theo cua listDefault row.Index = 8
+                            int tempIndex = 0;
                             for (int i = 1; i < listQuaTrinhLuong.Count; i++)
                             {
-                                listFieldsDefault.Insert(row.Index + 1, new ExportObjects
+                                tempIndex++;
+                                tempLst.Insert(row.Index + tempIndex, new ExportObjects
                                 {
-                                    Index = row.Index + 1,
+                                    Index = row.Index + tempIndex,
                                     IdVienChuc = row.IdVienChuc,
                                     MaVienChuc = row.MaVienChuc,
                                     Ho = row.Ho,
@@ -922,6 +1017,7 @@ namespace QLNS_SGU.Presenter
                                     LinkVanBanDinhKemQTL = listQuaTrinhLuong[i].linkVanBanDinhKem
                                 });
                             }
+                            IncreaseIndex(listFieldsDefault, row.Index, tempIndex);
                         }
                         if (listQuaTrinhLuong.Count == 1)
                         {
@@ -935,16 +1031,21 @@ namespace QLNS_SGU.Presenter
                             exportObjects.NgayBatDauQTL = listQuaTrinhLuong[0].ngayBatDau;
                             exportObjects.NgayLenLuong = listQuaTrinhLuong[0].ngayLenLuong;
                             exportObjects.LinkVanBanDinhKemQTL = listQuaTrinhLuong[0].linkVanBanDinhKem;
+                            tempLst.Add(exportObjects);
                         }
+                        if (listQuaTrinhLuong.Count == 0)
+                            tempLst.Add(exportObjects);
                     }
                 }
                 tempIdVienChuc = -1;
+                AssignListDefaultAgain(ref listFieldsDefault, tempLst);
             }
         }
 
         private void ExportHopDong(List<ExportObjects> listFieldsDefault, DateTime? dtTimeline, DateTime? dtFromDuration, DateTime? dtToDuration, int tempIdVienChuc)
         {
             UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
+            List<ExportObjects> tempLst = new List<ExportObjects>();
             if (dtTimeline != null)
             {
                 foreach (var row in listFieldsDefault)
@@ -962,13 +1063,18 @@ namespace QLNS_SGU.Presenter
                             exportObjects.NgayKetThucHD = listHopDongVienChuc[0].ngayKetThuc;
                             exportObjects.MoTaHD = listHopDongVienChuc[0].moTa;
                             exportObjects.LinkVanBanDinhKemHD = listHopDongVienChuc[0].linkVanBanDinhKem;
-
-                            IncreaseIndex(listFieldsDefault, row.Index, listHopDongVienChuc.Count - 1);
+                            tempLst.Add(exportObjects);
+                            //VD: row.index = 5, vao loop => tempIndex tang len 1 cho moi lan insert vao tempLst
+                            //=> neu co 2 dong thi index tuong ung trong tempLst se la 6,7
+                            //=> cap nhat lai index trong listdefault thanh 8, tuong ung cho lan duyet ke tiep
+                            //=> lan duyet tiep theo cua listDefault row.Index = 8
+                            int tempIndex = 0;
                             for (int i = 1; i < listHopDongVienChuc.Count; i++)
                             {
-                                listFieldsDefault.Insert(row.Index + 1, new ExportObjects
+                                tempIndex++;
+                                tempLst.Insert(row.Index + tempIndex, new ExportObjects
                                 {
-                                    Index = row.Index + 1,
+                                    Index = row.Index + tempIndex,
                                     IdVienChuc = row.IdVienChuc,
                                     MaVienChuc = row.MaVienChuc,
                                     Ho = row.Ho,
@@ -984,6 +1090,7 @@ namespace QLNS_SGU.Presenter
                                     LinkVanBanDinhKemHD = listHopDongVienChuc[i].linkVanBanDinhKem
                                 });
                             }
+                            IncreaseIndex(listFieldsDefault, row.Index, tempIndex);
                         }
                         if (listHopDongVienChuc.Count == 1)
                         {
@@ -993,10 +1100,14 @@ namespace QLNS_SGU.Presenter
                             exportObjects.NgayKetThucHD = listHopDongVienChuc[0].ngayKetThuc;
                             exportObjects.MoTaHD = listHopDongVienChuc[0].moTa;
                             exportObjects.LinkVanBanDinhKemHD = listHopDongVienChuc[0].linkVanBanDinhKem;
+                            tempLst.Add(exportObjects);
                         }
+                        if (listHopDongVienChuc.Count == 0)
+                            tempLst.Add(exportObjects);
                     }
                 }
                 tempIdVienChuc = -1;
+                AssignListDefaultAgain(ref listFieldsDefault, tempLst);
             }
             else
             {
@@ -1016,12 +1127,18 @@ namespace QLNS_SGU.Presenter
                             exportObjects.MoTaHD = listHopDongVienChuc[0].moTa;
                             exportObjects.LinkVanBanDinhKemHD = listHopDongVienChuc[0].linkVanBanDinhKem;
 
-                            IncreaseIndex(listFieldsDefault, row.Index, listHopDongVienChuc.Count - 1);
+                            tempLst.Add(exportObjects);
+                            //VD: row.index = 5, vao loop => tempIndex tang len 1 cho moi lan insert vao tempLst
+                            //=> neu co 2 dong thi index tuong ung trong tempLst se la 6,7
+                            //=> cap nhat lai index trong listdefault thanh 8, tuong ung cho lan duyet ke tiep
+                            //=> lan duyet tiep theo cua listDefault row.Index = 8
+                            int tempIndex = 0;
                             for (int i = 1; i < listHopDongVienChuc.Count; i++)
                             {
-                                listFieldsDefault.Insert(row.Index + 1, new ExportObjects
+                                tempIndex++;
+                                tempLst.Insert(row.Index + tempIndex, new ExportObjects
                                 {
-                                    Index = row.Index + 1,
+                                    Index = row.Index + tempIndex,
                                     IdVienChuc = row.IdVienChuc,
                                     MaVienChuc = row.MaVienChuc,
                                     Ho = row.Ho,
@@ -1037,6 +1154,7 @@ namespace QLNS_SGU.Presenter
                                     LinkVanBanDinhKemHD = listHopDongVienChuc[i].linkVanBanDinhKem
                                 });
                             }
+                            IncreaseIndex(listFieldsDefault, row.Index, tempIndex);
                         }
                         if (listHopDongVienChuc.Count == 1)
                         {
@@ -1046,16 +1164,21 @@ namespace QLNS_SGU.Presenter
                             exportObjects.NgayKetThucHD = listHopDongVienChuc[0].ngayKetThuc;
                             exportObjects.MoTaHD = listHopDongVienChuc[0].moTa;
                             exportObjects.LinkVanBanDinhKemHD = listHopDongVienChuc[0].linkVanBanDinhKem;
+                            tempLst.Add(exportObjects);
                         }
+                        if (listHopDongVienChuc.Count == 0)
+                            tempLst.Add(exportObjects);
                     }
                 }
                 tempIdVienChuc = -1;
+                AssignListDefaultAgain(ref listFieldsDefault, tempLst);
             }
         }
 
         private void ExportChungChi(List<ExportObjects> listFieldsDefault, DateTime? dtTimeline, DateTime? dtFromDuration, DateTime? dtToDuration, int tempIdVienChuc)
         {
             UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
+            List<ExportObjects> tempLst = new List<ExportObjects>();
             if (dtTimeline != null)
             {
                 foreach (var row in listFieldsDefault)
@@ -1072,15 +1195,20 @@ namespace QLNS_SGU.Presenter
                             exportObjects.CapDoChungChi = listChungChi[0].capDoChungChi;
                             exportObjects.NgayCapChungChi = listChungChi[0].ngayCapChungChi;
                             exportObjects.CoSoDaoTaoCC = listChungChi[0].coSoDaoTao;
-
-                            IncreaseIndex(listFieldsDefault, row.Index, listChungChi.Count - 1);
+                            tempLst.Add(exportObjects);
+                            //VD: row.index = 5, vao loop => tempIndex tang len 1 cho moi lan insert vao tempLst
+                            //=> neu co 2 dong thi index tuong ung trong tempLst se la 6,7
+                            //=> cap nhat lai index trong listdefault thanh 8, tuong ung cho lan duyet ke tiep
+                            //=> lan duyet tiep theo cua listDefault row.Index = 8
+                            int tempIndex = 0;
                             for (int i = 1; i < listChungChi.Count; i++)
                             {
+                                tempIndex++;
                                 if (listChungChi[i].capDoChungChi != null)
                                 {
-                                    listFieldsDefault.Insert(row.Index + 1, new ExportObjects
+                                    tempLst.Insert(row.Index + tempIndex, new ExportObjects
                                     {
-                                        Index = row.Index + 1,
+                                        Index = row.Index + tempIndex,
                                         IdVienChuc = row.IdVienChuc,
                                         MaVienChuc = row.MaVienChuc,
                                         Ho = row.Ho,
@@ -1097,9 +1225,9 @@ namespace QLNS_SGU.Presenter
                                 }
                                 else
                                 {
-                                    listFieldsDefault.Insert(row.Index + 1, new ExportObjects
+                                    tempLst.Insert(row.Index + tempIndex, new ExportObjects
                                     {
-                                        Index = row.Index + 1,
+                                        Index = row.Index + tempIndex,
                                         IdVienChuc = row.IdVienChuc,
                                         MaVienChuc = row.MaVienChuc,
                                         Ho = row.Ho,
@@ -1115,6 +1243,7 @@ namespace QLNS_SGU.Presenter
                                     });
                                 }
                             }
+                            IncreaseIndex(listFieldsDefault, row.Index, tempIndex);
                         }
                         if (listChungChi.Count == 1)
                         {
@@ -1123,10 +1252,14 @@ namespace QLNS_SGU.Presenter
                             exportObjects.CapDoChungChi = listChungChi[0].capDoChungChi;
                             exportObjects.NgayCapChungChi = listChungChi[0].ngayCapChungChi;
                             exportObjects.CoSoDaoTaoCC = listChungChi[0].coSoDaoTao;
+                            tempLst.Add(exportObjects);
                         }
+                        if (listChungChi.Count == 0)
+                            tempLst.Add(exportObjects);
                     }
                 }
                 tempIdVienChuc = -1;
+                AssignListDefaultAgain(ref listFieldsDefault, tempLst);
             }
             else
             {
@@ -1145,14 +1278,20 @@ namespace QLNS_SGU.Presenter
                             exportObjects.NgayCapChungChi = listChungChi[0].ngayCapChungChi;
                             exportObjects.CoSoDaoTaoCC = listChungChi[0].coSoDaoTao;
 
-                            IncreaseIndex(listFieldsDefault, row.Index, listChungChi.Count - 1);
+                            tempLst.Add(exportObjects);
+                            //VD: row.index = 5, vao loop => tempIndex tang len 1 cho moi lan insert vao tempLst
+                            //=> neu co 2 dong thi index tuong ung trong tempLst se la 6,7
+                            //=> cap nhat lai index trong listdefault thanh 8, tuong ung cho lan duyet ke tiep
+                            //=> lan duyet tiep theo cua listDefault row.Index = 8
+                            int tempIndex = 0;
                             for (int i = 1; i < listChungChi.Count; i++)
                             {
+                                tempIndex++;
                                 if (listChungChi[i].capDoChungChi != null)
                                 {
-                                    listFieldsDefault.Insert(row.Index + 1, new ExportObjects
+                                    tempLst.Insert(row.Index + tempIndex, new ExportObjects
                                     {
-                                        Index = row.Index + 1,
+                                        Index = row.Index + tempIndex,
                                         IdVienChuc = row.IdVienChuc,
                                         MaVienChuc = row.MaVienChuc,
                                         Ho = row.Ho,
@@ -1169,9 +1308,9 @@ namespace QLNS_SGU.Presenter
                                 }
                                 else
                                 {
-                                    listFieldsDefault.Insert(row.Index + 1, new ExportObjects
+                                    tempLst.Insert(row.Index + tempIndex, new ExportObjects
                                     {
-                                        Index = row.Index + 1,
+                                        Index = row.Index + tempIndex,
                                         IdVienChuc = row.IdVienChuc,
                                         MaVienChuc = row.MaVienChuc,
                                         Ho = row.Ho,
@@ -1187,6 +1326,7 @@ namespace QLNS_SGU.Presenter
                                     });
                                 }
                             }
+                            IncreaseIndex(listFieldsDefault, row.Index, tempIndex);
                         }
                         if (listChungChi.Count == 1)
                         {
@@ -1195,16 +1335,21 @@ namespace QLNS_SGU.Presenter
                             exportObjects.CapDoChungChi = listChungChi[0].capDoChungChi;
                             exportObjects.NgayCapChungChi = listChungChi[0].ngayCapChungChi;
                             exportObjects.CoSoDaoTaoCC = listChungChi[0].coSoDaoTao;
+                            tempLst.Add(exportObjects);
                         }
+                        if (listChungChi.Count == 0)
+                            tempLst.Add(exportObjects);
                     }
                 }
                 tempIdVienChuc = -1;
+                AssignListDefaultAgain(ref listFieldsDefault, tempLst);
             }
         }
 
         private void ExportDangHocNangCao(List<ExportObjects> listFieldsDefault, DateTime? dtTimeline, DateTime? dtFromDuration, DateTime? dtToDuration, int tempIdVienChuc)
         {
             UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
+            List<ExportObjects> tempLst = new List<ExportObjects>();
             if (dtTimeline != null)
             {
                 foreach (var row in listFieldsDefault)
@@ -1227,13 +1372,18 @@ namespace QLNS_SGU.Presenter
                             exportObjects.NgayBatDauTT = listDangHocNangCao[0].ngayBatDau;
                             exportObjects.NgayKetThucTT = listDangHocNangCao[0].ngayKetThuc;
                             exportObjects.Loai = unitOfWorks.DangHocNangCaoRepository.HardCodeLoaiToGrid(listDangHocNangCao[0].loai);
-
-                            IncreaseIndex(listFieldsDefault, row.Index, listDangHocNangCao.Count - 1);
+                            tempLst.Add(exportObjects);
+                            //VD: row.index = 5, vao loop => tempIndex tang len 1 cho moi lan insert vao tempLst
+                            //=> neu co 2 dong thi index tuong ung trong tempLst se la 6,7
+                            //=> cap nhat lai index trong listdefault thanh 8, tuong ung cho lan duyet ke tiep
+                            //=> lan duyet tiep theo cua listDefault row.Index = 8
+                            int tempIndex = 0;
                             for (int i = 1; i < listDangHocNangCao.Count; i++)
                             {
-                                listFieldsDefault.Insert(row.Index + 1, new ExportObjects
+                                tempIndex++;
+                                tempLst.Insert(row.Index + tempIndex, new ExportObjects
                                 {
-                                    Index = row.Index + 1,
+                                    Index = row.Index + tempIndex,
                                     IdVienChuc = row.IdVienChuc,
                                     MaVienChuc = row.MaVienChuc,
                                     Ho = row.Ho,
@@ -1254,6 +1404,7 @@ namespace QLNS_SGU.Presenter
                                     Loai = unitOfWorks.DangHocNangCaoRepository.HardCodeLoaiToGrid(listDangHocNangCao[i].loai)
                                 });
                             }
+                            IncreaseIndex(listFieldsDefault, row.Index, tempIndex);
                         }
                         if (listDangHocNangCao.Count == 1)
                         {
@@ -1268,10 +1419,14 @@ namespace QLNS_SGU.Presenter
                             exportObjects.NgayBatDauTT = listDangHocNangCao[0].ngayBatDau;
                             exportObjects.NgayKetThucTT = listDangHocNangCao[0].ngayKetThuc;
                             exportObjects.Loai = unitOfWorks.DangHocNangCaoRepository.HardCodeLoaiToGrid(listDangHocNangCao[0].loai);
+                            tempLst.Add(exportObjects);
                         }
+                        if (listDangHocNangCao.Count == 0)
+                            tempLst.Add(exportObjects);
                     }
                 }
                 tempIdVienChuc = -1;
+                AssignListDefaultAgain(ref listFieldsDefault, tempLst);
             }
             else
             {
@@ -1295,13 +1450,18 @@ namespace QLNS_SGU.Presenter
                             exportObjects.NgayBatDauTT = listDangHocNangCao[0].ngayBatDau;
                             exportObjects.NgayKetThucTT = listDangHocNangCao[0].ngayKetThuc;
                             exportObjects.Loai = unitOfWorks.DangHocNangCaoRepository.HardCodeLoaiToGrid(listDangHocNangCao[0].loai);
-
-                            IncreaseIndex(listFieldsDefault, row.Index, listDangHocNangCao.Count - 1);
+                            tempLst.Add(exportObjects);
+                            //VD: row.index = 5, vao loop => tempIndex tang len 1 cho moi lan insert vao tempLst
+                            //=> neu co 2 dong thi index tuong ung trong tempLst se la 6,7
+                            //=> cap nhat lai index trong listdefault thanh 8, tuong ung cho lan duyet ke tiep
+                            //=> lan duyet tiep theo cua listDefault row.Index = 8
+                            int tempIndex = 0;
                             for (int i = 1; i < listDangHocNangCao.Count; i++)
                             {
-                                listFieldsDefault.Insert(row.Index + 1, new ExportObjects
+                                tempIndex++;
+                                tempLst.Insert(row.Index + tempIndex, new ExportObjects
                                 {
-                                    Index = row.Index + 1,
+                                    Index = row.Index + tempIndex,
                                     IdVienChuc = row.IdVienChuc,
                                     MaVienChuc = row.MaVienChuc,
                                     Ho = row.Ho,
@@ -1322,6 +1482,7 @@ namespace QLNS_SGU.Presenter
                                     Loai = unitOfWorks.DangHocNangCaoRepository.HardCodeLoaiToGrid(listDangHocNangCao[i].loai)
                                 });
                             }
+                            IncreaseIndex(listFieldsDefault, row.Index, tempIndex);
                         }
                         if (listDangHocNangCao.Count == 1)
                         {
@@ -1336,10 +1497,14 @@ namespace QLNS_SGU.Presenter
                             exportObjects.NgayBatDauTT = listDangHocNangCao[0].ngayBatDau;
                             exportObjects.NgayKetThucTT = listDangHocNangCao[0].ngayKetThuc;
                             exportObjects.Loai = unitOfWorks.DangHocNangCaoRepository.HardCodeLoaiToGrid(listDangHocNangCao[0].loai);
+                            tempLst.Add(exportObjects);
                         }
+                        if (listDangHocNangCao.Count == 0)
+                            tempLst.Add(exportObjects);
                     }
                 }
                 tempIdVienChuc = -1;
+                AssignListDefaultAgain(ref listFieldsDefault, tempLst);
             }
         }
 
