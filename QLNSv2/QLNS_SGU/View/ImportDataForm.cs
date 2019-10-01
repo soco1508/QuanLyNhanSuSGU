@@ -50,6 +50,7 @@ namespace QLNS_SGU.View
         public XtraTabPage TabPageHocHamHocVi { get => tabHocHamHocVi; set => tabHocHamHocVi = value; }
         public XtraTabPage TabPageLinhVucDangHocNangCao { get => tabDangHocNangCao; set => tabDangHocNangCao = value; }
         public XtraTabPage TabPageChungChi { get => tabChungChi; set => tabChungChi = value; }
+        public XtraTabPage TabPageThamNienNhaGiao { get => tabThamNienNhaGiao; set => tabThamNienNhaGiao = value; }
         #endregion
         public void Attach(IImportDataPresenter presenter)
         {
@@ -63,6 +64,7 @@ namespace QLNS_SGU.View
             navBarHocHamHocVi.LinkPressed += (sender, e) => presenter.OpenTabHocHamHocVi();
             navBarDangHocNangCao.LinkPressed += (sender, e) => presenter.OpenTabLinhVucDangHocNangCao();
             navBarChungChi.LinkPressed += (sender, e) => presenter.OpenTabChungChi();
+            navBarThamNienNhaGiao.LinkPressed += (sender, e) => presenter.OpenTabThamNienNhaGiao();
             //Thong tin ca nhan
             btnImportDanToc.Click += (s, e) => presenter.ImportDanToc();
             btnImportTonGiao.Click += (s, e) => presenter.ImportTonGiao();
@@ -92,6 +94,8 @@ namespace QLNS_SGU.View
             btnImportDangHocNangCao.Click += (sender, e) => presenter.ImportDangHocNangCao();
             btnImportLoaiChungChi.Click += (sender, e) => presenter.ImportLoaiChungChi();
             btnImportChungChiVienChuc.Click += (sender, e) => presenter.ImportChungChiVienChuc();
+            //Tham nien nha giao
+            btnImportThamNienNhaGiao.Click += (sender, e) => presenter.ImportThamNienNhaGiao();
         }
     }
 }

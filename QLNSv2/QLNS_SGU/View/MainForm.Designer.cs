@@ -237,6 +237,7 @@
             this.popupMenuGVHocHamHocVi = new DevExpress.XtraBars.PopupMenu(this.components);
             this.popupMenuGVChungChi = new DevExpress.XtraBars.PopupMenu(this.components);
             this.popupMenuGVTrangThai = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.btnRefresh = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -375,9 +376,10 @@
             this.btnDownloadFileDangHocNangCao,
             this.btnDownloadFileChungChi,
             this.btnDownloadFileTrangThai,
-            this.btnExportExcel});
+            this.btnExportExcel,
+            this.btnRefresh});
             this.barManager1.MainMenu = this.bar1;
-            this.barManager1.MaxItemId = 15;
+            this.barManager1.MaxItemId = 16;
             // 
             // bar1
             // 
@@ -386,6 +388,7 @@
             this.bar1.DockRow = 0;
             this.bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
             this.bar1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnRefresh),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnExportExcel)});
             this.bar1.OptionsBar.MultiLine = true;
             this.bar1.OptionsBar.UseWholeRow = true;
@@ -2418,6 +2421,15 @@
             this.popupMenuGVTrangThai.Manager = this.barManager1;
             this.popupMenuGVTrangThai.Name = "popupMenuGVTrangThai";
             // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Caption = "Làm mới";
+            this.btnRefresh.Id = 15;
+            this.btnRefresh.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.Image")));
+            this.btnRefresh.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.LargeImage")));
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            // 
             // MainForm
             // 
             this.Appearance.Options.UseTextOptions = true;
@@ -2769,5 +2781,6 @@
         private DevExpress.XtraGrid.Columns.LayoutViewColumn layoutViewColumn23;
         private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_layoutViewColumn23;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn47;
+        private DevExpress.XtraBars.BarButtonItem btnRefresh;
     }
 }

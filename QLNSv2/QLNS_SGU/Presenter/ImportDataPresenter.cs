@@ -32,6 +32,7 @@ namespace QLNS_SGU.Presenter
         void OpenTabHocHamHocVi();
         void OpenTabLinhVucDangHocNangCao();
         void OpenTabChungChi();
+        void OpenTabThamNienNhaGiao();
 
         void ImportDanToc();
         void ImportTonGiao();
@@ -58,6 +59,7 @@ namespace QLNS_SGU.Presenter
         void ImportHopDongVienChuc();
         void ImportLoaiChungChi();
         void ImportChungChiVienChuc();
+        void ImportThamNienNhaGiao();
     }
     public class ImportDataPresenter : IImportDataPresenter
     {
@@ -121,6 +123,16 @@ namespace QLNS_SGU.Presenter
             }
             _view.XtraTabControl.Show();
             _view.XtraTabControl.SelectedTabPage = _view.TabPageThongTinVienChuc;
+        }
+
+        public void OpenTabThamNienNhaGiao()
+        {
+            if (_view.XtraTabControl.IsAccessible)
+            {
+                _view.XtraTabControl.SelectedTabPage = _view.TabPageThamNienNhaGiao;
+            }
+            _view.XtraTabControl.Show();
+            _view.XtraTabControl.SelectedTabPage = _view.TabPageThamNienNhaGiao;
         }
 
         public void OpenTabTrangThai()
@@ -2036,6 +2048,64 @@ namespace QLNS_SGU.Presenter
             //    }
             //    throw;
             //}
+        }
+
+        public void ImportThamNienNhaGiao()
+        {
+            if (!checkFileNameIsEmpty)
+            {
+                UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
+                string sheetName = _view.CbxListSheets.EditValue.ToString();
+                if (sheetName.Equals("ThamNienNhaGiao"))
+                {
+                    SplashScreenManager.ShowForm(_view, typeof(WaitForm1), true, true, false, 0);
+                    SplashScreenManager.Default.SetWaitFormCaption("Đang import......");
+                    SplashScreenManager.Default.SetWaitFormDescription("0.0%");
+
+                    var rows = from a in excelfile.Worksheet(sheetName).AsEnumerable()
+                               where a["mavienchuc"] != string.Empty
+                               select a;
+                    List<string> list = unitOfWorks.VienChucRepository.GetListMaVienChuc();
+                    int line = 0;
+                    int lines = rows.Count();
+
+                    foreach (var row in rows)
+                    {
+                        line++;
+                        SplashScreenManager.Default.SetWaitFormDescription(String.Format(System.Globalization.CultureInfo
+                            .InvariantCulture, "{0:0.0}", (line * 1.0 / lines) * 100) + "%");
+                        string mavienchuc = row["mavienchuc"].ToString().Trim();
+                        double hesophucap = row["hesophucap"].ToString().Trim() != string.Empty ? double.Parse(row["hesophucap"].ToString().Trim()) : 0;
+                        if (list.Any(x => x == mavienchuc)) //ktra vienchuc co ton tai
+                        {
+                            unitOfWorks.QuaTrinhPhuCapThamNienNhaGiaoRepository.Insert(new QuaTrinhPhuCapThamNienNhaGiao
+                            {
+                                idVienChuc = unitOfWorks.VienChucRepository.GetIdVienChuc(mavienchuc),
+                                heSoPhuCap = hesophucap,
+                                ngayBatDau = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(row["ngaybatdau"].ToString().Trim()),
+                                ngayNangPhuCap = DateTimeHelper.ParseDatetimeMatchDatetimeDatabase(row["ngaynangphucap"].ToString().Trim()),
+                                linkVanBanDinhKem = string.Empty
+                            });
+                        }
+                    }
+
+                    try
+                    {
+                        unitOfWorks.Save();
+                        SplashScreenManager.CloseForm(false);
+                        XtraMessageBox.Show("Import Thâm niên nhà giáo thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception)
+                    {
+                        SplashScreenManager.CloseForm(false);
+                        XtraMessageBox.Show("Import Thâm niên nhà giáo không thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                    XtraMessageBox.Show("Vui lòng chọn sheet ThamNienNhaGiao.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+                XtraMessageBox.Show("Vui lòng chọn tập tin excel.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void InsertChungChi(int idvienchuc, string loaichungchi, string tenchungchi, string capdochungchi)

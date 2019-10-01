@@ -85,7 +85,9 @@ namespace QLNS_SGU.Presenter
                     if (trangThaiVienChuc != null)
                     {
                         DateTime currentDate = DateTime.Now.Date;
-                        DateTime ngayKetThuc = trangThaiVienChuc.ngayKetThuc.Value.Date;
+                        DateTime? ngayKetThuc = null;
+                        if (trangThaiVienChuc.ngayKetThuc != null)
+                            ngayKetThuc = trangThaiVienChuc.ngayKetThuc.Value.Date;
                         if (ngayKetThuc >= currentDate || trangThaiVienChuc.ngayKetThuc == null)
                             _view.LinkLBTrangThaiHienTai.Text = trangThaiVienChuc.TrangThai.tenTrangThai;
                         if (ngayKetThuc < currentDate)

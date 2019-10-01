@@ -14,6 +14,8 @@ using DevExpress.Utils;
 using Model.ObjectModels;
 using System.IO;
 using System.Threading.Tasks;
+using System.Diagnostics;
+using DevExpress.Data.Linq;
 
 namespace QLNS_SGU.Presenter
 {
@@ -25,6 +27,7 @@ namespace QLNS_SGU.Presenter
         void ClickRowAndChangeInfoAtRightLayout();
         void OpenStoreImage();
         void ExportExcelMainGrid();
+        void Refresh();
         void EventArrowKeysInGVMain(object sender, KeyEventArgs e);
         void OpenEditForm();
         void OpenEditFormHasId();
@@ -143,7 +146,13 @@ namespace QLNS_SGU.Presenter
         public static void LoadDataToMainGrid()
         {
             UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
+            Stopwatch st = new Stopwatch();
+            st.Start();
+            LinqServerModeSource linqServerModeSource = new LinqServerModeSource();
+            //linqServerModeSource.QueryableSource = unitOfWorks.GridViewDataRepository.LoadDataToMainGrid();
             _view.GCMain.DataSource = unitOfWorks.GridViewDataRepository.LoadDataToMainGrid();
+            st.Stop();
+            string s = st.Elapsed.ToString();
         }       
         public static void SetValueLbHopDong()
         {
@@ -308,6 +317,8 @@ namespace QLNS_SGU.Presenter
                 _view.GCMain.ExportToXlsx(_view.SaveFileDialog.FileName);
             }
         }
+
+        public void Refresh() => LoadDataToMainGrid();
 
         public void OpenStoreImage()
         {

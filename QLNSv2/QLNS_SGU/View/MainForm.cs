@@ -129,6 +129,7 @@ namespace QLNS_SGU.View
             btnEditInLayout.Click += (s, e) => presenter.OpenEditFormHasId();
             btnEditInGrid.ItemClick += (s, e) => presenter.OpenEditForm();
             gvMain.CustomDrawRowIndicator += new RowIndicatorCustomDrawEventHandler(presenter.RowIndicator);
+            btnRefresh.ItemClick += (s, e) => presenter.Refresh();
             btnExportExcelMainGrid.ItemClick += (s, e) => presenter.ExportExcelMainGrid();
             Load += new EventHandler(presenter.LoadForm);
             FormClosing += new FormClosingEventHandler(presenter.ClosingForm);
