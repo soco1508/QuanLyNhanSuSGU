@@ -13,6 +13,21 @@ namespace Model.Repository
         {
         }
 
+        private bool CheckRetire(int idvienchuc)
+        {
+            List<string> lstNghiViec = new List<string>()
+            {
+                "nghỉ việc","nghỉ việc không lương","nghỉ hưu"
+            };
+            //co trang thai va thuoc nghi viec thi return false
+            var check = (from p in _db.TrangThaiVienChucs.Where(x => x.idVienChuc == idvienchuc).DefaultIfEmpty()
+                        from t in _db.TrangThais.Where(x => x.idTrangThai == p.idTrangThai)
+                        select new { t.idTrangThai, t.tenTrangThai }).OrderByDescending(y => y.idTrangThai).FirstOrDefault();
+            if (check != null && check.tenTrangThai != string.Empty)
+                return !lstNghiViec.Contains(check.tenTrangThai.ToLower());
+            else
+                return true;
+        }
         public List<GridViewMainData> LoadDataToMainGrid()
         {            
             List<GridViewMainData> listGridViewMainData = new List<GridViewMainData>();
@@ -30,6 +45,8 @@ namespace Model.Repository
             {
                 foreach (var item in listVienChuc)
                 {
+                    if (!CheckRetire(item.idVienChuc))
+                        continue;
                     List<ChucVuDonViVienChuc> listChucVuDonViVienChucToAdd = new List<ChucVuDonViVienChuc>();
                     List<ChucVuDonViVienChuc> listChucVuDonViVienChuc = _db.ChucVuDonViVienChucs.Where(x => x.idVienChuc == item.idVienChuc).ToList();
                     if (listChucVuDonViVienChuc.Count == 0) // chua co qua trinh cong tac
@@ -59,19 +76,38 @@ namespace Model.Repository
                     {
                         try
                         {
-                            listGridViewMainData.Add(new GridViewMainData
+                            if(listChucVuDonViVienChuc[0].ngayKetThuc != null && listChucVuDonViVienChuc[0].ngayKetThuc >= DateTime.Now)
                             {
-                                MaVienChuc = item.maVienChuc,
-                                Ho = item.ho,
-                                Ten = item.ten,
-                                GioiTinh = CheckGioiTinh(item.gioiTinh),
-                                NgaySinh = item.ngaySinh,
-                                ChucVu = listChucVuDonViVienChuc[0].ChucVu != null ? listChucVuDonViVienChuc[0].ChucVu.tenChucVu : string.Empty,
-                                DonVi = listChucVuDonViVienChuc[0].DonVi != null ? listChucVuDonViVienChuc[0].DonVi.tenDonVi : string.Empty,
-                                TrinhDo = GetMaxLoaiHocHamHocVi(item.idVienChuc),
-                                HeSo = listChucVuDonViVienChuc[0].ChucVu.heSoChucVu,
-                                NgachVC = listChucVuDonViVienChuc[0].phanLoaiCongTac
-                            });
+                                listGridViewMainData.Add(new GridViewMainData
+                                {
+                                    MaVienChuc = item.maVienChuc,
+                                    Ho = item.ho,
+                                    Ten = item.ten,
+                                    GioiTinh = CheckGioiTinh(item.gioiTinh),
+                                    NgaySinh = item.ngaySinh,
+                                    ChucVu = listChucVuDonViVienChuc[0].ChucVu != null ? listChucVuDonViVienChuc[0].ChucVu.tenChucVu : string.Empty,
+                                    DonVi = listChucVuDonViVienChuc[0].DonVi != null ? listChucVuDonViVienChuc[0].DonVi.tenDonVi : string.Empty,
+                                    TrinhDo = GetMaxLoaiHocHamHocVi(item.idVienChuc),
+                                    HeSo = listChucVuDonViVienChuc[0].ChucVu.heSoChucVu,
+                                    NgachVC = listChucVuDonViVienChuc[0].phanLoaiCongTac
+                                });
+                            }
+                            if(listChucVuDonViVienChuc[0].ngayKetThuc == null)
+                            {
+                                listGridViewMainData.Add(new GridViewMainData
+                                {
+                                    MaVienChuc = item.maVienChuc,
+                                    Ho = item.ho,
+                                    Ten = item.ten,
+                                    GioiTinh = CheckGioiTinh(item.gioiTinh),
+                                    NgaySinh = item.ngaySinh,
+                                    ChucVu = listChucVuDonViVienChuc[0].ChucVu != null ? listChucVuDonViVienChuc[0].ChucVu.tenChucVu : string.Empty,
+                                    DonVi = listChucVuDonViVienChuc[0].DonVi != null ? listChucVuDonViVienChuc[0].DonVi.tenDonVi : string.Empty,
+                                    TrinhDo = GetMaxLoaiHocHamHocVi(item.idVienChuc),
+                                    HeSo = listChucVuDonViVienChuc[0].ChucVu.heSoChucVu,
+                                    NgachVC = listChucVuDonViVienChuc[0].phanLoaiCongTac
+                                });
+                            }
                         }
                         catch (Exception ex)
                         {

@@ -130,6 +130,7 @@ namespace QLNS_SGU.Presenter
             {
                 int rowFocus = Convert.ToInt32(_view.TXTRowIndex.Text);
                 ShowTrangThai(rowFocus);
+                LoadDataToMainGrid();
             }
         }
 
@@ -146,13 +147,13 @@ namespace QLNS_SGU.Presenter
         public static void LoadDataToMainGrid()
         {
             UnitOfWorks unitOfWorks = new UnitOfWorks(new QLNSSGU_1Entities());
-            Stopwatch st = new Stopwatch();
-            st.Start();
-            LinqServerModeSource linqServerModeSource = new LinqServerModeSource();
+            //Stopwatch st = new Stopwatch();
+            //st.Start();
+            //LinqServerModeSource linqServerModeSource = new LinqServerModeSource();
             //linqServerModeSource.QueryableSource = unitOfWorks.GridViewDataRepository.LoadDataToMainGrid();
             _view.GCMain.DataSource = unitOfWorks.GridViewDataRepository.LoadDataToMainGrid();
-            st.Stop();
-            string s = st.Elapsed.ToString();
+            //st.Stop();
+            //string s = st.Elapsed.ToString();
         }       
         public static void SetValueLbHopDong()
         {
